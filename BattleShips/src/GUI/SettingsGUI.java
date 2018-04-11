@@ -6,6 +6,9 @@
 package GUI;
 
 import java.awt.Dimension;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,13 +20,17 @@ public class SettingsGUI extends javax.swing.JFrame {
      * Creates new form SettingsGUI
      */
     Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    private int hoehe = (int) (screensize.getHeight()/2);
-    private int breite = (int) (screensize.getWidth()/2);
-    
-    
+    private int hoehe = (int) (screensize.getHeight() / 2);
+    private int breite = (int) (screensize.getWidth() / 2);
+
     public SettingsGUI() {
-        initComponents();
-        this.setBounds((int) (screensize.getWidth()/2-breite/2), (int) (screensize.getHeight()/2-hoehe/2), breite, hoehe);
+        
+        this.setBounds((int) (screensize.getWidth() / 2 - breite / 2), (int) (screensize.getHeight() / 2 - hoehe / 2), breite, hoehe);
+
+        ImageIcon icon = new ImageIcon(System.getProperty("src")+File.separator+"Bilder"+File.separator+"SettingsGUIBild");
+        JLabel l1 = new JLabel(icon);
+        this.add(l1);
+
     }
 
     /**
