@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,37 +34,27 @@ public class GameGUI extends javax.swing.JFrame
      */
     private int maxX, maxY;
 
-<<<<<<< Updated upstream
     private final String imagePath = System.getProperty("user.dir")+
                         File.separator+"src"
                         +File.separator+"bilder"
                         +File.separator+"ship.png";
     private Image ship; 
     
-=======
-    private final String imagePath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "data"
-            + File.separator + "ship.png";
-    private Image ship;
-
->>>>>>> Stashed changes
     @Override
-    public void paint(Graphics g)
+    public void paint(Graphics grphcs)
     {
-        super.paint(g); //To change body of generated methods, choose Tools | Templates.
-        drawPlayer1(1, 1, 23, 23);
+        super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
+        drawStuff();
 
     }
 
     public GameGUI()
     {
         initComponents();
-        jpGame.addKeyListener(jpGameListener);
-        initMyInits();
 
+        
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-
+        
         try
         {
             ship = ImageIO.read(new File(imagePath));
@@ -73,33 +62,18 @@ public class GameGUI extends javax.swing.JFrame
         {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
 
-    public void drawPlayer1(int x1, int y1, int x2, int y2)
+    public void drawStuff()
     {
         Graphics g = this.jpGame.getGraphics();
-        g.setColor(Color.BLUE);
-        g.fillRect(0, 0, maxX, maxY);
+        g.clearRect(0, 0, maxX, maxY);
         g.setColor(Color.BLACK);
-        g.fillRect(x1, y1, x2, y2);
-
-    }
-
-    public void drawPlayer2(int x1, int y1, int x2, int y2)
-    {
-        Graphics g = this.jpGame.getGraphics();
-        g.setColor(Color.BLUE);
-        g.fillRect(0, 0, maxX, maxY);
-        g.setColor(Color.BLACK);
-<<<<<<< Updated upstream
 //        g.fillRect(100, 100, 40, 20);
         g.drawImage(ship, 50, 50, rootPane);
      
-=======
-        g.fillRect(x1, y1, x2, y2);
-
->>>>>>> Stashed changes
     }
 
     public void initMyInits()
@@ -128,11 +102,11 @@ public class GameGUI extends javax.swing.JFrame
         jpPlayer1.setLayout(jpPlayer1Layout);
         jpPlayer1Layout.setHorizontalGroup(
             jpPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1924, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         jpPlayer1Layout.setVerticalGroup(
             jpPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpPlayer2Layout = new javax.swing.GroupLayout(jpPlayer2);
@@ -143,7 +117,7 @@ public class GameGUI extends javax.swing.JFrame
         );
         jpPlayer2Layout.setVerticalGroup(
             jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpGameLayout = new javax.swing.GroupLayout(jpGame);
@@ -154,7 +128,7 @@ public class GameGUI extends javax.swing.JFrame
         );
         jpGameLayout.setVerticalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 986, Short.MAX_VALUE)
+            .addGap(0, 286, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,11 +142,11 @@ public class GameGUI extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpPlayer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jpPlayer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,12 +160,11 @@ public class GameGUI extends javax.swing.JFrame
             {
                 System.out.println("bock");
             }
-
+            
             switch (evt.getKeyCode())
             {
                 case KeyEvent.VK_UP:
                     System.out.println("up");
-                    drawPlayer1(23, 23, 223, 223);
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
                 case KeyEvent.VK_DOWN:
