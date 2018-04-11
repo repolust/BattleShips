@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Leonardo
@@ -14,8 +16,14 @@ public class SettingsGUI extends javax.swing.JFrame {
     /**
      * Creates new form SettingsGUI
      */
+    Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    private int hoehe = (int) (screensize.getHeight()/2);
+    private int breite = (int) (screensize.getWidth()/2);
+    
+    
     public SettingsGUI() {
         initComponents();
+        this.setBounds((int) (screensize.getWidth()/2-breite/2), (int) (screensize.getHeight()/2-hoehe/2), breite, hoehe);
     }
 
     /**
@@ -33,7 +41,7 @@ public class SettingsGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 401, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

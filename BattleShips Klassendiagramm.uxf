@@ -30,11 +30,14 @@
       <x>180</x>
       <y>370</y>
       <w>210</w>
-      <h>110</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>SettingsGUI
 --
 -player:LinkedList&lt;Player&gt;
+-hoehe:int
+-breite:int
+-screensize:Dimension
 --
 +spielerErstellen():boolean
 +getSpieler():LinkedList&lt;Player&gt;
