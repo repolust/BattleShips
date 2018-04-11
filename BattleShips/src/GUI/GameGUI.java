@@ -34,27 +34,27 @@ public class GameGUI extends javax.swing.JFrame
      */
     private int maxX, maxY;
 
-    private final String imagePath = System.getProperty("user.dir")+
-                        File.separator+"src"
-                        +File.separator+"bilder"
-                        +File.separator+"ship.png";
-    private Image ship; 
-    
+    private final String imagePath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "ship.png";
+    private Image ship;
+
     @Override
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
-        drawStuff();
+        drawStuff(maxX/2-25, maxY/2-25, 50, 50);
 
     }
 
     public GameGUI()
     {
         initComponents();
+        jpGame.addKeyListener(jpGameListener);
 
-        
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-        
+
         try
         {
             ship = ImageIO.read(new File(imagePath));
@@ -62,24 +62,23 @@ public class GameGUI extends javax.swing.JFrame
         {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
-    }
-
-    public void drawStuff()
-    {
-        Graphics g = this.jpGame.getGraphics();
-        g.clearRect(0, 0, maxX, maxY);
-        g.setColor(Color.BLACK);
-//        g.fillRect(100, 100, 40, 20);
-        g.drawImage(ship, 50, 50, rootPane);
-     
     }
 
     public void initMyInits()
     {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
+    }
+
+    public void drawStuff(int x1, int y1, int x2, int y2)
+    {
+        Graphics g = this.jpGame.getGraphics();
+        g.clearRect(0, 0, maxX, maxY);
+        g.setColor(Color.BLACK);
+        g.drawRect(x1, y1, x2, y2);
+        g.drawImage(ship, 50, 50, rootPane);
+
     }
 
     /**
@@ -167,7 +166,7 @@ public class GameGUI extends javax.swing.JFrame
             {
                 System.out.println("bock");
             }
-            
+
             switch (evt.getKeyCode())
             {
                 case KeyEvent.VK_UP:
