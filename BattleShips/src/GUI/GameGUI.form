@@ -72,6 +72,9 @@
       </Layout>
     </Container>
     <Container class="javax.swing.JPanel" name="jpGame">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="onKeyPressed"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

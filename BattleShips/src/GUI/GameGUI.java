@@ -120,6 +120,14 @@ public class GameGUI extends javax.swing.JFrame
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
+        jpGame.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyPressed(java.awt.event.KeyEvent evt)
+            {
+                onKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpGameLayout = new javax.swing.GroupLayout(jpGame);
         jpGame.setLayout(jpGameLayout);
         jpGameLayout.setHorizontalGroup(
@@ -152,10 +160,9 @@ public class GameGUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    KeyListener jpGameListener = new KeyAdapter()
-    {
-        public void keyPressed(KeyEvent evt)
-        {
+    private void onKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_onKeyPressed
+    {//GEN-HEADEREND:event_onKeyPressed
+         System.out.println("key pressed");
             if (evt.getKeyCode() == KeyEvent.VK_ENTER)
             {
                 System.out.println("bock");
@@ -175,8 +182,15 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("enter");
 
             }
-        }
-    };
+    }//GEN-LAST:event_onKeyPressed
+
+//    KeyListener jpGameListener = new KeyAdapter()
+//    {
+//        public void keyPressed(KeyEvent evt)
+//        {
+//           
+//        }
+//    };
 
     /**
      * @param args the command line arguments
