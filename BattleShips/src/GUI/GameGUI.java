@@ -172,7 +172,14 @@ public class GameGUI extends javax.swing.JFrame
 
     private void onKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_onKeyPressed
     {//GEN-HEADEREND:event_onKeyPressed
-         System.out.println("key pressed");
+         
+    }//GEN-LAST:event_onKeyPressed
+
+    KeyListener jpGameListener = new KeyAdapter()
+    {
+        public void keyPressed(KeyEvent evt)
+        {
+           System.out.println("key pressed");
             if (evt.getKeyCode() == KeyEvent.VK_ENTER)
             {
                 System.out.println("bock");
@@ -192,15 +199,8 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("enter");
 
             }
-    }//GEN-LAST:event_onKeyPressed
-
-//    KeyListener jpGameListener = new KeyAdapter()
-//    {
-//        public void keyPressed(KeyEvent evt)
-//        {
-//           
-//        }
-//    };
+        }
+    };
 
     /**
      * @param args the command line arguments
