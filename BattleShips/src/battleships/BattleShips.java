@@ -19,6 +19,7 @@ public class BattleShips {
         System.out.println("Leonardos erste Zeile!");
         System.out.println("Leonardos zweite Zeile!");
         System.out.println("Michaels erste Zeile!");
+        System.out.println("Tobis erste Zeile!?");
     }
     
 }
