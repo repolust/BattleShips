@@ -7,6 +7,12 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,6 +37,7 @@ public class GameGUI extends javax.swing.JFrame
     public GameGUI()
     {
         initComponents();
+        jpGame.addKeyListener(jpGameListener);
     }
 
     public void drawStuff()
@@ -116,6 +123,32 @@ public class GameGUI extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    KeyListener jpGameListener = new KeyAdapter()
+    {
+        public void keyPressed(KeyEvent evt)
+        {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                System.out.println("bock");
+            }
+            
+            switch (evt.getKeyCode())
+            {
+                case KeyEvent.VK_UP:
+                    System.out.println("up");
+                case KeyEvent.VK_LEFT:
+                    System.out.println("left");
+                case KeyEvent.VK_DOWN:
+                    System.out.println("down");
+                case KeyEvent.VK_RIGHT:
+                    System.out.println("right");
+                case KeyEvent.VK_ENTER:
+                    System.out.println("enter");
+
+            }
+        }
+    };
 
     /**
      * @param args the command line arguments
