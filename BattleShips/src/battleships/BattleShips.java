@@ -16,10 +16,7 @@ public class BattleShips {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Leonardos erste Zeile!");
-        System.out.println("Leonardos zweite Zeile!");
-        System.out.println("Michaels erste Zeile!");
-        System.out.println("Tobis erste Zeile!?");
+
     }
     
 }
