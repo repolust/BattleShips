@@ -28,7 +28,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>180</x>
-      <y>350</y>
+      <y>370</y>
       <w>210</w>
       <h>110</h>
     </coordinates>
@@ -45,7 +45,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>40</x>
-      <y>500</y>
+      <y>540</y>
       <w>210</w>
       <h>240</h>
     </coordinates>
@@ -68,15 +68,26 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>500</y>
+      <x>310</x>
+      <y>540</y>
       <w>210</w>
-      <h>190</h>
+      <h>240</h>
     </coordinates>
     <panel_attributes>GameBL
 --
+-player:LinkedList&lt;Player&gt;
+--
++movePlayer()
++moveNorth()
++moveSouth()
++moveEast()
++moveWest()
++checkLife()
++checkMunition()
++shot()
++rotateShip()
 
---</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
