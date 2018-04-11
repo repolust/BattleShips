@@ -7,12 +7,20 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -26,6 +34,12 @@ public class GameGUI extends javax.swing.JFrame
      */
     private int maxX, maxY;
 
+    private final String imagePath = System.getProperty("user.dir")+
+                        File.separator+"src"
+                        +File.separator+"data"
+                        +File.separator+"ship.png";
+    private Image ship; 
+    
     @Override
     public void paint(Graphics grphcs)
     {
@@ -37,7 +51,19 @@ public class GameGUI extends javax.swing.JFrame
     public GameGUI()
     {
         initComponents();
-        jpGame.addKeyListener(jpGameListener);
+
+        
+        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
+        
+        try
+        {
+            ship = ImageIO.read(new File(imagePath));
+        } catch (IOException ex)
+        {
+            Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
     }
 
     public void drawStuff()
@@ -46,6 +72,8 @@ public class GameGUI extends javax.swing.JFrame
         g.clearRect(0, 0, maxX, maxY);
         g.setColor(Color.BLACK);
         g.fillRect(100, 100, 40, 20);
+        
+     
     }
 
     public void initMyInits()
