@@ -36,7 +36,7 @@ public class GameGUI extends javax.swing.JFrame
 
     private final String imagePath = System.getProperty("user.dir")+
                         File.separator+"src"
-                        +File.separator+"data"
+                        +File.separator+"bilder"
                         +File.separator+"ship.png";
     private Image ship; 
     
@@ -71,8 +71,8 @@ public class GameGUI extends javax.swing.JFrame
         Graphics g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
         g.setColor(Color.BLACK);
-        g.fillRect(100, 100, 40, 20);
-        
+//        g.fillRect(100, 100, 40, 20);
+        g.drawImage(ship, 50, 50, rootPane);
      
     }
 
