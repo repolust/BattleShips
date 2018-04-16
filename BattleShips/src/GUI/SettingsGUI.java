@@ -26,12 +26,11 @@ public class SettingsGUI extends javax.swing.JFrame {
         initComponents();
         SettingsBL sbl = (SettingsBL) jpMyPanel;
         setEigenschaften();
-
+        sbl.paint(this.getGraphics());
     }
 
     public void setEigenschaften() {
         this.setBounds(breite / 2 - breite / 4, hoehe / 2 - hoehe / 4, breite / 2, hoehe / 2);
-        jpMyPanel.setBackground(Color.BLUE);
     }
 
     /**
