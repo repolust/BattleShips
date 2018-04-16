@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BL.GameBL;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -32,74 +33,30 @@ public class GameGUI extends javax.swing.JFrame
     /**
      * Creates new form GameGUI
      */
-    private int maxX, maxY;
-    private int p1X1, p1Y1, p1X2, p1Y2, p2X1, p2Y1, p2X2, p2Y2;
-    private Graphics g;
 
-    private final String imagePath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "ship.png";
-    private Image ship;
+    
+    private GameBL bl;
+    
 
     @Override
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
-        drawPlayer1(p1X1, p1Y1, p1X2, p1Y2);
-        drawPlayer2(p2X1, p2Y1, p2X2, p2Y2);
-
+       
+        bl.setPlayers();
     }
 
     public GameGUI()
     {
         initComponents();
-        initMyInits();
+        
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
 
+        
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-
-        try
-        {
-            ship = ImageIO.read(new File(imagePath));
-        } catch (IOException ex)
-        {
-            Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void initMyInits()
-    {
-        maxX = this.jpGame.getWidth();
-        maxY = this.jpGame.getHeight();
-        g = this.jpGame.getGraphics();
-        g.clearRect(0, 0, maxX, maxY);
-        p1X1 = maxX / 2 - 112;
-        p1Y1 = maxY / 2 - 35;
-        p1X2 = 25;
-        p1Y2 = 70;
-        p2X1 = maxX / 2 + 88;
-        p2Y1 = maxY / 2 - 35;
-        p2X2 = 25;
-        p2Y2 = 70;
-    }
-
-    public void drawPlayer1(int x1, int y1, int x2, int y2)
-    {
-        g.setColor(Color.BLACK);
-        g.drawRect(x1 + 22, y1 + 23, x2, y2);
-        g.drawImage(ship, x1, y1, rootPane);
-
-    }
-
-    public void drawPlayer2(int x1, int y1, int x2, int y2)
-    {
-        g.setColor(Color.BLACK);
-        g.drawRect(x1 + 22, y1 + 23, x2, y2);
-        g.drawImage(ship, x1, y1, rootPane);
-
+        
+        bl = new GameBL(this.jpGame);
     }
 
     /**
@@ -182,6 +139,7 @@ public class GameGUI extends javax.swing.JFrame
             flagDown = false,
             flagRight = false,
             flagEnter = false;
+    
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
