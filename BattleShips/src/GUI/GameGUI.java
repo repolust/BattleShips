@@ -139,7 +139,11 @@ public class GameGUI extends javax.swing.JFrame
             flagDown = false,
             flagRight = false,
             flagEnter = false;
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
@@ -167,6 +171,7 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("# space #");
                     flagSpace = true;
                     break;
+
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
                     flagLeft = true;
@@ -184,7 +189,7 @@ public class GameGUI extends javax.swing.JFrame
                     flagRight = true;
                     break;
                 case KeyEvent.VK_ENTER:
-                    System.out.println(" **enter**");
+                    System.out.println("**enter**");
                     flagEnter = true;
                     break;
             }
@@ -215,6 +220,7 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("# space #");
                     flagSpace = false;
                     break;
+
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
                     flagLeft = false;
