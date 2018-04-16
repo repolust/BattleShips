@@ -45,8 +45,8 @@ public class GameGUI extends javax.swing.JFrame
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
-        drawPlayer1(maxX / 2 -135, maxY / 2 - 50, 71, 100); 
-        drawPlayer2(maxX / 2 +65, maxY / 2 - 50, 71, 100);
+        drawPlayer1(maxX / 2 - 112, maxY / 2 - 35, 25, 70);
+        drawPlayer2(maxX / 2 + 88, maxY / 2 - 35, 25, 70);
 
     }
 
@@ -79,7 +79,7 @@ public class GameGUI extends javax.swing.JFrame
     public void drawPlayer1(int x1, int y1, int x2, int y2)
     {
         g.setColor(Color.BLACK);
-        g.drawRect(x1, y1, x2, y2);
+        g.drawRect(x1 + 22, y1 + 23, x2, y2);
         g.drawImage(ship, x1, y1, rootPane);
 
     }
@@ -87,7 +87,7 @@ public class GameGUI extends javax.swing.JFrame
     public void drawPlayer2(int x1, int y1, int x2, int y2)
     {
         g.setColor(Color.BLACK);
-        g.drawRect(x1, y1, x2, y2);
+        g.drawRect(x1 + 22, y1 + 23, x2, y2);
         g.drawImage(ship, x1, y1, rootPane);
 
     }
@@ -172,7 +172,14 @@ public class GameGUI extends javax.swing.JFrame
 
     private void onKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_onKeyPressed
     {//GEN-HEADEREND:event_onKeyPressed
-         System.out.println("key pressed");
+
+    }//GEN-LAST:event_onKeyPressed
+
+    KeyListener jpGameListener = new KeyAdapter()
+    {
+        public void keyPressed(KeyEvent evt)
+        {
+            System.out.println("key pressed");
             if (evt.getKeyCode() == KeyEvent.VK_ENTER)
             {
                 System.out.println("bock");
@@ -192,15 +199,8 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("enter");
 
             }
-    }//GEN-LAST:event_onKeyPressed
-
-//    KeyListener jpGameListener = new KeyAdapter()
-//    {
-//        public void keyPressed(KeyEvent evt)
-//        {
-//           
-//        }
-//    };
+        }
+    };
 
     /**
      * @param args the command line arguments
