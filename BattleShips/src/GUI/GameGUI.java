@@ -33,29 +33,25 @@ public class GameGUI extends javax.swing.JFrame
     /**
      * Creates new form GameGUI
      */
-
-    
     private GameBL bl;
-    
 
     @Override
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
-       
+
         bl.setPlayers();
     }
 
     public GameGUI()
     {
         initComponents();
-        
+
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
 
-        
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-        
+
         bl = new GameBL(this.jpGame);
     }
 
@@ -139,11 +135,7 @@ public class GameGUI extends javax.swing.JFrame
             flagDown = false,
             flagRight = false,
             flagEnter = false;
-<<<<<<< Updated upstream
     
-=======
-
->>>>>>> Stashed changes
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
