@@ -55,6 +55,8 @@ public class GameGUI extends javax.swing.JFrame
         initComponents();
         initMyInits();
         jpGame.addKeyListener(jpGameListener);
+        jpGame.setFocusable(true);
+//        this.jTextField1.addKeyListener(jpGameListener);
 
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
@@ -130,19 +132,11 @@ public class GameGUI extends javax.swing.JFrame
             .addGap(0, 101, Short.MAX_VALUE)
         );
 
-        jpGame.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyPressed(java.awt.event.KeyEvent evt)
-            {
-                onKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jpGameLayout = new javax.swing.GroupLayout(jpGame);
         jpGame.setLayout(jpGameLayout);
         jpGameLayout.setHorizontalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1924, Short.MAX_VALUE)
         );
         jpGameLayout.setVerticalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,13 +164,9 @@ public class GameGUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void onKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_onKeyPressed
-    {//GEN-HEADEREND:event_onKeyPressed
-
-    }//GEN-LAST:event_onKeyPressed
-
     KeyListener jpGameListener = new KeyAdapter()
     {
+        @Override
         public void keyPressed(KeyEvent evt)
         {
             System.out.println("key pressed");
@@ -189,14 +179,19 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_UP:
                     System.out.println("up");
+                    break;
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
+                    break;
                 case KeyEvent.VK_DOWN:
                     System.out.println("down");
+                    break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("right");
+                    break;
                 case KeyEvent.VK_ENTER:
                     System.out.println("enter");
+                    break;
 
             }
         }
