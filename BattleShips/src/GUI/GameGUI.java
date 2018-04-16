@@ -33,6 +33,7 @@ public class GameGUI extends javax.swing.JFrame
      * Creates new form GameGUI
      */
     private int maxX, maxY;
+    private Graphics g;
 
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -44,13 +45,15 @@ public class GameGUI extends javax.swing.JFrame
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
-        drawStuff(maxX/2-25, maxY/2-25, 50, 50);
+        drawPlayer1(maxX / 2 -135, maxY / 2 - 50, 71, 100); 
+        drawPlayer2(maxX / 2 +65, maxY / 2 - 50, 71, 100);
 
     }
 
     public GameGUI()
     {
         initComponents();
+        initMyInits();
         jpGame.addKeyListener(jpGameListener);
 
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
@@ -69,15 +72,23 @@ public class GameGUI extends javax.swing.JFrame
     {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
+        g = this.jpGame.getGraphics();
+        g.clearRect(0, 0, maxX, maxY);
     }
 
-    public void drawStuff(int x1, int y1, int x2, int y2)
+    public void drawPlayer1(int x1, int y1, int x2, int y2)
     {
-        Graphics g = this.jpGame.getGraphics();
-        g.clearRect(0, 0, maxX, maxY);
         g.setColor(Color.BLACK);
         g.drawRect(x1, y1, x2, y2);
-        g.drawImage(ship, 50, 50, rootPane);
+        g.drawImage(ship, x1, y1, rootPane);
+
+    }
+
+    public void drawPlayer2(int x1, int y1, int x2, int y2)
+    {
+        g.setColor(Color.BLACK);
+        g.drawRect(x1, y1, x2, y2);
+        g.drawImage(ship, x1, y1, rootPane);
 
     }
 
@@ -101,11 +112,11 @@ public class GameGUI extends javax.swing.JFrame
         jpPlayer1.setLayout(jpPlayer1Layout);
         jpPlayer1Layout.setHorizontalGroup(
             jpPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 1924, Short.MAX_VALUE)
         );
         jpPlayer1Layout.setVerticalGroup(
             jpPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 101, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpPlayer2Layout = new javax.swing.GroupLayout(jpPlayer2);
@@ -116,7 +127,7 @@ public class GameGUI extends javax.swing.JFrame
         );
         jpPlayer2Layout.setVerticalGroup(
             jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 101, Short.MAX_VALUE)
         );
 
         jpGame.addKeyListener(new java.awt.event.KeyAdapter()
@@ -135,7 +146,7 @@ public class GameGUI extends javax.swing.JFrame
         );
         jpGameLayout.setVerticalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGap(0, 864, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
