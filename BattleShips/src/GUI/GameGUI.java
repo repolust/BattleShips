@@ -126,16 +126,16 @@ public class GameGUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean flagA = false,
-            flagW = false,
-            flagS = false,
-            flagD = false,
-            flagSpace = false,
-            flagLeft = false,
-            flagUp = false,
-            flagDown = false,
-            flagRight = false,
-            flagEnter = false;
-    
+                    flagW = false,
+                    flagS = false,
+                    flagD = false,
+                    flagSpace = false,
+                    flagLeft = false,
+                    flagUp = false,
+                    flagDown = false,
+                    flagRight = false,
+                    flagEnter = false;
+
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
