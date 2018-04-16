@@ -33,6 +33,7 @@ public class GameGUI extends javax.swing.JFrame
      * Creates new form GameGUI
      */
     private int maxX, maxY;
+    private int p1X1, p1Y1, p1X2, p1Y2, p2X1, p2Y1, p2X2, p2Y2;
     private Graphics g;
 
     private final String imagePath = System.getProperty("user.dir")
@@ -45,8 +46,8 @@ public class GameGUI extends javax.swing.JFrame
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
-        drawPlayer1(maxX / 2 - 112, maxY / 2 - 35, 25, 70);
-        drawPlayer2(maxX / 2 + 88, maxY / 2 - 35, 25, 70);
+        drawPlayer1(p1X1, p1Y1, p1X2, p1Y2);
+        drawPlayer2(p2X1, p2Y1, p2X2, p2Y2);
 
     }
 
@@ -56,7 +57,6 @@ public class GameGUI extends javax.swing.JFrame
         initMyInits();
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
-//        this.jTextField1.addKeyListener(jpGameListener);
 
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
@@ -76,6 +76,14 @@ public class GameGUI extends javax.swing.JFrame
         maxY = this.jpGame.getHeight();
         g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
+        p1X1 = maxX / 2 - 112;
+        p1Y1 = maxY / 2 - 35;
+        p1X2 = 25;
+        p1Y2 = 70;
+        p2X1 = maxX / 2 + 88;
+        p2Y1 = maxY / 2 - 35;
+        p2X2 = 25;
+        p2Y2 = 70;
     }
 
     public void drawPlayer1(int x1, int y1, int x2, int y2)
@@ -164,37 +172,115 @@ public class GameGUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean flagA = false,
+            flagW = false,
+            flagS = false,
+            flagD = false,
+            flagSpace = false,
+            flagLeft = false,
+            flagUp = false,
+            flagDown = false,
+            flagRight = false,
+            flagEnter = false;
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
         public void keyPressed(KeyEvent evt)
         {
-            System.out.println("key pressed");
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-            {
-                System.out.println("bock");
-            }
-
             switch (evt.getKeyCode())
             {
-                case KeyEvent.VK_UP:
-                    System.out.println("up");
+                case KeyEvent.VK_A:
+                    System.out.println("a");
+                    flagA = true;
+                    break;
+                case KeyEvent.VK_W:
+                    System.out.println("w");
+                    flagW = true;
+                    break;
+                case KeyEvent.VK_S:
+                    System.out.println("s");
+                    flagS = true;
+                    break;
+                case KeyEvent.VK_D:
+                    System.out.println("d");
+                    flagD = true;
+                    break;
+                case KeyEvent.VK_SPACE:
+                    System.out.println("# space #");
+                    flagSpace = true;
                     break;
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
+                    flagLeft = true;
+                    break;
+                case KeyEvent.VK_UP:
+                    System.out.println("up");
+                    flagUp = true;
                     break;
                 case KeyEvent.VK_DOWN:
                     System.out.println("down");
+                    flagDown = true;
                     break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("right");
+                    flagRight = true;
                     break;
                 case KeyEvent.VK_ENTER:
-                    System.out.println("enter");
+                    System.out.println(" **enter**");
+                    flagEnter = true;
                     break;
-
             }
         }
+
+        @Override
+        public void keyReleased(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
+                case KeyEvent.VK_A:
+                    System.out.println("a");
+                    flagA = false;
+                    break;
+                case KeyEvent.VK_W:
+                    System.out.println("w");
+                    flagW = false;
+                    break;
+                case KeyEvent.VK_S:
+                    System.out.println("s");
+                    flagS = false;
+                    break;
+                case KeyEvent.VK_D:
+                    System.out.println("d");
+                    flagD = false;
+                    break;
+                case KeyEvent.VK_SPACE:
+                    System.out.println("# space #");
+                    flagSpace = false;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    System.out.println("left");
+                    flagLeft = false;
+                    break;
+                case KeyEvent.VK_UP:
+                    System.out.println("up");
+                    flagUp = false;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    System.out.println("down");
+                    flagDown = false;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    System.out.println("right");
+                    flagRight = false;
+                    break;
+                case KeyEvent.VK_ENTER:
+                    System.out.println(" **enter**");
+                    flagEnter = false;
+                    break;
+            }
+
+        }
+
     };
 
     /**
@@ -215,20 +301,28 @@ public class GameGUI extends javax.swing.JFrame
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(GameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(GameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(GameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(GameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GameGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
