@@ -36,13 +36,30 @@ public class GameGUI extends javax.swing.JFrame
      * Creates new form GameGUI
      */
     private GameBL bl;
+    private boolean 
+            flagA = false,
+            flagW = false,
+            flagS = false,
+            flagD = false,
+            flagLeft = false,
+            flagUp = false,
+            flagDown = false,
+            flagRight = false;
 
+    private Thread zeichenThread;
+    
     @Override
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
-        bl.drawPlayers();
+        if(bl != null)
+        {
+          bl.drawPlayers();
+
+        }
+        
+        
     }
 
     public GameGUI()
@@ -55,6 +72,10 @@ public class GameGUI extends javax.swing.JFrame
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
         bl = new GameBL(this.jpGame);
+        fillMap();
+        
+        zeichenThread = new zeichenThread();
+        zeichenThread.start();
     }
 
     /**
@@ -127,15 +148,7 @@ public class GameGUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean flagA = false,
-            flagW = false,
-            flagS = false,
-            flagD = false,
-            flagLeft = false,
-            flagUp = false,
-            flagDown = false,
-            flagRight = false;
-
+    
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
@@ -258,22 +271,22 @@ public class GameGUI extends javax.swing.JFrame
         
     }
     
-    private HashMap<String,Boolean> flagMap = new HashMap();
+        private HashMap<String,Boolean> flagMap = new HashMap();
     
-     public class zeichenThread extends Thread
+   public class zeichenThread extends Thread
     {
 
         private LinkedList<String> movement = new LinkedList();
 
         public zeichenThread()
         {
-            
+            System.out.println("thread created");
         }
         
         @Override
         public void run()
         {
-            System.out.println("thread running");
+            System.out.println("thread started");
              while(true)
              {
                  for (String move : flagMap.keySet())

@@ -34,6 +34,7 @@ public class GameBL
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "ship.png";
+    
     private Image ship;
 
     public GameBL(JPanel jpGame)
@@ -77,6 +78,7 @@ public class GameBL
     {
         drawPlayer1();
         drawPlayer2();
+     
     }
 
     public void drawPlayer1()
@@ -109,10 +111,12 @@ public class GameBL
             String move = movement.get(0);
             if(move.equals("w"))
             {
-                p1Y1+=2;
+                p1Y1+=10;
                 System.out.println("move to:"+p1Y1);
             }
         }
+     
         
     }
+    
 }
