@@ -126,15 +126,13 @@ public class GameGUI extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean flagA = false,
-                    flagW = false,
-                    flagS = false,
-                    flagD = false,
-                    flagSpace = false,
-                    flagLeft = false,
-                    flagUp = false,
-                    flagDown = false,
-                    flagRight = false,
-                    flagEnter = false;
+            flagW = false,
+            flagS = false,
+            flagD = false,
+            flagLeft = false,
+            flagUp = false,
+            flagDown = false,
+            flagRight = false;
 
     KeyListener jpGameListener = new KeyAdapter()
     {
@@ -159,10 +157,6 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("d");
                     flagD = true;
                     break;
-                case KeyEvent.VK_SPACE:
-                    System.out.println("# space #");
-                    flagSpace = true;
-                    break;
 
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
@@ -179,10 +173,6 @@ public class GameGUI extends javax.swing.JFrame
                 case KeyEvent.VK_RIGHT:
                     System.out.println("right");
                     flagRight = true;
-                    break;
-                case KeyEvent.VK_ENTER:
-                    System.out.println("**enter**");
-                    flagEnter = true;
                     break;
             }
         }
@@ -208,10 +198,6 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("d");
                     flagD = false;
                     break;
-                case KeyEvent.VK_SPACE:
-                    System.out.println("# space #");
-                    flagSpace = false;
-                    break;
 
                 case KeyEvent.VK_LEFT:
                     System.out.println("left");
@@ -229,12 +215,28 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("right");
                     flagRight = false;
                     break;
-                case KeyEvent.VK_ENTER:
-                    System.out.println(" **enter**");
-                    flagEnter = false;
-                    break;
             }
 
+        }
+
+        @Override
+        public void keyTyped(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
+                case KeyEvent.VK_ESCAPE:
+                    System.out.println("ESC");
+                    //menüaufruf
+                    break;
+                case KeyEvent.VK_SPACE:
+                    System.out.println("# space #");
+                    //aufruf schuss methode //player1
+                    break;
+                case KeyEvent.VK_ENTER:
+                    System.out.println("**enter**");
+                    //aufruf schuss methode //player2
+                    break;
+            }
         }
 
     };
