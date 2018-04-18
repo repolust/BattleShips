@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BL.SettingsBL;
+import BL.StartMenuBL;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -13,18 +13,18 @@ import java.awt.Dimension;
  *
  * @author Leonardo
  */
-public class SettingsGUI extends javax.swing.JFrame {
+public class StartMenuGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form SettingsGUI
+     * Creates new form StartMenuGUI
      */
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoehe = (int) screensize.getHeight();
     private int breite = (int) screensize.getWidth();
 
-    public SettingsGUI() {
+    public StartMenuGUI() {
         initComponents();
-        SettingsBL sbl = (SettingsBL) jpMyPanel;
+        StartMenuBL sbl = (StartMenuBL) jpMyPanel;
         setEigenschaften();
         sbl.paint(this.getGraphics());
     }
@@ -40,12 +40,13 @@ public class SettingsGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        jpMyPanel = new SettingsBL();
+        jpMyPanel = new StartMenuBL();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jpMyPanelLayout = new javax.swing.GroupLayout(jpMyPanel);
         jpMyPanel.setLayout(jpMyPanelLayout);
@@ -80,20 +81,21 @@ public class SettingsGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SettingsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SettingsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SettingsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SettingsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SettingsGUI().setVisible(true);
+                new StartMenuGUI().setVisible(true);
             }
         });
     }

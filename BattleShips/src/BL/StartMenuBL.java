@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  *
  * @author Leonardo
  */
-public class SettingsBL extends JPanel {
+public class StartMenuBL extends JPanel {
     
     private int breite;
     private int hoehe;
@@ -41,7 +41,7 @@ public class SettingsBL extends JPanel {
             ship = ImageIO.read(new File(imagePath));
             g.drawImage(ship, 0, 0, this);
         } catch (IOException ex) {
-            Logger.getLogger(SettingsBL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StartMenuBL.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
