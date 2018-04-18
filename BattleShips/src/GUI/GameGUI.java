@@ -36,31 +36,22 @@ public class GameGUI extends javax.swing.JFrame
      * Creates new form GameGUI
      */
     private GameBL bl;
-//    private boolean 
-//            flagA = false,
-//            flagW = false,
-//            flagS = false,
-//            flagD = false,
-//            flagLeft = false,
-//            flagUp = false,
-//            flagDown = false,
-//            flagRight = false;
 
     private Thread zeichenThread;
-    
-        private HashMap<String,Boolean> flagMap = new HashMap();
+
+    private HashMap<String, Boolean> flagMap = new HashMap();
+
     @Override
     public void paint(Graphics grphcs)
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
-        if(bl != null)
+        if (bl != null)
         {
-          bl.drawPlayers();
+            bl.drawPlayers();
 
         }
-        
-        
+
     }
 
     public GameGUI()
@@ -74,7 +65,7 @@ public class GameGUI extends javax.swing.JFrame
 
         bl = new GameBL(this.jpGame);
         fillMap();
-        
+
         zeichenThread = new zeichenThread();
         zeichenThread.start();
     }
@@ -149,7 +140,6 @@ public class GameGUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     KeyListener jpGameListener = new KeyAdapter()
     {
         @Override
@@ -229,7 +219,7 @@ public class GameGUI extends javax.swing.JFrame
                     break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("Released: right");
-                   flagMap.replace("right", false);
+                    flagMap.replace("right", false);
                     break;
             }
 
@@ -256,24 +246,22 @@ public class GameGUI extends javax.swing.JFrame
         }
 
     };
-    
-        public void fillMap()
+
+    public void fillMap()
     {
         flagMap.put("w", false);
         flagMap.put("a", false);
         flagMap.put("s", false);
         flagMap.put("d", false);
-        
+
         flagMap.put("up", false);
         flagMap.put("down", false);
         flagMap.put("left", false);
         flagMap.put("right", false);
-        
-        
+
     }
-    
-    
-   public class zeichenThread extends Thread
+
+    public class zeichenThread extends Thread
     {
 
         private LinkedList<String> movement = new LinkedList();
@@ -282,28 +270,27 @@ public class GameGUI extends javax.swing.JFrame
         {
             System.out.println("thread created");
         }
-        
+
         @Override
         public void run()
         {
             System.out.println("thread started");
-             while(true)
-             {
-                 for (String move : flagMap.keySet())
-                 {
-                     boolean b = flagMap.get(move);
-                     
-                     if(b)
-                     {
+            while (true)
+            {
+                for (String move : flagMap.keySet())
+                {
+                    boolean b = flagMap.get(move);
+
+                    if (b)
+                    {
                         movement.add(move);
-                         System.out.println("Movement added");
-                     }
-                 }
-                 bl.movePlayer(movement);
-             }
+                        System.out.println("Movement added");
+                    }
+                }
+                bl.movePlayer(movement);
+            }
         }
-        
-        
+
     }
 
     /**
