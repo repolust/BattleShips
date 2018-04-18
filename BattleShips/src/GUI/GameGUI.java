@@ -36,18 +36,19 @@ public class GameGUI extends javax.swing.JFrame
      * Creates new form GameGUI
      */
     private GameBL bl;
-    private boolean 
-            flagA = false,
-            flagW = false,
-            flagS = false,
-            flagD = false,
-            flagLeft = false,
-            flagUp = false,
-            flagDown = false,
-            flagRight = false;
+//    private boolean 
+//            flagA = false,
+//            flagW = false,
+//            flagS = false,
+//            flagD = false,
+//            flagLeft = false,
+//            flagUp = false,
+//            flagDown = false,
+//            flagRight = false;
 
     private Thread zeichenThread;
     
+        private HashMap<String,Boolean> flagMap = new HashMap();
     @Override
     public void paint(Graphics grphcs)
     {
@@ -157,37 +158,37 @@ public class GameGUI extends javax.swing.JFrame
             switch (evt.getKeyCode())
             {
                 case KeyEvent.VK_A:
-                    System.out.println("a");
-                    flagA = true;
+                    System.out.println("Pressed: a");
+                    flagMap.replace("a", true);
                     break;
                 case KeyEvent.VK_W:
-                    System.out.println("w");
-                    flagW = true;
+                    System.out.println("Pressed: w");
+                    flagMap.replace("w", true);
                     break;
                 case KeyEvent.VK_S:
-                    System.out.println("s");
-                    flagS = true;
+                    System.out.println("Pressed: s");
+                    flagMap.replace("s", true);
                     break;
                 case KeyEvent.VK_D:
-                    System.out.println("d");
-                    flagD = true;
+                    System.out.println("Pressed: d");
+                    flagMap.replace("d", true);
                     break;
 
                 case KeyEvent.VK_LEFT:
-                    System.out.println("left");
-                    flagLeft = true;
+                    System.out.println("Pressed: left");
+                    flagMap.replace("left", true);
                     break;
                 case KeyEvent.VK_UP:
-                    System.out.println("up");
-                    flagUp = true;
+                    System.out.println("Pressed: up");
+                    flagMap.replace("up", true);
                     break;
                 case KeyEvent.VK_DOWN:
-                    System.out.println("down");
-                    flagDown = true;
+                    System.out.println("Pressed: down");
+                    flagMap.replace("down", true);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    System.out.println("right");
-                    flagRight = true;
+                    System.out.println("Pressed: right");
+                    flagMap.replace("right", true);
                     break;
             }
         }
@@ -198,37 +199,37 @@ public class GameGUI extends javax.swing.JFrame
             switch (evt.getKeyCode())
             {
                 case KeyEvent.VK_A:
-                    System.out.println("a");
-                    flagA = false;
+                    System.out.println("Released: a");
+                    flagMap.replace("a", false);
                     break;
                 case KeyEvent.VK_W:
-                    System.out.println("w");
-                    flagW = false;
+                    System.out.println("Released: w");
+                    flagMap.replace("w", false);
                     break;
                 case KeyEvent.VK_S:
-                    System.out.println("s");
-                    flagS = false;
+                    System.out.println("Released: s");
+                    flagMap.replace("s", false);
                     break;
                 case KeyEvent.VK_D:
-                    System.out.println("d");
-                    flagD = false;
+                    System.out.println("Released: d");
+                    flagMap.replace("d", false);
                     break;
 
                 case KeyEvent.VK_LEFT:
-                    System.out.println("left");
-                    flagLeft = false;
+                    System.out.println("Released: left");
+                    flagMap.replace("left", false);
                     break;
                 case KeyEvent.VK_UP:
-                    System.out.println("up");
-                    flagUp = false;
+                    System.out.println("Released: up");
+                    flagMap.replace("up", false);
                     break;
                 case KeyEvent.VK_DOWN:
-                    System.out.println("down");
-                    flagDown = false;
+                    System.out.println("Released: down");
+                    flagMap.replace("down", false);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    System.out.println("right");
-                    flagRight = false;
+                    System.out.println("Released: right");
+                   flagMap.replace("right", false);
                     break;
             }
 
@@ -256,22 +257,21 @@ public class GameGUI extends javax.swing.JFrame
 
     };
     
-    public void fillMap()
+        public void fillMap()
     {
-        flagMap.put("w", flagW);
-        flagMap.put("a", flagA);
-        flagMap.put("s", flagS);
-        flagMap.put("d", flagD);
+        flagMap.put("w", false);
+        flagMap.put("a", false);
+        flagMap.put("s", false);
+        flagMap.put("d", false);
         
-        flagMap.put("up", flagUp);
-        flagMap.put("down", flagDown);
-        flagMap.put("left", flagLeft);
-        flagMap.put("right", flagRight);
+        flagMap.put("up", false);
+        flagMap.put("down", false);
+        flagMap.put("left", false);
+        flagMap.put("right", false);
         
         
     }
     
-        private HashMap<String,Boolean> flagMap = new HashMap();
     
    public class zeichenThread extends Thread
     {
@@ -296,6 +296,7 @@ public class GameGUI extends javax.swing.JFrame
                      if(b)
                      {
                         movement.add(move);
+                         System.out.println("Movement added");
                      }
                  }
                  bl.movePlayer(movement);

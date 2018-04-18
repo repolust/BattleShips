@@ -115,6 +115,10 @@ public class GameBL
                 System.out.println("move to:"+p1Y1);
             }
         }
+        else
+        {
+//            System.out.println("gehtnd SIZE: "+movement.size());
+        }
      
         
     }
