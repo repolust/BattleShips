@@ -38,6 +38,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
     public StartMenuGUI() {
         initComponents();
+        //geil
 //        setEigenschaften();
 //        paint(getGraphics());
     }
