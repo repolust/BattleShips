@@ -6,6 +6,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 /**
  *
@@ -13,11 +14,16 @@ import java.awt.Color;
  */
 public class PlayerDlg extends javax.swing.JFrame {
 
+    private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    private int hoeheSchirm = (int) screensize.getHeight();
+    private int breiteSchirm = (int) screensize.getWidth();
+
     /**
      * Creates new form PlayerDlg
      */
     public PlayerDlg() {
         initComponents();
+        this.setBounds(breiteSchirm*2/3,hoeheSchirm/3,breiteSchirm/9,hoeheSchirm/3);
     }
 
     /**
@@ -82,7 +88,7 @@ public class PlayerDlg extends javax.swing.JFrame {
     private void btFarbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFarbeActionPerformed
         ColorDlg cdlg = new ColorDlg();
         cdlg.setVisible(true);
-        if(cdlg.isC()){
+        if (cdlg.isC()) {
             Color c = cdlg.getC();
             this.btFarbe.setForeground(c);
 
@@ -94,7 +100,7 @@ public class PlayerDlg extends javax.swing.JFrame {
     }//GEN-LAST:event_btBeendenActionPerformed
 
     private void btStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartenActionPerformed
-        
+
     }//GEN-LAST:event_btStartenActionPerformed
 
     /**

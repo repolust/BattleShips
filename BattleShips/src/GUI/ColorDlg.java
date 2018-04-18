@@ -6,6 +6,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 /**
  *
@@ -16,9 +17,14 @@ public class ColorDlg extends javax.swing.JFrame {
     /**
      * Creates new form ColorDlg
      */
+    private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    private int hoeheSchirm = (int) screensize.getHeight();
+    private int breiteSchirm = (int) screensize.getWidth();
     private Color c = null;
+
     public ColorDlg() {
         initComponents();
+        this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
     }
 
     /**
@@ -84,9 +90,11 @@ public class ColorDlg extends javax.swing.JFrame {
     public Color getC() {
         return c;
     }
-    public boolean isC(){
-        return c!=null;
+
+    public boolean isC() {
+        return c != null;
     }
+
     /**
      * @param args the command line arguments
      */

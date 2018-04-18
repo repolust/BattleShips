@@ -27,12 +27,14 @@ public class StartMenuGUI extends javax.swing.JFrame {
      * Creates new form StartMenuGUI
      */
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    private int hoehe = (int) screensize.getHeight();
-    private int breite = (int) screensize.getWidth();
+    private int hoeheSchirm = (int) screensize.getHeight();
+    private int breiteSchirm = (int) screensize.getWidth();
+
 
 
     public StartMenuGUI() {
         initComponents();
+        this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
     }
 
 
@@ -91,6 +93,11 @@ public class StartMenuGUI extends javax.swing.JFrame {
         btBeenden.setBounds(40, 180, 220, 45);
 
         lbBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/blasen.jpeg"))); // NOI18N
+        lbBild.setMaximumSize(new java.awt.Dimension(900, 700));
+        lbBild.setMinimumSize(new java.awt.Dimension(900, 700));
+        lbBild.setName(""); // NOI18N
+        lbBild.setPreferredSize(new java.awt.Dimension(900, 700));
+        lbBild.setVerifyInputWhenFocusTarget(false);
         jPanel2.add(lbBild);
         lbBild.setBounds(0, 0, 690, 390);
 
