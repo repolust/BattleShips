@@ -6,6 +6,7 @@
 package GUI;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 
 /**
  *
@@ -30,14 +32,13 @@ public class StartMenuGUI extends javax.swing.JFrame {
     private final String pathBackground = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
-            + File.separator + "SettingsGUIBild.jpg";
+            + File.separator + "blasen.jpeg";
     private Image background;
 
     public StartMenuGUI() {
         initComponents();
         setEigenschaften();
         paint(getGraphics());
-        
     }
 
     public void setEigenschaften() {
@@ -54,6 +55,8 @@ public class StartMenuGUI extends javax.swing.JFrame {
             super.paint(g); //To change body of generated methods, choose Tools | Templates.
             background = ImageIO.read(new File(pathBackground));
             g.drawImage(background, 0, 0, breite, hoehe, this);
+            g.setFont(new Font("Georgia",Font.BOLD,60));
+            
         } catch (IOException ex) {
             Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,58 +71,23 @@ public class StartMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.JPanel jpMyPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
-        jToggleButton1.setText("jToggleButton1");
-
-        jPasswordField1.setText("jPasswordField1");
-
-        javax.swing.GroupLayout jpMyPanelLayout = new javax.swing.GroupLayout(jpMyPanel);
-        jpMyPanel.setLayout(jpMyPanelLayout);
-        jpMyPanelLayout.setHorizontalGroup(
-            jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMyPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMyPanelLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
-                .addGap(77, 77, 77))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        jpMyPanelLayout.setVerticalGroup(
-            jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMyPanelLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGroup(jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpMyPanelLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jToggleButton1))
-                    .addGroup(jpMyPanelLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(141, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jpMyPanel);
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,9 +129,6 @@ public class StartMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
