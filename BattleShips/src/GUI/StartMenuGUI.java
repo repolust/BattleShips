@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,42 +26,42 @@ public class StartMenuGUI extends javax.swing.JFrame {
     /**
      * Creates new form StartMenuGUI
      */
-    private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    private int hoehe = (int) screensize.getHeight();
-    private int breite = (int) screensize.getWidth();
-
-    private final String pathBackground = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "blasen.jpeg";
-    private Image background;
+//    private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+//    private int hoehe = (int) screensize.getHeight();
+//    private int breite = (int) screensize.getWidth();
+////
+//    private final String pathBackground = System.getProperty("user.dir")
+//            + File.separator + "src"
+//            + File.separator + "bilder"
+//            + File.separator + "blasen.jpeg";
+//    private Image background;
 
     public StartMenuGUI() {
         initComponents();
-        setEigenschaften();
-        paint(getGraphics());
+//        setEigenschaften();
+//        paint(getGraphics());
     }
 
-    public void setEigenschaften() {
-        Graphics g = getGraphics();
-        this.setBounds(breite / 2 - breite / 4, hoehe / 2 - hoehe / 4, breite / 2, hoehe / 2);
-        this.setResizable(false);
-    }
+//    public void setEigenschaften() {
+//        Graphics g = getGraphics();
+//        this.setBounds(breite / 2 - breite / 4, hoehe / 2 - hoehe / 4, breite / 2, hoehe / 2);
+//        this.setResizable(false);
+//    }
 
-    @Override
-    public void paint(Graphics g) {
-        int breite = getWidth();
-        int hoehe = getHeight();
-        try {
-            super.paint(g); //To change body of generated methods, choose Tools | Templates.
-            background = ImageIO.read(new File(pathBackground));
-            g.drawImage(background, 0, 0, breite, hoehe, this);
-            g.setFont(new Font("Georgia",Font.BOLD,60));
-            
-        } catch (IOException ex) {
-            Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    @Override
+//    public void paint(Graphics g) {
+//        int breite = getWidth();
+//        int hoehe = getHeight();
+//        try {
+//            super.paint(g); //To change body of generated methods, choose Tools | Templates.
+//            background = ImageIO.read(new File(pathBackground));
+//            g.drawImage(background, 0, 0, breite, hoehe, this);
+//            g.setFont(new Font("Georgia",Font.BOLD,60));
+//            
+//        } catch (IOException ex) {
+//            Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,28 +70,73 @@ public class StartMenuGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(null);
 
-        getContentPane().add(jPanel1);
+        jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); // NOI18N
+        jButton1.setText("Start");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onStart(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(250, 80, 220, 60);
+
+        jButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); // NOI18N
+        jButton2.setText("Beenden");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onBeenden(evt);
+            }
+        });
+        jPanel2.add(jButton2);
+        jButton2.setBounds(250, 190, 220, 90);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/blasen.jpeg"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(0, 0, 690, 390);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onStart(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onStart
+    {//GEN-HEADEREND:event_onStart
+       JOptionPane.showMessageDialog(null, "Haha Nigga");
+    }//GEN-LAST:event_onStart
+
+    private void onBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBeenden
+    {//GEN-HEADEREND:event_onBeenden
+        JOptionPane.showMessageDialog(null, "Tschau Kakao");
+    }//GEN-LAST:event_onBeenden
 
     /**
      * @param args the command line arguments
@@ -129,6 +175,9 @@ public class StartMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
