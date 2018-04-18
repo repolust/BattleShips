@@ -48,7 +48,18 @@ public class GameGUI extends javax.swing.JFrame
 
         if (bl != null)
         {
-            bl.drawPlayers();
+            while(true)
+            {
+                try
+                {
+                    bl.drawPlayers();
+                    Thread.sleep(100);
+                } catch (InterruptedException ex)
+                {
+                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
 
         }
 
@@ -288,6 +299,13 @@ public class GameGUI extends javax.swing.JFrame
                     }
                 }
                 bl.movePlayer(movement);
+                try
+                {
+                    Thread.sleep(40);
+                } catch (InterruptedException ex)
+                {
+                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 

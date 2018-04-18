@@ -109,9 +109,11 @@ public class GameBL
         else if(movement.size() == 1)
         {
             String move = movement.get(0);
+            System.out.println("test");
             if(move.equals("w"))
             {
-                p1Y1+=10;
+                p1Y1-=100;
+                p1Y2-=100;
                 System.out.println("move to:"+p1Y1);
             }
         }
