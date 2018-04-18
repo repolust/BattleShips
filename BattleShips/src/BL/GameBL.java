@@ -95,4 +95,24 @@ public class GameBL
 
     }
 
+    public void movePlayer(LinkedList<String> movement)
+    {
+        if(movement.size() == 2)
+        {
+            String moveA = movement.get(0);
+            String moveB = movement.get(1);
+            
+            
+        }
+        else if(movement.size() == 1)
+        {
+            String move = movement.get(0);
+            if(move.equals("w"))
+            {
+                p1Y1+=2;
+                System.out.println("move to:"+p1Y1);
+            }
+        }
+        
+    }
 }

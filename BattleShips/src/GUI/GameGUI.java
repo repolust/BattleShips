@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -240,6 +242,55 @@ public class GameGUI extends javax.swing.JFrame
         }
 
     };
+    
+    public void fillMap()
+    {
+        flagMap.put("w", flagW);
+        flagMap.put("a", flagA);
+        flagMap.put("s", flagS);
+        flagMap.put("d", flagD);
+        
+        flagMap.put("up", flagUp);
+        flagMap.put("down", flagDown);
+        flagMap.put("left", flagLeft);
+        flagMap.put("right", flagRight);
+        
+        
+    }
+    
+    private HashMap<String,Boolean> flagMap = new HashMap();
+    
+     public class zeichenThread extends Thread
+    {
+
+        private LinkedList<String> movement = new LinkedList();
+
+        public zeichenThread()
+        {
+            
+        }
+        
+        @Override
+        public void run()
+        {
+            System.out.println("thread running");
+             while(true)
+             {
+                 for (String move : flagMap.keySet())
+                 {
+                     boolean b = flagMap.get(move);
+                     
+                     if(b)
+                     {
+                        movement.add(move);
+                     }
+                 }
+                 bl.movePlayer(movement);
+             }
+        }
+        
+        
+    }
 
     /**
      * @param args the command line arguments
