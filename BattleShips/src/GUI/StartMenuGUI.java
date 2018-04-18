@@ -5,17 +5,20 @@
  */
 package GUI;
 
-import BL.StartMenuBL;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Leonardo
  */
-public class StartMenuGUI extends javax.swing.JFrame implements MouseListener {
+public class StartMenuGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form StartMenuGUI
@@ -24,16 +27,36 @@ public class StartMenuGUI extends javax.swing.JFrame implements MouseListener {
     private int hoehe = (int) screensize.getHeight();
     private int breite = (int) screensize.getWidth();
 
+    private final String pathBackground = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "SettingsGUIBild.jpg";
+    private Image background;
+
     public StartMenuGUI() {
         initComponents();
-        addMouseListener(this);
-        StartMenuBL sbl = (StartMenuBL) jpMyPanel;
         setEigenschaften();
-        sbl.paint(this.getGraphics());
+        paint(getGraphics());
+        
     }
 
     public void setEigenschaften() {
+        Graphics g = getGraphics();
         this.setBounds(breite / 2 - breite / 4, hoehe / 2 - hoehe / 4, breite / 2, hoehe / 2);
+        this.setResizable(false);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        int breite = getWidth();
+        int hoehe = getHeight();
+        try {
+            super.paint(g); //To change body of generated methods, choose Tools | Templates.
+            background = ImageIO.read(new File(pathBackground));
+            g.drawImage(background, 0, 0, breite, hoehe, this);
+        } catch (IOException ex) {
+            Logger.getLogger(StartMenuGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -45,20 +68,55 @@ public class StartMenuGUI extends javax.swing.JFrame implements MouseListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpMyPanel = new BL.StartMenuBL();
+        javax.swing.JPanel jpMyPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+
+        jButton1.setText("jButton1");
+
+        jButton2.setText("jButton2");
+
+        jToggleButton1.setText("jToggleButton1");
+
+        jPasswordField1.setText("jPasswordField1");
 
         javax.swing.GroupLayout jpMyPanelLayout = new javax.swing.GroupLayout(jpMyPanel);
         jpMyPanel.setLayout(jpMyPanelLayout);
         jpMyPanelLayout.setHorizontalGroup(
             jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jpMyPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMyPanelLayout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButton1)
+                .addGap(77, 77, 77))
         );
         jpMyPanelLayout.setVerticalGroup(
             jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jpMyPanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGroup(jpMyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpMyPanelLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jToggleButton1))
+                    .addGroup(jpMyPanelLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpMyPanel);
@@ -103,45 +161,9 @@ public class StartMenuGUI extends javax.swing.JFrame implements MouseListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jpMyPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        int x = me.getX();
-        int y = me.getY();
-
-        if (x >= 470 && x <= 570) {
-            if (y >= 100 && y <= 300) {
-                System.out.println("Play :)");
-            }
-        } else if (x >= 610 && x <= 710) {
-            if (y >= 100 && y <= 300) {
-                System.out.println("End :(");
-            }
-        } else {
-            return;
-        }
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent me) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-
-    }
 }
