@@ -8,12 +8,14 @@ package GUI;
 import BL.StartMenuBL;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  *
  * @author Leonardo
  */
-public class StartMenuGUI extends javax.swing.JFrame {
+public class StartMenuGUI extends javax.swing.JFrame implements MouseListener {
 
     /**
      * Creates new form StartMenuGUI
@@ -24,6 +26,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
     public StartMenuGUI() {
         initComponents();
+        addMouseListener(this);
         StartMenuBL sbl = (StartMenuBL) jpMyPanel;
         setEigenschaften();
         sbl.paint(this.getGraphics());
@@ -40,10 +43,9 @@ public class StartMenuGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
-        jpMyPanel = new StartMenuBL();
+        jpMyPanel = new BL.StartMenuBL();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -103,4 +105,43 @@ public class StartMenuGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jpMyPanel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        int x = me.getX();
+        int y = me.getY();
+
+        if (x >= 470 && x <= 570) {
+            if (y >= 100 && y <= 300) {
+                System.out.println("Play :)");
+            }
+        } else if (x >= 610 && x <= 710) {
+            if (y >= 100 && y <= 300) {
+                System.out.println("End :(");
+            }
+        } else {
+            return;
+        }
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+
+    }
 }
