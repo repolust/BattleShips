@@ -21,32 +21,32 @@ import javax.swing.JPanel;
  *
  * @author Leonardo
  */
-public class GameBL {
-    
+public class GameBL
+{
+
     private LinkedList<Player> players = new LinkedList();
     private int maxX, maxY;
     private int p1X1, p1Y1, p1X2, p1Y2, p2X1, p2Y1, p2X2, p2Y2;
     private Graphics g;
     private JPanel jpGame;
-    
+
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "ship.png";
     private Image ship;
-    
-    
+
     public GameBL(JPanel jpGame)
     {
         this.jpGame = jpGame;
-        
+
         initMyInits();
         loadImage();
     }
-    
-      public void loadImage()
-       {
-  
+
+    public void loadImage()
+    {
+
         try
         {
             ship = ImageIO.read(new File(imagePath));
@@ -54,10 +54,10 @@ public class GameBL {
         {
             Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-   }
-      
-     public void initMyInits()
+
+    }
+
+    public void initMyInits()
     {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
@@ -72,28 +72,27 @@ public class GameBL {
         p2X2 = 25;
         p2Y2 = 70;
     }
-     
-     public void setPlayers()
-     {
-        drawPlayer1(p1X1, p1Y1, p1X2, p1Y2);
-        drawPlayer2(p2X1, p2Y1, p2X2, p2Y2);
-     }
-     
-       public void drawPlayer1(int x1, int y1, int x2, int y2)
+
+    public void drawPlayers()
+    {
+        drawPlayer1();
+        drawPlayer2();
+    }
+
+    public void drawPlayer1()
     {
         g.setColor(Color.BLACK);
-        g.drawRect(x1 + 22, y1 + 23, x2, y2);
-        g.drawImage(ship, x1, y1, null);
+        g.drawRect(p1X1 + 22, p1Y1 + 23, p1X2, p1Y2);
+        g.drawImage(ship, p1X1, p1Y1, null);
 
     }
 
-    public void drawPlayer2(int x1, int y1, int x2, int y2)
+    public void drawPlayer2()
     {
         g.setColor(Color.BLACK);
-        g.drawRect(x1 + 22, y1 + 23, x2, y2);
-        g.drawImage(ship, x1, y1, null);
+        g.drawRect(p2X1 + 22, p2Y1 + 23, p2X2, p2Y2);
+        g.drawImage(ship, p2X1, p2Y1, null);
 
     }
- 
-    
+
 }

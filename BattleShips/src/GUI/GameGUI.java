@@ -40,7 +40,7 @@ public class GameGUI extends javax.swing.JFrame
     {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
-        bl.setPlayers();
+        bl.drawPlayers();
     }
 
     public GameGUI()
