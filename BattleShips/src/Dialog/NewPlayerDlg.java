@@ -5,7 +5,6 @@
  */
 package Dialog;
 
-import Dialog.ColorDlg;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -13,18 +12,20 @@ import java.awt.Dimension;
  *
  * @author Leonardo
  */
-public class PlayerDlg extends javax.swing.JFrame {
+public class NewPlayerDlg extends javax.swing.JDialog {
 
+    /**
+     * Creates new form NewPlayerDlg
+     */
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
+    private Color c = null;
 
-    /**
-     * Creates new form PlayerDlg
-     */
-    public PlayerDlg() {
+    public NewPlayerDlg(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        this.setBounds(breiteSchirm*2/3,hoeheSchirm/3,breiteSchirm/9,hoeheSchirm/3);
+        this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 6);
     }
 
     /**
@@ -45,17 +46,19 @@ public class PlayerDlg extends javax.swing.JFrame {
         btStarten = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(4, 2));
 
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel1.setText("Name");
         getContentPane().add(jLabel1);
         getContentPane().add(tfName);
 
+        jLabel2.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel2.setText("Farbe");
         getContentPane().add(jLabel2);
 
-        btFarbe.setText("Auswählen");
+        btFarbe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btFarbe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFarbeActionPerformed(evt);
@@ -63,11 +66,15 @@ public class PlayerDlg extends javax.swing.JFrame {
         });
         getContentPane().add(btFarbe);
 
+        jLabel3.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel3.setText("Schiff");
         getContentPane().add(jLabel3);
         getContentPane().add(jLabel4);
 
+        btStarten.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btStarten.setText("Starten");
+        btStarten.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btStarten.setContentAreaFilled(false);
         btStarten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btStartenActionPerformed(evt);
@@ -75,7 +82,10 @@ public class PlayerDlg extends javax.swing.JFrame {
         });
         getContentPane().add(btStarten);
 
+        btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btBeenden.setText("Beenden");
+        btBeenden.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btBeenden.setContentAreaFilled(false);
         btBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBeendenActionPerformed(evt);
@@ -87,22 +97,23 @@ public class PlayerDlg extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btFarbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFarbeActionPerformed
-        ColorDlg cdlg = new ColorDlg();
+        ColorChooserDlg cdlg = new ColorChooserDlg(this,true);
         cdlg.setVisible(true);
         if (cdlg.isC()) {
             Color c = cdlg.getC();
-            this.btFarbe.setForeground(c);
             this.btFarbe.setBackground(c);
+        } else {
+            System.out.println("Fehler bei der Farbübergabe!!!");
         }
     }//GEN-LAST:event_btFarbeActionPerformed
-
-    private void btBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBeendenActionPerformed
-        dispose();
-    }//GEN-LAST:event_btBeendenActionPerformed
 
     private void btStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartenActionPerformed
 
     }//GEN-LAST:event_btStartenActionPerformed
+
+    private void btBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBeendenActionPerformed
+        dispose();
+    }//GEN-LAST:event_btBeendenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,20 +132,27 @@ public class PlayerDlg extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewPlayerDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlayerDlg().setVisible(true);
+                NewPlayerDlg dialog = new NewPlayerDlg(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

@@ -12,19 +12,20 @@ import java.awt.Dimension;
  *
  * @author Leonardo
  */
-public class ColorDlg extends javax.swing.JFrame {
+public class ColorChooserDlg extends javax.swing.JDialog {
 
     /**
-     * Creates new form ColorDlg
+     * Creates new form ColorChooserDlg
      */
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
-    private Color c;
+    private Color c = null;
 
-    public ColorDlg() {
+    public ColorChooserDlg(NewPlayerDlg parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
+        this.setBounds(breiteSchirm / 3, hoeheSchirm / 3, breiteSchirm / 3, hoeheSchirm / 3);
     }
 
     /**
@@ -42,14 +43,14 @@ public class ColorDlg extends javax.swing.JFrame {
         btAuswaehlen = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel1.setLayout(new java.awt.GridLayout());
         jPanel1.add(cChooser);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setLayout(new java.awt.GridLayout(1, 6));
+        jPanel2.setLayout(new java.awt.GridLayout(1, 2));
 
         btAuswaehlen.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btAuswaehlen.setText("Auswählen");
@@ -86,16 +87,14 @@ public class ColorDlg extends javax.swing.JFrame {
     private void btBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBeendenActionPerformed
         dispose();
     }//GEN-LAST:event_btBeendenActionPerformed
-
     public Color getC() {
         return c;
     }
-    
+
     public boolean isC() {
-        if(c!=null){
+        if (c != null) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -117,20 +116,27 @@ public class ColorDlg extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ColorDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ColorChooserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ColorDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ColorChooserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ColorDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ColorChooserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ColorDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ColorChooserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ColorDlg().setVisible(true);
+                ColorChooserDlg dialog = new ColorChooserDlg(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
