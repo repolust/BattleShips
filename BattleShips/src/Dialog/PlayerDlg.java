@@ -37,7 +37,7 @@ public class PlayerDlg extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btFarbe = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -50,7 +50,7 @@ public class PlayerDlg extends javax.swing.JFrame {
 
         jLabel1.setText("Name");
         getContentPane().add(jLabel1);
-        getContentPane().add(jTextField1);
+        getContentPane().add(tfName);
 
         jLabel2.setText("Farbe");
         getContentPane().add(jLabel2);
@@ -92,7 +92,7 @@ public class PlayerDlg extends javax.swing.JFrame {
         if (cdlg.isC()) {
             Color c = cdlg.getC();
             this.btFarbe.setForeground(c);
-
+            this.btFarbe.setBackground(c);
         }
     }//GEN-LAST:event_btFarbeActionPerformed
 
@@ -147,6 +147,6 @@ public class PlayerDlg extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 }

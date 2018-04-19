@@ -20,7 +20,7 @@ public class ColorDlg extends javax.swing.JFrame {
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
-    private Color c = null;
+    private Color c;
 
     public ColorDlg() {
         initComponents();
@@ -53,7 +53,7 @@ public class ColorDlg extends javax.swing.JFrame {
 
         btAuswaehlen.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btAuswaehlen.setText("Auswählen");
-        btAuswaehlen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btAuswaehlen.setBorder(null);
         btAuswaehlen.setContentAreaFilled(false);
         btAuswaehlen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +64,7 @@ public class ColorDlg extends javax.swing.JFrame {
 
         btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btBeenden.setText("Beenden");
-        btBeenden.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btBeenden.setBorder(null);
         btBeenden.setContentAreaFilled(false);
         btBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,9 +90,14 @@ public class ColorDlg extends javax.swing.JFrame {
     public Color getC() {
         return c;
     }
-
+    
     public boolean isC() {
-        return c != null;
+        if(c!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

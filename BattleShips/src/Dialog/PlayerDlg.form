@@ -31,7 +31,7 @@
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="tfName">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
