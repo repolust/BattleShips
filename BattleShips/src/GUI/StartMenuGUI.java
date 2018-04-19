@@ -47,12 +47,14 @@ public class StartMenuGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel2 = new javax.swing.JPanel();
         btHilfe = new javax.swing.JButton();
         btStarten = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         lbBild = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,8 +74,10 @@ public class StartMenuGUI extends javax.swing.JFrame {
         btStarten.setText("Starten");
         btStarten.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
         btStarten.setContentAreaFilled(false);
-        btStarten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btStarten.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 onStart(evt);
             }
         });
@@ -85,13 +89,19 @@ public class StartMenuGUI extends javax.swing.JFrame {
         btBeenden.setText("Beenden");
         btBeenden.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
         btBeenden.setContentAreaFilled(false);
-        btBeenden.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btBeenden.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 onBeenden(evt);
             }
         });
         jPanel2.add(btBeenden);
         btBeenden.setBounds(40, 180, 220, 45);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/Logo.PNG"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(440, 120, 150, 100);
 
         lbBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/blasen.jpeg"))); // NOI18N
         lbBild.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -167,6 +177,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btBeenden;
     private javax.swing.JButton btHilfe;
     private javax.swing.JButton btStarten;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbBild;
     // End of variables declaration//GEN-END:variables
