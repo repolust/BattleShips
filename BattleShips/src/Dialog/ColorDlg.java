@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Dialog;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -44,7 +44,7 @@ public class ColorDlg extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
         jPanel1.add(cChooser);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);

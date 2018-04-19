@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Dialog.PlayerDlg;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
