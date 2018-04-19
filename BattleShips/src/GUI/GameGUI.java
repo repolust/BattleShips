@@ -48,8 +48,6 @@ public class GameGUI extends javax.swing.JFrame
 
         if (bl != null)
         {
-            while(true)
-            {
                 try
                 {
                     bl.drawPlayers();
@@ -58,8 +56,6 @@ public class GameGUI extends javax.swing.JFrame
                 {
                     Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            
 
         }
 
