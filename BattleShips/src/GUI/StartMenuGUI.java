@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import Dialog.PlayerDlg;
+import Dialog.NewPlayerDlg;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -128,7 +128,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
     private void onStart(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onStart
     {//GEN-HEADEREND:event_onStart
-       PlayerDlg pldg = new PlayerDlg();
+       NewPlayerDlg pldg = new NewPlayerDlg(this,true);
        pldg.setVisible(true);
     }//GEN-LAST:event_onStart
 
