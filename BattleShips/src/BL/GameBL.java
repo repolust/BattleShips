@@ -9,6 +9,7 @@ import Beans.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -88,44 +89,66 @@ public class GameBL
 
     public void drawPlayer1()
     {
-        g.setColor(Color.BLACK);
-        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
+  
+        g.clearRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight+10);
+        
+//        g.setColor(Color.BLACK);
+//        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
         g.drawImage(ship, pos1.getX(), pos1.getY(), null);
+
 
     }
 
     public void drawPlayer2()
     {
-        g.setColor(Color.BLACK);
-        g.drawRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
+        g.clearRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
+        
+//        g.setColor(Color.BLACK);
+//        g.drawRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
         g.drawImage(ship, pos2.getX(), pos2.getY(), null);
 
     }
 
-    public void movePlayer(LinkedList<String> movement)
+    public void movePlayer1(int keyCode)
     {
-        if(movement.size() == 2)
+        if(!(pos1.getY()-10 < 0) && !(pos1.getX()-10 < 0) && !(pos1.getX()+10 > maxX) && !(pos1.getY()+10 > maxY))
         {
-            String moveA = movement.get(0);
-            String moveB = movement.get(1);
-            
-            
-        }
-        else if(movement.size() == 1)
-        {
-            String move = movement.get(0);
-            System.out.println("test");
-            if(move.equals("w"))
+            switch(keyCode)
             {
-                p1Y1-=100;
-                p1Y2-=100;
-                System.out.println("move to:"+p1Y1);
+               case KeyEvent.VK_W: pos1.increaseY(-10);break;
+               case KeyEvent.VK_A: pos1.increaseX(-10);break;
+               case KeyEvent.VK_S: pos1.increaseY(10);break;
+               case KeyEvent.VK_D: pos1.increaseX(10);break;
+            
             }
+             drawPlayer1();
         }
-        else
-        {
-//            System.out.println("gehtnd SIZE: "+movement.size());
-        }
+        
+//        g.clearRect(0, 0, maxX, maxX);
+       
+  
+//        if(movement.size() == 2)
+//        {
+//            String moveA = movement.get(0);
+//            String moveB = movement.get(1);
+//            
+//            
+//        }
+//        else if(movement.size() == 1)
+//        {
+//            String move = movement.get(0);
+//            System.out.println("test");
+//            if(move.equals("w"))
+//            {
+//                p1Y1-=100;
+//                p1Y2-=100;
+//                System.out.println("move to:"+p1Y1);
+//            }
+//        }
+//        else
+//        {
+////            System.out.println("gehtnd SIZE: "+movement.size());
+//        }
      
         
     }

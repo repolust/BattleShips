@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BL.Controlls;
 import BL.GameBL;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Thread.interrupted;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -39,8 +41,10 @@ public class GameGUI extends javax.swing.JFrame
 
     private Thread zeichenThread;
 
-    private HashMap<String, Boolean> flagMap = new HashMap();
+//    private HashMap<String, Boolean> flagMap = new HashMap();
 
+    private Controlls controlls = new Controlls();
+    
     @Override
     public void paint(Graphics grphcs)
     {
@@ -66,7 +70,7 @@ public class GameGUI extends javax.swing.JFrame
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
         bl = new GameBL(this.jpGame);
-        fillMap();
+//        fillMap();
 
         zeichenThread = new zeichenThread();
         zeichenThread.start();
@@ -151,36 +155,36 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_A:
                     System.out.println("Pressed: a");
-                    flagMap.replace("a", true);
+                    controlls.addKey(KeyEvent.VK_A);
                     break;
                 case KeyEvent.VK_W:
                     System.out.println("Pressed: w");
-                    flagMap.replace("w", true);
+                     controlls.addKey(KeyEvent.VK_W);
                     break;
                 case KeyEvent.VK_S:
                     System.out.println("Pressed: s");
-                    flagMap.replace("s", true);
+                     controlls.addKey(KeyEvent.VK_S);
                     break;
                 case KeyEvent.VK_D:
                     System.out.println("Pressed: d");
-                    flagMap.replace("d", true);
+                     controlls.addKey(KeyEvent.VK_D);
                     break;
 
                 case KeyEvent.VK_LEFT:
                     System.out.println("Pressed: left");
-                    flagMap.replace("left", true);
+                     controlls.addKey(KeyEvent.VK_LEFT);
                     break;
                 case KeyEvent.VK_UP:
                     System.out.println("Pressed: up");
-                    flagMap.replace("up", true);
+                     controlls.addKey(KeyEvent.VK_UP);
                     break;
                 case KeyEvent.VK_DOWN:
                     System.out.println("Pressed: down");
-                    flagMap.replace("down", true);
+                     controlls.addKey(KeyEvent.VK_DOWN);
                     break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("Pressed: right");
-                    flagMap.replace("right", true);
+                     controlls.addKey(KeyEvent.VK_RIGHT);
                     break;
             }
         }
@@ -192,36 +196,36 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_A:
                     System.out.println("Released: a");
-                    flagMap.replace("a", false);
+                    controlls.removeKey(KeyEvent.VK_A);
                     break;
                 case KeyEvent.VK_W:
                     System.out.println("Released: w");
-                    flagMap.replace("w", false);
+                    controlls.removeKey(KeyEvent.VK_W);
                     break;
                 case KeyEvent.VK_S:
                     System.out.println("Released: s");
-                    flagMap.replace("s", false);
+                    controlls.removeKey(KeyEvent.VK_S);
                     break;
                 case KeyEvent.VK_D:
                     System.out.println("Released: d");
-                    flagMap.replace("d", false);
+                    controlls.removeKey(KeyEvent.VK_D);
                     break;
 
                 case KeyEvent.VK_LEFT:
                     System.out.println("Released: left");
-                    flagMap.replace("left", false);
+                    controlls.removeKey(KeyEvent.VK_LEFT);
                     break;
                 case KeyEvent.VK_UP:
                     System.out.println("Released: up");
-                    flagMap.replace("up", false);
+                    controlls.removeKey(KeyEvent.VK_UP);
                     break;
                 case KeyEvent.VK_DOWN:
                     System.out.println("Released: down");
-                    flagMap.replace("down", false);
+                    controlls.removeKey(KeyEvent.VK_DOWN);
                     break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("Released: right");
-                    flagMap.replace("right", false);
+                    controlls.removeKey(KeyEvent.VK_RIGHT);
                     break;
             }
 
@@ -249,24 +253,11 @@ public class GameGUI extends javax.swing.JFrame
 
     };
 
-    public void fillMap()
-    {
-        flagMap.put("w", false);
-        flagMap.put("a", false);
-        flagMap.put("s", false);
-        flagMap.put("d", false);
-
-        flagMap.put("up", false);
-        flagMap.put("down", false);
-        flagMap.put("left", false);
-        flagMap.put("right", false);
-
-    }
 
     public class zeichenThread extends Thread
     {
 
-        private LinkedList<String> movement = new LinkedList();
+//        private LinkedList<String> movement = new LinkedList();
 
         public zeichenThread()
         {
@@ -277,25 +268,19 @@ public class GameGUI extends javax.swing.JFrame
         public void run()
         {
             System.out.println("thread started");
-            while (true)
+            while (!this.isInterrupted())
             {
-                for (String move : flagMap.keySet())
+                
+                while(controlls.containsKey(KeyEvent.VK_W))
                 {
-                    boolean b = flagMap.get(move);
-
-                    if (b)
+                    bl.movePlayer1(KeyEvent.VK_W);                   
+                    try
                     {
-                        movement.add(move);
-                        System.out.println("Movement added");
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                bl.movePlayer(movement);
-                try
-                {
-                    Thread.sleep(40);
-                } catch (InterruptedException ex)
-                {
-                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

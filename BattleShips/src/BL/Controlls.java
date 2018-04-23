@@ -5,7 +5,9 @@
  */
 package BL;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 /**
  *
@@ -13,7 +15,7 @@ import java.util.LinkedList;
  */
 public class Controlls
 {
-    private LinkedList<Integer> keys = new LinkedList();
+    private Set<Integer> keys = new HashSet<>();
 
     public Controlls()
     {
@@ -22,12 +24,21 @@ public class Controlls
     
     public void addKey(int keycode)
     {
-        keys.add(keycode);
+        if(!keys.contains(keycode))
+        {
+            keys.add(keycode);
+        }
+        
     }
     
     public void removeKey(int keycode)
     {
-        keys.remove(keycode);
+        if(keys.contains(keycode))
+        {
+            keys.remove(keycode);
+           
+        }
+        
     }
     
     public boolean containsKey(int keyCode) {
