@@ -98,7 +98,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Name: "+name+" | Farbe: "+c.toString();
+        return "Name: "+name;
     }
     
     
