@@ -6,12 +6,18 @@
 package Dialog;
 
 import BL.ListModel;
+import BL.Position;
 import Beans.Player;
 import GUI.GameGUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,11 +42,25 @@ public class NewPlayerDlg extends javax.swing.JDialog{
     private ListModel lm = new ListModel();
     private String[] stringListe;
     
+    private static int index = 0;
+    
+    private final String imagePath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "ship.png";
+    private Image ship;
+    
+    
     public NewPlayerDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 3);
         this.jlMyPlayerListe.setModel(lm);
+        try {
+            ship = ImageIO.read(new File(imagePath));
+        } catch (IOException ex) {
+            Logger.getLogger(NewPlayerDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -163,14 +183,14 @@ public class NewPlayerDlg extends javax.swing.JDialog{
     private void btErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btErstellenActionPerformed
         this.name = this.tfName.getText();
         if (c != null && (!name.equals(""))) {
-            p = new Player(name, c, 100, hoeheSchirm/2, img);
+            index=index++;
+            p = new Player(name, c, (new Position(100,hoeheSchirm/2)), ship ,index);
             if(lm.getSize()>=2){
                 JOptionPane.showMessageDialog(this, "Maximal 2 Spieler (Ligth-Version)");
             }
             else{
                 lm.addElement(p);
             }
-
         } else {
             JOptionPane.showMessageDialog(this, "Bitte Name eingeben und Farbe auswählen!");
         }
@@ -186,6 +206,9 @@ public class NewPlayerDlg extends javax.swing.JDialog{
             GameGUI gg = new GameGUI();
             
             gg.setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Du musst 2 Spieler erstellen!");
         }
     }//GEN-LAST:event_btSpielStartenActionPerformed
 
