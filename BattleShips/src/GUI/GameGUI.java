@@ -48,14 +48,9 @@ public class GameGUI extends javax.swing.JFrame
 
         if (bl != null)
         {
-                try
-                {
-                    bl.drawPlayers();
-                    Thread.sleep(100);
-                } catch (InterruptedException ex)
-                {
-                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
+        bl.drawPlayers();
+                  
 
         }
 
