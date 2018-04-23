@@ -36,6 +36,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
     public StartMenuGUI() {
         initComponents();
         this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
+        this.setResizable(false);
     }
 
 

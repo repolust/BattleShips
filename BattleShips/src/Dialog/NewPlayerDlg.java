@@ -5,8 +5,12 @@
  */
 package Dialog;
 
+import Beans.Player;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,12 +24,19 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
-    private Color c = null;
 
+    private String name = null;
+    private Color c;
+    private Image img;
+
+    private Player p;
+
+    private LinkedList<Player> liste = new LinkedList<Player>();
+    
     public NewPlayerDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 6);
+        this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 3);
     }
 
     /**
@@ -37,6 +48,9 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -45,34 +59,44 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         btStarten = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+
+        jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(4, 2));
+
+        jPanel1.setLayout(new java.awt.GridLayout(4, 2));
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel1.setText("Name");
-        getContentPane().add(jLabel1);
-        getContentPane().add(tfName);
+        jPanel1.add(jLabel1);
+        jPanel1.add(tfName);
 
         jLabel2.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel2.setText("Farbe");
-        getContentPane().add(jLabel2);
+        jPanel1.add(jLabel2);
 
-        btFarbe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btFarbe.setBorder(null);
         btFarbe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFarbeActionPerformed(evt);
             }
         });
-        getContentPane().add(btFarbe);
+        jPanel1.add(btFarbe);
 
         jLabel3.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel3.setText("Schiff");
-        getContentPane().add(jLabel3);
-        getContentPane().add(jLabel4);
+        jPanel1.add(jLabel3);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship.png"))); // NOI18N
+        jPanel1.add(jLabel4);
 
         btStarten.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
-        btStarten.setText("Starten");
+        btStarten.setText("Erstellen");
         btStarten.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         btStarten.setContentAreaFilled(false);
         btStarten.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +104,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                 btStartenActionPerformed(evt);
             }
         });
-        getContentPane().add(btStarten);
+        jPanel1.add(btStarten);
 
         btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btBeenden.setText("Beenden");
@@ -91,16 +115,36 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                 btBeendenActionPerformed(evt);
             }
         });
-        getContentPane().add(btBeenden);
+        jPanel1.add(btBeenden);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane2.setViewportView(jList1);
+
+        jPanel2.add(jScrollPane2, java.awt.BorderLayout.NORTH);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
+
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jButton1.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
+        jButton1.setText("Spiel starten");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButton1.setContentAreaFilled(false);
+        jPanel3.add(jButton1, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btFarbeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFarbeActionPerformed
-        ColorChooserDlg cdlg = new ColorChooserDlg(this,true);
+        ColorChooserDlg cdlg = new ColorChooserDlg(this, true);
         cdlg.setVisible(true);
         if (cdlg.isC()) {
-            Color c = cdlg.getC();
+            c = cdlg.getC();
             this.btFarbe.setBackground(c);
         } else {
             System.out.println("Fehler bei der Farbübergabe!!!");
@@ -108,6 +152,13 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_btFarbeActionPerformed
 
     private void btStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartenActionPerformed
+        this.name = this.tfName.getText();
+        if (c != null && (!name.equals(""))) {
+            p = new Player(name, c, 100, hoeheSchirm/2, img);
+        } else {
+            JOptionPane.showMessageDialog(this, "Bitte Name eingeben und Farbe auswählen!");
+        }
+
 
     }//GEN-LAST:event_btStartenActionPerformed
 
@@ -161,10 +212,18 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private javax.swing.JButton btBeenden;
     private javax.swing.JButton btFarbe;
     private javax.swing.JButton btStarten;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 }

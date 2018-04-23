@@ -21,15 +21,15 @@ public class Player {
     private int munition;
     private int punkte;
 
-    public Player(String name, Color c, int xPos, int yPos, Image schiff, int leben, int munition, int punkte) {
+    public Player(String name, Color c, int xPos, int yPos, Image schiff) {
         this.name = name;
         this.c = c;
         this.xPos = xPos;
         this.yPos = yPos;
         this.schiff = schiff;
-        this.leben = leben;
-        this.munition = munition;
-        this.punkte = punkte;
+        this.leben = 5;
+        this.munition = 100;
+        this.punkte = 0;
     }
 
     public String getName() {
@@ -95,6 +95,12 @@ public class Player {
     public void setPunkte(int punkte) {
         this.punkte = punkte;
     }
+
+    @Override
+    public String toString() {
+        return "Name: "+name+" | Farbe: "+c.toString();
+    }
+    
     
     
 }
