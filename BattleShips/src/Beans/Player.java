@@ -5,6 +5,7 @@
  */
 package Beans;
 
+import BL.Position;
 import java.awt.Color;
 import java.awt.Image;
 
@@ -15,21 +16,22 @@ import java.awt.Image;
 public class Player {
     private String name;
     private Color c;
-    private int xPos,yPos;
     private Image schiff;
     private int leben;
     private int munition;
     private int punkte;
+    private int index;
+    private Position p;
 
-    public Player(String name, Color c, int xPos, int yPos, Image schiff) {
+    public Player(String name, Color c, Position p, Image schiff, int index) {
         this.name = name;
         this.c = c;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.p = p;
         this.schiff = schiff;
         this.leben = 5;
         this.munition = 100;
         this.punkte = 0;
+        this.index=index;
     }
 
     public String getName() {
@@ -46,22 +48,6 @@ public class Player {
 
     public void setC(Color c) {
         this.c = c;
-    }
-
-    public int getxPos() {
-        return xPos;
-    }
-
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
-    }
-
-    public int getyPos() {
-        return yPos;
-    }
-
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
     }
 
     public Image getSchiff() {
@@ -96,9 +82,26 @@ public class Player {
         this.punkte = punkte;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public Position getP() {
+        return p;
+    }
+
+    public void setP(Position p) {
+        this.p = p;
+    }
+
+    
     @Override
     public String toString() {
-        return "Name: "+name;
+        return "Player"+index+" | "+"Name: "+name;
     }
     
     
