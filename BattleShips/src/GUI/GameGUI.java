@@ -282,6 +282,40 @@ public class GameGUI extends javax.swing.JFrame
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+                
+                while(controlls.containsKey(KeyEvent.VK_S))
+                {
+                    bl.movePlayer1(KeyEvent.VK_S);                   
+                    try
+                    {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                while(controlls.containsKey(KeyEvent.VK_A))
+                {
+                    bl.movePlayer1(KeyEvent.VK_A);                   
+                    try
+                    {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                while(controlls.containsKey(KeyEvent.VK_D))
+                {
+                    bl.movePlayer1(KeyEvent.VK_D);                   
+                    try
+                    {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
 
