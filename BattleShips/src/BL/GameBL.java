@@ -29,6 +29,9 @@ public class GameBL
     private int p1X1, p1Y1, p1X2, p1Y2, p2X1, p2Y1, p2X2, p2Y2;
     private Graphics g;
     private JPanel jpGame;
+    private Position pos1;
+    private Position pos2;
+    private int shipWidth, shipHeight;
 
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -40,9 +43,9 @@ public class GameBL
     public GameBL(JPanel jpGame)
     {
         this.jpGame = jpGame;
-
-        initMyInits();
         loadImage();
+        initMyInits();
+        
     }
 
     public void loadImage()
@@ -62,16 +65,18 @@ public class GameBL
     {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
+        
+        shipWidth = ship.getWidth(null);
+        shipHeight = ship.getHeight(null);
+        
         g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
-        p1X1 = maxX / 2 - 112;
-        p1Y1 = maxY / 2 - 35;
-        p1X2 = 25;
-        p1Y2 = 70;
-        p2X1 = maxX / 2 + 88;
-        p2Y1 = maxY / 2 - 35;
-        p2X2 = 25;
-        p2Y2 = 70;
+        
+        pos1 = new Position((maxX / 2 - 112),(maxY / 2 - 35));
+        
+        pos2 = new Position((maxX / 2 + 88),(maxY / 2 - 35));
+ 
+
     }
 
     public void drawPlayers()
@@ -84,16 +89,16 @@ public class GameBL
     public void drawPlayer1()
     {
         g.setColor(Color.BLACK);
-        g.drawRect(p1X1 + 22, p1Y1 + 23, p1X2, p1Y2);
-        g.drawImage(ship, p1X1, p1Y1, null);
+        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
+        g.drawImage(ship, pos1.getX(), pos1.getY(), null);
 
     }
 
     public void drawPlayer2()
     {
         g.setColor(Color.BLACK);
-        g.drawRect(p2X1 + 22, p2Y1 + 23, p2X2, p2Y2);
-        g.drawImage(ship, p2X1, p2Y1, null);
+        g.drawRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
+        g.drawImage(ship, pos2.getX(), pos2.getY(), null);
 
     }
 
