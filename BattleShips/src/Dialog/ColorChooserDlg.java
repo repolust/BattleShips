@@ -18,14 +18,14 @@ public class ColorChooserDlg extends javax.swing.JDialog {
      * Creates new form ColorChooserDlg
      */
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    private int hoeheSchirm = (int) screensize.getHeight();
+    private int hoeheSchirm =  (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
     private Color c = null;
 
     public ColorChooserDlg(NewPlayerDlg parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setBounds(breiteSchirm / 3, hoeheSchirm / 3, breiteSchirm / 3, hoeheSchirm / 3);
+        this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
     }
 
     /**
@@ -45,7 +45,7 @@ public class ColorChooserDlg extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
         jPanel1.add(cChooser);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -54,7 +54,7 @@ public class ColorChooserDlg extends javax.swing.JDialog {
 
         btAuswaehlen.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btAuswaehlen.setText("Auswählen");
-        btAuswaehlen.setBorder(null);
+        btAuswaehlen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btAuswaehlen.setContentAreaFilled(false);
         btAuswaehlen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +65,7 @@ public class ColorChooserDlg extends javax.swing.JDialog {
 
         btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btBeenden.setText("Beenden");
-        btBeenden.setBorder(null);
+        btBeenden.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btBeenden.setContentAreaFilled(false);
         btBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

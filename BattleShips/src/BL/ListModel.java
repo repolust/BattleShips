@@ -31,5 +31,13 @@ public class ListModel extends AbstractListModel{
         liste.add(p);
         super.fireContentsChanged(liste, 0, liste.size()-1);
     }
+    public boolean checkPlayer(String name){
+        for(Player p: liste){
+            if(p.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
     
 }

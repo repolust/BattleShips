@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author Leonardo
  */
-public class NewPlayerDlg extends javax.swing.JDialog{
+public class NewPlayerDlg extends javax.swing.JDialog {
 
     /**
      * Creates new form NewPlayerDlg
@@ -41,16 +41,16 @@ public class NewPlayerDlg extends javax.swing.JDialog{
 
     private ListModel lm = new ListModel();
     private String[] stringListe;
-    
-    private static int index = 0;
-    
+
+    private int index = 0;
+
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "ship.png";
+
     private Image ship;
-    
-    
+
     public NewPlayerDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -74,35 +74,52 @@ public class NewPlayerDlg extends javax.swing.JDialog{
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        jPanel7 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlMyPlayerListe = new javax.swing.JList<>();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btFarbe = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         btErstellen = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jlMyPlayerListe = new javax.swing.JList<>();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         btSpielStarten = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout());
 
-        jPanel1.setLayout(new java.awt.GridLayout(4, 2));
+        jPanel7.setLayout(new java.awt.GridLayout(3, 2));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Spieler", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Old English Text MT", 1, 14))); // NOI18N
+        jPanel1.setLayout(new java.awt.GridLayout());
+
+        jScrollPane2.setViewportView(jlMyPlayerListe);
+
+        jPanel1.add(jScrollPane2);
+
+        jPanel7.add(jPanel1);
+
+        jPanel3.setLayout(new java.awt.GridLayout(3, 2));
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel1.setText("Name");
-        jPanel1.add(jLabel1);
-        jPanel1.add(tfName);
+        jPanel3.add(jLabel1);
+
+        tfName.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
+        jPanel3.add(tfName);
 
         jLabel2.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel2.setText("Farbe");
-        jPanel1.add(jLabel2);
+        jPanel3.add(jLabel2);
 
         btFarbe.setBorder(null);
         btFarbe.addActionListener(new java.awt.event.ActionListener() {
@@ -110,61 +127,63 @@ public class NewPlayerDlg extends javax.swing.JDialog{
                 btFarbeActionPerformed(evt);
             }
         });
-        jPanel1.add(btFarbe);
+        jPanel3.add(btFarbe);
 
         jLabel3.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
         jLabel3.setText("Schiff");
-        jPanel1.add(jLabel3);
+        jPanel3.add(jLabel3);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship.png"))); // NOI18N
-        jPanel1.add(jLabel4);
+        jPanel3.add(jLabel4);
+
+        jPanel7.add(jPanel3);
+
+        jPanel2.setLayout(new java.awt.GridLayout(2, 1));
+
+        jPanel4.setLayout(new java.awt.GridLayout(1, 2));
 
         btErstellen.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btErstellen.setText("Erstellen");
-        btErstellen.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        btErstellen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btErstellen.setContentAreaFilled(false);
         btErstellen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btErstellenActionPerformed(evt);
             }
         });
-        jPanel1.add(btErstellen);
+        jPanel4.add(btErstellen);
 
         btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btBeenden.setText("Beenden");
-        btBeenden.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btBeenden.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btBeenden.setContentAreaFilled(false);
         btBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBeendenActionPerformed(evt);
             }
         });
-        jPanel1.add(btBeenden);
+        jPanel4.add(btBeenden);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jPanel4);
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jScrollPane2.setViewportView(jlMyPlayerListe);
-
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.NORTH);
-
-        getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
-
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        jPanel5.setLayout(new java.awt.GridLayout());
 
         btSpielStarten.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         btSpielStarten.setText("Spiel starten");
-        btSpielStarten.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btSpielStarten.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btSpielStarten.setContentAreaFilled(false);
         btSpielStarten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSpielStartenActionPerformed(evt);
             }
         });
-        jPanel3.add(btSpielStarten, java.awt.BorderLayout.CENTER);
+        jPanel5.add(btSpielStarten);
 
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
+        jPanel2.add(jPanel5);
+
+        jPanel7.add(jPanel2);
+
+        getContentPane().add(jPanel7);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,13 +202,16 @@ public class NewPlayerDlg extends javax.swing.JDialog{
     private void btErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btErstellenActionPerformed
         this.name = this.tfName.getText();
         if (c != null && (!name.equals(""))) {
-            index=index++;
-            p = new Player(name, c, (new Position(100,hoeheSchirm/2)), ship ,index);
-            if(lm.getSize()>=2){
+            if (lm.getSize() >= 2) {
                 JOptionPane.showMessageDialog(this, "Maximal 2 Spieler (Ligth-Version)");
-            }
-            else{
-                lm.addElement(p);
+            } else {
+                if (!lm.checkPlayer(name)) {
+                    index = index + 1;
+                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship, index);
+                    lm.addElement(p);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Wähle einen anderen Spielernamen");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Bitte Name eingeben und Farbe auswählen!");
@@ -201,13 +223,12 @@ public class NewPlayerDlg extends javax.swing.JDialog{
     }//GEN-LAST:event_btBeendenActionPerformed
 
     private void btSpielStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSpielStartenActionPerformed
-        if(lm.getSize()==2){
+        if (lm.getSize() == 2) {
             this.dispose();
             GameGUI gg = new GameGUI();
-            
+
             gg.setVisible(true);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Du musst 2 Spieler erstellen!");
         }
     }//GEN-LAST:event_btSpielStartenActionPerformed
@@ -266,6 +287,9 @@ public class NewPlayerDlg extends javax.swing.JDialog{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
