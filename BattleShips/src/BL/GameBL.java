@@ -8,8 +8,10 @@ package BL;
 import Beans.Player;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -33,7 +35,9 @@ public class GameBL
     private Position pos1;
     private Position pos2;
     private int shipWidth, shipHeight;
-
+    private double currentAngle1 = 0;
+    private double currentAngle2 = 0;
+    
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
@@ -82,7 +86,8 @@ public class GameBL
 
     public void drawPlayers()
     {
-        drawPlayer1();
+//        drawPlayer1();
+        rotatePlayer1(0);
         drawPlayer2();
      
     }
@@ -95,8 +100,25 @@ public class GameBL
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
         g.drawImage(ship, pos1.getX(), pos1.getY(), null);
+    }
+    
+    public void rotatePlayer1(int angle)
+    {
+        
+        Graphics2D g2d = (Graphics2D)g;
 
+        g.clearRect(pos1.getX()-20, pos1.getY()-10, shipHeight+20, shipHeight+20);
+        AffineTransform origXform = g2d.getTransform();
+        AffineTransform newXform = (AffineTransform)(origXform.clone());
+        currentAngle1 += angle;
+        int xRot =  pos1.getX()+(shipWidth/2);
+        int yRot =  pos1.getY()+(shipHeight/2);
+        newXform.rotate(Math.toRadians(currentAngle1), xRot, yRot);
+        g2d.setTransform(newXform);
+        g2d.drawImage(ship, pos1.getX(), pos1.getY(), null);
+        g2d.setTransform(origXform);
 
+        
     }
 
     public void drawPlayer2()
@@ -111,17 +133,17 @@ public class GameBL
 
     public void movePlayer1(int keyCode)
     {
-        if(!(pos1.getY()-10 < 0) && !(pos1.getX()-10 < 0) && !(pos1.getX()+10 > maxX) && !(pos1.getY()+10 > maxY))
+        if(!(pos1.getY()-10 < 0) && !(pos1.getX()-10 < 0) && !(pos1.getX()+10+shipWidth > maxX) && !((pos1.getY()+10+shipHeight) > maxY))
         {
             switch(keyCode)
             {
-               case KeyEvent.VK_W: pos1.increaseY(-10);break;
-               case KeyEvent.VK_A: pos1.increaseX(-10);break;
-               case KeyEvent.VK_S: pos1.increaseY(10);break;
-               case KeyEvent.VK_D: pos1.increaseX(10);break;
+               case KeyEvent.VK_W: pos1.increaseY(-10);currentAngle1=0;drawPlayer1();break;
+               case KeyEvent.VK_A: rotatePlayer1(-1);break;
+               case KeyEvent.VK_S: pos1.increaseY(10);drawPlayer1();break;
+               case KeyEvent.VK_D: rotatePlayer1(1);break;
             
             }
-             drawPlayer1();
+             
         }
         
 //        g.clearRect(0, 0, maxX, maxX);
