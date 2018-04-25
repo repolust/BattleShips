@@ -103,8 +103,8 @@ public class GameBL
     }
     
     public void rotatePlayer1(int angle)
-    {
-        
+    {   
+       
         Graphics2D g2d = (Graphics2D)g;
 
         g.clearRect(pos1.getX()-20, pos1.getY()-10, shipHeight+20, shipHeight+20);
@@ -117,9 +117,19 @@ public class GameBL
         g2d.setTransform(newXform);
         g2d.drawImage(ship, pos1.getX(), pos1.getY(), null);
         g2d.setTransform(origXform);
-
-        
+       
     }
+    
+//    public void setVektor(int angle)
+//    {
+//        double x = Math.cos(Math.toRadians(angle))*pos1.getX() - Math.sin(Math.toRadians(angle))*pos1.getX();
+//        double y = Math.sin(Math.toRadians(angle))*pos1.getY() + Math.cos(Math.toRadians(angle))*pos1.getY();
+//        
+//        int x2 = (int) Math.round(x);
+//        int y2 = (int) Math.round(y);
+//        pos1.setX(x2);
+//        pos1.setY(y2);
+//    }
 
     public void drawPlayer2()
     {
@@ -137,7 +147,7 @@ public class GameBL
         {
             switch(keyCode)
             {
-               case KeyEvent.VK_W: pos1.increaseY(-10);currentAngle1=0;drawPlayer1();break;
+               case KeyEvent.VK_W: pos1.increaseY(-10);drawPlayer1();break;
                case KeyEvent.VK_A: rotatePlayer1(-1);break;
                case KeyEvent.VK_S: pos1.increaseY(10);drawPlayer1();break;
                case KeyEvent.VK_D: rotatePlayer1(1);break;
