@@ -48,8 +48,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
         btHilfe = new javax.swing.JButton();
@@ -59,6 +58,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
         lbBild = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BattleShips");
 
         jPanel2.setLayout(null);
 
@@ -75,10 +75,8 @@ public class StartMenuGUI extends javax.swing.JFrame {
         btStarten.setText("Starten");
         btStarten.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
         btStarten.setContentAreaFilled(false);
-        btStarten.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btStarten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onStart(evt);
             }
         });
@@ -90,10 +88,8 @@ public class StartMenuGUI extends javax.swing.JFrame {
         btBeenden.setText("Beenden");
         btBeenden.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
         btBeenden.setContentAreaFilled(false);
-        btBeenden.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btBeenden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onBeenden(evt);
             }
         });

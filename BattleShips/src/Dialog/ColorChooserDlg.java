@@ -26,6 +26,7 @@ public class ColorChooserDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
+        this.setResizable(false);
     }
 
     /**
@@ -44,6 +45,7 @@ public class ColorChooserDlg extends javax.swing.JDialog {
         btBeenden = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Farbe wählen");
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
         jPanel1.add(cChooser);
