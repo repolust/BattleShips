@@ -82,7 +82,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ShipChooserDlg dialog = new ShipChooserDlg((NewPlayerDlg) new javax.swing.JDialog(), true);
+                ShipChooserDlg dialog = new ShipChooserDlg(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

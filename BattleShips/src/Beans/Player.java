@@ -5,6 +5,7 @@
  */
 package Beans;
 
+import BL.Position;
 import java.awt.Color;
 import java.awt.Image;
 

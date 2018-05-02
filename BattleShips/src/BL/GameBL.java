@@ -5,7 +5,6 @@
  */
 package BL;
 
-import Beans.Position;
 import Beans.Player;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,7 +12,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -26,7 +24,8 @@ import javax.swing.JPanel;
  *
  * @author Leonardo
  */
-public class GameBL {
+public class GameBL
+{
 
     private LinkedList<Player> players = new LinkedList();
     private int maxX, maxY;
@@ -37,61 +36,61 @@ public class GameBL {
     private int shipWidth, shipHeight;
     private double currentAngle1 = 0;
     private double currentAngle2 = 0;
-
+    
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "ship1.png";
-
-    private Image ship;
-    private BufferedImage bufferedImage;
-    private File file = new File(System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "meer.jpg");
     
+    private Image ship;
 
-    public GameBL(JPanel jpGame) {
+    public GameBL(JPanel jpGame)
+    {
         this.jpGame = jpGame;
         loadImage();
         initMyInits();
-
+        
     }
 
-    public void loadImage() {
-        try {
+    public void loadImage()
+    {
+
+        try
+        {
             ship = ImageIO.read(new File(imagePath));
-            this.bufferedImage = ImageIO.read(file);
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void initMyInits() {
+    public void initMyInits()
+    {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
-
+        
         shipWidth = ship.getWidth(null);
         shipHeight = ship.getHeight(null);
-
+        
         g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
-
-        pos1 = new Position((maxX / 2 - 112), (maxY / 2 - 35));
-
-        pos2 = new Position((maxX / 2 + 88), (maxY / 2 - 35));
+        
+        pos1 = new Position((maxX / 2 - 112),(maxY / 2 - 35));
+        
+        pos2 = new Position((maxX / 2 + 88),(maxY / 2 - 35));
+ 
 
     }
 
-    public void drawPlayers() {
+    public void drawPlayers()
+    {
 //        drawPlayer1();
         rotatePlayer1(0);
         drawPlayer2();
-
+     
     }
 
-<<<<<<< HEAD
     public void drawPlayer1()
     {
   
@@ -102,40 +101,26 @@ public class GameBL {
 //        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
         g.drawImage(ship, pos1.getXint(), pos1.getYint(), null);
         
-=======
-    public void drawPlayer1() {
-        Graphics gImage = bufferedImage.getGraphics();
-        gImage.drawImage(ship, pos1.getX(), pos1.getY(), null);
-        g.drawImage(bufferedImage, 0, 0, null);
->>>>>>> BattleShips
     }
+    
+    public void rotatePlayer1(int angle)
+    {   
+       
+        Graphics2D g2d = (Graphics2D)g;
 
-<<<<<<< HEAD
         g.clearRect(pos1.getXint()-20, pos1.getYint()-10, shipHeight+20, shipHeight+20);
-=======
-    public void rotatePlayer1(int angle) {
-
-        Graphics2D g2d = (Graphics2D) g;
-
-        g.clearRect(pos1.getX() - 20, pos1.getY() - 10, shipHeight + 20, shipHeight + 20);
->>>>>>> BattleShips
         AffineTransform origXform = g2d.getTransform();
-        AffineTransform newXform = (AffineTransform) (origXform.clone());
+        AffineTransform newXform = (AffineTransform)(origXform.clone());
         currentAngle1 += angle;
-<<<<<<< HEAD
         int xRot =  pos1.getXint()+(shipWidth/2);
         int yRot =  pos1.getYint()+(shipHeight/2);
-=======
-        int xRot = pos1.getX() + (shipWidth / 2);
-        int yRot = pos1.getY() + (shipHeight / 2);
->>>>>>> BattleShips
         newXform.rotate(Math.toRadians(currentAngle1), xRot, yRot);
         g2d.setTransform(newXform);
         g2d.drawImage(ship, pos1.getXint(), pos1.getYint(), null);
         g2d.setTransform(origXform);
 
     }
-
+    
 //    public void setVektor(int angle)
 //    {
 //        double x = Math.cos(Math.toRadians(currentAngle1))*pos1.getX() - Math.sin(Math.toRadians(currentAngle1))*pos1.getX();
@@ -146,45 +131,32 @@ public class GameBL {
 //        pos1.setX(x2);
 //        pos1.setY(y2);
 //    }
-<<<<<<< HEAD
 
     public void drawPlayer2()
     {
         g.clearRect(pos2.getXint(), pos2.getYint(), shipWidth, shipHeight);
         
-=======
-    public void drawPlayer2() {
-        g.clearRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
-
->>>>>>> BattleShips
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
         g.drawImage(ship, pos2.getXint(), pos2.getYint(), null);
 
     }
 
-    public void movePlayer1(int keyCode) {
-        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY)) {
-            switch (keyCode) {
-                case KeyEvent.VK_W:
-                    pos1.increaseY(-10);
-                    drawPlayer1();
-                    break;
-                case KeyEvent.VK_A:
-                    rotatePlayer1(-1);
-                    break;
-                case KeyEvent.VK_S:
-                    pos1.increaseY(10);
-                    drawPlayer1();
-                    break;
-                case KeyEvent.VK_D:
-                    rotatePlayer1(1);
-                    break;
-
+    public void movePlayer1(int keyCode)
+    {
+        if(!(pos1.getY()-10 < 0) && !(pos1.getX()-10 < 0) && !(pos1.getX()+10+shipWidth > maxX) && !((pos1.getY()+10+shipHeight) > maxY))
+        {
+            switch(keyCode)
+            {
+               case KeyEvent.VK_W: pos1.increaseY(-10);drawPlayer1();break;
+               case KeyEvent.VK_A: rotatePlayer1(-1);break;
+               case KeyEvent.VK_S: pos1.increaseY(10);drawPlayer1();break;
+               case KeyEvent.VK_D: rotatePlayer1(1);break;
+            
             }
-
+             
         }
-
+        
     }
-
+    
 }
