@@ -6,7 +6,7 @@
 package Dialog;
 
 import BL.ListModel;
-import BL.Position;
+import Beans.Position;
 import Beans.Player;
 import GUI.GameGUI;
 import java.awt.Color;

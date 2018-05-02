@@ -5,6 +5,7 @@
  */
 package BL;
 
+import Beans.Position;
 import Beans.Player;
 import java.awt.Color;
 import java.awt.Graphics;
