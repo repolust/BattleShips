@@ -29,6 +29,7 @@ public class GameBL
 
     private LinkedList<Player> players = new LinkedList();
     private int maxX, maxY;
+    private int p1X1, p1Y1, p1X2, p1Y2, p2X1, p2Y1, p2X2, p2Y2;
     private Graphics g;
     private JPanel jpGame;
     private Position pos1;
@@ -94,13 +95,11 @@ public class GameBL
     public void drawPlayer1()
     {
   
-        g.clearRect(pos1.getXint()-10, pos1.getYint()-10, shipWidth+20, shipHeight+20);
-        
+        g.clearRect(pos1.getX()-10, pos1.getY()-10, shipWidth+20, shipHeight+20);
         
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
-        g.drawImage(ship, pos1.getXint(), pos1.getYint(), null);
-        
+        g.drawImage(ship, pos1.getX(), pos1.getY(), null);
     }
     
     public void rotatePlayer1(int angle)
@@ -108,15 +107,15 @@ public class GameBL
        
         Graphics2D g2d = (Graphics2D)g;
 
-        g.clearRect(pos1.getXint()-20, pos1.getYint()-10, shipHeight+20, shipHeight+20);
+        g.clearRect(pos1.getX()-20, pos1.getY()-10, shipHeight+20, shipHeight+20);
         AffineTransform origXform = g2d.getTransform();
         AffineTransform newXform = (AffineTransform)(origXform.clone());
         currentAngle1 += angle;
-        int xRot =  pos1.getXint()+(shipWidth/2);
-        int yRot =  pos1.getYint()+(shipHeight/2);
+        int xRot =  pos1.getX()+(shipWidth/2);
+        int yRot =  pos1.getY()+(shipHeight/2);
         newXform.rotate(Math.toRadians(currentAngle1), xRot, yRot);
         g2d.setTransform(newXform);
-        g2d.drawImage(ship, pos1.getXint(), pos1.getYint(), null);
+        g2d.drawImage(ship, pos1.getX(), pos1.getY(), null);
         g2d.setTransform(origXform);
 
     }
@@ -134,11 +133,11 @@ public class GameBL
 
     public void drawPlayer2()
     {
-        g.clearRect(pos2.getXint(), pos2.getYint(), shipWidth, shipHeight);
+        g.clearRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
         
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
-        g.drawImage(ship, pos2.getXint(), pos2.getYint(), null);
+        g.drawImage(ship, pos2.getX(), pos2.getY(), null);
 
     }
 
