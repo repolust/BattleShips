@@ -5,7 +5,11 @@
  */
 package Beans;
 
+<<<<<<< Updated upstream
 
+=======
+import Beans.Position;
+>>>>>>> Stashed changes
 import java.awt.Color;
 import java.awt.Image;
 

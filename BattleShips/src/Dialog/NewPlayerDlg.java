@@ -6,7 +6,7 @@
 package Dialog;
 
 import BL.ListModel;
-import BL.Position;
+import Beans.Position;
 import Beans.Player;
 import GUI.GameGUI;
 import java.awt.Color;
@@ -47,7 +47,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
-            + File.separator + "ship.png";
+            + File.separator + "ship1.png";
 
     private Image ship;
 
