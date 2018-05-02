@@ -11,39 +11,49 @@ package BL;
  */
 public class Position
 {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Position(int x, int y)
+    public Position(double x, double y)
     {
         this.x = x;
         this.y = y;
     }
 
-    public void increaseX(int value)
+    public void increaseX(double value)
     {
         x += value;
     }
-    public void increaseY(int value)
+    public void increaseY(double value)
     {
         y += value;
     }
-    public int getX()
+    public double getX()
     {
         return x;
     }
+    
+    public int getXint()
+    {
+        return (int)Math.round(x);
+    }
 
-    public void setX(int x)
+    public void setX(double x)
     {
         this.x = x;
     }
 
-    public int getY()
+    public double getY()
     {
         return y;
     }
 
-    public void setY(int y)
+    public int getYint()
+    {
+        return (int)Math.round(y);
+    }
+        
+    public void setY(double y)
     {
         this.y = y;
     }
