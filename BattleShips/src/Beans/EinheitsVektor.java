@@ -7,7 +7,7 @@ package Beans;
 
 /**
  *
- * @author alex
+ * @author tobia
  */
 public class EinheitsVektor extends Vektor{
     

@@ -5,6 +5,7 @@
  */
 package BL;
 
+import Beans.EinheitsVektor;
 import Beans.Player;
 import Beans.Position;
 import java.awt.Color;
@@ -37,6 +38,7 @@ public class GameBL
     private int shipWidth, shipHeight;
     private double currentAngle1 = 0;
     private double currentAngle2 = 0;
+    private EinheitsVektor direction;
     
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -45,9 +47,10 @@ public class GameBL
     
     private Image ship;
 
-    public GameBL(JPanel jpGame)
+    public GameBL(JPanel jpGame, EinheitsVektor einh)
     {
         this.jpGame = jpGame;
+        direction = einh;
         loadImage();
         initMyInits();
         
@@ -147,9 +150,9 @@ public class GameBL
         {
             switch(keyCode)
             {
-               case KeyEvent.VK_W: pos1.increaseY(-10);drawPlayer1();break;
+               case KeyEvent.VK_W: pos1.increaseY(pos1.increaseX(direction.x * speed));drawPlayer1();break;
                case KeyEvent.VK_A: rotatePlayer1(-1);break;
-               case KeyEvent.VK_S: pos1.increaseY(10);drawPlayer1();break;
+//               case KeyEvent.VK_S: pos1.increaseY(10);drawPlayer1();break;
                case KeyEvent.VK_D: rotatePlayer1(1);break;
             
             }
