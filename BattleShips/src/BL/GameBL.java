@@ -44,12 +44,12 @@ public class GameBL {
             + File.separator + "ship1.png";
 
     private Image ship;
-    private BufferedImage bufferedImage;
+    private BufferedImage bufferedImage1;
+    private BufferedImage bufferedImage2;
     private File file = new File(System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "meer.jpg");
-    
 
     public GameBL(JPanel jpGame) {
         this.jpGame = jpGame;
@@ -60,8 +60,9 @@ public class GameBL {
 
     public void loadImage() {
         try {
+            this.bufferedImage1 = ImageIO.read(file);
             ship = ImageIO.read(new File(imagePath));
-            this.bufferedImage = ImageIO.read(file);
+            
         } catch (IOException ex) {
             Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,7 +105,8 @@ public class GameBL {
         
 =======
     public void drawPlayer1() {
-        Graphics gImage = bufferedImage.getGraphics();
+        bufferedImage2=bufferedImage1;
+        Graphics gImage = bufferedImage2.getGraphics();
         gImage.drawImage(ship, pos1.getX(), pos1.getY(), null);
         g.drawImage(bufferedImage, 0, 0, null);
 >>>>>>> BattleShips
