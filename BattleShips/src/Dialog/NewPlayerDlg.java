@@ -6,7 +6,7 @@
 package Dialog;
 
 import BL.ListModel;
-import BL.Position;
+import Beans.Position;
 import Beans.Player;
 import GUI.GameGUI;
 import java.awt.Color;
@@ -47,7 +47,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
-            + File.separator + "ship.png";
+            + File.separator + "ship1.png";
 
     private Image ship;
 
@@ -57,11 +57,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 3);
         this.setResizable(false);
         this.jlMyPlayerListe.setModel(lm);
-        try {
-            ship = ImageIO.read(new File(imagePath));
-        } catch (IOException ex) {
-            Logger.getLogger(NewPlayerDlg.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     /**

@@ -276,7 +276,7 @@ public class GameGUI extends javax.swing.JFrame
                     bl.movePlayer1(KeyEvent.VK_W);                   
                     try
                     {
-                        Thread.sleep(10);
+                        Thread.sleep(16);
                     } catch (InterruptedException ex)
                     {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -288,7 +288,7 @@ public class GameGUI extends javax.swing.JFrame
                     bl.movePlayer1(KeyEvent.VK_S);                   
                     try
                     {
-                        Thread.sleep(10);
+                        Thread.sleep(16);
                     } catch (InterruptedException ex)
                     {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -299,7 +299,7 @@ public class GameGUI extends javax.swing.JFrame
                     bl.movePlayer1(KeyEvent.VK_A);                   
                     try
                     {
-                        Thread.sleep(10);
+                        Thread.sleep(16);
                     } catch (InterruptedException ex)
                     {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -310,7 +310,7 @@ public class GameGUI extends javax.swing.JFrame
                     bl.movePlayer1(KeyEvent.VK_D);                   
                     try
                     {
-                        Thread.sleep(10);
+                        Thread.sleep(16);
                     } catch (InterruptedException ex)
                     {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
