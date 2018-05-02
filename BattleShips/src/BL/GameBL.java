@@ -117,13 +117,13 @@ public class GameBL
         g2d.setTransform(newXform);
         g2d.drawImage(ship, pos1.getX(), pos1.getY(), null);
         g2d.setTransform(origXform);
-       
+
     }
     
 //    public void setVektor(int angle)
 //    {
-//        double x = Math.cos(Math.toRadians(angle))*pos1.getX() - Math.sin(Math.toRadians(angle))*pos1.getX();
-//        double y = Math.sin(Math.toRadians(angle))*pos1.getY() + Math.cos(Math.toRadians(angle))*pos1.getY();
+//        double x = Math.cos(Math.toRadians(currentAngle1))*pos1.getX() - Math.sin(Math.toRadians(currentAngle1))*pos1.getX();
+//        double y = Math.sin(Math.toRadians(currentAngle1))*pos1.getY() + Math.cos(Math.toRadians(currentAngle1))*pos1.getY();
 //        
 //        int x2 = (int) Math.round(x);
 //        int y2 = (int) Math.round(y);
