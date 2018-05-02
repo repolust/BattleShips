@@ -41,7 +41,7 @@ public class GameBL
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
-            + File.separator + "ship.png";
+            + File.separator + "ship1.png";
     
     private Image ship;
 
