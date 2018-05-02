@@ -12,59 +12,59 @@ package Beans;
 public class Position
 {
 
-    private double positionx;
-    private double positiony;
+    private double x;
+    private double y;
 
-    public Position(double positionx, double positiony)
+    public Position(double x, double y)
     {
-        this.positionx = positionx;
-        this.positiony = positiony;
+        this.x = x;
+        this.y = y;
     }
 
-    public double getPositionx()
+    public double getX()
     {
-        return positionx;
+        return x;
     }
 
-    public double getPxInt()
+    public int getXInt()
     {
-        return (int) positionx;
+        return (int) Math.round(x);
     }
 
-    public void setPositionx(double positionx)
+    public void setX(double x)
     {
-        this.positionx = positionx;
+        this.x = x;
     }
 
-    public double getPositiony()
+    public double getY()
     {
-        return positiony;
+        return y;
     }
 
-    public double getPyInt()
+    public int getYInt()
     {
-        return (int) positiony;
+        return (int) Math.round(y);
     }
 
-    public void setPositiony(double positiony)
+    public void setY(double y)
     {
-        this.positiony = positiony;
+        this.y = y;
     }
 
-    public void increasePositionxBy(double positionx)
+    public void increaseX(double x)
     {
-        this.positionx += positionx;
+        this.x += x;
     }
 
-    public void increasePositionyBy(double positiony)
+    public void increaseY(double y)
     {
-        this.positiony += positiony;
+        this.y += y;
     }
 
     @Override
     public String toString()
     {
-        return "Position{" + "positionx=" + positionx + ", positiony=" + positiony + '}';
+        return "Position{" + "positionx=" + x + ", positiony=" + y + '}';
     }
 
 }
