@@ -20,7 +20,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
 
-    public ShipChooserDlg(java.awt.Frame parent, boolean modal) {
+    public ShipChooserDlg(NewPlayerDlg parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setBounds(breiteSchirm / 3, hoeheSchirm / 3, breiteSchirm / 3, hoeheSchirm / 3);

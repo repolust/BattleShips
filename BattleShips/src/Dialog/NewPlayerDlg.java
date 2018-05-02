@@ -256,6 +256,9 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         if(this.jlMyPlayerListe.getSelectedValue()!=null){
             lm.deleteElement(this.jlMyPlayerListe.getSelectedIndex());
         }
+        else if(lm.getSize()==0){
+            JOptionPane.showMessageDialog(this, "Bitte Spieler zuerst erstellen");
+        }
         else{
             JOptionPane.showMessageDialog(this, "Bitte Spieler zuerst auswählen um zu löschen");
         }
@@ -264,7 +267,6 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private void btSchiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSchiffActionPerformed
         ShipChooserDlg scdlg = new ShipChooserDlg(this, true);
         scdlg.setVisible(true);
-
     }//GEN-LAST:event_btSchiffActionPerformed
 
     /**
