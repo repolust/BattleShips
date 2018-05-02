@@ -11,44 +11,50 @@ package Beans;
  */
 public class Position
 {
-    private int x;
-    private int y;
 
-    public Position(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
-    }
+    private double positionx;
+    private double positiony;
 
-    public void increaseX(int value)
+    public Position(double positionx, double positiony)
     {
-        x += value;
-    }
-    public void increaseY(int value)
-    {
-        y += value;
-    }
-    public int getX()
-    {
-        return x;
+        this.positionx = positionx;
+        this.positiony = positiony;
     }
 
-    public void setX(int x)
+    public double getPositionx()
     {
-        this.x = x;
+        return positionx;
     }
 
-    public int getY()
+    public void setPositionx(double positionx)
     {
-        return y;
+        this.positionx = positionx;
     }
 
-    public void setY(int y)
+    public double getPositiony()
     {
-        this.y = y;
+        return positiony;
     }
-    
-    
-            
-            
+
+    public void setPositiony(double positiony)
+    {
+        this.positiony = positiony;
+    }
+
+    public void increasePositionxBy(double positionx)
+    {
+        this.positionx += positionx;
+    }
+
+    public void increasePositionyBy(double positiony)
+    {
+        this.positiony += positiony;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Position{" + "positionx=" + positionx + ", positiony=" + positiony + '}';
+    }
+
 }
