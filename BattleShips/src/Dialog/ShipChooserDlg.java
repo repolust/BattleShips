@@ -5,7 +5,9 @@
  */
 package Dialog;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -36,21 +38,71 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        lbSchiff1 = new javax.swing.JLabel();
+        lbSchiff2 = new javax.swing.JLabel();
+        lbSchiff3 = new javax.swing.JLabel();
+        lbSchiff4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btWaehlen = new javax.swing.JButton();
+        btBeenden = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(new java.awt.GridLayout(2, 2));
+
+        lbSchiff1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship1.png"))); // NOI18N
+        lbSchiff1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbSchiff1MouseClicked(evt);
+            }
+        });
+        jPanel3.add(lbSchiff1);
+
+        lbSchiff2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship2.png"))); // NOI18N
+        jPanel3.add(lbSchiff2);
+
+        lbSchiff3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship3.png"))); // NOI18N
+        jPanel3.add(lbSchiff3);
+
+        lbSchiff4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship4.png"))); // NOI18N
+        jPanel3.add(lbSchiff4);
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
+
+        btWaehlen.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
+        btWaehlen.setText("Wählen");
+        btWaehlen.setToolTipText("");
+        btWaehlen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btWaehlen.setContentAreaFilled(false);
+        jPanel4.add(btWaehlen);
+
+        btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
+        btBeenden.setText("Beenden");
+        btBeenden.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btBeenden.setContentAreaFilled(false);
+        btBeenden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBeendenActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btBeenden);
+
+        getContentPane().add(jPanel4, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBeendenActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btBeendenActionPerformed
+
+    private void lbSchiff1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSchiff1MouseClicked
+        this.lbSchiff1.setBorder(BorderFactory.createLineBorder(Color.black));
+               
+    }//GEN-LAST:event_lbSchiff1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -82,7 +134,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ShipChooserDlg dialog = new ShipChooserDlg(new javax.swing.JFrame(), true);
+                ShipChooserDlg dialog = new ShipChooserDlg((NewPlayerDlg) new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -95,5 +147,13 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btBeenden;
+    private javax.swing.JButton btWaehlen;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lbSchiff1;
+    private javax.swing.JLabel lbSchiff2;
+    private javax.swing.JLabel lbSchiff3;
+    private javax.swing.JLabel lbSchiff4;
     // End of variables declaration//GEN-END:variables
 }
