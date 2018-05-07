@@ -236,13 +236,13 @@ public class GameGUI extends javax.swing.JFrame
                     break;
                 case KeyEvent.VK_SPACE:
                     System.out.println("# space #");
-                    controllP1.addKey(KeyEvent.VK_SPACE);
+                    bl.shootPlayer1();
                     //aufruf schuss methode //player1
                     break;
                 case KeyEvent.VK_ENTER:
                     System.out.println("**enter**");
                     controllP2.addKey(KeyEvent.VK_ENTER);
-                    //aufruf schuss methode //player2
+                    bl.shootPlayer2();
                     break;
             }
         }
@@ -265,14 +265,11 @@ public class GameGUI extends javax.swing.JFrame
             while (!this.isInterrupted())
             {
 
-                while (controllP1.getSize() == 1)
+                while (controllP1.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 1 gedrückt wird
                 {
                     if (controllP1.containsKey(KeyEvent.VK_W))
                     {
-                        bl.movePlayer1(KeyEvent.VK_W /*eventuell noch 2 werte um immer die selbe methode zu benutzen, in dem fall auf null setzen*/);
-                    } else if (controllP1.containsKey(KeyEvent.VK_SPACE))
-                    {
-                        bl.shootPlayer1();
+                        bl.movePlayer1(KeyEvent.VK_W, 0);
                     }
                     try
                     {
@@ -282,18 +279,18 @@ public class GameGUI extends javax.swing.JFrame
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                
-                while (controllP1.getSize() == 2)
+
+                while (controllP1.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 1 gedrückt wird
                 {
                     if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) || controllP1.containsKey(KeyEvent.VK_D)))
                     {
                         if (controllP1.containsKey(KeyEvent.VK_D))
                         {
-                            bl.drawPlayer1();
+                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_D);
+                        } else if (controllP1.containsKey(KeyEvent.VK_A))
+                        {
+                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_A);
                         }
-                    } else if (controllP1.containsKey(KeyEvent.VK_SPACE))
-                    {
-                        bl.shootPlayer1();
                     }
                     try
                     {
@@ -325,9 +322,12 @@ public class GameGUI extends javax.swing.JFrame
             while (!this.isInterrupted())
             {
 
-                while (controllP1.containsKey(KeyEvent.VK_W))
+                while (controllP2.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 2 gedrückt wird
                 {
-                    bl.movePlayer1(KeyEvent.VK_W);
+                    if (controllP2.containsKey(KeyEvent.VK_UP))
+                    {
+                        bl.movePlayer2(KeyEvent.VK_UP, 0);
+                    }
                     try
                     {
                         Thread.sleep(10);
@@ -335,6 +335,28 @@ public class GameGUI extends javax.swing.JFrame
                     {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                }
+
+                while (controllP2.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 2 gedrückt wird
+                {
+                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT)))
+                    {
+                        if (controllP2.containsKey(KeyEvent.VK_RIGHT))
+                        {
+                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT);
+                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT))
+                        {
+                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT);
+                        }
+                    }
+                    try
+                    {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex)
+                    {
+                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }
 
             }
