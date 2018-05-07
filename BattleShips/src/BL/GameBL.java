@@ -89,8 +89,8 @@ public class GameBL
 
     public void drawPlayers()
     {
-//        drawPlayer1();
-        rotatePlayer1(0);
+        drawPlayer1();
+//        rotatePlayer1(0);
         drawPlayer2();
 
     }
@@ -149,8 +149,8 @@ public class GameBL
             switch (keyCode)
             {
                 case KeyEvent.VK_W:
-                    pos1.increaseX(direction.x * speed);
-                    pos1.increaseY(direction.y * speed);
+                    pos1.increaseX(direction.getX() * speed);
+                    pos1.increaseY(direction.getY() * speed);
                     drawPlayer1();
                     break;
 //               case KeyEvent.VK_A: rotatePlayer1(-1);break;
