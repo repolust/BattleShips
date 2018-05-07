@@ -7,6 +7,7 @@ package GUI;
 
 import BL.Controlls;
 import BL.GameBL;
+import Beans.EinheitsVektor;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -29,7 +30,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Leonardo
+ * @author Team
  */
 public class GameGUI extends javax.swing.JFrame
 {
@@ -69,7 +70,7 @@ public class GameGUI extends javax.swing.JFrame
 
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
-        bl = new GameBL(this.jpGame);
+        bl = new GameBL(this.jpGame, new EinheitsVektor(0, 1));
 //        fillMap();
 
         zeichenThread = new zeichenThread();
