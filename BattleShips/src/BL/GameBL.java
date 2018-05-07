@@ -16,7 +16,9 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -40,6 +42,7 @@ public class GameBL
 //    private double currentAngle2 = 0;
     private EinheitsVektor direction;
     private double speed = 4;
+    private Set<Integer> keys = new HashSet<>(); 
 
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -54,6 +57,7 @@ public class GameBL
         direction = einh;
         loadImage();
         initMyInits();
+        
 
     }
 
@@ -100,8 +104,8 @@ public class GameBL
 
         g.clearRect(pos1.getXInt() - 10, pos1.getYInt() - 10, shipWidth + 20, shipHeight + 20);
 
-//        g.setColor(Color.BLACK);
-//        g.drawRect(pos1.getX(), pos1.getY(), shipWidth, shipHeight);
+////        g.setColor(Color.BLACK);
+////        g.drawRect(pos1.getXInt(), pos1.getYInt(), shipWidth, shipHeight);
         g.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
     }
 
@@ -137,7 +141,7 @@ public class GameBL
         g.clearRect(pos2.getXInt(), pos2.getYInt(), shipWidth, shipHeight);
 
 //        g.setColor(Color.BLACK);
-//        g.drawRect(pos2.getX(), pos2.getY(), shipWidth, shipHeight);
+//        g.drawRect(pos2.getXInt(), pos2.getYInt(), shipWidth, shipHeight);
         g.drawImage(ship, pos2.getXInt(), pos2.getYInt(), null);
 
     }
