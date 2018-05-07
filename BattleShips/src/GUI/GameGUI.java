@@ -59,7 +59,7 @@ public class GameGUI extends javax.swing.JFrame
 
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
-        bl = new GameBL(this.jpGame, new EinheitsVektor(0, 1));
+        bl = new GameBL(this.jpGame, new EinheitsVektor(0, 1), new EinheitsVektor(0, -1));
 //        fillMap();
 
         zeichenP1Thread = new zeichenP1Thread();

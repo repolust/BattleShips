@@ -8,12 +8,9 @@ package BL;
 import Beans.EinheitsVektor;
 import Beans.Player;
 import Beans.Position;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
@@ -52,11 +49,11 @@ public class GameBL
 
     private Image ship;
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh)
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2)
     {
         this.jpGame = jpGame;
-        direction1 = einh;
-        direction2 = einh;
+        direction1 = einh1;
+        direction2 = einh2;
         loadImage();
         initMyInits();
 
