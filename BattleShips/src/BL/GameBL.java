@@ -146,11 +146,11 @@ public class GameBL
 
     }
 
-    public void movePlayer1(int keyCode)
+    public void movePlayer1(int keyCode1, int keyCode2)
     {
         if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
         {
-            switch (keyCode)
+            switch (keyCode1)
             {
                 case KeyEvent.VK_W:
                     pos1.increaseX(direction.getX() * speed);
@@ -167,9 +167,14 @@ public class GameBL
                     break;
 
             }
+            
 
         }
 
+    }
+    
+    public void shootPlayer1(){
+        //do p1 shoot 
     }
 
 }

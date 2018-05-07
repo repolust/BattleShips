@@ -5,28 +5,17 @@
  */
 package GUI;
 
-import BL.Controlls;
+import BL.ControllsP1;
+import BL.ControllsP2;
 import BL.GameBL;
 import Beans.EinheitsVektor;
-import java.awt.Color;
 import java.awt.Graphics;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import static java.lang.Thread.interrupted;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -40,12 +29,13 @@ public class GameGUI extends javax.swing.JFrame
      */
     private GameBL bl;
 
-    private Thread zeichenThread;
+    private Thread zeichenP1Thread;
+    private Thread zeichenP2Thread;
 
 //    private HashMap<String, Boolean> flagMap = new HashMap();
+    private ControllsP1 controllP1 = new ControllsP1();
+    private ControllsP2 controllP2 = new ControllsP2();
 
-    private Controlls controlls = new Controlls();
-    
     @Override
     public void paint(Graphics grphcs)
     {
@@ -54,8 +44,7 @@ public class GameGUI extends javax.swing.JFrame
         if (bl != null)
         {
 
-        bl.drawPlayers();
-                  
+            bl.drawPlayers();
 
         }
 
@@ -73,8 +62,11 @@ public class GameGUI extends javax.swing.JFrame
         bl = new GameBL(this.jpGame, new EinheitsVektor(0, 1));
 //        fillMap();
 
-        zeichenThread = new zeichenThread();
-        zeichenThread.start();
+        zeichenP1Thread = new zeichenP1Thread();
+        zeichenP1Thread.start();
+
+        zeichenP2Thread = new zeichenP2Thread();
+        zeichenP2Thread.start();
     }
 
     /**
@@ -156,36 +148,36 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_A:
                     System.out.println("Pressed: a");
-                    controlls.addKey(KeyEvent.VK_A);
+                    controllP1.addKey(KeyEvent.VK_A);
                     break;
                 case KeyEvent.VK_W:
                     System.out.println("Pressed: w");
-                     controlls.addKey(KeyEvent.VK_W);
+                    controllP1.addKey(KeyEvent.VK_W);
                     break;
                 case KeyEvent.VK_S:
                     System.out.println("Pressed: s");
-                     controlls.addKey(KeyEvent.VK_S);
+                    controllP1.addKey(KeyEvent.VK_S);
                     break;
                 case KeyEvent.VK_D:
                     System.out.println("Pressed: d");
-                     controlls.addKey(KeyEvent.VK_D);
+                    controllP1.addKey(KeyEvent.VK_D);
                     break;
 
                 case KeyEvent.VK_LEFT:
                     System.out.println("Pressed: left");
-                     controlls.addKey(KeyEvent.VK_LEFT);
+                    controllP2.addKey(KeyEvent.VK_LEFT);
                     break;
                 case KeyEvent.VK_UP:
                     System.out.println("Pressed: up");
-                     controlls.addKey(KeyEvent.VK_UP);
+                    controllP2.addKey(KeyEvent.VK_UP);
                     break;
                 case KeyEvent.VK_DOWN:
                     System.out.println("Pressed: down");
-                     controlls.addKey(KeyEvent.VK_DOWN);
+                    controllP2.addKey(KeyEvent.VK_DOWN);
                     break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("Pressed: right");
-                     controlls.addKey(KeyEvent.VK_RIGHT);
+                    controllP2.addKey(KeyEvent.VK_RIGHT);
                     break;
             }
         }
@@ -197,36 +189,36 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_A:
                     System.out.println("Released: a");
-                    controlls.removeKey(KeyEvent.VK_A);
+                    controllP1.removeKey(KeyEvent.VK_A);
                     break;
                 case KeyEvent.VK_W:
                     System.out.println("Released: w");
-                    controlls.removeKey(KeyEvent.VK_W);
+                    controllP1.removeKey(KeyEvent.VK_W);
                     break;
                 case KeyEvent.VK_S:
                     System.out.println("Released: s");
-                    controlls.removeKey(KeyEvent.VK_S);
+                    controllP1.removeKey(KeyEvent.VK_S);
                     break;
                 case KeyEvent.VK_D:
                     System.out.println("Released: d");
-                    controlls.removeKey(KeyEvent.VK_D);
+                    controllP1.removeKey(KeyEvent.VK_D);
                     break;
 
                 case KeyEvent.VK_LEFT:
                     System.out.println("Released: left");
-                    controlls.removeKey(KeyEvent.VK_LEFT);
+                    controllP2.removeKey(KeyEvent.VK_LEFT);
                     break;
                 case KeyEvent.VK_UP:
                     System.out.println("Released: up");
-                    controlls.removeKey(KeyEvent.VK_UP);
+                    controllP2.removeKey(KeyEvent.VK_UP);
                     break;
                 case KeyEvent.VK_DOWN:
                     System.out.println("Released: down");
-                    controlls.removeKey(KeyEvent.VK_DOWN);
+                    controllP2.removeKey(KeyEvent.VK_DOWN);
                     break;
                 case KeyEvent.VK_RIGHT:
                     System.out.println("Released: right");
-                    controlls.removeKey(KeyEvent.VK_RIGHT);
+                    controllP2.removeKey(KeyEvent.VK_RIGHT);
                     break;
             }
 
@@ -239,14 +231,17 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_ESCAPE:
                     System.out.println("ESC");
+
                     //menüaufruf
                     break;
                 case KeyEvent.VK_SPACE:
                     System.out.println("# space #");
+                    controllP1.addKey(KeyEvent.VK_SPACE);
                     //aufruf schuss methode //player1
                     break;
                 case KeyEvent.VK_ENTER:
                     System.out.println("**enter**");
+                    controllP2.addKey(KeyEvent.VK_ENTER);
                     //aufruf schuss methode //player2
                     break;
             }
@@ -254,27 +249,31 @@ public class GameGUI extends javax.swing.JFrame
 
     };
 
-
-    public class zeichenThread extends Thread
+    public class zeichenP1Thread extends Thread
     {
 
 //        private LinkedList<String> movement = new LinkedList();
-
-        public zeichenThread()
+        public zeichenP1Thread()
         {
-            System.out.println("thread created");
+            System.out.println("threadP1 created");
         }
 
         @Override
         public void run()
         {
-            System.out.println("thread started");
+            System.out.println("threadP1 started");
             while (!this.isInterrupted())
             {
-                
-                while(controlls.containsKey(KeyEvent.VK_W))
+
+                while (controllP1.getSize() == 1)
                 {
-                    bl.movePlayer1(KeyEvent.VK_W);                   
+                    if (controllP1.containsKey(KeyEvent.VK_W))
+                    {
+                        bl.movePlayer1(KeyEvent.VK_W /*eventuell noch 2 werte um immer die selbe methode zu benutzen, in dem fall auf null setzen*/);
+                    } else if (controllP1.containsKey(KeyEvent.VK_SPACE))
+                    {
+                        bl.shootPlayer1();
+                    }
                     try
                     {
                         Thread.sleep(10);
@@ -284,9 +283,18 @@ public class GameGUI extends javax.swing.JFrame
                     }
                 }
                 
-                while(controlls.containsKey(KeyEvent.VK_S))
+                while (controllP1.getSize() == 2)
                 {
-                    bl.movePlayer1(KeyEvent.VK_S);                   
+                    if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) || controllP1.containsKey(KeyEvent.VK_D)))
+                    {
+                        if (controllP1.containsKey(KeyEvent.VK_D))
+                        {
+                            bl.drawPlayer1();
+                        }
+                    } else if (controllP1.containsKey(KeyEvent.VK_SPACE))
+                    {
+                        bl.shootPlayer1();
+                    }
                     try
                     {
                         Thread.sleep(10);
@@ -295,9 +303,31 @@ public class GameGUI extends javax.swing.JFrame
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                while(controlls.containsKey(KeyEvent.VK_A))
+
+            }
+        }
+
+    }
+
+    public class zeichenP2Thread extends Thread
+    {
+
+//        private LinkedList<String> movement = new LinkedList();
+        public zeichenP2Thread()
+        {
+            System.out.println("threadP2 created");
+        }
+
+        @Override
+        public void run()
+        {
+            System.out.println("threadP2 started");
+            while (!this.isInterrupted())
+            {
+
+                while (controllP1.containsKey(KeyEvent.VK_W))
                 {
-                    bl.movePlayer1(KeyEvent.VK_A);                   
+                    bl.movePlayer1(KeyEvent.VK_W);
                     try
                     {
                         Thread.sleep(10);
@@ -306,17 +336,7 @@ public class GameGUI extends javax.swing.JFrame
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                while(controlls.containsKey(KeyEvent.VK_D))
-                {
-                    bl.movePlayer1(KeyEvent.VK_D);                   
-                    try
-                    {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
-                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+
             }
         }
 

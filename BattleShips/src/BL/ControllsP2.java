@@ -13,40 +13,42 @@ import java.util.Set;
  *
  * @author michi
  */
-public class Controlls
+public class ControllsP2
 {
-    private Set<Integer> keys = new HashSet<>();
 
-    public Controlls()
+    private Set<Integer> keysP2 = new HashSet<>();
+
+    public ControllsP2()
     {
-        
+
     }
-    
+
     public void addKey(int keycode)
     {
-        if(!keys.contains(keycode))
+        if (!keysP2.contains(keycode))
         {
-            keys.add(keycode);
+            keysP2.add(keycode);
         }
-        
+
     }
-    
+
     public void removeKey(int keycode)
     {
-        if(keys.contains(keycode))
+        if (keysP2.contains(keycode))
         {
-            keys.remove(keycode);
-           
+            keysP2.remove(keycode);
+
         }
-        
+
     }
-    
-    public void getSize()
+
+    public int getSize()
     {
-        return keys.size();
+        return keysP2.size();
     }
-    
-    public boolean containsKey(int keyCode) {
-        return keys.contains(keyCode);
+
+    public boolean containsKey(int keyCode)
+    {
+        return keysP2.contains(keyCode);
     }
 }
