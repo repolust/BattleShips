@@ -40,9 +40,10 @@ public class GameBL
     private int shipWidth, shipHeight;
 //    private double currentAngle1 = 0;
 //    private double currentAngle2 = 0;
-    private EinheitsVektor direction;
+    private EinheitsVektor direction1;
+    private EinheitsVektor direction2;
     private double speed = 4;
-    private Set<Integer> keys = new HashSet<>(); 
+    private Set<Integer> keys = new HashSet<>();
 
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -54,10 +55,10 @@ public class GameBL
     public GameBL(JPanel jpGame, EinheitsVektor einh)
     {
         this.jpGame = jpGame;
-        direction = einh;
+        direction1 = einh;
+        direction2 = einh;
         loadImage();
         initMyInits();
-        
 
     }
 
@@ -148,32 +149,69 @@ public class GameBL
 
     public void movePlayer1(int keyCode1, int keyCode2)
     {
-        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
+
+//        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
+        if (keyCode2 == 0)
         {
-            switch (keyCode1)
+            pos1.increaseX(direction1.getX() * speed);
+            pos1.increaseY(direction1.getY() * speed);
+            drawPlayer1();
+        } else
+        {
+            switch (keyCode2)
             {
-                case KeyEvent.VK_W:
-                    pos1.increaseX(direction.getX() * speed);
-                    pos1.increaseY(direction.getY() * speed);
+                case KeyEvent.VK_A:
+                    direction1.rotateEinheitsVektor(1);
+                    pos1.increaseX(direction1.getX() * speed);
+                    pos1.increaseY(direction1.getY() * speed);
                     drawPlayer1();
                     break;
-//               case KeyEvent.VK_A: rotatePlayer1(-1);break;
-                case KeyEvent.VK_A:
-                    direction.rotateEinheitsVektor(1);
-                    break;
-//               case KeyEvent.VK_S: pos1.increaseY(10);drawPlayer1();break;
                 case KeyEvent.VK_D:
-                    direction.rotateEinheitsVektor(-1);
+                    direction1.rotateEinheitsVektor(-1);
+                    pos1.increaseX(direction1.getX() * speed);
+                    pos1.increaseY(direction1.getY() * speed);
+                    drawPlayer1();
                     break;
-
             }
-            
-
         }
-
     }
-    
-    public void shootPlayer1(){
+
+    public void shootPlayer1()
+    {
+        //do p1 shoot 
+    }
+
+    public void movePlayer2(int keyCode1, int keyCode2)
+    {
+
+//        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
+        if (keyCode2 == 0)
+        {
+            pos2.increaseX(direction2.getX() * speed);
+            pos2.increaseY(direction2.getY() * speed);
+            drawPlayer2();
+        } else
+        {
+            switch (keyCode2)
+            {
+                case KeyEvent.VK_LEFT:
+                    direction2.rotateEinheitsVektor(1);
+                    pos2.increaseX(direction2.getX() * speed);
+                    pos2.increaseY(direction2.getY() * speed);
+                    drawPlayer2();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    direction2.rotateEinheitsVektor(-1);
+                    pos2.increaseX(direction2.getX() * speed);
+                    pos2.increaseY(direction2.getY() * speed);
+                    drawPlayer2();
+                    break;
+            }
+        }
+    }
+
+    public void shootPlayer2()
+    {
         //do p1 shoot 
     }
 
