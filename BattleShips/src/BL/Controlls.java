@@ -41,6 +41,11 @@ public class Controlls
         
     }
     
+    public void getSize()
+    {
+        return keys.size();
+    }
+    
     public boolean containsKey(int keyCode) {
         return keys.contains(keyCode);
     }
