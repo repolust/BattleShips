@@ -138,7 +138,7 @@ public class GameBL
 //    }
     public void drawPlayer2()
     {
-        g.clearRect(pos2.getXInt(), pos2.getYInt(), shipWidth, shipHeight);
+        g.clearRect(pos2.getXInt() - 10, pos2.getYInt() - 10, shipWidth + 20, shipHeight + 20);
 
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos2.getXInt(), pos2.getYInt(), shipWidth, shipHeight);
@@ -162,18 +162,18 @@ public class GameBL
             switch (keyCode2)
             {
                 case KeyEvent.VK_A:
-                    direction1.rotateEinheitsVektor(1);
-                    pos1.increaseX(direction1.getX() * speed);
-                    pos1.increaseY(direction1.getY() * speed);
-                    drawPlayer1();
-                    setRotation1(1);
-                    break;
-                case KeyEvent.VK_D:
                     direction1.rotateEinheitsVektor(-1);
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
                     drawPlayer1();
                     setRotation1(-1);
+                    break;
+                case KeyEvent.VK_D:
+                    direction1.rotateEinheitsVektor(1);
+                    pos1.increaseX(direction1.getX() * speed);
+                    pos1.increaseY(direction1.getY() * speed);
+                    drawPlayer1();
+                    setRotation1(1);
                     break;
             }
         }
