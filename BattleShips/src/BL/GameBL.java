@@ -9,8 +9,10 @@ import Beans.EinheitsVektor;
 import Beans.Player;
 import Beans.Position;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
@@ -35,7 +37,7 @@ public class GameBL
     private Position pos1;
     private Position pos2;
     private int shipWidth, shipHeight;
-//    private double currentAngle1 = 0;
+    private double currentAngle1 = 180;
 //    private double currentAngle2 = 0;
     private EinheitsVektor direction1;
     private EinheitsVektor direction2;
@@ -107,23 +109,23 @@ public class GameBL
         g.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
     }
 
-//    public void rotatePlayer1(int angle)
-//    {   
-//       
-//        Graphics2D g2d = (Graphics2D)g;
-//
-//        g.clearRect(pos1.getXInt()-20, pos1.getYInt()-10, shipHeight+20, shipHeight+20);
-//        AffineTransform origXform = g2d.getTransform();
-//        AffineTransform newXform = (AffineTransform)(origXform.clone());
-//        currentAngle1 += angle;
-//        int xRot =  pos1.getXInt()+(shipWidth/2);
-//        int yRot =  pos1.getYInt()+(shipHeight/2);
-//        newXform.rotate(Math.toRadians(currentAngle1), xRot, yRot);
-//        g2d.setTransform(newXform);
-//        g2d.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
-//        g2d.setTransform(origXform);
-//
-//    }
+    public void setRotation1(int angle)
+    {   
+       
+        Graphics2D g2d = (Graphics2D)g;
+
+        g.clearRect(pos1.getXInt()-20, pos1.getYInt()-10, shipHeight+20, shipHeight+20);
+        AffineTransform origXform = g2d.getTransform();
+        AffineTransform newXform = (AffineTransform)(origXform.clone());
+        currentAngle1 += angle;
+        int xRot =  pos1.getXInt()+(shipWidth/2);
+        int yRot =  pos1.getYInt()+(shipHeight/2);
+        newXform.rotate(Math.toRadians(currentAngle1), xRot, yRot);
+        g2d.setTransform(newXform);
+        g2d.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
+        g2d.setTransform(origXform);
+
+    }
 //    public void setVektor(int angle)
 //    {
 //        double x = Math.cos(Math.toRadians(currentAngle1))*pos1.getX() - Math.sin(Math.toRadians(currentAngle1))*pos1.getX();
@@ -150,9 +152,11 @@ public class GameBL
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
         if (keyCode2 == 0)
         {
+            
             pos1.increaseX(direction1.getX() * speed);
             pos1.increaseY(direction1.getY() * speed);
             drawPlayer1();
+            setRotation1(0);
         } else
         {
             switch (keyCode2)
@@ -162,12 +166,14 @@ public class GameBL
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
                     drawPlayer1();
+                    setRotation1(1);
                     break;
                 case KeyEvent.VK_D:
                     direction1.rotateEinheitsVektor(-1);
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
                     drawPlayer1();
+                    setRotation1(-1);
                     break;
             }
         }
