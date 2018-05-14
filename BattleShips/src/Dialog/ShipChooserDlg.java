@@ -73,7 +73,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         btWaehlen.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
-        btWaehlen.setText("Wählen");
+        btWaehlen.setText("Auswählen");
         btWaehlen.setToolTipText("");
         btWaehlen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btWaehlen.setContentAreaFilled(false);
@@ -99,11 +99,17 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btBeendenActionPerformed
 
+<<<<<<< Updated upstream
     private void playShip1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playShip1MouseClicked
         this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));
         
      
     }//GEN-LAST:event_playShip1MouseClicked
+=======
+    private void lbSchiff1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSchiff1MouseClicked
+        this.lbSchiff1.setBorder(BorderFactory.createLineBorder(Color.black));
+    }//GEN-LAST:event_lbSchiff1MouseClicked
+>>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments

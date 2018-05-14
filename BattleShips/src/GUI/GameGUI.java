@@ -139,115 +139,7 @@ public class GameGUI extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    KeyListener jpGameListener = new KeyAdapter()
-    {
-        @Override
-        public void keyPressed(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
-                case KeyEvent.VK_A:
-                    System.out.println("Pressed: a");
-                    controllP1.addKey(KeyEvent.VK_A);
-                    break;
-                case KeyEvent.VK_W:
-                    System.out.println("Pressed: w");
-                    controllP1.addKey(KeyEvent.VK_W);
-                    break;
-                case KeyEvent.VK_S:
-                    System.out.println("Pressed: s");
-                    controllP1.addKey(KeyEvent.VK_S);
-                    break;
-                case KeyEvent.VK_D:
-                    System.out.println("Pressed: d");
-                    controllP1.addKey(KeyEvent.VK_D);
-                    break;
-
-                case KeyEvent.VK_LEFT:
-                    System.out.println("Pressed: left");
-                    controllP2.addKey(KeyEvent.VK_LEFT);
-                    break;
-                case KeyEvent.VK_UP:
-                    System.out.println("Pressed: up");
-                    controllP2.addKey(KeyEvent.VK_UP);
-                    break;
-                case KeyEvent.VK_DOWN:
-                    System.out.println("Pressed: down");
-                    controllP2.addKey(KeyEvent.VK_DOWN);
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    System.out.println("Pressed: right");
-                    controllP2.addKey(KeyEvent.VK_RIGHT);
-                    break;
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
-                case KeyEvent.VK_A:
-                    System.out.println("Released: a");
-                    controllP1.removeKey(KeyEvent.VK_A);
-                    break;
-                case KeyEvent.VK_W:
-                    System.out.println("Released: w");
-                    controllP1.removeKey(KeyEvent.VK_W);
-                    break;
-                case KeyEvent.VK_S:
-                    System.out.println("Released: s");
-                    controllP1.removeKey(KeyEvent.VK_S);
-                    break;
-                case KeyEvent.VK_D:
-                    System.out.println("Released: d");
-                    controllP1.removeKey(KeyEvent.VK_D);
-                    break;
-
-                case KeyEvent.VK_LEFT:
-                    System.out.println("Released: left");
-                    controllP2.removeKey(KeyEvent.VK_LEFT);
-                    break;
-                case KeyEvent.VK_UP:
-                    System.out.println("Released: up");
-                    controllP2.removeKey(KeyEvent.VK_UP);
-                    break;
-                case KeyEvent.VK_DOWN:
-                    System.out.println("Released: down");
-                    controllP2.removeKey(KeyEvent.VK_DOWN);
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    System.out.println("Released: right");
-                    controllP2.removeKey(KeyEvent.VK_RIGHT);
-                    break;
-            }
-
-        }
-
-        @Override
-        public void keyTyped(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
-                case KeyEvent.VK_ESCAPE:
-                    System.out.println("ESC");
-
-                    //menüaufruf
-                    break;
-                case KeyEvent.VK_SPACE:
-                    System.out.println("# space #");
-                    bl.shootPlayer1();
-                    //aufruf schuss methode //player1
-                    break;
-                case KeyEvent.VK_ENTER:
-                    System.out.println("**enter**");
-                    controllP2.addKey(KeyEvent.VK_ENTER);
-                    bl.shootPlayer2();
-                    break;
-            }
-        }
-
-    };
+    KeyListener jpGameListener = new KeyAdapterImpl();
 
     public class zeichenP1Thread extends Thread
     {
@@ -422,4 +314,116 @@ public class GameGUI extends javax.swing.JFrame
     private javax.swing.JPanel jpPlayer1;
     private javax.swing.JPanel jpPlayer2;
     // End of variables declaration//GEN-END:variables
+
+    private class KeyAdapterImpl extends KeyAdapter {
+
+        public KeyAdapterImpl() {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
+                case KeyEvent.VK_A:
+                    System.out.println("Pressed: a");
+                    controllP1.addKey(KeyEvent.VK_A);
+                    break;
+                case KeyEvent.VK_W:
+                    System.out.println("Pressed: w");
+                    controllP1.addKey(KeyEvent.VK_W);
+                    break;
+                case KeyEvent.VK_S:
+                    System.out.println("Pressed: s");
+                    controllP1.addKey(KeyEvent.VK_S);
+                    break;
+                case KeyEvent.VK_D:
+                    System.out.println("Pressed: d");
+                    controllP1.addKey(KeyEvent.VK_D);
+                    break;
+                    
+                case KeyEvent.VK_LEFT:
+                    System.out.println("Pressed: left");
+                    controllP2.addKey(KeyEvent.VK_LEFT);
+                    break;
+                case KeyEvent.VK_UP:
+                    System.out.println("Pressed: up");
+                    controllP2.addKey(KeyEvent.VK_UP);
+                    break;
+                case KeyEvent.VK_DOWN:
+                    System.out.println("Pressed: down");
+                    controllP2.addKey(KeyEvent.VK_DOWN);
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    System.out.println("Pressed: right");
+                    controllP2.addKey(KeyEvent.VK_RIGHT);
+                    break;
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
+                case KeyEvent.VK_A:
+                    System.out.println("Released: a");
+                    controllP1.removeKey(KeyEvent.VK_A);
+                    break;
+                case KeyEvent.VK_W:
+                    System.out.println("Released: w");
+                    controllP1.removeKey(KeyEvent.VK_W);
+                    break;
+                case KeyEvent.VK_S:
+                    System.out.println("Released: s");
+                    controllP1.removeKey(KeyEvent.VK_S);
+                    break;
+                case KeyEvent.VK_D:
+                    System.out.println("Released: d");
+                    controllP1.removeKey(KeyEvent.VK_D);
+                    break;
+                    
+                case KeyEvent.VK_LEFT:
+                    System.out.println("Released: left");
+                    controllP2.removeKey(KeyEvent.VK_LEFT);
+                    break;
+                case KeyEvent.VK_UP:
+                    System.out.println("Released: up");
+                    controllP2.removeKey(KeyEvent.VK_UP);
+                    break;
+                case KeyEvent.VK_DOWN:
+                    System.out.println("Released: down");
+                    controllP2.removeKey(KeyEvent.VK_DOWN);
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    System.out.println("Released: right");
+                    controllP2.removeKey(KeyEvent.VK_RIGHT);
+                    break;
+            }
+            
+        }
+
+        @Override
+        public void keyTyped(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
+                case KeyEvent.VK_ESCAPE:
+                    System.out.println("ESC");
+                    
+                    //menüaufruf
+                    break;
+                case KeyEvent.VK_SPACE:
+                    System.out.println("# space #");
+                    bl.shootPlayer1();
+                    //aufruf schuss methode //player1
+                    break;
+                case KeyEvent.VK_ENTER:
+                    System.out.println("**enter**");
+                    controllP2.addKey(KeyEvent.VK_ENTER);
+                    bl.shootPlayer2();
+                    break;
+            }
+        }
+    }
 }
