@@ -42,7 +42,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="playShip1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onShip1Clicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="playShip2">
@@ -51,6 +51,9 @@
               <Image iconType="3" name="/Bilder/showShip2.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onShip2Clicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="playShip3">
           <Properties>
@@ -58,6 +61,9 @@
               <Image iconType="3" name="/Bilder/showShip3.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onShip3Clicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="playShip4">
           <Properties>
@@ -65,6 +71,9 @@
               <Image iconType="3" name="/Bilder/showShip4.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onShip4Clicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

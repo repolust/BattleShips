@@ -7,6 +7,12 @@ package Dialog;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 
 /**
@@ -22,6 +28,14 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
 
+    private Image selectedShip = null;
+    
+
+    private String path = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "playShip1.png";
+    
     public ShipChooserDlg(NewPlayerDlg parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -29,6 +43,19 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         this.setResizable(false);
     }
 
+    public Image getSelectedShip() {
+        
+        try {
+            selectedShip = ImageIO.read(new File(path));       
+            return selectedShip;
+        } catch (IOException ex) {
+            Logger.getLogger(ShipChooserDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,18 +81,33 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         playShip1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip1.png"))); // NOI18N
         playShip1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                playShip1MouseClicked(evt);
+                onShip1Clicked(evt);
             }
         });
         jPanel3.add(playShip1);
 
         playShip2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip2.png"))); // NOI18N
+        playShip2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onShip2Clicked(evt);
+            }
+        });
         jPanel3.add(playShip2);
 
         playShip3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip3.png"))); // NOI18N
+        playShip3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onShip3Clicked(evt);
+            }
+        });
         jPanel3.add(playShip3);
 
         playShip4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip4.png"))); // NOI18N
+        playShip4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onShip4Clicked(evt);
+            }
+        });
         jPanel3.add(playShip4);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -100,6 +142,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_btBeendenActionPerformed
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void playShip1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playShip1MouseClicked
         this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));
         
@@ -109,6 +152,37 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     private void lbSchiff1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSchiff1MouseClicked
         this.lbSchiff1.setBorder(BorderFactory.createLineBorder(Color.black));
     }//GEN-LAST:event_lbSchiff1MouseClicked
+>>>>>>> Stashed changes
+=======
+    private void onShip1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip1Clicked
+        this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));    
+
+        path = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "playShip1.png";
+    }//GEN-LAST:event_onShip1Clicked
+
+    private void onShip2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip2Clicked
+        path = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "playShip2.png";
+    }//GEN-LAST:event_onShip2Clicked
+
+    private void onShip3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip3Clicked
+        path = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "playShip3.png";
+    }//GEN-LAST:event_onShip3Clicked
+
+    private void onShip4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip4Clicked
+        path = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "bilder"
+            + File.separator + "playShip4.png";
+    }//GEN-LAST:event_onShip4Clicked
 >>>>>>> Stashed changes
 
     /**
