@@ -39,10 +39,10 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        lbSchiff1 = new javax.swing.JLabel();
-        lbSchiff2 = new javax.swing.JLabel();
-        lbSchiff3 = new javax.swing.JLabel();
-        lbSchiff4 = new javax.swing.JLabel();
+        playShip1 = new javax.swing.JLabel();
+        playShip2 = new javax.swing.JLabel();
+        playShip3 = new javax.swing.JLabel();
+        playShip4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btWaehlen = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
@@ -51,22 +51,22 @@ public class ShipChooserDlg extends javax.swing.JDialog {
 
         jPanel3.setLayout(new java.awt.GridLayout(2, 2));
 
-        lbSchiff1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship1.png"))); // NOI18N
-        lbSchiff1.addMouseListener(new java.awt.event.MouseAdapter() {
+        playShip1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip1.png"))); // NOI18N
+        playShip1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbSchiff1MouseClicked(evt);
+                playShip1MouseClicked(evt);
             }
         });
-        jPanel3.add(lbSchiff1);
+        jPanel3.add(playShip1);
 
-        lbSchiff2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship2.png"))); // NOI18N
-        jPanel3.add(lbSchiff2);
+        playShip2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip2.png"))); // NOI18N
+        jPanel3.add(playShip2);
 
-        lbSchiff3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship3.png"))); // NOI18N
-        jPanel3.add(lbSchiff3);
+        playShip3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip3.png"))); // NOI18N
+        jPanel3.add(playShip3);
 
-        lbSchiff4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/ship4.png"))); // NOI18N
-        jPanel3.add(lbSchiff4);
+        playShip4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip4.png"))); // NOI18N
+        jPanel3.add(playShip4);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -99,10 +99,11 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btBeendenActionPerformed
 
-    private void lbSchiff1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSchiff1MouseClicked
-        this.lbSchiff1.setBorder(BorderFactory.createLineBorder(Color.black));
-               
-    }//GEN-LAST:event_lbSchiff1MouseClicked
+    private void playShip1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playShip1MouseClicked
+        this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+     
+    }//GEN-LAST:event_playShip1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -151,9 +152,9 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     private javax.swing.JButton btWaehlen;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel lbSchiff1;
-    private javax.swing.JLabel lbSchiff2;
-    private javax.swing.JLabel lbSchiff3;
-    private javax.swing.JLabel lbSchiff4;
+    private javax.swing.JLabel playShip1;
+    private javax.swing.JLabel playShip2;
+    private javax.swing.JLabel playShip3;
+    private javax.swing.JLabel playShip4;
     // End of variables declaration//GEN-END:variables
 }

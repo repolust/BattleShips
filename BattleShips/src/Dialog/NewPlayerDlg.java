@@ -47,7 +47,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
-            + File.separator + "ship1.png";
+            + File.separator + "showShip1.png";
 
     private Image ship;
 

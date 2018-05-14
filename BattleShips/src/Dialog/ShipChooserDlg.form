@@ -35,34 +35,34 @@
         <Property name="rows" type="int" value="2"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbSchiff1">
+        <Component class="javax.swing.JLabel" name="playShip1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Bilder/ship1.png"/>
+              <Image iconType="3" name="/Bilder/showShip1.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbSchiff1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="playShip1MouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbSchiff2">
+        <Component class="javax.swing.JLabel" name="playShip2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Bilder/ship2.png"/>
+              <Image iconType="3" name="/Bilder/showShip2.png"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbSchiff3">
+        <Component class="javax.swing.JLabel" name="playShip3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Bilder/ship3.png"/>
+              <Image iconType="3" name="/Bilder/showShip3.png"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbSchiff4">
+        <Component class="javax.swing.JLabel" name="playShip4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Bilder/ship4.png"/>
+              <Image iconType="3" name="/Bilder/showShip4.png"/>
             </Property>
           </Properties>
         </Component>
