@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Leonardo
+ * @author Tobia
  */
 public class GameBL
 {
@@ -108,6 +108,7 @@ public class GameBL
 //        g.drawRect(pos1.getXInt(), pos1.getYInt(), shipWidth, shipHeight);
         Graphics bufferedImageGraphics = bufferedImage.getGraphics();
         bufferedImageGraphics.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
+        setRotation1(180);
 //        g.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
     }
 
@@ -166,7 +167,7 @@ public class GameBL
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
-                    setRotation1(-4);
+                    setRotation1(-3);
                     g.drawImage(bufferedImage, 0, 0, null);
                     break;
                 case KeyEvent.VK_D:
@@ -174,7 +175,7 @@ public class GameBL
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
-                    setRotation1(4);
+                    setRotation1(3);
                     g.drawImage(bufferedImage, 0, 0, null);
                     break;
             }
