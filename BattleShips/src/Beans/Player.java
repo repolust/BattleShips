@@ -27,7 +27,7 @@ public class Player {
         this.c = c;
         this.p = p;
         this.schiff = schiff;
-        this.leben = 5;
+        this.leben = 100;
         this.munition = 100;
         this.punkte = 0;
         this.index=index;
