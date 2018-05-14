@@ -102,7 +102,7 @@ public class GameBL
     public void drawPlayer1()
     {
 
-        g.clearRect(pos1.getXInt() - 10, pos1.getYInt() - 10, shipWidth + 20, shipHeight + 20);
+//        g.clearRect(pos1.getXInt() - 10, pos1.getYInt() - 10, shipWidth + 20, shipHeight + 20);
 
 ////        g.setColor(Color.BLACK);
 ////        g.drawRect(pos1.getXInt(), pos1.getYInt(), shipWidth, shipHeight);
