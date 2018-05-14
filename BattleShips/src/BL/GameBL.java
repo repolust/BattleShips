@@ -41,7 +41,7 @@ public class GameBL {
 //    private double currentAngle2 = 0;
     private EinheitsVektor direction1;
     private EinheitsVektor direction2;
-    private double speed = 5;
+    private double speed = 10;
     private Set<Integer> keys = new HashSet<>();
 
     private final String imagePath = System.getProperty("user.dir")
@@ -147,19 +147,19 @@ public class GameBL {
         } else {
             switch (keyCode2) {
                 case KeyEvent.VK_A:
-                    direction1.rotateEinheitsVektor(-2);
+                    direction1.rotateEinheitsVektor(-4);
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
-                    setRotation1(-2);
+                    setRotation1(-4);
                     g.drawImage(bufferedImage, 0, 0, null);
                     break;
                 case KeyEvent.VK_D:
-                    direction1.rotateEinheitsVektor(2);
+                    direction1.rotateEinheitsVektor(4);
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
-                    setRotation1(2);
+                    setRotation1(4);
                     g.drawImage(bufferedImage, 0, 0, null);
                     break;
             }
