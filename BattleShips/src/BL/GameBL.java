@@ -198,13 +198,13 @@ public class GameBL
             switch (keyCode2)
             {
                 case KeyEvent.VK_LEFT:
-                    direction2.rotateEinheitsVektor(1);
+                    direction2.rotateEinheitsVektor(1.5);
                     pos2.increaseX(direction2.getX() * speed);
                     pos2.increaseY(direction2.getY() * speed);
                     drawPlayer2();
                     break;
                 case KeyEvent.VK_RIGHT:
-                    direction2.rotateEinheitsVektor(-1);
+                    direction2.rotateEinheitsVektor(-1.5);
                     pos2.increaseX(direction2.getX() * speed);
                     pos2.increaseY(direction2.getY() * speed);
                     drawPlayer2();
