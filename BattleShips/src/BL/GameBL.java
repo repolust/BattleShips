@@ -268,6 +268,8 @@ public class GameBL
 
         private int count = 0;
         private Position pos;
+        private EinheitsVektor einVLinks;
+        private EinheitsVektor einVRechts;
 
         public ShootingThread1()
         {
@@ -279,6 +281,9 @@ public class GameBL
         public void run()
         {
             System.out.println("ShootingThread1 started");
+
+            einVLinks = new EinheitsVektor(direction1.getX(), direction1.getY());
+            einVRechts = new EinheitsVektor(direction1.getX(), direction1.getY());
 
             pos = new Position(pos1.getX(), pos1.getY());
             while (!this.isInterrupted())
