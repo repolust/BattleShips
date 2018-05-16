@@ -43,7 +43,7 @@ public class GameBL
 //    private double currentAngle2 = 0;
     private EinheitsVektor direction1;
     private EinheitsVektor direction2;
-    private double speed = 3;
+    private double speed = 12;
     private Set<Integer> keys = new HashSet<>();
 
     private final String imagePath = System.getProperty("user.dir")
@@ -132,6 +132,8 @@ public class GameBL
         g2d.setTransform(newXform);
         Graphics bufferedImageGraphics = bufferedImage.getGraphics();
         bufferedImageGraphics.clearRect(0, 0, maxX, maxY);
+        bufferedImageGraphics.setColor(new Color(62,208,245));
+        bufferedImageGraphics.fillRect(0,0,maxX,maxY);
         g2d.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
         g2d.setTransform(origXform);
     }
@@ -162,7 +164,7 @@ public class GameBL
             switch (keyCode2)
             {
                 case KeyEvent.VK_A:
-                    direction1.rotateEinheitsVektor(-3);
+                    direction1.rotateEinheitsVektor(-4);
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
@@ -170,7 +172,7 @@ public class GameBL
                     g.drawImage(bufferedImage, 0, 0, null);
                     break;
                 case KeyEvent.VK_D:
-                    direction1.rotateEinheitsVektor(3);
+                    direction1.rotateEinheitsVektor(4);
                     pos1.increaseX(direction1.getX() * speed);
                     pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
