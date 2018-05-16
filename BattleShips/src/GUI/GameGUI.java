@@ -21,8 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Team
  */
-public class GameGUI extends javax.swing.JFrame
-{
+public class GameGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GameGUI
@@ -37,12 +36,10 @@ public class GameGUI extends javax.swing.JFrame
     private ControllsP2 controllP2 = new ControllsP2();
 
     @Override
-    public void paint(Graphics grphcs)
-    {
+    public void paint(Graphics grphcs) {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
-        if (bl != null)
-        {
+        if (bl != null) {
 
             bl.drawPlayers();
 
@@ -50,8 +47,7 @@ public class GameGUI extends javax.swing.JFrame
 
     }
 
-    public GameGUI()
-    {
+    public GameGUI() {
         initComponents();
 
         jpGame.addKeyListener(jpGameListener);
@@ -132,54 +128,58 @@ public class GameGUI extends javax.swing.JFrame
 
     KeyListener jpGameListener = new KeyAdapterImpl();
 
-    public class zeichenP1Thread extends Thread
-    {
+    public class zeichenP1Thread extends Thread {
 
 //        private LinkedList<String> movement = new LinkedList();
-        public zeichenP1Thread()
-        {
+        public zeichenP1Thread() {
             System.out.println("threadP1 created");
         }
 
         @Override
-        public void run()
-        {
+        public void run() {
             System.out.println("threadP1 started");
-            while (!this.isInterrupted())
-            {
+            while (!this.isInterrupted()) {
 
                 while (controllP1.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 1 gedrückt wird
                 {
-                    if (controllP1.containsKey(KeyEvent.VK_W))
-                    {
-                        bl.movePlayer1(KeyEvent.VK_W, 0);
+                    if (controllP1.containsKey(KeyEvent.VK_W)) {
+                        bl.movePlayer1(KeyEvent.VK_W, 0,0);
                     }
-                    try
-                    {
+                    try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
+                    } catch (InterruptedException ex) {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
 
-                while (controllP1.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 1 gedrückt wird
+                while (controllP1.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 1 gedrückt werden
                 {
-                    if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) || controllP1.containsKey(KeyEvent.VK_D)))
-                    {
-                        if (controllP1.containsKey(KeyEvent.VK_D))
-                        {
-                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_D);
-                        } else if (controllP1.containsKey(KeyEvent.VK_A))
-                        {
-                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_A);
+                    if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) || controllP1.containsKey(KeyEvent.VK_D))) {
+                        if (controllP1.containsKey(KeyEvent.VK_D)) {
+                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_D,0);
+                        } else if (controllP1.containsKey(KeyEvent.VK_A)) {
+                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_A,0);
                         }
                     }
-                    try
-                    {
+                    try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                while (controllP1.getSize() == 3) //wenn 3 Keys, aus dem KeySet von Player 1 gedrückt werden
+                {
+                    if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) && controllP1.containsKey(KeyEvent.VK_D))) {
+                        if (controllP1.containsKey(KeyEvent.VK_D)) {
+                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_A);
+                        } else if (controllP1.containsKey(KeyEvent.VK_A)) {
+                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D);
+                        }
+                    }
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -189,54 +189,42 @@ public class GameGUI extends javax.swing.JFrame
 
     }
 
-    public class zeichenP2Thread extends Thread
-    {
+    public class zeichenP2Thread extends Thread {
 
 //        private LinkedList<String> movement = new LinkedList();
-        public zeichenP2Thread()
-        {
+        public zeichenP2Thread() {
             System.out.println("threadP2 created");
         }
 
         @Override
-        public void run()
-        {
+        public void run() {
             System.out.println("threadP2 started");
-            while (!this.isInterrupted())
-            {
+            while (!this.isInterrupted()) {
 
                 while (controllP2.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 2 gedrückt wird
                 {
-                    if (controllP2.containsKey(KeyEvent.VK_UP))
-                    {
+                    if (controllP2.containsKey(KeyEvent.VK_UP)) {
                         bl.movePlayer2(KeyEvent.VK_UP, 0);
                     }
-                    try
-                    {
+                    try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
+                    } catch (InterruptedException ex) {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
 
                 while (controllP2.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 2 gedrückt wird
                 {
-                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT)))
-                    {
-                        if (controllP2.containsKey(KeyEvent.VK_RIGHT))
-                        {
+                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT))) {
+                        if (controllP2.containsKey(KeyEvent.VK_RIGHT)) {
                             bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT);
-                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT))
-                        {
+                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT)) {
                             bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT);
                         }
                     }
-                    try
-                    {
+                    try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
+                    } catch (InterruptedException ex) {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
@@ -250,51 +238,41 @@ public class GameGUI extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new GameGUI().setVisible(true);
             }
         });
@@ -312,10 +290,8 @@ public class GameGUI extends javax.swing.JFrame
         }
 
         @Override
-        public void keyPressed(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
+        public void keyPressed(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
                 case KeyEvent.VK_A:
                     System.out.println("Pressed: a");
                     controllP1.addKey(KeyEvent.VK_A);
@@ -332,7 +308,7 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("Pressed: d");
                     controllP1.addKey(KeyEvent.VK_D);
                     break;
-                    
+
                 case KeyEvent.VK_LEFT:
                     System.out.println("Pressed: left");
                     controllP2.addKey(KeyEvent.VK_LEFT);
@@ -353,10 +329,8 @@ public class GameGUI extends javax.swing.JFrame
         }
 
         @Override
-        public void keyReleased(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
+        public void keyReleased(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
                 case KeyEvent.VK_A:
                     System.out.println("Released: a");
                     controllP1.removeKey(KeyEvent.VK_A);
@@ -373,7 +347,7 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("Released: d");
                     controllP1.removeKey(KeyEvent.VK_D);
                     break;
-                    
+
                 case KeyEvent.VK_LEFT:
                     System.out.println("Released: left");
                     controllP2.removeKey(KeyEvent.VK_LEFT);
@@ -391,17 +365,15 @@ public class GameGUI extends javax.swing.JFrame
                     controllP2.removeKey(KeyEvent.VK_RIGHT);
                     break;
             }
-            
+
         }
 
         @Override
-        public void keyTyped(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
+        public void keyTyped(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
                 case KeyEvent.VK_ESCAPE:
                     System.out.println("ESC");
-                    
+
                     //menüaufruf
                     break;
                 case KeyEvent.VK_SPACE:
