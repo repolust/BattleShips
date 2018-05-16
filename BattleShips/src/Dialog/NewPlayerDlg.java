@@ -35,21 +35,16 @@ public class NewPlayerDlg extends javax.swing.JDialog {
 
     private String name = null;
     private Color c;
-    private Image img;
 
     private Player p;
 
     private ListModel lm = new ListModel();
-    private String[] stringListe;
 
     private int index = 0;
 
-    private final String imagePath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "showShip1.png";
 
-    private Image ship;
+    private Image ship = null;
+    private String shiffArt = "";
 
     public NewPlayerDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -57,11 +52,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 3);
         this.setResizable(false);
         this.jlMyPlayerListe.setModel(lm);
-        try {
-            ship = ImageIO.read(new File(imagePath));
-        } catch (IOException ex) {
-            Logger.getLogger(NewPlayerDlg.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -220,20 +211,21 @@ public class NewPlayerDlg extends javax.swing.JDialog {
 
     private void btErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btErstellenActionPerformed
         this.name = this.tfName.getText();
-        if (c != null && (!name.equals(""))) {
+        if (c != null && (!name.equals("")) && ship != null) {
             if (lm.getSize() >= 2) {
                 JOptionPane.showMessageDialog(this, "Maximal 2 Spieler (Ligth-Version)");
             } else {
                 if (!lm.checkPlayer(name)) {
                     index = index + 1;
-                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship, index);
+                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship,shiffArt, index);
                     lm.addElement(p);
+                    this.btSchiff.setText("");
                 } else {
                     JOptionPane.showMessageDialog(this, "Wähle einen anderen Spielernamen");
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Bitte Name eingeben und Farbe auswählen!");
+            JOptionPane.showMessageDialog(this, "Bitte Name, Farbe und Schiff auswählen!");
         }
     }//GEN-LAST:event_btErstellenActionPerformed
 
@@ -267,6 +259,13 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private void btSchiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSchiffActionPerformed
         ShipChooserDlg scdlg = new ShipChooserDlg(this, true);
         scdlg.setVisible(true);
+        
+        if(scdlg.issok())
+        {
+            ship = scdlg.getSelectedShip();
+            shiffArt = scdlg.getshipName();
+            this.btSchiff.setText(shiffArt);
+        }
     }//GEN-LAST:event_btSchiffActionPerformed
 
     /**

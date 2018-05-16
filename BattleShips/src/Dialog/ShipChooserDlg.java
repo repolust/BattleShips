@@ -10,8 +10,6 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 
@@ -29,7 +27,8 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     private int breiteSchirm = (int) screensize.getWidth();
 
     private Image selectedShip = null;
-    
+    private String shipName = "";
+    private boolean isok = false;
 
     private String path = System.getProperty("user.dir")
             + File.separator + "src"
@@ -43,18 +42,19 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         this.setResizable(false);
     }
 
-    public Image getSelectedShip() {
-        
-        try {
-            selectedShip = ImageIO.read(new File(path));       
+    public Image getSelectedShip() {  
             return selectedShip;
-        } catch (IOException ex) {
-            Logger.getLogger(ShipChooserDlg.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
     }
-
+    
+    public String getshipName()
+    {
+        return shipName;
+    }
+    
+      public boolean issok() 
+    {
+        return isok;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,6 +119,11 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         btWaehlen.setToolTipText("");
         btWaehlen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btWaehlen.setContentAreaFilled(false);
+        btWaehlen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onAuswaehlen(evt);
+            }
+        });
         jPanel4.add(btWaehlen);
 
         btBeenden.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
@@ -137,53 +142,88 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void clearBorders()
+    {
+        this.playShip1.setBorder(null);
+        this.playShip2.setBorder(null);
+        this.playShip3.setBorder(null);
+        this.playShip4.setBorder(null);
+    }
     private void btBeendenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBeendenActionPerformed
+        isok = false;
         this.dispose();
     }//GEN-LAST:event_btBeendenActionPerformed
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    private void playShip1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playShip1MouseClicked
-        this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));
-        
-     
-    }//GEN-LAST:event_playShip1MouseClicked
-=======
-    private void lbSchiff1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSchiff1MouseClicked
-        this.lbSchiff1.setBorder(BorderFactory.createLineBorder(Color.black));
-    }//GEN-LAST:event_lbSchiff1MouseClicked
->>>>>>> Stashed changes
-=======
-    private void onShip1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip1Clicked
-        this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));    
 
+    private void playShip1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playShip1MouseClicked
+
+    }//GEN-LAST:event_playShip1MouseClicked
+
+    private void lbSchiff1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSchiff1MouseClicked
+
+    }//GEN-LAST:event_lbSchiff1MouseClicked
+
+
+    private void onShip1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip1Clicked
+       clearBorders();
+        this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));  
         path = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "playShip1.png";
+        
+        shipName = "Schiff1";
     }//GEN-LAST:event_onShip1Clicked
 
     private void onShip2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip2Clicked
+        clearBorders();
+        this.playShip2.setBorder(BorderFactory.createLineBorder(Color.black));    
+        
         path = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "playShip2.png";
+        
+        shipName = "Schiff2";
     }//GEN-LAST:event_onShip2Clicked
 
     private void onShip3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip3Clicked
+        clearBorders();
+        this.playShip3.setBorder(BorderFactory.createLineBorder(Color.black));    
+        
         path = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "playShip3.png";
+        
+        shipName = "Schiff3";
     }//GEN-LAST:event_onShip3Clicked
 
     private void onShip4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip4Clicked
+       clearBorders();
+        this.playShip4.setBorder(BorderFactory.createLineBorder(Color.black));    
         path = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "playShip4.png";
+        
+        shipName = "Schiff4";
     }//GEN-LAST:event_onShip4Clicked
->>>>>>> Stashed changes
+
+    private void onAuswaehlen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onAuswaehlen
+        try {      
+            selectedShip = ImageIO.read(new File(path));
+            
+            isok = true;
+            dispose();
+        } catch (IOException ex) {
+            isok = false;
+        }
+        
+        
+        
+    }//GEN-LAST:event_onAuswaehlen
+
 
     /**
      * @param args the command line arguments

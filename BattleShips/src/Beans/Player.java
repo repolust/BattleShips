@@ -21,8 +21,9 @@ public class Player {
     private int punkte;
     private int index;
     private Position p;
+    private String schiffArt;
 
-    public Player(String name, Color c, Position p, Image schiff, int index) {
+    public Player(String name, Color c, Position p, Image schiff,String schiffArt, int index) {
         this.name = name;
         this.c = c;
         this.p = p;
@@ -30,6 +31,7 @@ public class Player {
         this.leben = 100;
         this.munition = 100;
         this.punkte = 0;
+        this.schiffArt = schiffArt;
         this.index=index;
     }
 
@@ -100,7 +102,7 @@ public class Player {
     
     @Override
     public String toString() {
-        return "Player"+index+" | "+"Name: "+name;
+        return "Player"+index+" | "+"Name: "+name+" | "+schiffArt;
     }
     
     
