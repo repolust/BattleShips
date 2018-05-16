@@ -29,8 +29,7 @@ import javax.swing.JPanel;
  *
  * @author Tobia
  */
-public class GameBL
-{
+public class GameBL {
 
     private LinkedList<Player> players = new LinkedList();
     private int maxX, maxY;
@@ -43,7 +42,7 @@ public class GameBL
 //    private double currentAngle2 = 0;
     private EinheitsVektor direction1;
     private EinheitsVektor direction2;
-    private double speed = 3;
+    private double speed = 12;
     private Set<Integer> keys = new HashSet<>();
 
     private final String imagePath = System.getProperty("user.dir")
@@ -54,8 +53,7 @@ public class GameBL
     private Image ship;
     private BufferedImage bufferedImage;
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2)
-    {
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2) {
         this.jpGame = jpGame;
         direction1 = einh1;
         direction2 = einh2;
@@ -64,21 +62,17 @@ public class GameBL
 
     }
 
-    public void loadImage()
-    {
+    public void loadImage() {
 
-        try
-        {
+        try {
             ship = ImageIO.read(new File(imagePath));
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void initMyInits()
-    {
+    public void initMyInits() {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
 
@@ -93,16 +87,14 @@ public class GameBL
         bufferedImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public void drawPlayers()
-    {
+    public void drawPlayers() {
         drawPlayer1();
 //        rotatePlayer1(0);
         drawPlayer2();
 
     }
 
-    public void drawPlayer1()
-    {
+    public void drawPlayer1() {
 //        g.clearRect(pos1.getXInt() - 10, pos1.getYInt() - 10, shipWidth + 20, shipHeight + 20);
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos1.getXInt(), pos1.getYInt(), shipWidth, shipHeight);
@@ -112,16 +104,14 @@ public class GameBL
 //        g.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
     }
 
-    public void drawPlayer2()
-    {
+    public void drawPlayer2() {
 //        g.clearRect(pos2.getXInt() - 10, pos2.getYInt() - 10, shipWidth + 20, shipHeight + 20);
 //        g.setColor(Color.BLACK);
 //        g.drawRect(pos2.getXInt(), pos2.getYInt(), shipWidth, shipHeight);
         g.drawImage(ship, pos2.getXInt(), pos2.getYInt(), null);
     }
 
-    public void setRotation1(int angle)
-    {
+    public void setRotation1(int angle) {
 
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform = g2d.getTransform();
@@ -133,6 +123,8 @@ public class GameBL
         g2d.setTransform(newXform);
         Graphics bufferedImageGraphics = bufferedImage.getGraphics();
         bufferedImageGraphics.clearRect(0, 0, maxX, maxY);
+        bufferedImageGraphics.setColor(new Color(62, 208, 245));
+        bufferedImageGraphics.fillRect(0, 0, maxX, maxY);
         g2d.drawImage(ship, pos1.getXInt(), pos1.getYInt(), null);
         g2d.setTransform(origXform);
     }
@@ -147,54 +139,70 @@ public class GameBL
 //        pos1.setX(x2);
 //        pos1.setY(y2);
 //    }
-    public void movePlayer1(int keyCode1, int keyCode2)
-    {
+    public void movePlayer1(int keyCode1, int keyCode2, int keycode3) {
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
 
-        if (keyCode2 == 0)
-        {
+        if (keyCode2 == 0 && keycode3 == 0) {
             pos1.increaseX(direction1.getX() * speed);
             pos1.increaseY(direction1.getY() * speed);
 //            drawPlayer1();
             setRotation1(0);
             g.drawImage(bufferedImage, 0, 0, null);
-        } else
-        {
-            switch (keyCode2)
-            {
+        } else {
+            switch (keyCode2) {
                 case KeyEvent.VK_A:
-                    direction1.rotateEinheitsVektor(-3);
-                    pos1.increaseX(direction1.getX() * speed);
-                    pos1.increaseY(direction1.getY() * speed);
+                    if (keycode3 == KeyEvent.VK_D) {
+                        pos1.increaseX(direction1.getX() * speed);
+                        pos1.increaseY(direction1.getY() * speed);
+                        setRotation1(0);
+                        g.drawImage(bufferedImage, 0, 0, null);
+                    } else {
+                        direction1.rotateEinheitsVektor(-4);
+                        pos1.increaseX(direction1.getX() * speed);
+                        pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
+<<<<<<< HEAD
                     setRotation1(-3);
                     g.drawImage(bufferedImage, 0, 0, null);
+=======
+                        setRotation1(-4);
+                        g.drawImage(bufferedImage, 0, 0, null);
+                    }
+>>>>>>> BattleShips
                     break;
                 case KeyEvent.VK_D:
-                    direction1.rotateEinheitsVektor(3);
-                    pos1.increaseX(direction1.getX() * speed);
-                    pos1.increaseY(direction1.getY() * speed);
+                    if (keycode3 == KeyEvent.VK_A) {
+                        pos1.increaseX(direction1.getX() * speed);
+                        pos1.increaseY(direction1.getY() * speed);
+                        setRotation1(0);
+                        g.drawImage(bufferedImage, 0, 0, null);
+                    } else {
+                        direction1.rotateEinheitsVektor(4);
+                        pos1.increaseX(direction1.getX() * speed);
+                        pos1.increaseY(direction1.getY() * speed);
 //                    drawPlayer1();
+<<<<<<< HEAD
                     setRotation1(3);
                     g.drawImage(bufferedImage, 0, 0, null);
+=======
+                        setRotation1(4);
+                        g.drawImage(bufferedImage, 0, 0, null);
+                    }
+>>>>>>> BattleShips
                     break;
             }
         }
 
     }
 
-    public void movePlayer2(int keyCode1, int keyCode2)
-    {
+    public void movePlayer2(int keyCode1, int keyCode2) {
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
-        if (keyCode2 == 0)
-        {
+        if (keyCode2 == 0) {
             pos2.increaseX(direction2.getX() * speed);
             pos2.increaseY(direction2.getY() * speed);
             drawPlayer2();
-        } else
-        {
-            switch (keyCode2)
-            {
+        } else {
+            switch (keyCode2) {
                 case KeyEvent.VK_LEFT:
                     direction2.rotateEinheitsVektor(3);
                     pos2.increaseX(direction2.getX() * speed);
@@ -211,52 +219,42 @@ public class GameBL
         }
     }
 
-    public void shootPlayer1()
-    {
+    public void shootPlayer1() {
         Thread cannonShoot1 = new ShootingThread1();
         cannonShoot1.start();
     }
 
-    public void shootPlayer2()
-    {
+    public void shootPlayer2() {
         //do p1 shoot 
     }
 
-    public class ShootingThread1 extends Thread
-    {
+    public class ShootingThread1 extends Thread {
 
         private int count = 0;
         private Position pos;
 
-        public ShootingThread1()
-        {
+        public ShootingThread1() {
             System.out.println("ShootingThread1 created");
 
         }
 
         @Override
-        public void run()
-        {
+        public void run() {
             System.out.println("ShootingThread1 started");
 
             pos = new Position(pos1.getX(), pos1.getY());
-            while (!this.isInterrupted())
-            {
+            while (!this.isInterrupted()) {
 
-                for (int i = 0; i < 10; i++)
-                {
+                for (int i = 0; i < 10; i++) {
 
-                    for (int j = 0; j < 5; j++)
-                    {
+                    for (int j = 0; j < 5; j++) {
                         g.setColor(Color.BLACK);
                         g.fillOval(pos1.getXInt() + j + i, pos1.getYInt() + j + i, 2, 2);
                     }
                     count++;
-                    try
-                    {
+                    try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
+                    } catch (InterruptedException ex) {
                         Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
