@@ -152,14 +152,12 @@ public class GameBL {
             switch (keyCode2) {
                 case KeyEvent.VK_A:
                     if (keycode3 == KeyEvent.VK_D) {
-                        pos1.increaseX(direction1.getX() * speed);
-                        pos1.increaseY(direction1.getY() * speed);
+                        checkAndIncrease();
                         setRotation1(0);
                         g.drawImage(bufferedImage, 0, 0, null);
                     } else {
                         direction1.rotateEinheitsVektor(-4);
-                        pos1.increaseX(direction1.getX() * speed);
-                        pos1.increaseY(direction1.getY() * speed);
+                        checkAndIncrease();
 //                    drawPlayer1();
 <<<<<<< HEAD
                     setRotation1(-3);
@@ -172,14 +170,12 @@ public class GameBL {
                     break;
                 case KeyEvent.VK_D:
                     if (keycode3 == KeyEvent.VK_A) {
-                        pos1.increaseX(direction1.getX() * speed);
-                        pos1.increaseY(direction1.getY() * speed);
+                        checkAndIncrease();
                         setRotation1(0);
                         g.drawImage(bufferedImage, 0, 0, null);
                     } else {
                         direction1.rotateEinheitsVektor(4);
-                        pos1.increaseX(direction1.getX() * speed);
-                        pos1.increaseY(direction1.getY() * speed);
+                        checkAndIncrease();
 //                    drawPlayer1();
 <<<<<<< HEAD
                     setRotation1(3);
@@ -193,6 +189,22 @@ public class GameBL {
             }
         }
 
+    }
+
+    public void checkAndIncrease() {
+        if (pos1.getX() <= 0) {
+            pos1.increaseY(direction1.getY() * speed);
+        } else if (pos1.getX() >= maxX) {
+            pos1.increaseY(direction1.getY() * speed);
+        } else if (pos1.getY() <= 0) {
+            pos1.increaseX(direction1.getX() * speed);
+        }else if (pos1.getY() >= maxY) {
+            pos1.increaseX(direction1.getX() * speed);
+        }
+        else {
+            pos1.increaseY(direction1.getY() * speed);
+            pos1.increaseX(direction1.getX() * speed);
+        }
     }
 
     public void movePlayer2(int keyCode1, int keyCode2) {
