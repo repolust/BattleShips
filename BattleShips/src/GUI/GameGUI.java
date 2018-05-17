@@ -9,6 +9,8 @@ import BL.ControllsP1;
 import BL.ControllsP2;
 import BL.GameBL;
 import Beans.EinheitsVektor;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import java.awt.event.KeyAdapter;
@@ -30,6 +32,9 @@ public class GameGUI extends javax.swing.JFrame {
 
     private Thread zeichenP1Thread;
     private Thread zeichenP2Thread;
+    private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    private int hoeheSchirm =  (int) screensize.getHeight();
+    private int breiteSchirm = (int) screensize.getWidth();
 
 //    private HashMap<String, Boolean> flagMap = new HashMap();
     private ControllsP1 controllP1 = new ControllsP1();
@@ -40,22 +45,23 @@ public class GameGUI extends javax.swing.JFrame {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
         if (bl != null) {
-
             bl.drawPlayers();
 
         }
-
     }
 
     public GameGUI() {
         initComponents();
 
+        this.setResizable(false);
+        
+        
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
 
         this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
-        bl = new GameBL(this.jpGame, new EinheitsVektor(0, 1), new EinheitsVektor(0, -1));
+        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, -1));
 //        fillMap();
 
         zeichenP1Thread = new zeichenP1Thread();
@@ -63,6 +69,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         zeichenP2Thread = new zeichenP2Thread();
         zeichenP2Thread.start();
+        
     }
 
     /**

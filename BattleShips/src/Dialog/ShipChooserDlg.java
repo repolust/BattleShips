@@ -166,7 +166,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
 
     private void onShip1Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip1Clicked
        clearBorders();
-        this.playShip1.setBorder(BorderFactory.createLineBorder(Color.black));  
+        this.playShip1.setBorder(BorderFactory.createEtchedBorder(null,null));  
         path = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
@@ -177,7 +177,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
 
     private void onShip2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip2Clicked
         clearBorders();
-        this.playShip2.setBorder(BorderFactory.createLineBorder(Color.black));    
+        this.playShip2.setBorder(BorderFactory.createEtchedBorder(null,null));    
         
         path = System.getProperty("user.dir")
             + File.separator + "src"
@@ -189,7 +189,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
 
     private void onShip3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip3Clicked
         clearBorders();
-        this.playShip3.setBorder(BorderFactory.createLineBorder(Color.black));    
+        this.playShip3.setBorder(BorderFactory.createEtchedBorder(null,null));    
         
         path = System.getProperty("user.dir")
             + File.separator + "src"
@@ -201,7 +201,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
 
     private void onShip4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip4Clicked
        clearBorders();
-        this.playShip4.setBorder(BorderFactory.createLineBorder(Color.black));    
+        this.playShip4.setBorder(BorderFactory.createEtchedBorder(null,null));    
         path = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
