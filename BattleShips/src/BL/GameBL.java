@@ -175,7 +175,6 @@ public class GameBL
                         direction1.rotateEinheitsVektor(-4);
                         checkAndIncrease();
 //                    drawPlayer1();
-                        setRotation1(-3);
                         g.drawImage(bufferedImage, 0, 0, null);
                         setRotation1(-4);
                         g.drawImage(bufferedImage, 0, 0, null);
@@ -192,7 +191,6 @@ public class GameBL
                         direction1.rotateEinheitsVektor(4);
                         checkAndIncrease();
 //                    drawPlayer1();
-                        setRotation1(3);
                         g.drawImage(bufferedImage, 0, 0, null);
                         setRotation1(4);
                         g.drawImage(bufferedImage, 0, 0, null);
