@@ -55,6 +55,17 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         
     }
 
+    public void clearAuswahl()
+    {
+        ship =null;
+        shiffArt = "";
+        p = null;
+        c = null;
+        name = null;
+        this.tfName.setText("");
+        this.btFarbe.setBackground(null);
+        this.btSchiff.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -224,9 +235,13 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(this, "Wähle einen anderen Spielernamen");
                 }
             }
-        } else {
+            clearAuswahl();
+        } 
+        
+        else {
             JOptionPane.showMessageDialog(this, "Bitte Name, Farbe und Schiff auswählen!");
         }
+        
     }//GEN-LAST:event_btErstellenActionPerformed
 
     private void btSpielStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSpielStartenActionPerformed
