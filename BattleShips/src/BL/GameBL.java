@@ -29,7 +29,8 @@ import javax.swing.JPanel;
  *
  * @author Tobia
  */
-public class GameBL {
+public class GameBL
+{
 
     private LinkedList<Player> players = new LinkedList();
     private int maxX, maxY;
@@ -54,7 +55,8 @@ public class GameBL {
     private Image ship2;
     private BufferedImage bufferedImage;
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2) {
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2)
+    {
         this.jpGame = jpGame;
         direction1 = einh1;
         direction2 = einh2;
@@ -73,18 +75,22 @@ public class GameBL {
 
     }
 
-    public void loadImage() {
+    public void loadImage()
+    {
 
-        try {
+        try
+        {
             ship1 = ImageIO.read(new File(imagePath));
             ship2 = ImageIO.read(new File(imagePath));
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void initMyInits() {
+    public void initMyInits()
+    {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
 
@@ -99,11 +105,13 @@ public class GameBL {
         bufferedImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public void drawPlayers() {
+    public void drawPlayers()
+    {
         Graphics gPanel = this.jpGame.getGraphics();
         gPanel.setColor(new Color(62, 208, 245));
         gPanel.fillRect(0, 0, maxX, maxY);
 
+<<<<<<< Updated upstream
         Graphics2D g2d = bufferedImage.createGraphics();
         
         drawPlayer1(g2d,0);
@@ -113,6 +121,17 @@ public class GameBL {
     }
 
     public void drawPlayer1(Graphics2D g2d, int angle) {
+=======
+        drawPlayer1(gPanel, 0, 180);
+
+        g.drawImage(bufferedImage, 0, 0, null);
+    }
+
+    public void drawPlayer1(Graphics gPanel, int angle1, int angle2)
+    {
+        Graphics2D g2d = bufferedImage.createGraphics();
+
+>>>>>>> Stashed changes
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
         currentAngle1 += angle;
@@ -122,6 +141,7 @@ public class GameBL {
         g2d.setTransform(newXform1);
         g2d.drawImage(ship1, pos1.getXInt(), pos1.getYInt(), null);
         g2d.setTransform(origXform1);
+<<<<<<< Updated upstream
     }
 
     public void drawPlayer2(Graphics2D g2d, int angle) {
@@ -134,9 +154,29 @@ public class GameBL {
 //        g2d.setTransform(newXform1);
         g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
         g2d.setTransform(origXform1);
+=======
+
+        origXform1 = g2d.getTransform();
+        newXform1 = (AffineTransform) (origXform1.clone());
+        currentAngle2 += angle2;
+        int xRot2 = pos2.getXInt() + (shipWidth / 2);
+        int yRot2 = pos2.getYInt() + (shipHeight / 2);
+        newXform1.rotate(Math.toRadians(currentAngle2), xRot2, yRot2);
+        g2d.setTransform(newXform1);
+        g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
+        g2d.setTransform(origXform1);
+
     }
 
-    public void setRotation1(int angle) {
+    public void drawPlayer2(Graphics gPanel, int angle)
+    {
+//        Graphics2D g2d = bufferedImage.createGraphics();
+
+>>>>>>> Stashed changes
+    }
+
+    public void setRotation1(int angle)
+    {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform = g2d.getTransform();
         AffineTransform newXform = (AffineTransform) (origXform.clone());
@@ -182,23 +222,29 @@ public class GameBL {
 //        pos1.setX(x2);
 //        pos1.setY(y2);
 //    }
-    public void movePlayer1(int keyCode1, int keyCode2, int keycode3) {
+    public void movePlayer1(int keyCode1, int keyCode2, int keycode3)
+    {
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
 
-        if (keyCode2 == 0 && keycode3 == 0) {
+        if (keyCode2 == 0 && keycode3 == 0)
+        {
             pos1.increaseX(direction1.getX() * speed);
             pos1.increaseY(direction1.getY() * speed);
 //            drawPlayer1();
             setRotation1(0);
             g.drawImage(bufferedImage, 0, 0, null);
-        } else {
-            switch (keyCode2) {
+        } else
+        {
+            switch (keyCode2)
+            {
                 case KeyEvent.VK_A:
-                    if (keycode3 == KeyEvent.VK_D) {
+                    if (keycode3 == KeyEvent.VK_D)
+                    {
                         checkAndIncrease();
                         setRotation1(0);
                         g.drawImage(bufferedImage, 0, 0, null);
-                    } else {
+                    } else
+                    {
                         direction1.rotateEinheitsVektor(-4);
                         checkAndIncrease();
 //                    drawPlayer1();
@@ -208,11 +254,13 @@ public class GameBL {
                     }
                     break;
                 case KeyEvent.VK_D:
-                    if (keycode3 == KeyEvent.VK_A) {
+                    if (keycode3 == KeyEvent.VK_A)
+                    {
                         checkAndIncrease();
                         setRotation1(0);
                         g.drawImage(bufferedImage, 0, 0, null);
-                    } else {
+                    } else
+                    {
                         direction1.rotateEinheitsVektor(4);
                         checkAndIncrease();
 //                    drawPlayer1();
@@ -226,6 +274,7 @@ public class GameBL {
 
     }
 
+<<<<<<< Updated upstream
     public void movePlayer2(int keyCode1, int keyCode2, int keycode3) {
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
         //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
@@ -272,68 +321,117 @@ public class GameBL {
 
     public void checkAndIncrease() {
         if (pos1.getX() <= 0) {
+=======
+    public void checkAndIncrease()
+    {
+        if (pos1.getX() <= 0)
+        {
+>>>>>>> Stashed changes
             pos1.increaseY(direction1.getY() * speed);
-        } else if (pos1.getX() >= maxX) {
+        } else if (pos1.getX() >= maxX)
+        {
             pos1.increaseY(direction1.getY() * speed);
-        } else if (pos1.getY() <= 0) {
+        } else if (pos1.getY() <= 0)
+        {
             pos1.increaseX(direction1.getX() * speed);
-        } else if (pos1.getY() >= maxY) {
+        } else if (pos1.getY() >= maxY)
+        {
             pos1.increaseX(direction1.getX() * speed);
-        } else {
+        } else
+        {
             pos1.increaseY(direction1.getY() * speed);
             pos1.increaseX(direction1.getX() * speed);
         }
     }
 
+<<<<<<< Updated upstream
     public void shootPlayer1() {
+=======
+    public void movePlayer2(int keyCode1, int keyCode2)
+    {
+//        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
+        if (keyCode2 == 0)
+        {
+            pos2.increaseX(direction2.getX() * speed);
+            pos2.increaseY(direction2.getY() * speed);
+//            drawPlayer2();
+        } else
+        {
+            switch (keyCode2)
+            {
+                case KeyEvent.VK_LEFT:
+                    direction2.rotateEinheitsVektor(3);
+                    pos2.increaseX(direction2.getX() * speed);
+                    pos2.increaseY(direction2.getY() * speed);
+//                    drawPlayer2();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    direction2.rotateEinheitsVektor(-3);
+                    pos2.increaseX(direction2.getX() * speed);
+                    pos2.increaseY(direction2.getY() * speed);
+//                    drawPlayer2();
+                    break;
+            }
+        }
+    }
+
+    public void shootPlayer1()
+    {
+>>>>>>> Stashed changes
         Thread cannonShoot1 = new ShootingThread1();
         cannonShoot1.start();
     }
 
-    public void shootPlayer2() {
+    public void shootPlayer2()
+    {
         //do p1 shoot 
     }
 
-    public class ShootingThread1 extends Thread {
+    public class ShootingThread1 extends Thread
+    {
 
-        private int count = 0;
         private Position pos;
         private EinheitsVektor einVLinks;
         private EinheitsVektor einVRechts;
 
-        public ShootingThread1() {
+        public ShootingThread1()
+        {
             System.out.println("ShootingThread1 created");
 
         }
 
         @Override
-        public void run() {
+        public void run()
+        {
             System.out.println("ShootingThread1 started");
 
             einVLinks = new EinheitsVektor(direction1.getX(), direction1.getY());
             einVRechts = new EinheitsVektor(direction1.getX(), direction1.getY());
 
             pos = new Position(pos1.getX(), pos1.getY());
-            while (!this.isInterrupted()) {
+            while (!this.isInterrupted())
+            {
 
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 10; i++)
+                {
 
-                    for (int j = 0; j < 5; j++) {
+                    for (int j = 0; j < 5; j++)
+                    {
                         g.setColor(Color.BLACK);
-                        g.fillOval(pos1.getXInt() + j + i, pos1.getYInt() + j + i, 2, 2);
+                        g.fillOval(pos.getXInt() + j + i, pos.getYInt() + j + i, 2, 2);
                     }
-                    count++;
-                    try {
+                    try
+                    {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
+                    } catch (InterruptedException ex)
+                    {
                         Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
 
-                count = 0;
                 pos.setX(0);
                 pos.setY(0);
-                Thread.interrupted();
+                this.interrupt();
                 System.out.println("ShootingThread1 interrupted");
             }
         }
