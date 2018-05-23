@@ -150,9 +150,26 @@ public class GameBL {
         bufferedImageGraphics.setColor(new Color(62, 208, 245));
         bufferedImageGraphics.fillRect(0, 0, maxX, maxY);
         g2d.drawImage(ship1, pos1.getXInt(), pos1.getYInt(), null);
-        
         g2d.setTransform(origXform);
         g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
+    }
+    
+    public void setRotation2(int angle) {
+        Graphics2D g2d = bufferedImage.createGraphics();
+        AffineTransform origXform = g2d.getTransform();
+        AffineTransform newXform = (AffineTransform) (origXform.clone());
+        currentAngle2 += angle;
+        int xRot = pos2.getXInt() + (shipWidth / 2);
+        int yRot = pos2.getYInt() + (shipHeight / 2);
+        newXform.rotate(Math.toRadians(currentAngle2), xRot, yRot);
+        g2d.setTransform(newXform);
+        Graphics bufferedImageGraphics = bufferedImage.getGraphics();
+        bufferedImageGraphics.clearRect(0, 0, maxX, maxY);
+        bufferedImageGraphics.setColor(new Color(62, 208, 245));
+        bufferedImageGraphics.fillRect(0, 0, maxX, maxY);
+        g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
+        g2d.setTransform(origXform);
+        g2d.drawImage(ship1, pos1.getXInt(), pos1.getYInt(), null);
     }
 
 //    public void setVektor(int angle)
