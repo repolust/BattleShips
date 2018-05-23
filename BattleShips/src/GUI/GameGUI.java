@@ -43,7 +43,7 @@ public class GameGUI extends javax.swing.JFrame
     private ControllsP2 controllP2 = new ControllsP2();
     private Image ship1 = null;
     private Image ship2 = null;
-
+    
     @Override
     public void paint(Graphics grphcs)
     {
@@ -77,13 +77,14 @@ public class GameGUI extends javax.swing.JFrame
         zeichenP2Thread.start();
 
     }
-
+    
     public GameGUI(Image ship1, Image ship2)
     {
         initComponents();
 
         this.setResizable(false);
-
+        
+        
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
 
@@ -91,7 +92,7 @@ public class GameGUI extends javax.swing.JFrame
 
         this.ship1 = ship1;
         this.ship2 = ship2;
-
+        
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
 //        fillMap();
 
@@ -261,10 +262,14 @@ public class GameGUI extends javax.swing.JFrame
 
                 while (controllP2.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 2 gedrückt wird
                 {
+<<<<<<< Updated upstream
+                    if (controllP2.containsKey(KeyEvent.VK_UP)) {
+                        bl.movePlayer2(KeyEvent.VK_UP, 0,0);
+=======
                     if (controllP2.containsKey(KeyEvent.VK_UP))
                     {
-                        bl.movePlayer2(KeyEvent.VK_UP, 0, 0);
-
+                        bl.movePlayer2(KeyEvent.VK_UP, 0);
+>>>>>>> Stashed changes
                     }
                     try
                     {
@@ -277,15 +282,22 @@ public class GameGUI extends javax.swing.JFrame
 
                 while (controllP2.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 2 gedrückt wird
                 {
+<<<<<<< Updated upstream
+                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT))) {
+                        if (controllP2.containsKey(KeyEvent.VK_RIGHT)) {
+                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT,0);
+                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT)) {
+                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT,0);
+=======
                     if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT)))
                     {
                         if (controllP2.containsKey(KeyEvent.VK_RIGHT))
                         {
-                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT, 0);
+                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT);
                         } else if (controllP2.containsKey(KeyEvent.VK_LEFT))
                         {
-                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT, 0);
-
+                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT);
+>>>>>>> Stashed changes
                         }
                     }
                     try
@@ -299,21 +311,16 @@ public class GameGUI extends javax.swing.JFrame
                 }
                 while (controllP2.getSize() == 3) //wenn 3 Keys, aus dem KeySet von Player 1 gedrückt werden
                 {
-                    if (controllP2.containsKey(KeyEvent.VK_W) && (controllP2.containsKey(KeyEvent.VK_A) && controllP2.containsKey(KeyEvent.VK_D)))
-                    {
-                        if (controllP2.containsKey(KeyEvent.VK_D))
-                        {
+                    if (controllP2.containsKey(KeyEvent.VK_W) && (controllP2.containsKey(KeyEvent.VK_A) && controllP2.containsKey(KeyEvent.VK_D))) {
+                        if (controllP2.containsKey(KeyEvent.VK_D)) {
                             bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_A);
-                        } else if (controllP2.containsKey(KeyEvent.VK_A))
-                        {
+                        } else if (controllP2.containsKey(KeyEvent.VK_A)) {
                             bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D);
                         }
                     }
-                    try
-                    {
+                    try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex)
-                    {
+                    } catch (InterruptedException ex) {
                         Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
