@@ -172,7 +172,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
             + File.separator + "bilder"
             + File.separator + "playShip1.png";
         
-        shipName = "Schiff1";
+        shipName = "Fischkutter";
     }//GEN-LAST:event_onShip1Clicked
 
     private void onShip2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip2Clicked
@@ -184,7 +184,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
             + File.separator + "bilder"
             + File.separator + "playShip2.png";
         
-        shipName = "Schiff2";
+        shipName = "Piratenschiff";
     }//GEN-LAST:event_onShip2Clicked
 
     private void onShip3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip3Clicked
@@ -196,7 +196,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
             + File.separator + "bilder"
             + File.separator + "playShip3.png";
         
-        shipName = "Schiff3";
+        shipName = "Windzerfetzer";
     }//GEN-LAST:event_onShip3Clicked
 
     private void onShip4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip4Clicked
@@ -207,7 +207,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
             + File.separator + "bilder"
             + File.separator + "playShip4.png";
         
-        shipName = "Schiff4";
+        shipName = "Absolute Zerstörung";
     }//GEN-LAST:event_onShip4Clicked
 
     private void onAuswaehlen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onAuswaehlen
