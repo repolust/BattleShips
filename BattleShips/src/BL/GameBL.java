@@ -111,27 +111,17 @@ public class GameBL
         gPanel.setColor(new Color(62, 208, 245));
         gPanel.fillRect(0, 0, maxX, maxY);
 
-<<<<<<< Updated upstream
         Graphics2D g2d = bufferedImage.createGraphics();
-        
+
         drawPlayer1(g2d,0);
         drawPlayer2(g2d,180);
         
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
-    public void drawPlayer1(Graphics2D g2d, int angle) {
-=======
-        drawPlayer1(gPanel, 0, 180);
 
-        g.drawImage(bufferedImage, 0, 0, null);
-    }
-
-    public void drawPlayer1(Graphics gPanel, int angle1, int angle2)
+    public void drawPlayer1(Graphics2D g2d,int angle)
     {
-        Graphics2D g2d = bufferedImage.createGraphics();
-
->>>>>>> Stashed changes
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
         currentAngle1 += angle;
@@ -141,7 +131,7 @@ public class GameBL
         g2d.setTransform(newXform1);
         g2d.drawImage(ship1, pos1.getXInt(), pos1.getYInt(), null);
         g2d.setTransform(origXform1);
-<<<<<<< Updated upstream
+
     }
 
     public void drawPlayer2(Graphics2D g2d, int angle) {
@@ -154,26 +144,8 @@ public class GameBL
 //        g2d.setTransform(newXform1);
         g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
         g2d.setTransform(origXform1);
-=======
-
-        origXform1 = g2d.getTransform();
-        newXform1 = (AffineTransform) (origXform1.clone());
-        currentAngle2 += angle2;
-        int xRot2 = pos2.getXInt() + (shipWidth / 2);
-        int yRot2 = pos2.getYInt() + (shipHeight / 2);
-        newXform1.rotate(Math.toRadians(currentAngle2), xRot2, yRot2);
-        g2d.setTransform(newXform1);
-        g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
-        g2d.setTransform(origXform1);
-
     }
 
-    public void drawPlayer2(Graphics gPanel, int angle)
-    {
-//        Graphics2D g2d = bufferedImage.createGraphics();
-
->>>>>>> Stashed changes
-    }
 
     public void setRotation1(int angle)
     {
@@ -274,7 +246,6 @@ public class GameBL
 
     }
 
-<<<<<<< Updated upstream
     public void movePlayer2(int keyCode1, int keyCode2, int keycode3) {
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
         //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
@@ -319,78 +290,31 @@ public class GameBL
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    public void checkAndIncrease() {
+
+
+
+        public void checkAndIncrease() {
         if (pos1.getX() <= 0) {
-=======
->>>>>>> parent of 4af0baa... merge
->>>>>>> Stashed changes
-=======
-    public void checkAndIncrease() {
-        if (pos1.getX() <= 0) {
-=======
->>>>>>> parent of 4af0baa... merge
-    public void checkAndIncrease()
-    {
-        if (pos1.getX() <= 0)
-        {
->>>>>>> Stashed changes
-            pos1.increaseY(direction1.getY() * speed);
-        } else if (pos1.getX() >= maxX)
-        {
-            pos1.increaseY(direction1.getY() * speed);
-        } else if (pos1.getY() <= 0)
-        {
-            pos1.increaseX(direction1.getX() * speed);
-        } else if (pos1.getY() >= maxY)
-        {
-            pos1.increaseX(direction1.getX() * speed);
-        } else
-        {
+            pos1.setX(maxX);
+        } else if (pos1.getX() >= maxX) {
+            pos1.setX(0);
+        } else if (pos1.getY() <= 0) {
+            pos1.setY(maxY);
+        } else if (pos1.getY() >= maxY) {
+            pos1.setY(0);
+        } else {
             pos1.increaseY(direction1.getY() * speed);
             pos1.increaseX(direction1.getX() * speed);
         }
     }
 
-<<<<<<< Updated upstream
-    public void shootPlayer1() {
-=======
-    public void movePlayer2(int keyCode1, int keyCode2)
-    {
-//        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
-        if (keyCode2 == 0)
-        {
-            pos2.increaseX(direction2.getX() * speed);
-            pos2.increaseY(direction2.getY() * speed);
-//            drawPlayer2();
-        } else
-        {
-            switch (keyCode2)
-            {
-                case KeyEvent.VK_LEFT:
-                    direction2.rotateEinheitsVektor(3);
-                    pos2.increaseX(direction2.getX() * speed);
-                    pos2.increaseY(direction2.getY() * speed);
-//                    drawPlayer2();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    direction2.rotateEinheitsVektor(-3);
-                    pos2.increaseX(direction2.getX() * speed);
-                    pos2.increaseY(direction2.getY() * speed);
-//                    drawPlayer2();
-                    break;
-            }
-        }
-    }
+
+    
 
     public void shootPlayer1()
     {
->>>>>>> Stashed changes
+
+        
         Thread cannonShoot1 = new ShootingThread1();
         cannonShoot1.start();
     }
@@ -398,6 +322,10 @@ public class GameBL
     public void shootPlayer2()
     {
         //do p1 shoot 
+    }
+
+    public void change(Controlls controlls) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public class ShootingThread1 extends Thread
