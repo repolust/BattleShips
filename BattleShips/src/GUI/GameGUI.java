@@ -12,6 +12,7 @@ import Beans.EinheitsVektor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -39,7 +40,9 @@ public class GameGUI extends javax.swing.JFrame {
 //    private HashMap<String, Boolean> flagMap = new HashMap();
     private ControllsP1 controllP1 = new ControllsP1();
     private ControllsP2 controllP2 = new ControllsP2();
-
+    private Image ship1 = null;
+    private Image ship2 = null;
+    
     @Override
     public void paint(Graphics grphcs) {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
@@ -70,6 +73,31 @@ public class GameGUI extends javax.swing.JFrame {
         zeichenP2Thread = new zeichenP2Thread();
         zeichenP2Thread.start();
         
+    }
+    
+    public GameGUI(Image ship1, Image ship2)
+    {
+        initComponents();
+
+        this.setResizable(false);
+        
+        
+        jpGame.addKeyListener(jpGameListener);
+        jpGame.setFocusable(true);
+
+        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
+
+        this.ship1 = ship1;
+        this.ship2 = ship2;
+        
+        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
+//        fillMap();
+
+        zeichenP1Thread = new zeichenP1Thread();
+        zeichenP1Thread.start();
+
+        zeichenP2Thread = new zeichenP2Thread();
+        zeichenP2Thread.start();
     }
 
     /**

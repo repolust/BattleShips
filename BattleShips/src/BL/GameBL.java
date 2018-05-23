@@ -62,6 +62,16 @@ public class GameBL {
         initMyInits();
 
     }
+    
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2,Image ship1, Image ship2) {
+        this.jpGame = jpGame;
+        direction1 = einh1;
+        direction2 = einh2;
+        this.ship1 = ship1;
+        this.ship2 = ship2;
+        initMyInits();
+
+    }
 
     public void loadImage() {
 

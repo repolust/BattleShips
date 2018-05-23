@@ -247,7 +247,9 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private void btSpielStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSpielStartenActionPerformed
         if (lm.getSize() == 2) {
             this.dispose();
-            GameGUI gg = new GameGUI();
+            Image s1 = lm.getElementAt(0).getSchiff();
+            Image s2 = lm.getElementAt(1).getSchiff();
+            GameGUI gg = new GameGUI(s1, s2);
 
             gg.setVisible(true);
         } else {
