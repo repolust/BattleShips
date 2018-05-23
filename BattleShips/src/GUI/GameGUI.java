@@ -227,63 +227,63 @@ public class GameGUI extends javax.swing.JFrame {
 
     public class zeichenP2Thread extends Thread {
 
-//        private LinkedList<String> movement = new LinkedList();
-        public zeichenP2Thread() {
-            System.out.println("threadP2 created");
-        }
-
-        @Override
-        public void run() {
-            System.out.println("threadP2 started");
-            while (!this.isInterrupted()) {
-
-                while (controllP2.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 2 gedrückt wird
-                {
-                    if (controllP2.containsKey(KeyEvent.VK_UP)) {
-                        bl.movePlayer2(KeyEvent.VK_UP, 0,0);
-                    }
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-                while (controllP2.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 2 gedrückt wird
-                {
-
-                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT))) {
-                        if (controllP2.containsKey(KeyEvent.VK_RIGHT)) {
-                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT,0);
-                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT)) {
-                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT,0);
-                        }
-                    }
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-                while (controllP2.getSize() == 3) //wenn 3 Keys, aus dem KeySet von Player 1 gedrückt werden
-                {
-                    if (controllP2.containsKey(KeyEvent.VK_W) && (controllP2.containsKey(KeyEvent.VK_A) && controllP2.containsKey(KeyEvent.VK_D))) {
-                        if (controllP2.containsKey(KeyEvent.VK_D)) {
-                            bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_A);
-                        } else if (controllP2.containsKey(KeyEvent.VK_A)) {
-                            bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D);
-                        }
-                    }
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-            }
-        }
+////        private LinkedList<String> movement = new LinkedList();
+//        public zeichenP2Thread() {
+//            System.out.println("threadP2 created");
+//        }
+//
+//        @Override
+//        public void run() {
+//            System.out.println("threadP2 started");
+//            while (!this.isInterrupted()) {
+//
+//                while (controllP2.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 2 gedrückt wird
+//                {
+//                    if (controllP2.containsKey(KeyEvent.VK_UP)) {
+//                        bl.movePlayer2(KeyEvent.VK_UP, 0,0);
+//                    }
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//
+//                while (controllP2.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 2 gedrückt wird
+//                {
+//
+//                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT))) {
+//                        if (controllP2.containsKey(KeyEvent.VK_RIGHT)) {
+//                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT,0);
+//                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT)) {
+//                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT,0);
+//                        }
+//                    }
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//
+//                }
+//                while (controllP2.getSize() == 3) //wenn 3 Keys, aus dem KeySet von Player 1 gedrückt werden
+//                {
+//                    if (controllP2.containsKey(KeyEvent.VK_W) && (controllP2.containsKey(KeyEvent.VK_A) && controllP2.containsKey(KeyEvent.VK_D))) {
+//                        if (controllP2.containsKey(KeyEvent.VK_D)) {
+//                            bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_A);
+//                        } else if (controllP2.containsKey(KeyEvent.VK_A)) {
+//                            bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D);
+//                        }
+//                    }
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//
+//            }
+//        }
 
     }
 
