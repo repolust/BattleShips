@@ -31,8 +31,7 @@ public class GameGUI extends javax.swing.JFrame {
      */
     private GameBL bl;
 
-    private Thread zeichenP1Thread;
-    private Thread zeichenP2Thread;
+    private Thread zeichenThread;
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoeheSchirm =  (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
@@ -66,11 +65,9 @@ public class GameGUI extends javax.swing.JFrame {
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1));
 //        fillMap();
 
-        zeichenP1Thread = new zeichenP1Thread();
-        zeichenP1Thread.start();
+        zeichenThread = new zeichenThread();
+        zeichenThread.start();
 
-        zeichenP2Thread = new zeichenP2Thread();
-        zeichenP2Thread.start();
         
     }
     
@@ -92,11 +89,8 @@ public class GameGUI extends javax.swing.JFrame {
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
 //        fillMap();
 
-        zeichenP1Thread = new zeichenP1Thread();
-        zeichenP1Thread.start();
-
-        zeichenP2Thread = new zeichenP2Thread();
-        zeichenP2Thread.start();
+        zeichenThread = new zeichenThread();
+        zeichenThread.start();
     }
 
     /**
@@ -162,10 +156,10 @@ public class GameGUI extends javax.swing.JFrame {
 
     KeyListener jpGameListener = new KeyAdapterImpl();
 
-    public class zeichenP1Thread extends Thread {
+    public class zeichenThread extends Thread {
 
 //        private LinkedList<String> movement = new LinkedList();
-        public zeichenP1Thread() {
+        public zeichenThread() {
             System.out.println("threadP1 created");
         }
 
@@ -174,7 +168,15 @@ public class GameGUI extends javax.swing.JFrame {
             System.out.println("threadP1 started");
             while (!this.isInterrupted()) {
                 bl.change(controlls);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            
+        }
+    }
 //
 //                while (controllP1.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 1 gedrückt wird
 //                {
@@ -223,7 +225,6 @@ public class GameGUI extends javax.swing.JFrame {
 //            }
 //        }
 
-    }
 
     public class zeichenP2Thread extends Thread {
 
@@ -442,3 +443,4 @@ public class GameGUI extends javax.swing.JFrame {
         }
     }
 }
+
