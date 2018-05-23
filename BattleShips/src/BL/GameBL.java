@@ -64,9 +64,8 @@ public class GameBL
         initMyInits();
 
     }
-
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, Image ship1, Image ship2)
-    {
+    
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2,Image ship1, Image ship2) {
         this.jpGame = jpGame;
         direction1 = einh1;
         direction2 = einh2;
@@ -112,16 +111,17 @@ public class GameBL
         gPanel.setColor(new Color(62, 208, 245));
         gPanel.fillRect(0, 0, maxX, maxY);
 
+<<<<<<< Updated upstream
         Graphics2D g2d = bufferedImage.createGraphics();
-
-        drawPlayer1(g2d, 0);
-        drawPlayer2(g2d, 180);
-
+        
+        drawPlayer1(g2d,0);
+        drawPlayer2(g2d,180);
+        
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
-    public void drawPlayer1(Graphics2D g2d, int angle)
-    {
+    public void drawPlayer1(Graphics2D g2d, int angle) {
+=======
         drawPlayer1(gPanel, 0, 180);
 
         g.drawImage(bufferedImage, 0, 0, null);
@@ -131,6 +131,7 @@ public class GameBL
     {
         Graphics2D g2d = bufferedImage.createGraphics();
 
+>>>>>>> Stashed changes
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
         currentAngle1 += angle;
@@ -140,10 +141,10 @@ public class GameBL
         g2d.setTransform(newXform1);
         g2d.drawImage(ship1, pos1.getXInt(), pos1.getYInt(), null);
         g2d.setTransform(origXform1);
+<<<<<<< Updated upstream
     }
 
-    public void drawPlayer2(Graphics2D g2d, int angle)
-    {
+    public void drawPlayer2(Graphics2D g2d, int angle) {
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
         currentAngle2 += angle;
@@ -153,6 +154,7 @@ public class GameBL
 //        g2d.setTransform(newXform1);
         g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
         g2d.setTransform(origXform1);
+=======
 
         origXform1 = g2d.getTransform();
         newXform1 = (AffineTransform) (origXform1.clone());
@@ -170,6 +172,7 @@ public class GameBL
     {
 //        Graphics2D g2d = bufferedImage.createGraphics();
 
+>>>>>>> Stashed changes
     }
 
     public void setRotation1(int angle)
@@ -190,9 +193,8 @@ public class GameBL
         g2d.setTransform(origXform);
         g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
     }
-
-    public void setRotation2(int angle)
-    {
+    
+    public void setRotation2(int angle) {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform = g2d.getTransform();
         AffineTransform newXform = (AffineTransform) (origXform.clone());
@@ -272,30 +274,25 @@ public class GameBL
 
     }
 
-    public void movePlayer2(int keyCode1, int keyCode2, int keycode3)
-    {
+<<<<<<< Updated upstream
+    public void movePlayer2(int keyCode1, int keyCode2, int keycode3) {
 //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
         //        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
 
-        if (keyCode2 == 0 && keycode3 == 0)
-        {
+        if (keyCode2 == 0 && keycode3 == 0) {
             pos2.increaseX(direction2.getX() * speed);
             pos2.increaseY(direction2.getY() * speed);
 //            drawPlayer1();
             setRotation1(0);
             g.drawImage(bufferedImage, 0, 0, null);
-        } else
-        {
-            switch (keyCode2)
-            {
+        } else {
+            switch (keyCode2) {
                 case KeyEvent.VK_A:
-                    if (keycode3 == KeyEvent.VK_D)
-                    {
+                    if (keycode3 == KeyEvent.VK_D) {
                         checkAndIncrease();
                         setRotation1(0);
                         g.drawImage(bufferedImage, 0, 0, null);
-                    } else
-                    {
+                    } else {
                         direction2.rotateEinheitsVektor(-4);
                         checkAndIncrease();
 //                    drawPlayer1();
@@ -305,13 +302,11 @@ public class GameBL
                     }
                     break;
                 case KeyEvent.VK_D:
-                    if (keycode3 == KeyEvent.VK_A)
-                    {
+                    if (keycode3 == KeyEvent.VK_A) {
                         checkAndIncrease();
                         setRotation1(0);
                         g.drawImage(bufferedImage, 0, 0, null);
-                    } else
-                    {
+                    } else {
                         direction2.rotateEinheitsVektor(4);
                         checkAndIncrease();
 //                    drawPlayer1();
@@ -324,10 +319,21 @@ public class GameBL
         }
     }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public void checkAndIncrease() {
+        if (pos1.getX() <= 0) {
+=======
+>>>>>>> parent of 4af0baa... merge
+>>>>>>> Stashed changes
     public void checkAndIncrease()
     {
         if (pos1.getX() <= 0)
         {
+>>>>>>> Stashed changes
             pos1.increaseY(direction1.getY() * speed);
         } else if (pos1.getX() >= maxX)
         {
@@ -345,35 +351,40 @@ public class GameBL
         }
     }
 
-//    public void movePlayer2(int keyCode1, int keyCode2)
-//    {
-////        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
-//        if (keyCode2 == 0)
-//        {
-//            pos2.increaseX(direction2.getX() * speed);
-//            pos2.increaseY(direction2.getY() * speed);
-////            drawPlayer2();
-//        } else
-//        {
-//            switch (keyCode2)
-//            {
-//                case KeyEvent.VK_LEFT:
-//                    direction2.rotateEinheitsVektor(3);
-//                    pos2.increaseX(direction2.getX() * speed);
-//                    pos2.increaseY(direction2.getY() * speed);
-////                    drawPlayer2();
-//                    break;
-//                case KeyEvent.VK_RIGHT:
-//                    direction2.rotateEinheitsVektor(-3);
-//                    pos2.increaseX(direction2.getX() * speed);
-//                    pos2.increaseY(direction2.getY() * speed);
-////                    drawPlayer2();
-//                    break;
-//            }
-//        }
-//    }
+<<<<<<< Updated upstream
+    public void shootPlayer1() {
+=======
+    public void movePlayer2(int keyCode1, int keyCode2)
+    {
+//        if (!(pos1.getY() - 10 < 0) && !(pos1.getX() - 10 < 0) && !(pos1.getX() + 10 + shipWidth > maxX) && !((pos1.getY() + 10 + shipHeight) > maxY))
+        if (keyCode2 == 0)
+        {
+            pos2.increaseX(direction2.getX() * speed);
+            pos2.increaseY(direction2.getY() * speed);
+//            drawPlayer2();
+        } else
+        {
+            switch (keyCode2)
+            {
+                case KeyEvent.VK_LEFT:
+                    direction2.rotateEinheitsVektor(3);
+                    pos2.increaseX(direction2.getX() * speed);
+                    pos2.increaseY(direction2.getY() * speed);
+//                    drawPlayer2();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    direction2.rotateEinheitsVektor(-3);
+                    pos2.increaseX(direction2.getX() * speed);
+                    pos2.increaseY(direction2.getY() * speed);
+//                    drawPlayer2();
+                    break;
+            }
+        }
+    }
+
     public void shootPlayer1()
     {
+>>>>>>> Stashed changes
         Thread cannonShoot1 = new ShootingThread1();
         cannonShoot1.start();
     }
