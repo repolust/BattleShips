@@ -324,6 +324,7 @@ public class GameBL
         }
     }
 
+<<<<<<< HEAD
     public void checkAndIncrease()
     {
         if (pos1.getX() <= 0)
@@ -340,6 +341,32 @@ public class GameBL
             pos1.increaseX(direction1.getX() * speed);
         } else
         {
+=======
+//    public void checkAndIncrease() {
+//        if (pos1.getX() <= 0) {
+//            pos1.increaseY(direction1.getY() * speed);
+//        } else if (pos1.getX() >= maxX) {
+//            pos1.increaseY(direction1.getY() * speed);
+//        } else if (pos1.getY() <= 0) {
+//            pos1.increaseX(direction1.getX() * speed);
+//        } else if (pos1.getY() >= maxY) {
+//            pos1.increaseX(direction1.getX() * speed);
+//        } else {
+//            pos1.increaseY(direction1.getY() * speed);
+//            pos1.increaseX(direction1.getX() * speed);
+//        }
+//    }
+        public void checkAndIncrease() {
+        if (pos1.getX() <= 0) {
+            pos1.setX(maxX);
+        } else if (pos1.getX() >= maxX) {
+            pos1.setX(0);
+        } else if (pos1.getY() <= 0) {
+            pos1.setY(maxY);
+        } else if (pos1.getY() >= maxY) {
+            pos1.setY(0);
+        } else {
+>>>>>>> BattleShips
             pos1.increaseY(direction1.getY() * speed);
             pos1.increaseX(direction1.getX() * speed);
         }
