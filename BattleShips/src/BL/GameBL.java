@@ -319,6 +319,7 @@ public class GameBL
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
@@ -329,6 +330,11 @@ public class GameBL
 =======
 >>>>>>> parent of 4af0baa... merge
 >>>>>>> Stashed changes
+=======
+    public void checkAndIncrease() {
+        if (pos1.getX() <= 0) {
+=======
+>>>>>>> parent of 4af0baa... merge
     public void checkAndIncrease()
     {
         if (pos1.getX() <= 0)
