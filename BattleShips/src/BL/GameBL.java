@@ -229,6 +229,7 @@ public class GameBL
             pos1.increaseX(direction1.getX() * speed);
             pos1.increaseY(direction1.getY() * speed);
 //            drawPlayer1();
+            checkAndIncrease();
             setRotation1(0);
             g.drawImage(bufferedImage, 0, 0, null);
         } else
