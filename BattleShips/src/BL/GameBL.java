@@ -87,6 +87,8 @@ public class GameBL {
     public void drawShips() {
         Graphics2D g2d = bufferedImage.createGraphics();
         g2d.clearRect(0, 0, maxX, maxY);
+        g2d.setColor(new Color(62, 208, 245));
+        g2d.fillRect(0, 0, maxX, maxY);
         for (Player p : schiffListe) {
             AffineTransform origXform1 = g2d.getTransform();
             AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
@@ -97,7 +99,7 @@ public class GameBL {
             g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
             g2d.setTransform(origXform1);
         }
-         g.drawImage(bufferedImage, 0, 0, null);
+        g.drawImage(bufferedImage, 0, 0, null);
 
     }
 
@@ -108,13 +110,13 @@ public class GameBL {
 
         Graphics2D g2d = bufferedImage.createGraphics();
 
-        drawPlayer1(schiffListe.get(0),0);
-        drawPlayer2(schiffListe.get(0),180);
+        drawPlayer1(schiffListe.get(0), 0);
+        drawPlayer2(schiffListe.get(0), 180);
 
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
-    public void drawPlayer1(Player p,int angle) {
+    public void drawPlayer1(Player p, int angle) {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
@@ -126,7 +128,7 @@ public class GameBL {
         g2d.setTransform(origXform1);
     }
 
-    public void drawPlayer2(Player p,int angle) {
+    public void drawPlayer2(Player p, int angle) {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
