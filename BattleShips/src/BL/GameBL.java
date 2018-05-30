@@ -35,76 +35,68 @@ public class GameBL {
     private int maxX, maxY;
     private Graphics g;
     private JPanel jpGame;
-    private Position pos1;
-    private Position pos2;
     private int shipWidth, shipHeight;
-    private double currentAngle1 = 90;
-    private double currentAngle2 = 90;
-    private EinheitsVektor direction1;
-    private EinheitsVektor direction2;
-    private double speed = 12;
-    private Set<Integer> keys = new HashSet<>();
-
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "shipbasic.png";
-
-    private Image ship1;
-    private Image ship2;
     private BufferedImage bufferedImage;
-
     private Controlls controlls;
+    private LinkedList<Player> schiffListe;
 
     public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2) {
         this.jpGame = jpGame;
-        direction1 = einh1;
-        direction2 = einh2;
-        loadImage();
+//        loadImage();
         initMyInits();
 
     }
 
     public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, Image ship1, Image ship2) {
         this.jpGame = jpGame;
-        direction1 = einh1;
-        direction2 = einh2;
-        this.ship1 = ship1;
-        this.ship2 = ship2;
         initMyInits();
 
     }
 
-    public void loadImage() {
-
-        try {
-            ship1 = ImageIO.read(new File(imagePath));
-            ship2 = ImageIO.read(new File(imagePath));
-        } catch (IOException ex) {
-            Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+//    public void loadImage() {
+//
+//        try {
+//            ship1 = ImageIO.read(new File(imagePath));
+//            ship2 = ImageIO.read(new File(imagePath));
+//        } catch (IOException ex) {
+//            Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
     public void initMyInits() {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
 
-        shipWidth = ship1.getWidth(null);
-        shipHeight = ship1.getHeight(null);
-
         g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
-        pos1 = new Position(300, (maxY / 2 - 35));
-        pos2 = new Position((maxX - 390), (maxY / 2 - 35));
+//        pos1 = new Position(300, (maxY / 2 - 35));
+//        pos2 = new Position((maxX - 390), (maxY / 2 - 35));
 
         bufferedImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public void change(Controlls controlls) {
-        this.controlls=controlls;
-        
-        
+    public void draw(LinkedList<Player> schiffListe) {
+        this.schiffListe = schiffListe;
+        this.drawShips();
+    }
+
+    public void drawShips() {
+        for (Player p : schiffListe) {
+            Graphics2D g2d = bufferedImage.createGraphics();
+            AffineTransform origXform1 = g2d.getTransform();
+            AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
+            int xRot1 = p.getP().getXInt() + (shipWidth / 2);
+            int yRot1 = p.getP().getYInt() + (shipHeight / 2);
+            newXform1.rotate(Math.toRadians(p.getCurrentAngle()), xRot1, yRot1);
+            g2d.setTransform(newXform1);
+            g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
+            g2d.setTransform(origXform1);
+        }
+
     }
 
     public void drawPlayers() {
@@ -114,34 +106,43 @@ public class GameBL {
 
         Graphics2D g2d = bufferedImage.createGraphics();
 
-        drawPlayer1(g2d, 0);
-        drawPlayer2(g2d, 180);
+        drawPlayer1(schiffListe.get(0),0);
+        drawPlayer2(schiffListe.get(0),180);
 
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
-    public void drawPlayer1(Graphics2D g2d, int angle) {
+    public void drawPlayer1(Player p,int angle) {
+        Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
-        currentAngle1 += angle;
-        int xRot1 = pos1.getXInt() + (shipWidth / 2);
-        int yRot1 = pos1.getYInt() + (shipHeight / 2);
-        newXform1.rotate(Math.toRadians(currentAngle1), xRot1, yRot1);
+        int xRot1 = p.getP().getXInt() + (shipWidth / 2);
+        int yRot1 = p.getP().getYInt() + (shipHeight / 2);
+        newXform1.rotate(Math.toRadians(p.getCurrentAngle()), xRot1, yRot1);
         g2d.setTransform(newXform1);
-        g2d.drawImage(ship1, pos1.getXInt(), pos1.getYInt(), null);
+        g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
         g2d.setTransform(origXform1);
     }
 
-    public void drawPlayer2(Graphics2D g2d, int angle) {
+    public void drawPlayer2(Player p,int angle) {
+        Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
-        currentAngle2 += angle;
-        int xRot1 = pos2.getXInt() + (shipWidth / 2);
-        int yRot1 = pos2.getYInt() + (shipHeight / 2);
-        newXform1.rotate(Math.toRadians(currentAngle2), xRot1, yRot1);
-//        g2d.setTransform(newXform1);
-        g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
+        int xRot1 = p.getP().getXInt() + (shipWidth / 2);
+        int yRot1 = p.getP().getYInt() + (shipHeight / 2);
+        newXform1.rotate(Math.toRadians(p.getCurrentAngle()), xRot1, yRot1);
+        g2d.setTransform(newXform1);
+        g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
         g2d.setTransform(origXform1);
+//        AffineTransform origXform1 = g2d.getTransform();
+//        AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
+//        currentAngle2 += angle;
+//        int xRot1 = pos2.getXInt() + (shipWidth / 2);
+//        int yRot1 = pos2.getYInt() + (shipHeight / 2);
+//        newXform1.rotate(Math.toRadians(currentAngle2), xRot1, yRot1);
+//        g2d.setTransform(newXform1);
+//        g2d.drawImage(ship2, pos2.getXInt(), pos2.getYInt(), null);
+//        g2d.setTransform(origXform1);
     }
 
     public void setRotation1(int angle) {

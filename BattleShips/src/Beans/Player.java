@@ -22,18 +22,57 @@ public class Player {
     private int index;
     private Position p;
     private String schiffArt;
+    private double currentAngle;
+    private EinheitsVektor direction;
+    private double speed;
 
-    public Player(String name, Color c, Position p, Image schiff,String schiffArt, int index) {
+    public Player(String name, Color c, Image schiff, int leben, int munition, int punkte, int index, Position p, String schiffArt, double currentAngle, EinheitsVektor direction, double speed) {
         this.name = name;
         this.c = c;
-        this.p = p;
         this.schiff = schiff;
-        this.leben = 100;
-        this.munition = 100;
-        this.punkte = 0;
+        this.leben = leben;
+        this.munition = munition;
+        this.punkte = punkte;
+        this.index = index;
+        this.p = p;
         this.schiffArt = schiffArt;
-        this.index=index;
+        this.currentAngle = currentAngle;
+        this.direction = direction;
+        this.speed = speed;
     }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+    
+    public EinheitsVektor getDirection() {
+        return direction;
+    }
+
+    public void setDirection(EinheitsVektor direction) {
+        this.direction = direction;
+    }
+
+    public String getSchiffArt() {
+        return schiffArt;
+    }
+
+    public void setSchiffArt(String schiffArt) {
+        this.schiffArt = schiffArt;
+    }
+
+    public double getCurrentAngle() {
+        return currentAngle;
+    }
+
+    public void setCurrentAngle(double currentAngle) {
+        this.currentAngle = currentAngle;
+    }
+    
 
     public String getName() {
         return name;
@@ -99,7 +138,6 @@ public class Player {
         this.p = p;
     }
 
-    
     @Override
     public String toString() {
         return "Player"+index+" | "+"Name: "+name+" | "+schiffArt;
