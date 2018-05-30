@@ -98,7 +98,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         Player p1 = new Player("a", Color.BLUE, ship1, 100, 100, 0, 0, pos1, "schiff1", 180, new EinheitsVektor(1, 0), 12);
         Player p2 = new Player("b", Color.RED, ship2, 100, 100, 0, 0, pos2, "schiff2", 0, new EinheitsVektor(0, 1), 12);
-        
+
         schiffListe.add(p1);
         schiffListe.add(p2);
     }
@@ -195,57 +195,61 @@ public class GameGUI extends javax.swing.JFrame {
 
         @Override
         public void run() {
-            try {
-                Player p1 = schiffListe.get(0);
-                Player p2 = schiffListe.get(1);
-                if (controlls.containsKey(KeyEvent.VK_W)) {
-                    Position pos1 = p1.getP();
-                    pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
-                    pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
-                    p1.setP(pos1);
-                }
-                if (controlls.containsKey(KeyEvent.VK_A)) {
-                    Position pos1 = p1.getP();
-                    pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
-                    pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
-                    p1.setCurrentAngle(p1.getCurrentAngle() + 4);
-                    p1.setP(pos1);
-                }
-                if (controlls.containsKey(KeyEvent.VK_D)) {
-                    Position pos1 = p1.getP();
-                    pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
-                    pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
-                    p1.setCurrentAngle(p1.getCurrentAngle() - 4);
-                    p1.setP(pos1);
-                }
+            while (!isInterrupted()) {
+                try {
+                    Player p1 = schiffListe.get(0);
+                    Player p2 = schiffListe.get(1);
+                    if (controlls.containsKey(KeyEvent.VK_W)) {
+                        Position pos1 = p1.getP();
+//                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
+                        pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
 
-                if (controlls.containsKey(KeyEvent.VK_UP)) {
-                    Position pos2 = p2.getP();
-                    pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
-                    pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
-                    p2.setP(pos2);
-                }
-                if (controlls.containsKey(KeyEvent.VK_LEFT)) {
-                    Position pos2 = p2.getP();
-                    pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
-                    pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
-                    p1.setCurrentAngle(p2.getCurrentAngle() + 4);
-                    p2.setP(pos2);
-                }
-                if (controlls.containsKey(KeyEvent.VK_RIGHT)) {
-                    Position pos2 = p2.getP();
-                    pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
-                    pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
-                    p1.setCurrentAngle(p2.getCurrentAngle() - 4);
-                    p2.setP(pos2);
-                }
-                schiffListe.set(0, p1);
-                schiffListe.set(1, p2);
+                    }
+                    if (controlls.containsKey(KeyEvent.VK_A)) {
+                        Position pos1 = p1.getP();
+                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
+                        pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        p1.setCurrentAngle(p1.getCurrentAngle() - 4);
 
-                bl.draw(schiffListe);
-                Thread.sleep(10);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    if (controlls.containsKey(KeyEvent.VK_D)) {
+                        Position pos1 = p1.getP();
+                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
+                        pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        p1.setCurrentAngle(p1.getCurrentAngle() + 4);
+
+                    }
+
+                    if (controlls.containsKey(KeyEvent.VK_UP)) {
+                        Position pos2 = p2.getP();
+                        pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
+                        pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+
+                    }
+                    if (controlls.containsKey(KeyEvent.VK_LEFT)) {
+                        Position pos2 = p2.getP();
+                        pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
+                        pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+                        p1.setCurrentAngle(p2.getCurrentAngle() - 4);
+
+                    }
+                    if (controlls.containsKey(KeyEvent.VK_RIGHT)) {
+                        Position pos2 = p2.getP();
+                        pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
+                        pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+                        p1.setCurrentAngle(p2.getCurrentAngle() + 4);
+
+                    }
+                    schiffListe.set(0, p1);
+                    schiffListe.set(1, p2);
+
+//                    System.out.println(schiffListe.get(0).toString2());
+//                    System.out.println(schiffListe.get(1).toString2());
+                    bl.draw(schiffListe);
+                    Thread.sleep(10);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

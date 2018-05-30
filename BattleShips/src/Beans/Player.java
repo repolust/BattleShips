@@ -143,6 +143,9 @@ public class Player {
         return "Player"+index+" | "+"Name: "+name+" | "+schiffArt;
     }
     
+    public String toString2() {
+        return direction.toString()+"";
+    }
     
     
 }

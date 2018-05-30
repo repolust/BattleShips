@@ -85,8 +85,9 @@ public class GameBL {
     }
 
     public void drawShips() {
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.clearRect(0, 0, maxX, maxY);
         for (Player p : schiffListe) {
-            Graphics2D g2d = bufferedImage.createGraphics();
             AffineTransform origXform1 = g2d.getTransform();
             AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
             int xRot1 = p.getP().getXInt() + (shipWidth / 2);
@@ -96,6 +97,7 @@ public class GameBL {
             g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
             g2d.setTransform(origXform1);
         }
+         g.drawImage(bufferedImage, 0, 0, null);
 
     }
 
