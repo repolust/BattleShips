@@ -6,6 +6,7 @@
 package Dialog;
 
 import BL.ListModel;
+import Beans.EinheitsVektor;
 import Beans.Position;
 import Beans.Player;
 import GUI.GameGUI;
@@ -228,7 +229,8 @@ public class NewPlayerDlg extends javax.swing.JDialog {
             } else {
                 if (!lm.checkPlayer(name)) {
                     index = index + 1;
-                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship,shiffArt, index);
+//                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship,shiffArt, index);
+
                     lm.addElement(p);
                     this.btSchiff.setText("");
                 } else {

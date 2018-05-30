@@ -96,8 +96,8 @@ public class GameGUI extends javax.swing.JFrame {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Player p1 = new Player("a", Color.BLUE, ship1, 100, 100, 0, 0, pos1, "schiff1", 180, new EinheitsVektor(1, 0), 12);
-        Player p2 = new Player("b", Color.RED, ship2, 100, 100, 0, 0, pos2, "schiff2", 0, new EinheitsVektor(0, 1), 12);
+        Player p1 = new Player("a", Color.BLUE, ship1, 100, 100, 0, 0, pos1, "schiff1", 180, new EinheitsVektor(1, 0), 4);
+        Player p2 = new Player("b", Color.RED, ship2, 100, 100, 0, 0, pos2, "schiff2", 0, new EinheitsVektor(0, 1), 4);
 
         schiffListe.add(p1);
         schiffListe.add(p2);
@@ -201,21 +201,28 @@ public class GameGUI extends javax.swing.JFrame {
                     Player p2 = schiffListe.get(1);
                     if (controlls.containsKey(KeyEvent.VK_W)) {
                         Position pos1 = p1.getP();
-//                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
                         pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
+                        
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_A)) {
+                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A)) {
                         Position pos1 = p1.getP();
                         pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
                         pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        EinheitsVektor k = p1.getDirection();
+                        k.rotateEinheitsVektor(-4);
+                        p1.setDirection(k);
                         p1.setCurrentAngle(p1.getCurrentAngle() - 4);
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_D)) {
+                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_D)) {
                         Position pos1 = p1.getP();
                         pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
                         pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        EinheitsVektor k = p1.getDirection();
+                        k.rotateEinheitsVektor(4);
+                        p1.setDirection(k);
                         p1.setCurrentAngle(p1.getCurrentAngle() + 4);
 
                     }
