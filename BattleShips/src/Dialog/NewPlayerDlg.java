@@ -249,6 +249,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
             this.dispose();
             Image s1 = lm.getElementAt(0).getSchiff();
             Image s2 = lm.getElementAt(1).getSchiff();
+            Player p1 = lm.getElementAt(0);
             GameGUI gg = new GameGUI(s1, s2);
 
             gg.setVisible(true);
