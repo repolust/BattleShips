@@ -78,7 +78,7 @@ public class GameGUI extends javax.swing.JFrame {
 
         createPlayer();
 
-        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1));
+        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
 //        fillMap();
 
         zeichenThread = new zeichenThread();
@@ -96,9 +96,9 @@ public class GameGUI extends javax.swing.JFrame {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Player p1 = new Player("a", Color.BLUE, ship1, 100, 100, 0, 0, pos1, "schiff1", 180, new EinheitsVektor(1, 0), 4);
-        Player p2 = new Player("b", Color.RED, ship2, 100, 100, 0, 0, pos2, "schiff2", 0, new EinheitsVektor(0, 1), 4);
-
+        Player p1 = new Player("a", Color.BLUE, ship1, 100, 100, 0, 0, pos1, "schiff1", 90, new EinheitsVektor(1, 0), 12);
+        Player p2 = new Player("b", Color.RED, ship2, 100, 100, 0, 0, pos2, "schiff2", 180, new EinheitsVektor(0, 1), 12);
+        
         schiffListe.add(p1);
         schiffListe.add(p2);
     }
@@ -199,7 +199,7 @@ public class GameGUI extends javax.swing.JFrame {
                 try {
                     Player p1 = schiffListe.get(0);
                     Player p2 = schiffListe.get(1);
-                    if (controlls.containsKey(KeyEvent.VK_W)) {
+                    if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D)) {
                         Position pos1 = p1.getP();
                         pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
                         pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
@@ -227,24 +227,30 @@ public class GameGUI extends javax.swing.JFrame {
 
                     }
 
-                    if (controlls.containsKey(KeyEvent.VK_UP)) {
+                    if (controlls.containsKey(KeyEvent.VK_UP) && !controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT)) {
                         Position pos2 = p2.getP();
                         pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
                         pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_LEFT)) {
+                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT)) {
                         Position pos2 = p2.getP();
                         pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
                         pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
-                        p1.setCurrentAngle(p2.getCurrentAngle() - 4);
+                        EinheitsVektor k = p2.getDirection();
+                        k.rotateEinheitsVektor(-4);
+                        p2.setDirection(k);
+                        p2.setCurrentAngle(p2.getCurrentAngle() - 4);
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_RIGHT)) {
+                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT)) {
                         Position pos2 = p2.getP();
                         pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
                         pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
-                        p1.setCurrentAngle(p2.getCurrentAngle() + 4);
+                        EinheitsVektor k = p2.getDirection();
+                        k.rotateEinheitsVektor(4);
+                        p2.setDirection(k);
+                        p2.setCurrentAngle(p2.getCurrentAngle() + 4);
 
                     }
                     schiffListe.set(0, p1);

@@ -35,7 +35,8 @@ public class GameBL {
     private int maxX, maxY;
     private Graphics g;
     private JPanel jpGame;
-    private int shipWidth, shipHeight;
+    private int shipWidth1, shipHeight1;
+    private int shipWidth2, shipHeight2;
     private final String imagePath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "bilder"
@@ -44,8 +45,9 @@ public class GameBL {
     private Controlls controlls;
     private LinkedList<Player> schiffListe;
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2) {
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, LinkedList<Player> schiffListe) {
         this.jpGame = jpGame;
+        this.schiffListe = schiffListe;
 //        loadImage();
         initMyInits();
 
@@ -70,7 +72,13 @@ public class GameBL {
     public void initMyInits() {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
-
+        Player p1 = schiffListe.get(0);
+        shipWidth1 = p1.getSchiff().getWidth(null);
+        shipHeight1 = p1.getSchiff().getHeight(null);
+        Player p2 = schiffListe.get(1);
+        shipWidth2 = p2.getSchiff().getWidth(null);
+        shipHeight2 = p2.getSchiff().getHeight(null);
+        
         g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
 //        pos1 = new Position(300, (maxY / 2 - 35));
@@ -93,8 +101,8 @@ public class GameBL {
         for (Player p : schiffListe) {
             AffineTransform origXform1 = g2d.getTransform();
             AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
-            int xRot1 = p.getP().getXInt() + (shipWidth / 2);
-            int yRot1 = p.getP().getYInt() + (shipHeight / 2);
+            int xRot1 = p.getP().getXInt() + (shipWidth1 / 2);
+            int yRot1 = p.getP().getYInt() + (shipHeight1 / 2);
             newXform1.rotate(Math.toRadians(p.getCurrentAngle()), xRot1, yRot1);
             g2d.setTransform(newXform1);
             g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
@@ -121,8 +129,8 @@ public class GameBL {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
-        int xRot1 = p.getP().getXInt() + (shipWidth / 2);
-        int yRot1 = p.getP().getYInt() + (shipHeight / 2);
+        int xRot1 = p.getP().getXInt() + (shipWidth1 / 2);
+        int yRot1 = p.getP().getYInt() + (shipHeight1 / 2);
         newXform1.rotate(Math.toRadians(p.getCurrentAngle()), xRot1, yRot1);
         g2d.setTransform(newXform1);
         g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
@@ -133,8 +141,8 @@ public class GameBL {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
-        int xRot1 = p.getP().getXInt() + (shipWidth / 2);
-        int yRot1 = p.getP().getYInt() + (shipHeight / 2);
+        int xRot1 = p.getP().getXInt() + (shipWidth2 / 2);
+        int yRot1 = p.getP().getYInt() + (shipHeight2 / 2);
         newXform1.rotate(Math.toRadians(p.getCurrentAngle()), xRot1, yRot1);
         g2d.setTransform(newXform1);
         g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
