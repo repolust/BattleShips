@@ -43,7 +43,6 @@ public class NewPlayerDlg extends javax.swing.JDialog {
 
     private int index = 0;
 
-
     private Image ship = null;
     private String shiffArt = "";
 
@@ -53,12 +52,11 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 3);
         this.setResizable(false);
         this.jlMyPlayerListe.setModel(lm);
-        
+
     }
 
-    public void clearAuswahl()
-    {
-        ship =null;
+    public void clearAuswahl() {
+        ship = null;
         shiffArt = "";
         p = null;
         c = null;
@@ -67,6 +65,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         this.btFarbe.setBackground(null);
         this.btSchiff.setText("");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,7 +229,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                 if (!lm.checkPlayer(name)) {
                     index = index + 1;
 //                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship,shiffArt, index);
-                    p=new Player("Spieler"+index,c,ship,100,100,0,index,(new Position(100, hoeheSchirm/2)),shiffArt,180,new EinheitsVektor(0, 1),12);
+                    p = new Player(this.name, c, ship, 100, 100, 0, index, (new Position(100, hoeheSchirm / 2)), shiffArt, 180, new EinheitsVektor(0, 1), 12);
 
                     lm.addElement(p);
                     this.btSchiff.setText("");
@@ -239,12 +238,10 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                 }
             }
             clearAuswahl();
-        } 
-        
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "Bitte Name, Farbe und Schiff auswählen!");
         }
-        
+
     }//GEN-LAST:event_btErstellenActionPerformed
 
     private void btSpielStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSpielStartenActionPerformed
@@ -266,23 +263,27 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_btBeendenActionPerformed
 
     private void btLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoeschenActionPerformed
-        if(this.jlMyPlayerListe.getSelectedValue()!=null){
-            lm.deleteElement(this.jlMyPlayerListe.getSelectedIndex());
-        }
-        else if(lm.getSize()==0){
-            JOptionPane.showMessageDialog(this, "Bitte Spieler zuerst erstellen");
-        }
-        else{
+        try{
+            if(lm.getSize() == 0) {
+                JOptionPane.showMessageDialog(this, "Bitte Spieler zuerst erstellen");
+            }
+            else if (this.jlMyPlayerListe.getSelectedValue() != null) {
+                lm.deleteElement(this.jlMyPlayerListe.getSelectedIndex());
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Bitte Spieler zuerst auswählen um zu löschen");
+            }
+        }catch(IndexOutOfBoundsException ex){
             JOptionPane.showMessageDialog(this, "Bitte Spieler zuerst auswählen um zu löschen");
         }
+        
     }//GEN-LAST:event_btLoeschenActionPerformed
 
     private void btSchiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSchiffActionPerformed
         ShipChooserDlg scdlg = new ShipChooserDlg(this, true);
         scdlg.setVisible(true);
-        
-        if(scdlg.issok())
-        {
+
+        if (scdlg.issok()) {
             ship = scdlg.getSelectedShip();
             shiffArt = scdlg.getshipName();
             this.btSchiff.setText(shiffArt);
