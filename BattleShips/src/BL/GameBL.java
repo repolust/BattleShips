@@ -29,7 +29,8 @@ import javax.swing.JPanel;
  *
  * @author Tobia
  */
-public class GameBL {
+public class GameBL
+{
 
     private LinkedList<Player> players = new LinkedList();
     private int maxX, maxY;
@@ -45,7 +46,8 @@ public class GameBL {
     private Controlls controlls;
     private LinkedList<Player> schiffListe;
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, LinkedList<Player> schiffListe) {
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, LinkedList<Player> schiffListe)
+    {
         this.jpGame = jpGame;
         this.schiffListe = schiffListe;
 
@@ -53,13 +55,15 @@ public class GameBL {
 
     }
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, Image ship1, Image ship2) {
+    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, Image ship1, Image ship2)
+    {
         this.jpGame = jpGame;
         initMyInits();
 
     }
 
-    public void initMyInits() {
+    public void initMyInits()
+    {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
         Player p1 = schiffListe.get(0);
@@ -68,26 +72,28 @@ public class GameBL {
         Player p2 = schiffListe.get(1);
         shipWidth2 = p2.getSchiff().getWidth(null);
         shipHeight2 = p2.getSchiff().getHeight(null);
-        
+
         g = this.jpGame.getGraphics();
         g.clearRect(0, 0, maxX, maxY);
 
         bufferedImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
     }
-       
-   
-    public void draw(LinkedList<Player> schiffListe) {
+
+    public void draw(LinkedList<Player> schiffListe)
+    {
         this.schiffListe = schiffListe;
         this.drawShips();
     }
 
-    public void drawShips() {
+    public void drawShips()
+    {
         Graphics2D g2d = bufferedImage.createGraphics();
         g2d.clearRect(0, 0, maxX, maxY);
         g2d.setColor(new Color(62, 208, 245));
         g2d.fillRect(0, 0, maxX, maxY);
-        
-        for (Player p : schiffListe) {
+
+        for (Player p : schiffListe)
+        {
             AffineTransform origXform1 = g2d.getTransform();
             AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
             int xRot1 = p.getP().getXInt() + (shipWidth1 / 2);
@@ -101,7 +107,8 @@ public class GameBL {
 
     }
 
-    public void drawPlayers() {
+    public void drawPlayers()
+    {
         Graphics gPanel = this.jpGame.getGraphics();
         gPanel.setColor(new Color(62, 208, 245));
         gPanel.fillRect(0, 0, maxX, maxY);
@@ -114,7 +121,8 @@ public class GameBL {
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
-    public void drawPlayer1(Player p, int angle) {
+    public void drawPlayer1(Player p, int angle)
+    {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
@@ -126,7 +134,8 @@ public class GameBL {
         g2d.setTransform(origXform1);
     }
 
-    public void drawPlayer2(Player p, int angle) {
+    public void drawPlayer2(Player p, int angle)
+    {
         Graphics2D g2d = bufferedImage.createGraphics();
         AffineTransform origXform1 = g2d.getTransform();
         AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
@@ -139,56 +148,74 @@ public class GameBL {
 
     }
 
-
-    public void shootPlayer1() {
+    public void shootPlayer1()
+    {
 
         Thread cannonShoot1 = new ShootingThread1();
         cannonShoot1.start();
     }
 
-    public void shootPlayer2() {
+    public void shootPlayer2()
+    {
         //do p1 shoot 
     }
 
-    public class ShootingThread1 extends Thread {
-//
-//        private Position pos;
-//        private EinheitsVektor einVLinks;
-//        private EinheitsVektor einVRechts;
-//
-//        public ShootingThread1() {
-//            System.out.println("ShootingThread1 created");
-//
-//        }
-//
-//        @Override
-//        public void run() {
-//            System.out.println("ShootingThread1 started");
-//
-//            einVLinks = new EinheitsVektor(direction1.getX(), direction1.getY());
-//            einVRechts = new EinheitsVektor(direction1.getX(), direction1.getY());
-//
-//            pos = new Position(pos1.getX(), pos1.getY());
-//            while (!this.isInterrupted()) {
-//
-//                for (int i = 0; i < 10; i++) {
-//
-//                    for (int j = 0; j < 5; j++) {
-//                        g.setColor(Color.BLACK);
-//                        g.fillOval(pos.getXInt() + j + i, pos.getYInt() + j + i, 2, 2);
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//
-//                pos.setX(0);
-//                pos.setY(0);
+    public class ShootingThread1 extends Thread
+    {
+
+        private Position posSL, posSR;
+        private EinheitsVektor einVLinks;
+        private EinheitsVektor einVRechts;
+
+        public ShootingThread1()
+        {
+            System.out.println("ShootingThread1 created");
+
+        }
+
+        @Override
+        public void run()
+        {
+            System.out.println("ShootingThread1 started");
+
+            einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
+            einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
+
+            einVLinks.rotateEinheitsVektor(-90);
+            einVRechts.rotateEinheitsVektor(90);
+
+            posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);
+            posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
+
+//            posSL = new Position(pos1.getX(), pos1.getY());
+//            posSR = new Position(pos1.getX(), pos1.getY());
+            g.fillOval(schiffListe.get(0).getP().getXInt(), schiffListe.get(0).getP().getYInt(), 5, 5);
+
+            while (!this.isInterrupted())
+            {
+                for (int i = 0; i < 24; i += 6)
+                {
+                    g.setColor(Color.BLACK);
+                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 3, 3);
+                    g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 3, 3);
+                }
+
+                posSL.increaseX(einVLinks.getX() * 5);
+                posSL.increaseY(einVLinks.getY() * 5);
+                posSR.increaseX(einVRechts.getX() * 5);
+                posSR.increaseY(einVRechts.getY() * 5);
+
+                try
+                {
+                    Thread.sleep(10);
+                } catch (InterruptedException ex)
+                {
+                    Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
+                }
 //                this.interrupt();
-//                System.out.println("ShootingThread1 interrupted");
-//            }
-//        }
+                System.out.println("ShootingThread1 interrupted");
+            }
+        }
+
     }
 }
