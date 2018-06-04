@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Dialog.HelpDlg;
 import Dialog.NewPlayerDlg;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -31,15 +32,11 @@ public class StartMenuGUI extends javax.swing.JFrame {
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
 
-
-
     public StartMenuGUI() {
         initComponents();
-        this.setBounds(breiteSchirm/3,hoeheSchirm/3,breiteSchirm/3,hoeheSchirm/3);
+        this.setBounds(breiteSchirm / 3, hoeheSchirm / 3, breiteSchirm / 3, hoeheSchirm / 3);
         this.setResizable(false);
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +64,11 @@ public class StartMenuGUI extends javax.swing.JFrame {
         btHilfe.setText("Hilfe");
         btHilfe.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
         btHilfe.setContentAreaFilled(false);
+        btHilfe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHilfeActionPerformed(evt);
+            }
+        });
         jPanel2.add(btHilfe);
         btHilfe.setBounds(40, 120, 220, 45);
 
@@ -125,14 +127,19 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
     private void onStart(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onStart
     {//GEN-HEADEREND:event_onStart
-       NewPlayerDlg pldg = new NewPlayerDlg(this,true);
-       pldg.setVisible(true);
+        NewPlayerDlg pldg = new NewPlayerDlg(this, true);
+        pldg.setVisible(true);
     }//GEN-LAST:event_onStart
 
     private void onBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBeenden
     {//GEN-HEADEREND:event_onBeenden
         dispose();
     }//GEN-LAST:event_onBeenden
+
+    private void btHilfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHilfeActionPerformed
+        HelpDlg hdlg = new HelpDlg(this, true);
+        hdlg.setVisible(true);
+    }//GEN-LAST:event_btHilfeActionPerformed
 
     /**
      * @param args the command line arguments

@@ -230,6 +230,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                 if (!lm.checkPlayer(name)) {
                     index = index + 1;
 //                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship,shiffArt, index);
+                    p=new Player("Spieler"+index,c,ship,100,100,0,index,(new Position(100, hoeheSchirm/2)),shiffArt,180,new EinheitsVektor(0, 1),12);
 
                     lm.addElement(p);
                     this.btSchiff.setText("");
