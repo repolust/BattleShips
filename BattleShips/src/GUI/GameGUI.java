@@ -39,8 +39,10 @@ public class GameGUI extends javax.swing.JFrame {
 
     private Thread zeichenThread;
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    private int hoeheSchirm = (int) screensize.getHeight();
-    private int breiteSchirm = (int) screensize.getWidth();
+    private int maxX;
+    private int maxY;
+    
+       
 
 //    private HashMap<String, Boolean> flagMap = new HashMap();
     private Controlls controlls = new Controlls();
@@ -70,7 +72,8 @@ public class GameGUI extends javax.swing.JFrame {
         initComponents();
 
         this.setResizable(false);
-
+        maxX = this.jpGame.getWidth();
+        maxY = this.jpGame.getHeight();
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
 
@@ -90,8 +93,8 @@ public class GameGUI extends javax.swing.JFrame {
         try {
             ship1 = ImageIO.read(new File(imagePath));
             ship2 = ImageIO.read(new File(imagePath));
-            pos1 = new Position(300, (hoeheSchirm / 2 - 35));
-            pos2 = new Position((breiteSchirm - 390), (hoeheSchirm / 2 - 35));
+            pos1 = new Position(300, (maxY / 2 - 35));
+            pos2 = new Position((maxX - 390), (maxY / 2 - 35));
         } catch (IOException ex) {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -188,6 +191,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     public class zeichenThread extends Thread {
 
+        private Player p1,p2;
 //        private LinkedList<String> movement = new LinkedList();
         public zeichenThread() {
             System.out.println("threadP1 created");
@@ -197,19 +201,17 @@ public class GameGUI extends javax.swing.JFrame {
         public void run() {
             while (!isInterrupted()) {
                 try {
-                    Player p1 = schiffListe.get(0);
-                    Player p2 = schiffListe.get(1);
+                     p1 = schiffListe.get(0);
+                     p2 = schiffListe.get(1);
+//-----------------------------------Spieler 1 ---------------------------------                     
                     if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D)) {
-                        Position pos1 = p1.getP();
-                        pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
-                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
+                        pos1 = p1.getP();
+                        checkAndIncrease1();
                         
-
                     }
                     if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A)) {
-                        Position pos1 = p1.getP();
-                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
-                        pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        pos1 = p1.getP();
+                        checkAndIncrease1();
                         EinheitsVektor k = p1.getDirection();
                         k.rotateEinheitsVektor(-4);
                         p1.setDirection(k);
@@ -217,26 +219,24 @@ public class GameGUI extends javax.swing.JFrame {
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_D)) {
-                        Position pos1 = p1.getP();
-                        pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
-                        pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+                        pos1 = p1.getP();
+                        checkAndIncrease1();
                         EinheitsVektor k = p1.getDirection();
                         k.rotateEinheitsVektor(4);
                         p1.setDirection(k);
                         p1.setCurrentAngle(p1.getCurrentAngle() + 4);
 
                     }
-
+//-----------------------------------Spieler 2 ---------------------------------
                     if (controlls.containsKey(KeyEvent.VK_UP) && !controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT)) {
-                        Position pos2 = p2.getP();
-                        pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
-                        pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+                        pos2 = p2.getP();
+                        checkAndIncrease2();
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT)) {
-                        Position pos2 = p2.getP();
-                        pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
-                        pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+                        pos2 = p2.getP();
+                        checkAndIncrease2();
+                        
                         EinheitsVektor k = p2.getDirection();
                         k.rotateEinheitsVektor(-4);
                         p2.setDirection(k);
@@ -244,9 +244,9 @@ public class GameGUI extends javax.swing.JFrame {
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT)) {
-                        Position pos2 = p2.getP();
-                        pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
-                        pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+                        pos2 = p2.getP();
+                        checkAndIncrease2();
+
                         EinheitsVektor k = p2.getDirection();
                         k.rotateEinheitsVektor(4);
                         p2.setDirection(k);
@@ -264,116 +264,41 @@ public class GameGUI extends javax.swing.JFrame {
                     Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+
+        }
+        
+        public void checkAndIncrease1() {
+            if (p1.getP().getX() <= 0) {
+                pos1.setX(maxX);
+            } else if (pos1.getX() >= maxX) {
+                pos1.setX(0);
+            } else if (pos1.getY() <= 0) {
+                pos1.setY(maxY);
+            } else if (pos1.getY() >= maxY) {
+                pos1.setY(0);
+            } else {
+                pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
+                pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
+            }
+        }
+        
+        public void checkAndIncrease2() {
+            if (p2.getP().getX() <= 0) {
+                pos2.setX(maxX);
+            } else if (pos2.getX() >= maxX) {
+                pos2.setX(0);
+            } else if (pos2.getY() <= 0) {
+                pos2.setY(maxY);
+            } else if (pos2.getY() >= maxY) {
+                pos2.setY(0);
+            } else {
+                pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
+                pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
+            }
         }
     }
-//
-//                while (controllP1.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 1 gedrückt wird
-//                {
-//                    if (controllP1.containsKey(KeyEvent.VK_W)) {
-//                        bl.movePlayer1(KeyEvent.VK_W, 0,0);
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//
-//                while (controllP1.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 1 gedrückt werden
-//                {
-//                    if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) || controllP1.containsKey(KeyEvent.VK_D))) {
-//                        if (controllP1.containsKey(KeyEvent.VK_D)) {
-//                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_D,0);
-//                        } else if (controllP1.containsKey(KeyEvent.VK_A)) {
-//                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_A,0);
-//                        }
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//                
-//                while (controllP1.getSize() == 3) //wenn 3 Keys, aus dem KeySet von Player 1 gedrückt werden
-//                {
-//                    if (controllP1.containsKey(KeyEvent.VK_W) && (controllP1.containsKey(KeyEvent.VK_A) && controllP1.containsKey(KeyEvent.VK_D))) {
-//                        if (controllP1.containsKey(KeyEvent.VK_D)) {
-//                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_A);
-//                        } else if (controllP1.containsKey(KeyEvent.VK_A)) {
-//                            bl.movePlayer1(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D);
-//                        }
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//
-//            }
-//        }
 
-    public class zeichenP2Thread extends Thread {
 
-////        private LinkedList<String> movement = new LinkedList();
-//        public zeichenP2Thread() {
-//            System.out.println("threadP2 created");
-//        }
-//
-//        @Override
-//        public void run() {
-//            System.out.println("threadP2 started");
-//            while (!this.isInterrupted()) {
-//
-//                while (controllP2.getSize() == 1) //wenn 1 Key, aus dem KeySet von Player 2 gedrückt wird
-//                {
-//                    if (controllP2.containsKey(KeyEvent.VK_UP)) {
-//                        bl.movePlayer2(KeyEvent.VK_UP, 0,0);
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//
-//                while (controllP2.getSize() == 2) //wenn 2 Keys, aus dem KeySet von Player 2 gedrückt wird
-//                {
-//
-//                    if (controllP2.containsKey(KeyEvent.VK_UP) && (controllP2.containsKey(KeyEvent.VK_LEFT) || controllP2.containsKey(KeyEvent.VK_RIGHT))) {
-//                        if (controllP2.containsKey(KeyEvent.VK_RIGHT)) {
-//                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_RIGHT,0);
-//                        } else if (controllP2.containsKey(KeyEvent.VK_LEFT)) {
-//                            bl.movePlayer2(KeyEvent.VK_UP, KeyEvent.VK_LEFT,0);
-//                        }
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//
-//                }
-//                while (controllP2.getSize() == 3) //wenn 3 Keys, aus dem KeySet von Player 1 gedrückt werden
-//                {
-//                    if (controllP2.containsKey(KeyEvent.VK_W) && (controllP2.containsKey(KeyEvent.VK_A) && controllP2.containsKey(KeyEvent.VK_D))) {
-//                        if (controllP2.containsKey(KeyEvent.VK_D)) {
-//                            bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_A);
-//                        } else if (controllP2.containsKey(KeyEvent.VK_A)) {
-//                            bl.movePlayer2(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D);
-//                        }
-//                    }
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//
-//            }
-//        }
-    }
 
     /**
      * @param args the command line arguments
