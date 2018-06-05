@@ -25,8 +25,13 @@ public class Player {
     private double currentAngle;
     private EinheitsVektor direction;
     private double speed;
+    private int width, height;
 
-    public Player(String name, Color c, Image schiff, int leben, int munition, int punkte, int index, Position p, String schiffArt, double currentAngle, EinheitsVektor direction, double speed) {
+ 
+
+    public Player(String name, Color c, Image schiff, int leben, int munition, int punkte, int index, Position p, String schiffArt, double currentAngle,
+                    EinheitsVektor direction, double speed) 
+    {
         this.name = name;
         this.c = c;
         this.schiff = schiff;
@@ -39,8 +44,25 @@ public class Player {
         this.currentAngle = currentAngle;
         this.direction = direction;
         this.speed = speed;
+        this.width = schiff.getWidth(null);
+        this.height = schiff.getHeight(null);
     }
 
+       public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
     public double getSpeed() {
         return speed;
     }

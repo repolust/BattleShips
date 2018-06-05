@@ -288,18 +288,19 @@ public class GameGUI extends javax.swing.JFrame
 
         public void checkAndIncrease1()
         {
+
             if (p1.getP().getX() <= 0)
             {
-                pos1.setX(maxX);
+                pos1.setX(maxX-1);
             } else if (pos1.getX() >= maxX)
             {
-                pos1.setX(0);
+                pos1.setX(1);
             } else if (pos1.getY() <= 0)
             {
-                pos1.setY(maxY);
+                pos1.setY(maxY-1);
             } else if (pos1.getY() >= maxY)
             {
-                pos1.setY(0);
+                pos1.setY(1);
             } else
             {
                 pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
@@ -311,16 +312,16 @@ public class GameGUI extends javax.swing.JFrame
         {
             if (p2.getP().getX() <= 0)
             {
-                pos2.setX(maxX);
+                pos2.setX(maxX-1);
             } else if (pos2.getX() >= maxX)
             {
-                pos2.setX(0);
+                pos2.setX(1);
             } else if (pos2.getY() <= 0)
             {
-                pos2.setY(maxY);
+                pos2.setY(maxY-1);
             } else if (pos2.getY() >= maxY)
             {
-                pos2.setY(0);
+                pos2.setY(1);
             } else
             {
                 pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
