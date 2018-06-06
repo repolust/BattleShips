@@ -222,6 +222,12 @@ public class GameGUI extends javax.swing.JFrame
                         checkAndIncrease1();
 
                     }
+                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A) && controlls.containsKey(KeyEvent.VK_D))
+                    {
+                        pos1 = p1.getP();
+                        checkAndIncrease1();
+
+                    }
                     if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))
                     {
                         pos1 = p1.getP();
@@ -244,6 +250,12 @@ public class GameGUI extends javax.swing.JFrame
                     }
 //-----------------------------------Spieler 2 ---------------------------------
                     if (controlls.containsKey(KeyEvent.VK_UP) && !controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT))
+                    {
+                        pos2 = p2.getP();
+                        checkAndIncrease2();
+
+                    }
+                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT) && controlls.containsKey(KeyEvent.VK_RIGHT))
                     {
                         pos2 = p2.getP();
                         checkAndIncrease2();
