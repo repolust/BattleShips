@@ -273,26 +273,62 @@ public class GameGUI extends javax.swing.JFrame {
                         p2.setCurrentAngle(p2.getCurrentAngle() + 4);
 
                     }
+                    if (controlls.containsKey(KeyEvent.VK_SPACE)) {
+                        EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
+                        EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
+
+                        einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
+                        einVRechts.rotateEinheitsVektor(90);
+
+                        Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
+                        Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
+
+                        for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
+                        {
+                            posSL.increaseX(i);
+                            kugelListe.add(new Kugel(einVLinks, posSL, 5));
+                        }
+                        for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
+                        {
+                            posSR.increaseX(i);
+                            kugelListe.add(new Kugel(einVRechts, posSR, 5));
+                        }
+                    }
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
-//-----------------------------------Spieler 2 ---------------------------------
+//-----------------------------------kugel---------------------------------
                     for (Kugel k : kugelListe) {
-                        try{
-                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
+                        try {
+                            k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
+                            k.getPos().increaseX(k.getEinheintsVektor().getY() * 5);
+
+                            if (k.getPos().getX() <= 0) {
+                                kugelListe.remove(k);
+                            } else if (k.getPos().getX() >= maxX) {
+                                kugelListe.remove(k);
+                            } else if (k.getPos().getY() <= 0) {
+                                kugelListe.remove(k);
+                            } else if (k.getPos().getY() >= maxY) {
                                 kugelListe.remove(k);
                             }
-                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
-                                kugelListe.remove(k);
-                            }
-                        }catch(Exception ex){
-                            
+
+//                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
+//                                kugelListe.remove(k);
+//                            }
+//                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
+//                                kugelListe.remove(k);
+//                            }
+                        } catch (Exception ex) {
+
                         }
 
                     }
 
 //                    System.out.println(schiffListe.get(0).toString2());
 //                    System.out.println(schiffListe.get(1).toString2());
+//                    jLabel1.setText("KugelN:"+kugelListe.size());
                     bl.draw(schiffListe, kugelListe);
+
                     Thread.sleep(10);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -425,25 +461,7 @@ public class GameGUI extends javax.swing.JFrame {
                     break;
                 case KeyEvent.VK_SPACE:
                     System.out.println("# space #");
-                    EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
-                    EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
-
-                    einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
-                    einVRechts.rotateEinheitsVektor(90);
-
-                    Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
-                    Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
-
-                    for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
-                    {
-                        posSL.setX(posSL.getX() + i);
-                        kugelListe.add(new Kugel(einVLinks, posSL, 5));
-                    }
-                    for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
-                    {
-                        posSR.setX(posSR.getX() + i);
-                        kugelListe.add(new Kugel(einVRechts, posSR, 5));
-                    }
+                    controlls.addKey(KeyEvent.VK_SPACE);
 //                    bl.shootPlayer1();
                     //aufruf schuss methode //player1
                     break;
@@ -473,6 +491,10 @@ public class GameGUI extends javax.swing.JFrame {
                 case KeyEvent.VK_D:
                     System.out.println("Released: d");
                     controlls.removeKey(KeyEvent.VK_D);
+                    break;
+                case KeyEvent.VK_SPACE:
+                    System.out.println("Released: space");
+                    controlls.removeKey(KeyEvent.VK_SPACE);
                     break;
                 case KeyEvent.VK_LEFT:
                     System.out.println("Released: left");
