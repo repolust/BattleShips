@@ -274,6 +274,7 @@ public class GameGUI extends javax.swing.JFrame {
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_SPACE)) {
+                        
                         EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
                         EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
 
@@ -285,12 +286,12 @@ public class GameGUI extends javax.swing.JFrame {
 
                         for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
                         {
-                            posSL.increaseX(i);
+                            posSL.setX((posSL.getX()+i));
                             kugelListe.add(new Kugel(einVLinks, posSL, 5));
                         }
                         for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
                         {
-                            posSR.increaseX(i);
+                            posSL.setX((posSL.getX()+i));
                             kugelListe.add(new Kugel(einVRechts, posSR, 5));
                         }
                     }
@@ -302,15 +303,15 @@ public class GameGUI extends javax.swing.JFrame {
                             k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
                             k.getPos().increaseX(k.getEinheintsVektor().getY() * 5);
 
-                            if (k.getPos().getX() <= 0) {
-                                kugelListe.remove(k);
-                            } else if (k.getPos().getX() >= maxX) {
-                                kugelListe.remove(k);
-                            } else if (k.getPos().getY() <= 0) {
-                                kugelListe.remove(k);
-                            } else if (k.getPos().getY() >= maxY) {
-                                kugelListe.remove(k);
-                            }
+//                            if (k.getPos().getX() <= 0) {
+//                                kugelListe.remove(k);
+//                            } else if (k.getPos().getX() >= maxX) {
+//                                kugelListe.remove(k);
+//                            } else if (k.getPos().getY() <= 0) {
+//                                kugelListe.remove(k);
+//                            } else if (k.getPos().getY() >= maxY) {
+//                                kugelListe.remove(k);
+//                            }
 
 //                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
 //                                kugelListe.remove(k);
