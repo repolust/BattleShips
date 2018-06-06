@@ -9,6 +9,7 @@ import BL.Controlls;
 import BL.Controlls;
 import BL.GameBL;
 import Beans.EinheitsVektor;
+import Beans.Kugel;
 import Beans.Player;
 import Beans.Position;
 import java.awt.Color;
@@ -30,8 +31,7 @@ import javax.imageio.ImageIO;
  *
  * @author Team
  */
-public class GameGUI extends javax.swing.JFrame
-{
+public class GameGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GameGUI
@@ -54,23 +54,21 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "shipbasic.png";
 
     private LinkedList<Player> schiffListe = new LinkedList<Player>();
+    private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
 
     private Position pos1, pos2;
 
     @Override
-    public void paint(Graphics grphcs)
-    {
+    public void paint(Graphics grphcs) {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
-        if (bl != null)
-        {
+        if (bl != null) {
             bl.drawPlayers();
 
         }
     }
 
-    public GameGUI()
-    {
+    public GameGUI() {
         initComponents();
 
         this.setResizable(false);
@@ -91,16 +89,13 @@ public class GameGUI extends javax.swing.JFrame
 
     }
 
-    public void createPlayer()
-    {
-        try
-        {
+    public void createPlayer() {
+        try {
             ship1 = ImageIO.read(new File(imagePath));
             ship2 = ImageIO.read(new File(imagePath));
             pos1 = new Position(300, (maxY / 2 - 35));
             pos2 = new Position((maxX - 390), (maxY / 2 - 35));
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -111,8 +106,7 @@ public class GameGUI extends javax.swing.JFrame
         schiffListe.add(p2);
     }
 
-    public GameGUI(Image ship1, Image ship2)
-    {
+    public GameGUI(Image ship1, Image ship2) {
         initComponents();
 
         this.setResizable(false);
@@ -195,24 +189,19 @@ public class GameGUI extends javax.swing.JFrame
 
     KeyListener jpGameListener = new KeyAdapterImpl();
 
-    public class zeichenThread extends Thread
-    {
+    public class zeichenThread extends Thread {
 
         private Player p1, p2;
 //        private LinkedList<String> movement = new LinkedList();
 
-        public zeichenThread()
-        {
+        public zeichenThread() {
             System.out.println("threadP1 created");
         }
 
         @Override
-        public void run()
-        {
-            while (!isInterrupted())
-            {
-                try
-                {
+        public void run() {
+            while (!isInterrupted()) {
+                try {
                     p1 = schiffListe.get(0);
                     p2 = schiffListe.get(1);
 //-----------------------------------Spieler 1 ---------------------------------  
@@ -286,57 +275,58 @@ public class GameGUI extends javax.swing.JFrame
                     }
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
+//-----------------------------------Spieler 2 ---------------------------------
+                    for (Kugel k : kugelListe) {
+                        try{
+                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
+                                kugelListe.remove(k);
+                            }
+                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
+                                kugelListe.remove(k);
+                            }
+                        }catch(Exception ex){
+                            
+                        }
+
+                    }
 
 //                    System.out.println(schiffListe.get(0).toString2());
 //                    System.out.println(schiffListe.get(1).toString2());
-                    bl.draw(schiffListe);
+                    bl.draw(schiffListe, kugelListe);
                     Thread.sleep(10);
-                } catch (InterruptedException ex)
-                {
+                } catch (InterruptedException ex) {
                     Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
         }
 
-        public void checkAndIncrease1()
-        {
+        public void checkAndIncrease1() {
 
-            if (p1.getP().getX() <= 0)
-            {
-                pos1.setX(maxX-1);
-            } else if (pos1.getX() >= maxX)
-            {
+            if (p1.getP().getX() <= 0) {
+                pos1.setX(maxX - 1);
+            } else if (pos1.getX() >= maxX) {
                 pos1.setX(1);
-            } else if (pos1.getY() <= 0)
-            {
-                pos1.setY(maxY-1);
-            } else if (pos1.getY() >= maxY)
-            {
+            } else if (pos1.getY() <= 0) {
+                pos1.setY(maxY - 1);
+            } else if (pos1.getY() >= maxY) {
                 pos1.setY(1);
-            } else
-            {
+            } else {
                 pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
                 pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
             }
         }
 
-        public void checkAndIncrease2()
-        {
-            if (p2.getP().getX() <= 0)
-            {
-                pos2.setX(maxX-1);
-            } else if (pos2.getX() >= maxX)
-            {
+        public void checkAndIncrease2() {
+            if (p2.getP().getX() <= 0) {
+                pos2.setX(maxX - 1);
+            } else if (pos2.getX() >= maxX) {
                 pos2.setX(1);
-            } else if (pos2.getY() <= 0)
-            {
-                pos2.setY(maxY-1);
-            } else if (pos2.getY() >= maxY)
-            {
+            } else if (pos2.getY() <= 0) {
+                pos2.setY(maxY - 1);
+            } else if (pos2.getY() >= maxY) {
                 pos2.setY(1);
-            } else
-            {
+            } else {
                 pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
                 pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
             }
@@ -346,51 +336,41 @@ public class GameGUI extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new GameGUI().setVisible(true);
             }
         });
@@ -402,18 +382,14 @@ public class GameGUI extends javax.swing.JFrame
     private javax.swing.JPanel jpPlayer2;
     // End of variables declaration//GEN-END:variables
 
-    private class KeyAdapterImpl extends KeyAdapter
-    {
+    private class KeyAdapterImpl extends KeyAdapter {
 
-        public KeyAdapterImpl()
-        {
+        public KeyAdapterImpl() {
         }
 
         @Override
-        public void keyPressed(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
+        public void keyPressed(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
                 case KeyEvent.VK_A:
                     System.out.println("Pressed: a");
                     controlls.addKey(KeyEvent.VK_A);
@@ -449,7 +425,26 @@ public class GameGUI extends javax.swing.JFrame
                     break;
                 case KeyEvent.VK_SPACE:
                     System.out.println("# space #");
-                    bl.shootPlayer1();
+                    EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
+                    EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
+
+                    einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
+                    einVRechts.rotateEinheitsVektor(90);
+
+                    Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
+                    Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
+
+                    for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
+                    {
+                        posSL.setX(posSL.getX() + i);
+                        kugelListe.add(new Kugel(einVLinks, posSL, 5));
+                    }
+                    for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
+                    {
+                        posSR.setX(posSR.getX() + i);
+                        kugelListe.add(new Kugel(einVRechts, posSR, 5));
+                    }
+//                    bl.shootPlayer1();
                     //aufruf schuss methode //player1
                     break;
                 case KeyEvent.VK_ENTER:
@@ -461,10 +456,8 @@ public class GameGUI extends javax.swing.JFrame
         }
 
         @Override
-        public void keyReleased(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
+        public void keyReleased(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
                 case KeyEvent.VK_A:
                     System.out.println("Released: a");
                     controlls.removeKey(KeyEvent.VK_A);
@@ -481,7 +474,6 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("Released: d");
                     controlls.removeKey(KeyEvent.VK_D);
                     break;
-
                 case KeyEvent.VK_LEFT:
                     System.out.println("Released: left");
                     controlls.removeKey(KeyEvent.VK_LEFT);
@@ -503,10 +495,8 @@ public class GameGUI extends javax.swing.JFrame
         }
 
         @Override
-        public void keyTyped(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
+        public void keyTyped(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
                 case KeyEvent.VK_ESCAPE:
                     System.out.println("ESC");
 

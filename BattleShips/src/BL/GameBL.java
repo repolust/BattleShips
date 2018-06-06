@@ -6,6 +6,7 @@
 package BL;
 
 import Beans.EinheitsVektor;
+import Beans.Kugel;
 import Beans.Player;
 import Beans.Position;
 import java.awt.Color;
@@ -43,6 +44,7 @@ public class GameBL
     private BufferedImage bufferedImage;
     private Controlls controlls;
     private LinkedList<Player> schiffListe;
+    private LinkedList<Kugel> kugelListe;
 
     public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, LinkedList<Player> schiffListe)
     {
@@ -71,10 +73,13 @@ public class GameBL
         bufferedImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public void draw(LinkedList<Player> schiffListe)
+    public void draw(LinkedList<Player> schiffListe, LinkedList<Kugel> kugelListe)
     {
         this.schiffListe = schiffListe;
+        this.kugelListe = kugelListe;
         this.drawShips();
+        this.drawKugeln();
+        g.drawImage(bufferedImage, 0, 0, null);
     }
 
     public void drawShips()
@@ -95,10 +100,15 @@ public class GameBL
             g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
             g2d.setTransform(origXform1);
         }
-        g.drawImage(bufferedImage, 0, 0, null);
-
     }
-
+    public void drawKugeln(){
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.setColor(Color.BLACK);
+        for(Kugel k:kugelListe){
+            g.fillOval(k.getPos().getXInt(), k.getPos().getYInt(), k.getGroesse(), k.getGroesse()); 
+        }
+    }
+    
     public void drawPlayers()
     {
         Graphics gPanel = this.jpGame.getGraphics();
@@ -142,7 +152,6 @@ public class GameBL
 
     public void shootPlayer1()
     {
-
         Thread cannonShoot1 = new ShootingThread1();
         cannonShoot1.start();
     }
@@ -170,29 +179,31 @@ public class GameBL
         {
             System.out.println("ShootingThread1 started");
 
-            einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
+            einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
             einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
 
-            einVLinks.rotateEinheitsVektor(-90);
+            einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
             einVRechts.rotateEinheitsVektor(90);
 
-            posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);
+            posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
             posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
+            
+            
 
 //            posSL = new Position(pos1.getX(), pos1.getY());
 //            posSR = new Position(pos1.getX(), pos1.getY());
-            g.fillOval(schiffListe.get(0).getP().getXInt(), schiffListe.get(0).getP().getYInt(), 5, 5);
+//            g.fillOval(schiffListe.get(0).getP().getXInt(), schiffListe.get(0).getP().getYInt(), 5, 5);
 
             while (!this.isInterrupted())
             {
-                for (int i = 0; i < 24; i += 6)
+                for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand
                 {
-                    g.setColor(Color.BLACK);
-                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 5, 5);
+                    g.setColor(Color.BLACK); //schwarze kugel
+                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 5, 5); //
                     g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 5, 5);
                 }
 
-                posSL.increaseX(einVLinks.getX() * 5);
+                posSL.increaseX(einVLinks.getX() * 5); //kugelposition speed 5
                 posSL.increaseY(einVLinks.getY() * 5);
                 posSR.increaseX(einVRechts.getX() * 5);
                 posSR.increaseY(einVRechts.getY() * 5);
