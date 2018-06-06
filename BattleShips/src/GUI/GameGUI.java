@@ -215,20 +215,21 @@ public class GameGUI extends javax.swing.JFrame
                 {
                     p1 = schiffListe.get(0);
                     p2 = schiffListe.get(1);
-//-----------------------------------Spieler 1 ---------------------------------                     
-                    if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))
+//-----------------------------------Spieler 1 ---------------------------------  
+
+                    if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))// W Gerade aus
                     {
                         pos1 = p1.getP();
                         checkAndIncrease1();
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A) && controlls.containsKey(KeyEvent.VK_D))
+                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A) && controlls.containsKey(KeyEvent.VK_D))// W A D Gerade aus
                     {
                         pos1 = p1.getP();
                         checkAndIncrease1();
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))
+                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))// W A Links Kurve
                     {
                         pos1 = p1.getP();
                         checkAndIncrease1();
@@ -238,7 +239,7 @@ public class GameGUI extends javax.swing.JFrame
                         p1.setCurrentAngle(p1.getCurrentAngle() - 4);
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_D) && !controlls.containsKey(KeyEvent.VK_A))
+                    if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_D) && !controlls.containsKey(KeyEvent.VK_A))// W D Rechts Kurve
                     {
                         pos1 = p1.getP();
                         checkAndIncrease1();
@@ -249,19 +250,19 @@ public class GameGUI extends javax.swing.JFrame
 
                     }
 //-----------------------------------Spieler 2 ---------------------------------
-                    if (controlls.containsKey(KeyEvent.VK_UP) && !controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT))
+                    if (controlls.containsKey(KeyEvent.VK_UP) && !controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT))// UP Gerade aus
                     {
                         pos2 = p2.getP();
                         checkAndIncrease2();
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT) && controlls.containsKey(KeyEvent.VK_RIGHT))
+                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT) && controlls.containsKey(KeyEvent.VK_RIGHT))// UP LEFT RIGHT Gerade aus
                     {
                         pos2 = p2.getP();
                         checkAndIncrease2();
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT))
+                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT))// UP LEFT Links Kurve
                     {
                         pos2 = p2.getP();
                         checkAndIncrease2();
@@ -272,7 +273,7 @@ public class GameGUI extends javax.swing.JFrame
                         p2.setCurrentAngle(p2.getCurrentAngle() - 4);
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT) && !controlls.containsKey(KeyEvent.VK_LEFT))
+                    if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT) && !controlls.containsKey(KeyEvent.VK_LEFT))// UP RIGHT Rechts Kurve
                     {
                         pos2 = p2.getP();
                         checkAndIncrease2();
