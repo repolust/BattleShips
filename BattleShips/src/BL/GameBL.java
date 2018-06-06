@@ -188,8 +188,8 @@ public class GameBL
                 for (int i = 0; i < 24; i += 6)
                 {
                     g.setColor(Color.BLACK);
-                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 3, 3);
-                    g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 3, 3);
+                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 5, 5);
+                    g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 5, 5);
                 }
 
                 posSL.increaseX(einVLinks.getX() * 5);
