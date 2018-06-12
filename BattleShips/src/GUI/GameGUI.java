@@ -302,22 +302,6 @@ public class GameGUI extends javax.swing.JFrame {
                             k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
                             k.getPos().increaseX(k.getEinheintsVektor().getY() * 5);
 
-                            if (k.getPos().getX() <= 0) {
-                                kugelListe.remove(k);
-                            } else if (k.getPos().getX() >= maxX) {
-                                kugelListe.remove(k);
-                            } else if (k.getPos().getY() <= 0) {
-                                kugelListe.remove(k);
-                            } else if (k.getPos().getY() >= maxY) {
-                                kugelListe.remove(k);
-                            }
-
-//                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
-//                                kugelListe.remove(k);
-//                            }
-//                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
-//                                kugelListe.remove(k);
-//                            }
                         } catch (Exception ex) {
 
                         }
