@@ -5,10 +5,13 @@
  */
 package BL;
 
+import Beans.EinheitsVektor;
 import Beans.Kugel;
 import Beans.Player;
+import Beans.Position;
 import java.awt.Color;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,36 +19,90 @@ import java.util.LinkedList;
  */
 public class CheckIfHit
 {
-    LinkedList<Kugel> kugeln = new LinkedList<Kugel>();
-    Player p1, p2;
 
-    public CheckIfHit(Player p1, Player p2, LinkedList<Kugel> list)
+    private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
+    private LinkedList<Player> schiffListe = new LinkedList<Player>();
+
+    public CheckIfHit(LinkedList<Kugel> kugeln, LinkedList<Player> schiffe)
     {
-        this.p1 = p1;
-        this.p2 = p2;
-        kugeln = list;
+        kugelListe = kugeln;
+        schiffListe = schiffe;
+
     }
 
-    public boolean checkIfHit()
+    public void checkIfHit()
     {
-     if (p1.getSchiff().get  (int) position.getPositionx() + ((int) (direction.x * controllOffset)), (int) position.getPositiony() + ((int) (direction.y * controllOffset))) != Color.black.getRGB()) {
-      
-    }
-    
-    
-    
-       
-    
-    
-        
-    
-    
-       
-    
-    
-    
-    
-}
+        //size vom schiff berechnen
 
-    
+        boolean xIf = false;
+        boolean yIf = false;
+        Position pos1_1 = new Position(0, 0);
+        Position pos1_2 = new Position(0, 0);
+        pos1_1 = schiffListe.get(0).getP(); //links obn
+        pos1_2 = schiffListe.get(0).getP();
+        EinheitsVektor einh = schiffListe.get(0).getDirection();
+        einh = einh.rotateEinheitsVektorRueckgabe(+90);
+        pos1_2.increaseX(einh.getX() + schiffListe.get(0).getWidth());
+        einh = einh.rotateEinheitsVektorRueckgabe(+90);
+        pos1_2.increaseY(einh.getY() - schiffListe.get(0).getHeight());//rechts untn
+
+        for (int i = 0; i < kugelListe.size(); i++)
+        {
+
+            if (pos1_1.getX() < pos1_2.getX())
+            {
+                if (pos1_1.getX() < kugelListe.get(i).getPos().getX() && kugelListe.get(i).getPos().getX() < pos1_2.getX())
+                {
+                    xIf = true;
+                    if (pos1_1.getY() < pos1_2.getY())
+                    {
+                        if (pos1_1.getY() < kugelListe.get(i).getPos().getY() && kugelListe.get(i).getPos().getY() < pos1_2.getY())
+                        {
+                            yIf = true;
+                        }
+                    }
+
+                    if (pos1_1.getY() > pos1_2.getY())
+                    {
+                        if (pos1_1.getY() > kugelListe.get(i).getPos().getY() && kugelListe.get(i).getPos().getY() > pos1_2.getY())
+                        {
+                            yIf = true;
+                        }
+                    }
+                }
+
+            }
+
+            if (pos1_1.getX() > pos1_2.getX())
+            {
+                if (pos1_1.getX() > kugelListe.get(i).getPos().getX() && kugelListe.get(i).getPos().getX() > pos1_2.getX())
+                {
+                    xIf = true;
+                    if (pos1_1.getY() < pos1_2.getY())
+                    {
+                        if (pos1_1.getY() < kugelListe.get(i).getPos().getY() && kugelListe.get(i).getPos().getY() < pos1_2.getY())
+                        {
+                            yIf = true;
+                        }
+                    }
+
+                    if (pos1_1.getY() > pos1_2.getY())
+                    {
+                        if (pos1_1.getY() > kugelListe.get(i).getPos().getY() && kugelListe.get(i).getPos().getY() > pos1_2.getY())
+                        {
+                            yIf = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (xIf && yIf)
+        {
+            JOptionPane.showMessageDialog(null, "hit");
+        }
+
+        //wenn die pos von der kugel im bereich des schiffs ist -> treffer
+        //if treffer -> kugel löschen und leben abziehen
+    }
 }
