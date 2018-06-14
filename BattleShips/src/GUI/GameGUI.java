@@ -27,6 +27,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JTextField;
 
 /**
  *
@@ -89,7 +90,7 @@ public class GameGUI extends javax.swing.JFrame
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
 //        fillMap();
 
-        zeichenThread = new zeichenThread();
+        zeichenThread = new zeichenThread(this.tfPosition,this.tfAnzahlKugel,this.tfVektor);
         zeichenThread.start();
 
     }
@@ -131,7 +132,7 @@ public class GameGUI extends javax.swing.JFrame
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
 //        fillMap();
 
-        zeichenThread = new zeichenThread();
+        zeichenThread = new zeichenThread(this.tfPosition,this.tfAnzahlKugel,this.tfVektor);
         zeichenThread.start();
     }
 
@@ -146,6 +147,12 @@ public class GameGUI extends javax.swing.JFrame
 
         jpPlayer1 = new javax.swing.JPanel();
         jpPlayer2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        tfPosition = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tfAnzahlKugel = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tfVektor = new javax.swing.JTextField();
         jpGame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,15 +174,56 @@ public class GameGUI extends javax.swing.JFrame
 
         jpPlayer2.setBackground(new java.awt.Color(32, 126, 152));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Position");
+
+        tfPosition.setFocusable(false);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Anzahl Kugeln");
+
+        tfAnzahlKugel.setFocusable(false);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Vektor");
+
+        tfVektor.setFocusable(false);
+
         javax.swing.GroupLayout jpPlayer2Layout = new javax.swing.GroupLayout(jpPlayer2);
         jpPlayer2.setLayout(jpPlayer2Layout);
         jpPlayer2Layout.setHorizontalGroup(
             jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpPlayer2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tfPosition)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                    .addComponent(tfAnzahlKugel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpPlayer2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(tfVektor))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jpPlayer2Layout.setVerticalGroup(
             jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 101, Short.MAX_VALUE)
+            .addGroup(jpPlayer2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfPosition, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(tfAnzahlKugel)
+                    .addComponent(tfVektor))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getContentPane().add(jpPlayer2, java.awt.BorderLayout.NORTH);
@@ -202,11 +250,15 @@ public class GameGUI extends javax.swing.JFrame
     {
 
         private Player p1, p2;
+        private JTextField tfPos,tfKugeln,tfVektor;
 //        private LinkedList<String> movement = new LinkedList();
 
-        public zeichenThread()
+        public zeichenThread(JTextField tfPos, JTextField tfKugeln, JTextField tfVektor)
         {
             System.out.println("threadP1 created");
+            this.tfPos = tfPos;
+            this.tfKugeln = tfKugeln;
+            this.tfVektor = tfVektor;
         }
 
         @Override
@@ -218,6 +270,12 @@ public class GameGUI extends javax.swing.JFrame
                 {
                     p1 = schiffListe.get(0);
                     p2 = schiffListe.get(1);
+                    tfPos.setText(p1.getP().getXInt()+" / "+p1.getP().getYInt());
+                    
+                    tfKugeln.setText(""+kugelListe.size());
+                    
+                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
+                    tfVektor.setText(s);
 //-----------------------------------Spieler 1 ---------------------------------  
 
                     if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))// W Gerade aus
@@ -313,6 +371,7 @@ public class GameGUI extends javax.swing.JFrame
                             posSL.setX((posSL.getX()+i));
                             kugelListe.add(new Kugel(einVRechts, posSR, 5));
                         }
+                        controlls.removeKey(KeyEvent.VK_SPACE);
                     }
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
@@ -322,7 +381,7 @@ public class GameGUI extends javax.swing.JFrame
                         try
                         {
                             k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
-                            k.getPos().increaseX(k.getEinheintsVektor().getY() * 5);
+                            k.getPos().increaseY(k.getEinheintsVektor().getY() * 5);
 
 <<<<<<< HEAD
 //                            if (k.getPos().getX() <= 0) {
@@ -469,9 +528,15 @@ public class GameGUI extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jpGame;
     private javax.swing.JPanel jpPlayer1;
     private javax.swing.JPanel jpPlayer2;
+    private javax.swing.JTextField tfAnzahlKugel;
+    private javax.swing.JTextField tfPosition;
+    private javax.swing.JTextField tfVektor;
     // End of variables declaration//GEN-END:variables
 
     private class KeyAdapterImpl extends KeyAdapter
