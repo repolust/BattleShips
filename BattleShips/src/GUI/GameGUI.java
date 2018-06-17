@@ -156,6 +156,7 @@ public class GameGUI extends javax.swing.JFrame
         jpGame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jpPlayer1.setBackground(new java.awt.Color(32, 126, 152));
 
@@ -274,8 +275,8 @@ public class GameGUI extends javax.swing.JFrame
                     
                     tfKugeln.setText(""+kugelListe.size());
                     
-                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
-                    tfVektor.setText(s);
+//                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
+//                    tfVektor.setText(s);
 //-----------------------------------Spieler 1 ---------------------------------  
 
                     if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))// W Gerade aus
@@ -590,6 +591,7 @@ public class GameGUI extends javax.swing.JFrame
                     bl.shootPlayer2();
                     break;
             }
+            
         }
 
         @Override
@@ -633,6 +635,9 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("Released: right");
                     controlls.removeKey(KeyEvent.VK_RIGHT);
                     break;
+                case KeyEvent.VK_ESCAPE:
+                    System.exit(0);
+                    break;
             }
 
         }
@@ -644,7 +649,7 @@ public class GameGUI extends javax.swing.JFrame
             {
                 case KeyEvent.VK_ESCAPE:
                     System.out.println("ESC");
-
+ 
                     //menüaufruf
                     break;
 

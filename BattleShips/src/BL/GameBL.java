@@ -88,9 +88,15 @@ public class GameBL
         g2d.clearRect(0, 0, maxX, maxY);
         g2d.setColor(new Color(62, 208, 245));
         g2d.fillRect(0, 0, maxX, maxY);
-
+        
         for (Player p : schiffListe)
         {
+            //-----------Position Point-------
+            g.setColor(Color.red);
+            g.fillOval(p.getP().getXInt(), p.getP().getYInt(), 8, 8);
+            g.setColor(Color.black);
+            //-----------/Position Point-------
+            
             AffineTransform origXform1 = g2d.getTransform();
             AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
             int xRot1 = p.getP().getXInt() + (p.getWidth() / 2);
@@ -99,6 +105,7 @@ public class GameBL
             g2d.setTransform(newXform1);
             g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
             g2d.setTransform(origXform1);
+            
         }
     }
     public void drawKugeln(){
