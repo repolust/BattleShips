@@ -345,13 +345,9 @@ public class GameGUI extends javax.swing.JFrame
                         p2.setCurrentAngle(p2.getCurrentAngle() + 4);
 
                     }
-<<<<<<< HEAD
-                    if (controlls.containsKey(KeyEvent.VK_SPACE)) {
-                        
-=======
                     if (controlls.containsKey(KeyEvent.VK_SPACE))
                     {
->>>>>>> BattleShips
+
                         EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
                         EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
 
@@ -375,6 +371,7 @@ public class GameGUI extends javax.swing.JFrame
                     }
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
+                    
 //-----------------------------------kugel---------------------------------
                     for (Kugel k : kugelListe)
                     {
@@ -383,7 +380,7 @@ public class GameGUI extends javax.swing.JFrame
                             k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
                             k.getPos().increaseY(k.getEinheintsVektor().getY() * 5);
 
-<<<<<<< HEAD
+
 //                            if (k.getPos().getX() <= 0) {
 //                                kugelListe.remove(k);
 //                            } else if (k.getPos().getX() >= maxX) {
@@ -400,12 +397,9 @@ public class GameGUI extends javax.swing.JFrame
 //                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
 //                                kugelListe.remove(k);
 //                            }
-                        } catch (Exception ex) {
-=======
                         } catch (Exception ex)
                         {
->>>>>>> BattleShips
-
+                            
                         }
 
                     }
