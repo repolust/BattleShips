@@ -120,26 +120,33 @@ public class GameGUI extends javax.swing.JFrame
         schiffListe.add(p2);
     }
 
-//    public GameGUI(Image ship1, Image ship2)
-//    {
-//        initComponents();
-//
-//        this.setResizable(false);
-//
-//        jpGame.addKeyListener(jpGameListener);
-//        jpGame.setFocusable(true);
-//
-//        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-//
-//        this.ship1 = ship1;
-//        this.ship2 = ship2;
-//
-//        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
-////        fillMap();
-//
-//        zeichenThread = new zeichenThread(this.tfPosition,this.tfAnzahlKugel,this.tfVektor);
-//        zeichenThread.start();
-//    }
+    public GameGUI(Player p1, Player p2)
+    {
+       initComponents();
+
+        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
+        this.setSize(1920, 1080);
+        this.setResizable(false);
+        maxX = (int) this.jpGame.getSize().getWidth();
+        maxY = (int) this.jpGame.getSize().getHeight();
+        jpGame.addKeyListener(jpGameListener);
+        jpGame.setFocusable(true);
+
+        pos1 = new Position(300, (maxY / 2 - 35));
+        pos2 = new Position((maxX - 390), (maxY / 2 - 35));     
+        p1.setP(pos1);
+        p2.setP(pos2);
+        
+        schiffListe.add(p1);
+        schiffListe.add(p2);
+     
+
+        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
+
+
+        zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
+        zeichenThread.start();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,8 +154,7 @@ public class GameGUI extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jpPlayer1 = new javax.swing.JPanel();
         lbPlayer1 = new javax.swing.JLabel();
@@ -503,8 +509,7 @@ public class GameGUI extends javax.swing.JFrame
                         pos1 = new Position(300, (maxY / 2 - 35));
                         pos2 = new Position((maxX - 390), (maxY / 2 - 35));
                         p1.setP(pos1);
-                        p2.setP(pos2
-                        );
+                        p2.setP(pos2);
 
                     }
 

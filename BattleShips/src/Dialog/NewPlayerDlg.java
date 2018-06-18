@@ -228,8 +228,17 @@ public class NewPlayerDlg extends javax.swing.JDialog {
             } else {
                 if (!lm.checkPlayer(name)) {
                     index = index + 1;
-//                    p = new Player(name, c, (new Position(100, hoeheSchirm / 2)), ship,shiffArt, index);
-                    p = new Player(this.name, c, ship, 100, 100, 0, index, (new Position(100, hoeheSchirm / 2)), shiffArt, 180, new EinheitsVektor(0, 1), 12);
+                    
+                    if(index == 1)
+                    {
+                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 90, new EinheitsVektor(1, 0), 12);
+                    }
+                    else
+                    {
+                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 270, new EinheitsVektor(-1, 0), 12);
+                    }
+                    
+                    
 
                     lm.addElement(p);
                     this.btSchiff.setText("");
@@ -247,10 +256,10 @@ public class NewPlayerDlg extends javax.swing.JDialog {
     private void btSpielStartenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSpielStartenActionPerformed
         if (lm.getSize() == 2) {
             this.dispose();
-            Image s1 = lm.getElementAt(0).getSchiff();
-            Image s2 = lm.getElementAt(1).getSchiff();
+
             Player p1 = lm.getElementAt(0);
-            GameGUI gg = new GameGUI(s1, s2);
+            Player p2 = lm.getElementAt(1);
+            GameGUI gg = new GameGUI(p1, p2);
 
             gg.setVisible(true);
         } else {
