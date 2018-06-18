@@ -13,11 +13,13 @@ public class Kugel {
     private EinheitsVektor einheintsVektor;
     private Position pos;
     private int groesse;
+    private int playernumber;
 
-    public Kugel(EinheitsVektor einheintsVektor, Position pos, int groesse) {
+    public Kugel(EinheitsVektor einheintsVektor, Position pos, int groesse, int playernumber) {
         this.einheintsVektor = einheintsVektor;
         this.pos = pos;
         this.groesse = groesse;
+        this.playernumber = playernumber;
     }
 
     public EinheitsVektor getEinheintsVektor() {

@@ -61,6 +61,8 @@ public class GameGUI extends javax.swing.JFrame
     private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
 
     private Position pos1, pos2;
+    
+    private int rotation = 4;
 
     @Override
     public void paint(Graphics grphcs)
@@ -187,7 +189,7 @@ public class GameGUI extends javax.swing.JFrame
         tfAnzahlKugel.setFocusable(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Vektor");
+        jLabel3.setText("Angle");
 
         tfVektor.setFocusable(false);
 
@@ -206,10 +208,8 @@ public class GameGUI extends javax.swing.JFrame
                     .addComponent(tfAnzahlKugel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jpPlayer2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(tfVektor))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfVektor))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
         jpPlayer2Layout.setVerticalGroup(
@@ -277,9 +277,15 @@ public class GameGUI extends javax.swing.JFrame
                     tfKugeln.setText(""+kugelListe.size());
                     
 //                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
-//                    tfVektor.setText(s);
+                    tfVektor.setText(""+p1.getCurrentAngle());
 
 //-----------------------------------Spieler 1 ---------------------------------  
+                    if(p1.getCurrentAngle() >= 360 || p1.getCurrentAngle() <= -360) // reset Angle
+                    {
+                        p1.setCurrentAngle(0);
+                    }
+                    
+
 
                     if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))// W Gerade aus
                     {
@@ -300,7 +306,7 @@ public class GameGUI extends javax.swing.JFrame
                         EinheitsVektor k = p1.getDirection();
                         k.rotateEinheitsVektor(-4);
                         p1.setDirection(k);
-                        p1.setCurrentAngle(p1.getCurrentAngle() - 4);
+                        p1.setCurrentAngle(p1.getCurrentAngle() - rotation);
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_D) && !controlls.containsKey(KeyEvent.VK_A))// W D Rechts Kurve
@@ -310,10 +316,16 @@ public class GameGUI extends javax.swing.JFrame
                         EinheitsVektor k = p1.getDirection();
                         k.rotateEinheitsVektor(4);
                         p1.setDirection(k);
-                        p1.setCurrentAngle(p1.getCurrentAngle() + 4);
+                        p1.setCurrentAngle(p1.getCurrentAngle() + rotation);
 
                     }
 //-----------------------------------Spieler 2 ---------------------------------
+
+                    if(p2.getCurrentAngle() >= 360 || p2.getCurrentAngle() <= -360)// reset Angle
+                    {
+                        p2.setCurrentAngle(0);
+                    }
+                                        
                     if (controlls.containsKey(KeyEvent.VK_UP) && !controlls.containsKey(KeyEvent.VK_LEFT) && !controlls.containsKey(KeyEvent.VK_RIGHT))// UP Gerade aus
                     {
                         pos2 = p2.getP();
@@ -334,7 +346,7 @@ public class GameGUI extends javax.swing.JFrame
                         EinheitsVektor k = p2.getDirection();
                         k.rotateEinheitsVektor(-4);
                         p2.setDirection(k);
-                        p2.setCurrentAngle(p2.getCurrentAngle() - 4);
+                        p2.setCurrentAngle(p2.getCurrentAngle() - rotation);
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT) && !controlls.containsKey(KeyEvent.VK_LEFT))// UP RIGHT Rechts Kurve
@@ -345,7 +357,7 @@ public class GameGUI extends javax.swing.JFrame
                         EinheitsVektor k = p2.getDirection();
                         k.rotateEinheitsVektor(4);
                         p2.setDirection(k);
-                        p2.setCurrentAngle(p2.getCurrentAngle() + 4);
+                        p2.setCurrentAngle(p2.getCurrentAngle() + rotation);
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_SPACE))
@@ -363,12 +375,12 @@ public class GameGUI extends javax.swing.JFrame
                         for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
                         {
                             posSL.setX((posSL.getX()+i));
-                            kugelListe.add(new Kugel(einVLinks, posSL, 5));
+                            kugelListe.add(new Kugel(einVLinks, posSL, 5, 1));
                         }
                         for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
                         {
                             posSL.setX((posSL.getX()+i));
-                            kugelListe.add(new Kugel(einVRechts, posSR, 5));
+                            kugelListe.add(new Kugel(einVRechts, posSR, 5, 1));
                         }
                         controlls.removeKey(KeyEvent.VK_SPACE);
                     }

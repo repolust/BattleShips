@@ -77,11 +77,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="tfVektor" max="32767" attributes="0"/>
-                      </Group>
                       <Component id="jLabel3" min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="tfVektor" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="157" max="32767" attributes="0"/>
               </Group>
@@ -133,7 +130,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Vektor"/>
+            <Property name="text" type="java.lang.String" value="Angle"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfVektor">

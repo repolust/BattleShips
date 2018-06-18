@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -97,6 +98,21 @@ public class GameBL
             g.fillOval(p.getP().getXInt(), p.getP().getYInt(), 8, 8);
             g.setColor(Color.black);
             //-----------/Position Point-------
+            
+            //-----------/Position Point-------
+            
+            //-----------Hitbox-------
+//            Rectangle hitbox = new Rectangle(p.getP().getXInt(), p.getP().getYInt(), p.getHeight(), p.getHeight());  
+            if((p.getCurrentAngle() > 45 && p.getCurrentAngle() < 135 || p.getCurrentAngle() > 225 && p.getCurrentAngle() < 315) || (p.getCurrentAngle() < -45 && p.getCurrentAngle() > -135 || p.getCurrentAngle() < -225 && p.getCurrentAngle() > -315))
+            {
+                g.drawRect(p.getP().getXInt() -(p.getWidth()/4), p.getP().getYInt()+(p.getWidth()/4), p.getHeight(), p.getWidth());
+            }
+            else
+            {
+                g.drawRect(p.getP().getXInt(), p.getP().getYInt(), p.getWidth(), p.getHeight());
+            }
+            //-----------/Hitbox-------
+            
             
             //-----------Rotate----------------
             AffineTransform origXform1 = g2d.getTransform();
