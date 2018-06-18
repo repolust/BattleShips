@@ -7,6 +7,7 @@ package Beans;
 import Beans.Position;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Rectangle;
 
 /**
  *
@@ -52,6 +53,22 @@ public class Player {
         return width;
     }
 
+       public Rectangle getHitbox()
+       {
+           Rectangle hitbox = null;
+           
+           if((currentAngle > 45 && currentAngle < 135 || currentAngle > 225 && currentAngle < 315) || (currentAngle < -45 && currentAngle > -135 || currentAngle < -225 && currentAngle > -315))
+            {
+               hitbox = new Rectangle(p.getXInt() -(width/4), p.getYInt()+(width/4), height, width); 
+            }
+            else
+            {
+                hitbox = new Rectangle(p.getXInt(), p.getYInt(), width, height);
+            }
+          
+           return hitbox;
+       }
+       
     public void setWidth(int width) {
         this.width = width;
     }

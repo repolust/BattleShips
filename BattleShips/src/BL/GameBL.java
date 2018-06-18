@@ -101,15 +101,10 @@ public class GameBL
  
             
             //-----------Hitbox-------
-//            Rectangle hitbox = new Rectangle(p.getP().getXInt(), p.getP().getYInt(), p.getHeight(), p.getHeight());  
-            if((p.getCurrentAngle() > 45 && p.getCurrentAngle() < 135 || p.getCurrentAngle() > 225 && p.getCurrentAngle() < 315) || (p.getCurrentAngle() < -45 && p.getCurrentAngle() > -135 || p.getCurrentAngle() < -225 && p.getCurrentAngle() > -315))
-            {
-                g.drawRect(p.getP().getXInt() -(p.getWidth()/4), p.getP().getYInt()+(p.getWidth()/4), p.getHeight(), p.getWidth());
-            }
-            else
-            {
-                g.drawRect(p.getP().getXInt(), p.getP().getYInt(), p.getWidth(), p.getHeight());
-            }
+            Rectangle hitbox = p.getHitbox();
+            g.drawRect((int) Math.round(hitbox.x), (int) Math.round(hitbox.y), hitbox.width, hitbox.height);
+
+    
             //-----------/Hitbox-------
             
             

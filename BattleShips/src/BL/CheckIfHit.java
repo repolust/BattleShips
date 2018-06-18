@@ -48,38 +48,18 @@ public class CheckIfHit
         Player p1 = schiffListe.get(0);
         Player p2 = schiffListe.get(1);
         
-        Rectangle hitbox1 = null;
-        Rectangle hitbox2 = null;
+        Rectangle hitbox1 = p1.getHitbox();
+        Rectangle hitbox2 = p2.getHitbox();
 //        Rectangle r = new Rectangle(20, 20);
 //        r.in
-
-       //-----------Hitbox-------
-             
-            
-            if((p1.getCurrentAngle() > 45 && p1.getCurrentAngle() < 135 || p1.getCurrentAngle() > 225 && p1.getCurrentAngle() < 315) || (p1.getCurrentAngle() < -45 && p1.getCurrentAngle() > -135 || p1.getCurrentAngle() < -225 && p1.getCurrentAngle() > -315))
-            {
-               hitbox1 = new Rectangle(p1.getP().getXInt() -(p1.getWidth()/4), p1.getP().getYInt()+(p1.getWidth()/4), p1.getHeight(), p1.getWidth()); 
-            }
-            else
-            {
-                hitbox1 = new Rectangle(p1.getP().getXInt(), p1.getP().getYInt(), p1.getWidth(), p1.getHeight());
-            }
-            
-            if((p2.getCurrentAngle() > 45 && p2.getCurrentAngle() < 135 || p2.getCurrentAngle() > 225 && p2.getCurrentAngle() < 315) || (p2.getCurrentAngle() < -45 && p2.getCurrentAngle() > -135 || p2.getCurrentAngle() < -225 && p2.getCurrentAngle() > -315))
-            {
-               hitbox2 = new Rectangle(p2.getP().getXInt() -(p2.getWidth()/4), p2.getP().getYInt()+(p1.getWidth()/4), p2.getHeight(), p2.getWidth()); 
-            }
-            else
-            {
-                hitbox2 = new Rectangle(p2.getP().getXInt(), p2.getP().getYInt(), p2.getWidth(), p2.getHeight());
-            }
-            //-----------/Hitbox-------
         
             
             if(hitbox1.intersects(hitbox2))
             {
                 JOptionPane.showMessageDialog(null, "RIP");
             }
+            
+
     }
 
 //    public void checkIfHit()
