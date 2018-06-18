@@ -113,8 +113,8 @@ public class GameGUI extends javax.swing.JFrame
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Player p1 = new Player("a", Color.BLUE, ship1, 100, 100, 0, 0, pos1, "schiff1", 90, new EinheitsVektor(1, 0), 12);
-        Player p2 = new Player("b", Color.RED, ship2, 100, 100, 0, 0, pos2, "schiff2", 270, new EinheitsVektor(-1, 0), 12);
+        Player p1 = new Player("a", Color.BLUE, ship1, 100, 150, 0, pos1, "schiff1", 90, new EinheitsVektor(1, 0), 12);
+        Player p2 = new Player("b", Color.RED, ship2, 100, 150, 0, pos2, "schiff2", 270, new EinheitsVektor(-1, 0), 12);
 
         schiffListe.add(p1);
         schiffListe.add(p2);
@@ -256,6 +256,11 @@ public class GameGUI extends javax.swing.JFrame
 //                    lbP1Vektor.setText("" + p1.getCurrentAngle());
 
 //                    tfVektor.setText(s);
+                    this.lbP1Health.setText("Health: " + p1.getLeben());
+                    this.lbP2Health.setText("Health: " + p2.getLeben());
+                    this.lbP1Munition.setText("Munition: " + p1.getMunition());
+                    this.lbP2Munition.setText("Munition: " + p2.getMunition());
+
 //-----------------------------------Spieler 1 ---------------------------------  
                     if (p1.getCurrentAngle() >= 360 || p1.getCurrentAngle() <= -360) // reset Angle
                     {
@@ -309,7 +314,7 @@ public class GameGUI extends javax.swing.JFrame
                         Rectangle hitbox = new Rectangle(p1.getHitbox().x, p1.getHitbox().y, p1.getHitbox().width, p1.getHitbox().height);
 //                        
 
-                        for (int i = 0; i <= 21; i += 7)
+                        for (int i = 0; i <= 14; i += 7)
                         {
                             Position posSL = new Position(hitbox.getCenterX() - 3, hitbox.getCenterY() - 3);
                             Position posSR = new Position(hitbox.getCenterX() + 3, hitbox.getCenterY() + 3);
@@ -335,12 +340,14 @@ public class GameGUI extends javax.swing.JFrame
                                 posSL.increaseY(i);
                                 posSR.increaseY(i);
                             }
+                            if (!(p1.getMunition() <= 0))
+                            {
+                                kugelListe.add(new Kugel(einVLinks, posSL, 5, 1));
+                                kugelListe.add(new Kugel(einVRechts, posSR, 5, 1));
+                                p1.setMunition(p1.getMunition() - 2);
 
-                            kugelListe.add(new Kugel(einVLinks, posSL, 5, 1));
-                            kugelListe.add(new Kugel(einVRechts, posSR, 5, 1));
-
+                            }
                         }
-
 //                            
                         controlls.removeKey(KeyEvent.VK_SPACE);
                     }
@@ -401,7 +408,7 @@ public class GameGUI extends javax.swing.JFrame
                         Rectangle hitbox = new Rectangle(p2.getHitbox().x, p2.getHitbox().y, p2.getHitbox().width, p2.getHitbox().height);
 //                        
 
-                        for (int i = 0; i <= 21; i += 7)
+                        for (int i = 0; i <= 14; i += 7)
                         {
                             Position posSL = new Position(hitbox.getCenterX() - 3, hitbox.getCenterY() - 3);
                             Position posSR = new Position(hitbox.getCenterX() + 3, hitbox.getCenterY() + 3);
@@ -428,8 +435,13 @@ public class GameGUI extends javax.swing.JFrame
                                 posSR.increaseY(i);
                             }
 
-                            kugelListe.add(new Kugel(einVLinks, posSL, 5, 2));
-                            kugelListe.add(new Kugel(einVRechts, posSR, 5, 2));
+                            if (!(p2.getMunition() <= 0))
+                            {
+                                kugelListe.add(new Kugel(einVLinks, posSL, 5, 2));
+                                kugelListe.add(new Kugel(einVRechts, posSR, 5, 2));
+                                p2.setMunition(p2.getMunition() - 2);
+
+                            }
 
                         }
 
@@ -476,8 +488,23 @@ public class GameGUI extends javax.swing.JFrame
 
                     if (check.checkCollision())
                     {
-                        JOptionPane.showMessageDialog(null, "RIP");
-                        bl.drawPlayers();
+                        if (p1.getLeben() < 15 && p2.getLeben() > 50)
+                        {
+                            p1.setLeben(0);
+                        } else if (p2.getLeben() < 15 && p1.getLeben() > 50)
+                        {
+                            p2.setLeben(0);
+                        } else
+                        {
+                            p1.setLeben(p1.getLeben() - 10);
+                            p2.setLeben(p2.getLeben() - 10);
+                        }
+
+                        pos1 = new Position(300, (maxY / 2 - 35));
+                        pos2 = new Position((maxX - 390), (maxY / 2 - 35));
+                        p1.setP(pos1);
+                        p2.setP(pos2
+                        );
 
                     }
 
@@ -485,9 +512,23 @@ public class GameGUI extends javax.swing.JFrame
                     {
                         Treffer t = check.checkIfHit();
                         kugelListe.remove((t.getKugelIndex()));
-                        JOptionPane.showMessageDialog(null, "Spieler " + t.getPlayernummer() + " wurde getroffen!");
+
                     }
 
+                    if (p1.getLeben() == 0)
+                    {
+                        JOptionPane.showMessageDialog(null, "Spieler 2 hat gewonnen!");
+                        //zurück ins menü!
+                        this.interrupt();
+                        System.exit(0);
+                    } else if (p2.getLeben() == 0)
+                    {
+                        JOptionPane.showMessageDialog(null, "Spieler 1 hat gewonnen!");
+                        //zurück ins menü!
+                        this.interrupt();
+                        System.exit(0);
+                    }
+//                        JOptionPane.showMessageDialog(null, "Spieler " + t.getPlayernummer() + " wurde getroffen!");
                     bl.draw(schiffListe, kugelListe);
 
                     Thread.sleep(10);

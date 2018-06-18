@@ -19,7 +19,6 @@ public class Player {
     private Image schiff;
     private int leben;
     private int munition;
-    private int punkte;
     private int index;
     private Position p;
     private String schiffArt;
@@ -30,7 +29,7 @@ public class Player {
 
  
 
-    public Player(String name, Color c, Image schiff, int leben, int munition, int punkte, int index, Position p, String schiffArt, double currentAngle,
+    public Player(String name, Color c, Image schiff, int leben, int munition, int index, Position p, String schiffArt, double currentAngle,
                     EinheitsVektor direction, double speed) 
     {
         this.name = name;
@@ -38,7 +37,6 @@ public class Player {
         this.schiff = schiff;
         this.leben = leben;
         this.munition = munition;
-        this.punkte = punkte;
         this.index = index;
         this.p = p;
         this.schiffArt = schiffArt;
@@ -151,14 +149,6 @@ public class Player {
 
     public void setMunition(int munition) {
         this.munition = munition;
-    }
-
-    public int getPunkte() {
-        return punkte;
-    }
-
-    public void setPunkte(int punkte) {
-        this.punkte = punkte;
     }
 
     public int getIndex() {

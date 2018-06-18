@@ -70,6 +70,7 @@ public class CheckIfHit
                 if(rectK.intersects(hitbox2))
                 {
 //                    JOptionPane.showMessageDialog(null, "Spieler 2 getroffen!");
+                    p2.setLeben(p2.getLeben()-2);
                     Treffer t = new Treffer(2,kugelListe.indexOf(k));
                     return t;
                 }
@@ -79,6 +80,7 @@ public class CheckIfHit
                 if(rectK.intersects(hitbox1))
                 {
 //                    JOptionPane.showMessageDialog(null, "Spieler 1 getroffen!");
+                    p1.setLeben(p1.getLeben()-2);
                     Treffer t = new Treffer(1,kugelListe.indexOf(k));
                     return t;
                 }
