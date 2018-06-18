@@ -426,7 +426,7 @@ public class GameGUI extends javax.swing.JFrame
 
 
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
-//                    check.checkIfHit();
+                    check.checkIfHit2();
 
                     
                     
