@@ -96,7 +96,7 @@ public class GameGUI extends javax.swing.JFrame
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
 //        fillMap();
 
-        zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition, /*folgendes sind nur testdaten*/ this.lbP1Position, this.lbP1Ballz, this.lbP1Vektor, this.lbP2Position, this.lbP2aidsTest, this.lbP2Vektor);
+        zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
     }
 
@@ -227,22 +227,16 @@ public class GameGUI extends javax.swing.JFrame
     {
 
         private Player p1, p2;
-        private JLabel lbP1Health, lbP1Munition, lbP2Health, lbP2Munition, lbP1Position, lbP1Ballz, lbP1Vektor, lbP2Position, lbP2aidsTest, lbP2Vektor;
+        private JLabel lbP1Health, lbP1Munition, lbP2Health, lbP2Munition;
 //        private LinkedList<String> movement = new LinkedList();
 
-        public zeichenThread(JLabel lbP1Health, JLabel lbP1Munition, JLabel lbP2Health, JLabel lbP2Munition, JLabel lbP1Position, JLabel lbP1Ballz, JLabel lbP1Vektor, JLabel lbP2Position, JLabel lbP2aidsTest, JLabel lbP2Vektor)
+        public zeichenThread(JLabel lbP1Health, JLabel lbP1Munition, JLabel lbP2Health, JLabel lbP2Munition)
         {
             System.out.println("threadP1 created");
             this.lbP1Health = lbP1Health;
             this.lbP1Munition = lbP1Munition;
             this.lbP2Health = lbP2Health;
             this.lbP2Munition = lbP2Munition;
-            this.lbP1Position = lbP1Position;
-            this.lbP1Ballz = lbP1Ballz;
-            this.lbP1Vektor = lbP1Vektor;
-            this.lbP2Position = lbP2Position;
-            this.lbP2aidsTest = lbP2aidsTest;
-            this.lbP2Vektor = lbP2Vektor;
         }
 
         @Override
@@ -254,12 +248,12 @@ public class GameGUI extends javax.swing.JFrame
                 {
                     p1 = schiffListe.get(0);
                     p2 = schiffListe.get(1);
-                    lbP1Position.setText(p1.getP().getXInt() + " / " + p1.getP().getYInt());
-
-                    lbP1Ballz.setText("" + kugelListe.size());
-
-//                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
-                    lbP1Vektor.setText("" + p1.getCurrentAngle());
+//                    lbP1Position.setText(p1.getP().getXInt() + " / " + p1.getP().getYInt());
+//
+//                    lbP1Ballz.setText("" + kugelListe.size());
+//
+////                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
+//                    lbP1Vektor.setText("" + p1.getCurrentAngle());
 
 //                    tfVektor.setText(s);
 //-----------------------------------Spieler 1 ---------------------------------  
