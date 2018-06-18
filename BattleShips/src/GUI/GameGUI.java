@@ -27,6 +27,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -115,26 +116,26 @@ public class GameGUI extends javax.swing.JFrame
         schiffListe.add(p2);
     }
 
-    public GameGUI(Image ship1, Image ship2)
-    {
-        initComponents();
-
-        this.setResizable(false);
-
-        jpGame.addKeyListener(jpGameListener);
-        jpGame.setFocusable(true);
-
-        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-
-        this.ship1 = ship1;
-        this.ship2 = ship2;
-
-        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
-//        fillMap();
-
-        zeichenThread = new zeichenThread(this.tfPosition,this.tfAnzahlKugel,this.tfVektor);
-        zeichenThread.start();
-    }
+//    public GameGUI(Image ship1, Image ship2)
+//    {
+//        initComponents();
+//
+//        this.setResizable(false);
+//
+//        jpGame.addKeyListener(jpGameListener);
+//        jpGame.setFocusable(true);
+//
+//        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
+//
+//        this.ship1 = ship1;
+//        this.ship2 = ship2;
+//
+//        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), ship1, ship2);
+////        fillMap();
+//
+//        zeichenThread = new zeichenThread(this.tfPosition,this.tfAnzahlKugel,this.tfVektor);
+//        zeichenThread.start();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -277,6 +278,7 @@ public class GameGUI extends javax.swing.JFrame
                     
 //                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
 //                    tfVektor.setText(s);
+
 //-----------------------------------Spieler 1 ---------------------------------  
 
                     if (controlls.containsKey(KeyEvent.VK_W) && !controlls.containsKey(KeyEvent.VK_A) && !controlls.containsKey(KeyEvent.VK_D))// W Gerade aus
@@ -380,8 +382,9 @@ public class GameGUI extends javax.swing.JFrame
                         {
                             k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
                             k.getPos().increaseY(k.getEinheintsVektor().getY() * 5);
+                            
 
-
+//
 //                            if (k.getPos().getX() <= 0) {
 //                                kugelListe.remove(k);
 //                            } else if (k.getPos().getX() >= maxX) {
@@ -391,7 +394,7 @@ public class GameGUI extends javax.swing.JFrame
 //                            } else if (k.getPos().getY() >= maxY) {
 //                                kugelListe.remove(k);
 //                            }
-
+//
 //                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
 //                                kugelListe.remove(k);
 //                            }
@@ -411,7 +414,9 @@ public class GameGUI extends javax.swing.JFrame
 
 
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
-                    check.checkIfHit();
+//                    check.checkIfHit();
+
+                    
                     
                     
                     bl.draw(schiffListe, kugelListe);

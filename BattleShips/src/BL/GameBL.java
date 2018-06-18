@@ -16,6 +16,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
@@ -97,6 +98,7 @@ public class GameBL
             g.setColor(Color.black);
             //-----------/Position Point-------
             
+            //-----------Rotate----------------
             AffineTransform origXform1 = g2d.getTransform();
             AffineTransform newXform1 = (AffineTransform) (origXform1.clone());
             int xRot1 = p.getP().getXInt() + (p.getWidth() / 2);
@@ -105,7 +107,7 @@ public class GameBL
             g2d.setTransform(newXform1);
             g2d.drawImage(p.getSchiff(), p.getP().getXInt(), p.getP().getYInt(), null);
             g2d.setTransform(origXform1);
-            
+            //-----------/Rotate---------------
         }
     }
     public void drawKugeln(){
