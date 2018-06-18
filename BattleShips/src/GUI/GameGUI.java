@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -36,7 +37,8 @@ import javax.swing.JTextField;
  *
  * @author Team
  */
-public class GameGUI extends javax.swing.JFrame {
+public class GameGUI extends javax.swing.JFrame
+{
 
     /**
      * Creates new form GameGUI
@@ -66,43 +68,48 @@ public class GameGUI extends javax.swing.JFrame {
     private int rotation = 4;
 
     @Override
-    public void paint(Graphics grphcs) {
+    public void paint(Graphics grphcs)
+    {
         super.paint(grphcs); //To change body of generated methods, choose Tools | Templates.
 
-        if (bl != null) {
+        if (bl != null)
+        {
             bl.drawPlayers();
 
         }
     }
 
-    public GameGUI() {
+    public GameGUI()
+    {
         initComponents();
 
+//        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
+//        this.setSize(1920, 1080);
         this.setResizable(false);
-        maxX = this.jpGame.getWidth();
-        maxY = this.jpGame.getHeight();
+        maxX = (int) this.jpGame.getSize().getWidth();
+        maxY = (int) this.jpGame.getSize().getHeight();
         jpGame.addKeyListener(jpGameListener);
         jpGame.setFocusable(true);
-
-        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
 
         createPlayer();
 
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
 //        fillMap();
 
-        zeichenThread = new zeichenThread(this.tfPosition, this.tfAnzahlKugel, this.tfVektor);
+        zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition, /*folgendes sind nur testdaten*/ this.lbP1Position, this.lbP1Ballz, this.lbP1Vektor, this.lbP2Position, this.lbP2aidsTest, this.lbP2Vektor);
         zeichenThread.start();
-
     }
 
-    public void createPlayer() {
-        try {
+    public void createPlayer()
+    {
+        try
+        {
             ship1 = ImageIO.read(new File(imagePath));
             ship2 = ImageIO.read(new File(imagePath));
             pos1 = new Position(300, (maxY / 2 - 35));
             pos2 = new Position((maxX - 390), (maxY / 2 - 35));
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -140,133 +147,143 @@ public class GameGUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jpPlayer1 = new javax.swing.JPanel();
+        lbPlayer1 = new javax.swing.JLabel();
+        lbP1Health = new javax.swing.JLabel();
+        lbP1Munition = new javax.swing.JLabel();
+        lbP1Position = new javax.swing.JLabel();
+        lbP1Ballz = new javax.swing.JLabel();
+        lbP1Vektor = new javax.swing.JLabel();
         jpPlayer2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        tfPosition = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        tfAnzahlKugel = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        tfVektor = new javax.swing.JTextField();
+        lbPlayer2 = new javax.swing.JLabel();
+        lbP2Health = new javax.swing.JLabel();
+        lbP2Munition = new javax.swing.JLabel();
+        lbP2Position = new javax.swing.JLabel();
+        lbP2aidsTest = new javax.swing.JLabel();
+        lbP2Vektor = new javax.swing.JLabel();
         jpGame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        jpPlayer1.setBackground(new java.awt.Color(32, 126, 152));
+        jpPlayer1.setBackground(new java.awt.Color(0, 102, 204));
+        jpPlayer1.setLayout(new java.awt.GridLayout(2, 3));
 
-        javax.swing.GroupLayout jpPlayer1Layout = new javax.swing.GroupLayout(jpPlayer1);
-        jpPlayer1.setLayout(jpPlayer1Layout);
-        jpPlayer1Layout.setHorizontalGroup(
-            jpPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jpPlayer1Layout.setVerticalGroup(
-            jpPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        lbPlayer1.setBackground(new java.awt.Color(255, 0, 51));
+        lbPlayer1.setText("Player 1:");
+        jpPlayer1.add(lbPlayer1);
 
-        getContentPane().add(jpPlayer1, java.awt.BorderLayout.SOUTH);
+        lbP1Health.setText("Health:");
+        jpPlayer1.add(lbP1Health);
 
-        jpPlayer2.setBackground(new java.awt.Color(32, 126, 152));
+        lbP1Munition.setText("Munition:");
+        jpPlayer1.add(lbP1Munition);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Position");
+        lbP1Position.setText("Position");
+        jpPlayer1.add(lbP1Position);
 
-        tfPosition.setFocusable(false);
+        lbP1Ballz.setText("ball Count");
+        jpPlayer1.add(lbP1Ballz);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Anzahl Kugeln");
+        lbP1Vektor.setText("Vektor");
+        jpPlayer1.add(lbP1Vektor);
 
-        tfAnzahlKugel.setFocusable(false);
+        jpPlayer2.setBackground(new java.awt.Color(0, 102, 204));
+        jpPlayer2.setLayout(new java.awt.GridLayout(2, 3));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Angle");
+        lbPlayer2.setText("Player 2:");
+        jpPlayer2.add(lbPlayer2);
 
-        tfVektor.setFocusable(false);
+        lbP2Health.setText("Health:");
+        jpPlayer2.add(lbP2Health);
 
-        javax.swing.GroupLayout jpPlayer2Layout = new javax.swing.GroupLayout(jpPlayer2);
-        jpPlayer2.setLayout(jpPlayer2Layout);
-        jpPlayer2Layout.setHorizontalGroup(
-            jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPlayer2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(tfPosition)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                    .addComponent(tfAnzahlKugel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfVektor))
-                .addContainerGap(157, Short.MAX_VALUE))
-        );
-        jpPlayer2Layout.setVerticalGroup(
-            jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPlayer2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfPosition, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(tfAnzahlKugel)
-                    .addComponent(tfVektor))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        lbP2Munition.setText("Munition:");
+        jpPlayer2.add(lbP2Munition);
 
-        getContentPane().add(jpPlayer2, java.awt.BorderLayout.NORTH);
+        lbP2Position.setText("Position:");
+        jpPlayer2.add(lbP2Position);
+
+        lbP2aidsTest.setText("aids test");
+        jpPlayer2.add(lbP2aidsTest);
+
+        lbP2Vektor.setText("Vektor:");
+        jpPlayer2.add(lbP2Vektor);
 
         javax.swing.GroupLayout jpGameLayout = new javax.swing.GroupLayout(jpGame);
         jpGame.setLayout(jpGameLayout);
         jpGameLayout.setHorizontalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1924, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpGameLayout.setVerticalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 979, Short.MAX_VALUE)
+            .addGap(0, 938, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jpGame, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpPlayer1, javax.swing.GroupLayout.DEFAULT_SIZE, 1924, Short.MAX_VALUE)
+            .addComponent(jpGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpPlayer2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     KeyListener jpGameListener = new KeyAdapterImpl();
 
-    public class zeichenThread extends Thread {
+    public class zeichenThread extends Thread
+    {
 
         private Player p1, p2;
-        private JTextField tfPos, tfKugeln, tfVektor;
+        private JLabel lbP1Health, lbP1Munition, lbP2Health, lbP2Munition, lbP1Position, lbP1Ballz, lbP1Vektor, lbP2Position, lbP2aidsTest, lbP2Vektor;
 //        private LinkedList<String> movement = new LinkedList();
 
-        public zeichenThread(JTextField tfPos, JTextField tfKugeln, JTextField tfVektor) {
+        public zeichenThread(JLabel lbP1Health, JLabel lbP1Munition, JLabel lbP2Health, JLabel lbP2Munition, JLabel lbP1Position, JLabel lbP1Ballz, JLabel lbP1Vektor, JLabel lbP2Position, JLabel lbP2aidsTest, JLabel lbP2Vektor)
+        {
             System.out.println("threadP1 created");
-            this.tfPos = tfPos;
-            this.tfKugeln = tfKugeln;
-            this.tfVektor = tfVektor;
+            this.lbP1Health = lbP1Health;
+            this.lbP1Munition = lbP1Munition;
+            this.lbP2Health = lbP2Health;
+            this.lbP2Munition = lbP2Munition;
+            this.lbP1Position = lbP1Position;
+            this.lbP1Ballz = lbP1Ballz;
+            this.lbP1Vektor = lbP1Vektor;
+            this.lbP2Position = lbP2Position;
+            this.lbP2aidsTest = lbP2aidsTest;
+            this.lbP2Vektor = lbP2Vektor;
         }
 
         @Override
-        public void run() {
-            while (!isInterrupted()) {
-                try {
+        public void run()
+        {
+            while (!isInterrupted())
+            {
+                try
+                {
                     p1 = schiffListe.get(0);
                     p2 = schiffListe.get(1);
-                    tfPos.setText(p1.getP().getXInt() + " / " + p1.getP().getYInt());
+                    lbP1Position.setText(p1.getP().getXInt() + " / " + p1.getP().getYInt());
 
-                    tfKugeln.setText("" + kugelListe.size());
+                    lbP1Ballz.setText("" + kugelListe.size());
 
 //                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
-                    tfVektor.setText("" + p1.getCurrentAngle());
+                    lbP1Vektor.setText("" + p1.getCurrentAngle());
 
 //                    tfVektor.setText(s);
 //-----------------------------------Spieler 1 ---------------------------------  
@@ -322,22 +339,27 @@ public class GameGUI extends javax.swing.JFrame {
                         Rectangle hitbox = new Rectangle(p1.getHitbox().x, p1.getHitbox().y, p1.getHitbox().width, p1.getHitbox().height);
 //                        
 
-                        for (int i = 0; i <= 21; i += 7) {
+                        for (int i = 0; i <= 21; i += 7)
+                        {
                             Position posSL = new Position(hitbox.getCenterX() - 3, hitbox.getCenterY() - 3);
                             Position posSR = new Position(hitbox.getCenterX() + 3, hitbox.getCenterY() + 3);
 
-                            if ((p1.getCurrentAngle() > 70 && p1.getCurrentAngle() < 110 || p1.getCurrentAngle() > 250 && p1.getCurrentAngle() < 290) || (p1.getCurrentAngle() < -70 && p1.getCurrentAngle() > -110 || p1.getCurrentAngle() < -250 && p1.getCurrentAngle() > -290)) {
+                            if ((p1.getCurrentAngle() > 70 && p1.getCurrentAngle() < 110 || p1.getCurrentAngle() > 250 && p1.getCurrentAngle() < 290) || (p1.getCurrentAngle() < -70 && p1.getCurrentAngle() > -110 || p1.getCurrentAngle() < -250 && p1.getCurrentAngle() > -290))
+                            {
                                 posSL.increaseX(i);
                                 posSR.increaseX(i);
-                            } else if ((p1.getCurrentAngle() > 340 && p1.getCurrentAngle() <= 360 || p1.getCurrentAngle() > 160 && p1.getCurrentAngle() <= 200 || p1.getCurrentAngle() >= 0 && p1.getCurrentAngle() < 20) || (p1.getCurrentAngle() < -340 && p1.getCurrentAngle() >= -360 || p1.getCurrentAngle() < -160 && p1.getCurrentAngle() >= -200 || p1.getCurrentAngle() <= -0 && p1.getCurrentAngle() > -20)) {
+                            } else if ((p1.getCurrentAngle() > 340 && p1.getCurrentAngle() <= 360 || p1.getCurrentAngle() > 160 && p1.getCurrentAngle() <= 200 || p1.getCurrentAngle() >= 0 && p1.getCurrentAngle() < 20) || (p1.getCurrentAngle() < -340 && p1.getCurrentAngle() >= -360 || p1.getCurrentAngle() < -160 && p1.getCurrentAngle() >= -200 || p1.getCurrentAngle() <= -0 && p1.getCurrentAngle() > -20))
+                            {
                                 posSL.increaseY(i);
                                 posSR.increaseY(i);
-                            } else if ((p1.getCurrentAngle() > 20 && p1.getCurrentAngle() < 70 || p1.getCurrentAngle() > 200 && p1.getCurrentAngle() < 250) || (p1.getCurrentAngle() < -290 && p1.getCurrentAngle() > -340 || p1.getCurrentAngle() < -110 && p1.getCurrentAngle() > -160)) {
+                            } else if ((p1.getCurrentAngle() > 20 && p1.getCurrentAngle() < 70 || p1.getCurrentAngle() > 200 && p1.getCurrentAngle() < 250) || (p1.getCurrentAngle() < -290 && p1.getCurrentAngle() > -340 || p1.getCurrentAngle() < -110 && p1.getCurrentAngle() > -160))
+                            {
                                 posSL.increaseX(i * (-1));
                                 posSR.increaseX(i * (-1));
                                 posSL.increaseY(i);
                                 posSR.increaseY(i);
-                            } else {
+                            } else
+                            {
                                 posSL.increaseX(i);
                                 posSR.increaseX(i);
                                 posSL.increaseY(i);
@@ -354,7 +376,6 @@ public class GameGUI extends javax.swing.JFrame {
                     }
 
 //-----------------------------------Spieler 2 ---------------------------------
-
                     if (p2.getCurrentAngle() >= 360 || p2.getCurrentAngle() <= -360)// reset Angle
                     {
                         p2.setCurrentAngle(0);
@@ -394,7 +415,7 @@ public class GameGUI extends javax.swing.JFrame {
                         p2.setCurrentAngle(p2.getCurrentAngle() + rotation);
 
                     }
-                    
+
                     if (controlls.containsKey(KeyEvent.VK_ENTER)) // Schuss
                     {
 
@@ -410,22 +431,27 @@ public class GameGUI extends javax.swing.JFrame {
                         Rectangle hitbox = new Rectangle(p2.getHitbox().x, p2.getHitbox().y, p2.getHitbox().width, p2.getHitbox().height);
 //                        
 
-                        for (int i = 0; i <= 21; i += 7) {
+                        for (int i = 0; i <= 21; i += 7)
+                        {
                             Position posSL = new Position(hitbox.getCenterX() - 3, hitbox.getCenterY() - 3);
                             Position posSR = new Position(hitbox.getCenterX() + 3, hitbox.getCenterY() + 3);
 
-                            if ((p2.getCurrentAngle() > 70 && p2.getCurrentAngle() < 110 || p2.getCurrentAngle() > 250 && p2.getCurrentAngle() < 290) || (p2.getCurrentAngle() < -70 && p2.getCurrentAngle() > -110 || p2.getCurrentAngle() < -250 && p2.getCurrentAngle() > -290)) {
+                            if ((p2.getCurrentAngle() > 70 && p2.getCurrentAngle() < 110 || p2.getCurrentAngle() > 250 && p2.getCurrentAngle() < 290) || (p2.getCurrentAngle() < -70 && p2.getCurrentAngle() > -110 || p2.getCurrentAngle() < -250 && p2.getCurrentAngle() > -290))
+                            {
                                 posSL.increaseX(i);
                                 posSR.increaseX(i);
-                            } else if ((p2.getCurrentAngle() > 340 && p2.getCurrentAngle() <= 360 || p2.getCurrentAngle() > 160 && p2.getCurrentAngle() <= 200 || p2.getCurrentAngle() >= 0 && p2.getCurrentAngle() < 20) || (p2.getCurrentAngle() < -340 && p2.getCurrentAngle() >= -360 || p2.getCurrentAngle() < -160 && p2.getCurrentAngle() >= -200 || p2.getCurrentAngle() <= -0 && p2.getCurrentAngle() > -20)) {
+                            } else if ((p2.getCurrentAngle() > 340 && p2.getCurrentAngle() <= 360 || p2.getCurrentAngle() > 160 && p2.getCurrentAngle() <= 200 || p2.getCurrentAngle() >= 0 && p2.getCurrentAngle() < 20) || (p2.getCurrentAngle() < -340 && p2.getCurrentAngle() >= -360 || p2.getCurrentAngle() < -160 && p2.getCurrentAngle() >= -200 || p2.getCurrentAngle() <= -0 && p2.getCurrentAngle() > -20))
+                            {
                                 posSL.increaseY(i);
                                 posSR.increaseY(i);
-                            } else if ((p2.getCurrentAngle() > 20 && p2.getCurrentAngle() < 70 || p2.getCurrentAngle() > 200 && p2.getCurrentAngle() < 250) || (p2.getCurrentAngle() < -290 && p2.getCurrentAngle() > -340 || p2.getCurrentAngle() < -110 && p2.getCurrentAngle() > -160)) {
+                            } else if ((p2.getCurrentAngle() > 20 && p2.getCurrentAngle() < 70 || p2.getCurrentAngle() > 200 && p2.getCurrentAngle() < 250) || (p2.getCurrentAngle() < -290 && p2.getCurrentAngle() > -340 || p2.getCurrentAngle() < -110 && p2.getCurrentAngle() > -160))
+                            {
                                 posSL.increaseX(i * (-1));
                                 posSR.increaseX(i * (-1));
                                 posSL.increaseY(i);
                                 posSR.increaseY(i);
-                            } else {
+                            } else
+                            {
                                 posSL.increaseX(i);
                                 posSR.increaseX(i);
                                 posSL.increaseY(i);
@@ -436,29 +462,31 @@ public class GameGUI extends javax.swing.JFrame {
                             kugelListe.add(new Kugel(einVRechts, posSR, 5, 2));
 
                         }
-                     
+
                         controlls.removeKey(KeyEvent.VK_ENTER);
                     }
-                    
+
 //-----------------------------------Liste setzen---------------------------------                    
-                    
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
 
 //-----------------------------------kugel---------------------------------
                     int removeIndex = -1;
 
-                    for (Kugel k : kugelListe) {
+                    for (Kugel k : kugelListe)
+                    {
 
                         k.getPos().increaseX(k.getEinheintsVektor().getX() * 15);
                         k.getPos().increaseY(k.getEinheintsVektor().getY() * 15);
 
-                        if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
+                        if (k.getPos().getX() > maxX || k.getPos().getX() < 0)
+                        {
                             removeIndex = kugelListe.indexOf(k);
 //                                kugelListe.remove(k);
 
                         }
-                        if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
+                        if (k.getPos().getY() > maxY || k.getPos().getY() < 0)
+                        {
                             removeIndex = kugelListe.indexOf(k);
 //                                kugelListe.remove(k);
 
@@ -466,7 +494,8 @@ public class GameGUI extends javax.swing.JFrame {
 
                     }
 
-                    if (removeIndex != -1) {
+                    if (removeIndex != -1)
+                    {
                         kugelListe.remove(removeIndex);
                     }
 
@@ -475,13 +504,15 @@ public class GameGUI extends javax.swing.JFrame {
 //                    jLabel1.setText("KugelN:"+kugelListe.size());
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
 
-                    if (check.checkCollision()) {
+                    if (check.checkCollision())
+                    {
                         JOptionPane.showMessageDialog(null, "RIP");
                         bl.drawPlayers();
 
                     }
 
-                    if (check.checkIfHit() != null) {
+                    if (check.checkIfHit() != null)
+                    {
                         Treffer t = check.checkIfHit();
                         kugelListe.remove((t.getKugelIndex()));
                         JOptionPane.showMessageDialog(null, "Spieler " + t.getPlayernummer() + " wurde getroffen!");
@@ -490,39 +521,52 @@ public class GameGUI extends javax.swing.JFrame {
                     bl.draw(schiffListe, kugelListe);
 
                     Thread.sleep(10);
-                } catch (InterruptedException ex) {
+                } catch (InterruptedException ex)
+                {
                     Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
         }
 
-        public void checkAndIncrease1() {
+        public void checkAndIncrease1()
+        {
 
-            if (p1.getP().getX() <= 0) {
+            if (p1.getP().getX() <= 0)
+            {
                 pos1.setX(maxX - 1);
-            } else if (pos1.getX() >= maxX) {
+            } else if (pos1.getX() >= maxX)
+            {
                 pos1.setX(1);
-            } else if (pos1.getY() <= 0) {
+            } else if (pos1.getY() <= 0)
+            {
                 pos1.setY(maxY - 1);
-            } else if (pos1.getY() >= maxY) {
+            } else if (pos1.getY() >= maxY)
+            {
                 pos1.setY(1);
-            } else {
+            } else
+            {
                 pos1.increaseY(p1.getDirection().getY() * p1.getSpeed());
                 pos1.increaseX(p1.getDirection().getX() * p1.getSpeed());
             }
         }
 
-        public void checkAndIncrease2() {
-            if (p2.getP().getX() <= 0) {
+        public void checkAndIncrease2()
+        {
+            if (p2.getP().getX() <= 0)
+            {
                 pos2.setX(maxX - 1);
-            } else if (pos2.getX() >= maxX) {
+            } else if (pos2.getX() >= maxX)
+            {
                 pos2.setX(1);
-            } else if (pos2.getY() <= 0) {
+            } else if (pos2.getY() <= 0)
+            {
                 pos2.setY(maxY - 1);
-            } else if (pos2.getY() >= maxY) {
+            } else if (pos2.getY() >= maxY)
+            {
                 pos2.setY(1);
-            } else {
+            } else
+            {
                 pos2.increaseY(p2.getDirection().getY() * p2.getSpeed());
                 pos2.increaseX(p2.getDirection().getX() * p2.getSpeed());
             }
@@ -532,66 +576,86 @@ public class GameGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GameGUI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new GameGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jpGame;
     private javax.swing.JPanel jpPlayer1;
     private javax.swing.JPanel jpPlayer2;
-    private javax.swing.JTextField tfAnzahlKugel;
-    private javax.swing.JTextField tfPosition;
-    private javax.swing.JTextField tfVektor;
+    private javax.swing.JLabel lbP1Ballz;
+    private javax.swing.JLabel lbP1Health;
+    private javax.swing.JLabel lbP1Munition;
+    private javax.swing.JLabel lbP1Position;
+    private javax.swing.JLabel lbP1Vektor;
+    private javax.swing.JLabel lbP2Health;
+    private javax.swing.JLabel lbP2Munition;
+    private javax.swing.JLabel lbP2Position;
+    private javax.swing.JLabel lbP2Vektor;
+    private javax.swing.JLabel lbP2aidsTest;
+    private javax.swing.JLabel lbPlayer1;
+    private javax.swing.JLabel lbPlayer2;
     // End of variables declaration//GEN-END:variables
 
-    private class KeyAdapterImpl extends KeyAdapter {
+    private class KeyAdapterImpl extends KeyAdapter
+    {
 
-        public KeyAdapterImpl() {
+        public KeyAdapterImpl()
+        {
         }
 
         @Override
-        public void keyPressed(KeyEvent evt) {
-            switch (evt.getKeyCode()) {
+        public void keyPressed(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
                 case KeyEvent.VK_A:
                     System.out.println("Pressed: a");
                     controlls.addKey(KeyEvent.VK_A);
@@ -641,8 +705,10 @@ public class GameGUI extends javax.swing.JFrame {
         }
 
         @Override
-        public void keyReleased(KeyEvent evt) {
-            switch (evt.getKeyCode()) {
+        public void keyReleased(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
                 case KeyEvent.VK_A:
                     System.out.println("Released: a");
                     controlls.removeKey(KeyEvent.VK_A);
@@ -687,8 +753,10 @@ public class GameGUI extends javax.swing.JFrame {
         }
 
         @Override
-        public void keyTyped(KeyEvent evt) {
-            switch (evt.getKeyCode()) {
+        public void keyTyped(KeyEvent evt)
+        {
+            switch (evt.getKeyCode())
+            {
                 case KeyEvent.VK_ESCAPE:
                     System.out.println("ESC");
 
