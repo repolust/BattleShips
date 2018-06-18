@@ -98,8 +98,7 @@ public class GameBL
             g.fillOval(p.getP().getXInt(), p.getP().getYInt(), 8, 8);
             g.setColor(Color.black);
             //-----------/Position Point-------
-            
-            //-----------/Position Point-------
+ 
             
             //-----------Hitbox-------
 //            Rectangle hitbox = new Rectangle(p.getP().getXInt(), p.getP().getYInt(), p.getHeight(), p.getHeight());  
