@@ -13,6 +13,7 @@ import Beans.EinheitsVektor;
 import Beans.Kugel;
 import Beans.Player;
 import Beans.Position;
+import Beans.Treffer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -189,7 +190,7 @@ public class GameGUI extends javax.swing.JFrame
         tfAnzahlKugel.setFocusable(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Angle");
+        jLabel3.setText("Winkel");
 
         tfVektor.setFocusable(false);
 
@@ -360,7 +361,7 @@ public class GameGUI extends javax.swing.JFrame
                         p2.setCurrentAngle(p2.getCurrentAngle() + rotation);
 
                     }
-                    if (controlls.containsKey(KeyEvent.VK_SPACE))
+                    if (controlls.containsKey(KeyEvent.VK_SPACE)) // Schuss
                     {
 
                         EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
@@ -372,53 +373,50 @@ public class GameGUI extends javax.swing.JFrame
                         Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
                         Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
 
-                        for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
-                        {
-                            posSL.setX((posSL.getX()+i));
+//                        for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand//Linke Kugeln
+//                        {
+//                            posSL.setX((posSL.getX()+i));
                             kugelListe.add(new Kugel(einVLinks, posSL, 5, 1));
-                        }
-                        for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
-                        {
-                            posSL.setX((posSL.getX()+i));
+//                        }
+//                        for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand //Rechte Kugeln
+//                        {
+//                            posSR.setX((posSR.getX()+i));
                             kugelListe.add(new Kugel(einVRechts, posSR, 5, 1));
-                        }
+//                        }
                         controlls.removeKey(KeyEvent.VK_SPACE);
                     }
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
                     
 //-----------------------------------kugel---------------------------------
+                    
+                    int removeIndex = -1;             
                     for (Kugel k : kugelListe)
                     {
-                        try
-                        {
-                            k.getPos().increaseX(k.getEinheintsVektor().getX() * 5);
-                            k.getPos().increaseY(k.getEinheintsVektor().getY() * 5);
-                            
+                        
+                            k.getPos().increaseX(k.getEinheintsVektor().getX() * 15);
+                            k.getPos().increaseY(k.getEinheintsVektor().getY() * 15);
 
-//
-//                            if (k.getPos().getX() <= 0) {
+                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
+                                removeIndex = kugelListe.indexOf(k);
 //                                kugelListe.remove(k);
-//                            } else if (k.getPos().getX() >= maxX) {
-//                                kugelListe.remove(k);
-//                            } else if (k.getPos().getY() <= 0) {
-//                                kugelListe.remove(k);
-//                            } else if (k.getPos().getY() >= maxY) {
-//                                kugelListe.remove(k);
-//                            }
-//
-//                            if (k.getPos().getX() > maxX || k.getPos().getX() < 0) {
-//                                kugelListe.remove(k);
-//                            }
-//                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
-//                                kugelListe.remove(k);
-//                            }
-                        } catch (Exception ex)
-                        {
-                            
-                        }
 
+                            }
+                            if (k.getPos().getY() > maxY || k.getPos().getY() < 0) {
+                                removeIndex = kugelListe.indexOf(k);
+//                                kugelListe.remove(k);
+
+                            }
+                            
                     }
+
+                    
+                    if(removeIndex != -1)
+                    {
+                        kugelListe.remove(removeIndex);
+                    }
+                    
+                    
 
 //                    System.out.println(schiffListe.get(0).toString2());
 //                    System.out.println(schiffListe.get(1).toString2());
@@ -426,7 +424,20 @@ public class GameGUI extends javax.swing.JFrame
 
 
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
-                    check.checkIfHit2();
+                    
+                    if(check.checkCollision())
+                    {
+                        JOptionPane.showMessageDialog(null, "RIP");
+                        bl.drawPlayers();
+                        
+                    }
+                    
+                    if(check.checkIfHit() != null)
+                    {
+                        Treffer t = check.checkIfHit();
+                        kugelListe.remove((t.getKugelIndex()));
+                        JOptionPane.showMessageDialog(null, "Spieler "+t.getPlayernummer()+" wurde getroffen!");
+                    }
 
                     
                     
@@ -605,7 +616,7 @@ public class GameGUI extends javax.swing.JFrame
                 case KeyEvent.VK_ENTER:
                     System.out.println("**enter**");
                     controlls.addKey(KeyEvent.VK_ENTER);
-                    bl.shootPlayer2();
+//                    bl.shootPlayer2();
                     break;
             }
             

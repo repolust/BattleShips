@@ -22,6 +22,10 @@ public class Kugel {
         this.playernumber = playernumber;
     }
 
+    public int getPlayernumber() {
+        return playernumber;
+    }
+
     public EinheitsVektor getEinheintsVektor() {
         return einheintsVektor;
     }

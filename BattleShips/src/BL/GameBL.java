@@ -79,8 +79,10 @@ public class GameBL
     {
         this.schiffListe = schiffListe;
         this.kugelListe = kugelListe;
+        
         this.drawShips();
         this.drawKugeln();
+        
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
@@ -102,9 +104,7 @@ public class GameBL
             
             //-----------Hitbox-------
             Rectangle hitbox = p.getHitbox();
-            g.drawRect((int) Math.round(hitbox.x), (int) Math.round(hitbox.y), hitbox.width, hitbox.height);
-
-    
+            g.drawRect((int) Math.round(hitbox.x), (int) Math.round(hitbox.y), hitbox.width, hitbox.height); 
             //-----------/Hitbox-------
             
             
@@ -120,13 +120,17 @@ public class GameBL
             //-----------/Rotate---------------
         }
     }
-    public void drawKugeln(){
+    public void drawKugeln(){        
+            
         Graphics2D g2d = bufferedImage.createGraphics();
         g2d.setColor(Color.BLACK);
         for(Kugel k:kugelListe){
             g.fillOval(k.getPos().getXInt(), k.getPos().getYInt(), k.getGroesse(), k.getGroesse()); 
         }
+
     }
+    
+
     
     public void drawPlayers()
     {
@@ -137,7 +141,7 @@ public class GameBL
         Graphics2D g2d = bufferedImage.createGraphics();
 
         drawPlayer1(schiffListe.get(0), 0);
-        drawPlayer2(schiffListe.get(0), 180);
+        drawPlayer2(schiffListe.get(1), 180);
 
         g.drawImage(bufferedImage, 0, 0, null);
     }
@@ -168,76 +172,77 @@ public class GameBL
         g2d.setTransform(origXform1);
 
     }
-
-    public void shootPlayer1()
-    {
-        Thread cannonShoot1 = new ShootingThread1();
-        cannonShoot1.start();
-    }
-
-    public void shootPlayer2()
-    {
-        //do p1 shoot 
-    }
-
-    public class ShootingThread1 extends Thread
-    {
-
-        private Position posSL, posSR;
-        private EinheitsVektor einVLinks;
-        private EinheitsVektor einVRechts;
-
-        public ShootingThread1()
-        {
-            System.out.println("ShootingThread1 created");
-
-        }
-
-        @Override
-        public void run()
-        {
-            System.out.println("ShootingThread1 started");
-
-            einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
-            einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
-
-            einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
-            einVRechts.rotateEinheitsVektor(90);
-
-            posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
-            posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
-            
-            
-
-//            posSL = new Position(pos1.getX(), pos1.getY());
-//            posSR = new Position(pos1.getX(), pos1.getY());
-//            g.fillOval(schiffListe.get(0).getP().getXInt(), schiffListe.get(0).getP().getYInt(), 5, 5);
-
-            while (!this.isInterrupted())
-            {
-                for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand
-                {
-                    g.setColor(Color.BLACK); //schwarze kugel
-                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 5, 5); //
-                    g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 5, 5);
-                }
-
-                posSL.increaseX(einVLinks.getX() * 5); //kugelposition speed 5
-                posSL.increaseY(einVLinks.getY() * 5);
-                posSR.increaseX(einVRechts.getX() * 5);
-                posSR.increaseY(einVRechts.getY() * 5);
-
-                try
-                {
-                    Thread.sleep(10);
-                } catch (InterruptedException ex)
-                {
-                    Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
-                }
-//                this.interrupt();
-                System.out.println("ShootingThread1 interrupted");
-            }
-        }
-
-    }
+    
+//
+//    public void shootPlayer1()
+//    {
+//        Thread cannonShoot1 = new ShootingThread1();
+//        cannonShoot1.start();
+//    }
+//
+//    public void shootPlayer2()
+//    {
+//        //do p1 shoot 
+//    }
+//
+//    public class ShootingThread1 extends Thread
+//    {
+//
+//        private Position posSL, posSR;
+//        private EinheitsVektor einVLinks;
+//        private EinheitsVektor einVRechts;
+//
+//        public ShootingThread1()
+//        {
+//            System.out.println("ShootingThread1 created");
+//
+//        }
+//
+//        @Override
+//        public void run()
+//        {
+//            System.out.println("ShootingThread1 started");
+//
+//            einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
+//            einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
+//
+//            einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
+//            einVRechts.rotateEinheitsVektor(90);
+//
+//            posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
+//            posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
+//            
+//            
+//
+////            posSL = new Position(pos1.getX(), pos1.getY());
+////            posSR = new Position(pos1.getX(), pos1.getY());
+////            g.fillOval(schiffListe.get(0).getP().getXInt(), schiffListe.get(0).getP().getYInt(), 5, 5);
+//
+//            while (!this.isInterrupted())
+//            {
+//                for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand
+//                {
+//                    g.setColor(Color.BLACK); //schwarze kugel
+//                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 5, 5); //
+//                    g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 5, 5);
+//                }
+//
+//                posSL.increaseX(einVLinks.getX() * 5); //kugelposition speed 5
+//                posSL.increaseY(einVLinks.getY() * 5);
+//                posSR.increaseX(einVRechts.getX() * 5);
+//                posSR.increaseY(einVRechts.getY() * 5);
+//
+//                try
+//                {
+//                    Thread.sleep(10);
+//                } catch (InterruptedException ex)
+//                {
+//                    Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+////                this.interrupt();
+//                System.out.println("ShootingThread1 interrupted");
+//            }
+//        }
+//
+//    }
 }
