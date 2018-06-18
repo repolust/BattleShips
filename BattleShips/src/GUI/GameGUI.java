@@ -183,7 +183,7 @@ public class GameGUI extends javax.swing.JFrame {
         tfAnzahlKugel.setFocusable(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Winkel");
+        jLabel3.setText("Angle");
 
         tfVektor.setFocusable(false);
 
@@ -394,7 +394,55 @@ public class GameGUI extends javax.swing.JFrame {
                         p2.setCurrentAngle(p2.getCurrentAngle() + rotation);
 
                     }
-                                        schiffListe.set(0, p1);
+                    
+                    if (controlls.containsKey(KeyEvent.VK_ENTER)) // Schuss
+                    {
+
+                        EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(1).getDirection().getX(), schiffListe.get(1).getDirection().getY()); //vektor
+                        EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(1).getDirection().getX(), schiffListe.get(1).getDirection().getY());
+
+                        einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
+                        einVRechts.rotateEinheitsVektor(90);
+
+//                        Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
+//                        Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
+//                        Rectangle hitbox =  p1.getHitbox();
+                        Rectangle hitbox = new Rectangle(p2.getHitbox().x, p2.getHitbox().y, p2.getHitbox().width, p2.getHitbox().height);
+//                        
+
+                        for (int i = 0; i <= 21; i += 7) {
+                            Position posSL = new Position(hitbox.getCenterX() - 3, hitbox.getCenterY() - 3);
+                            Position posSR = new Position(hitbox.getCenterX() + 3, hitbox.getCenterY() + 3);
+
+                            if ((p2.getCurrentAngle() > 70 && p2.getCurrentAngle() < 110 || p2.getCurrentAngle() > 250 && p2.getCurrentAngle() < 290) || (p2.getCurrentAngle() < -70 && p2.getCurrentAngle() > -110 || p2.getCurrentAngle() < -250 && p2.getCurrentAngle() > -290)) {
+                                posSL.increaseX(i);
+                                posSR.increaseX(i);
+                            } else if ((p2.getCurrentAngle() > 340 && p2.getCurrentAngle() <= 360 || p2.getCurrentAngle() > 160 && p2.getCurrentAngle() <= 200 || p2.getCurrentAngle() >= 0 && p2.getCurrentAngle() < 20) || (p2.getCurrentAngle() < -340 && p2.getCurrentAngle() >= -360 || p2.getCurrentAngle() < -160 && p2.getCurrentAngle() >= -200 || p2.getCurrentAngle() <= -0 && p2.getCurrentAngle() > -20)) {
+                                posSL.increaseY(i);
+                                posSR.increaseY(i);
+                            } else if ((p2.getCurrentAngle() > 20 && p2.getCurrentAngle() < 70 || p2.getCurrentAngle() > 200 && p2.getCurrentAngle() < 250) || (p2.getCurrentAngle() < -290 && p2.getCurrentAngle() > -340 || p2.getCurrentAngle() < -110 && p2.getCurrentAngle() > -160)) {
+                                posSL.increaseX(i * (-1));
+                                posSR.increaseX(i * (-1));
+                                posSL.increaseY(i);
+                                posSR.increaseY(i);
+                            } else {
+                                posSL.increaseX(i);
+                                posSR.increaseX(i);
+                                posSL.increaseY(i);
+                                posSR.increaseY(i);
+                            }
+
+                            kugelListe.add(new Kugel(einVLinks, posSL, 5, 2));
+                            kugelListe.add(new Kugel(einVRechts, posSR, 5, 2));
+
+                        }
+                     
+                        controlls.removeKey(KeyEvent.VK_ENTER);
+                    }
+                    
+//-----------------------------------Liste setzen---------------------------------                    
+                    
+                    schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
 
 //-----------------------------------kugel---------------------------------
