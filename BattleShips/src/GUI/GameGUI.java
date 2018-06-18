@@ -154,16 +154,10 @@ public class GameGUI extends javax.swing.JFrame
         lbPlayer1 = new javax.swing.JLabel();
         lbP1Health = new javax.swing.JLabel();
         lbP1Munition = new javax.swing.JLabel();
-        lbP1Position = new javax.swing.JLabel();
-        lbP1Ballz = new javax.swing.JLabel();
-        lbP1Vektor = new javax.swing.JLabel();
         jpPlayer2 = new javax.swing.JPanel();
         lbPlayer2 = new javax.swing.JLabel();
         lbP2Health = new javax.swing.JLabel();
         lbP2Munition = new javax.swing.JLabel();
-        lbP2Position = new javax.swing.JLabel();
-        lbP2aidsTest = new javax.swing.JLabel();
-        lbP2Vektor = new javax.swing.JLabel();
         jpGame = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -171,7 +165,7 @@ public class GameGUI extends javax.swing.JFrame
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jpPlayer1.setBackground(new java.awt.Color(0, 102, 204));
-        jpPlayer1.setLayout(new java.awt.GridLayout(2, 3));
+        jpPlayer1.setLayout(new java.awt.GridLayout(1, 3));
 
         lbPlayer1.setBackground(new java.awt.Color(255, 0, 51));
         lbPlayer1.setText("Player 1:");
@@ -183,17 +177,8 @@ public class GameGUI extends javax.swing.JFrame
         lbP1Munition.setText("Munition:");
         jpPlayer1.add(lbP1Munition);
 
-        lbP1Position.setText("Position");
-        jpPlayer1.add(lbP1Position);
-
-        lbP1Ballz.setText("ball Count");
-        jpPlayer1.add(lbP1Ballz);
-
-        lbP1Vektor.setText("Vektor");
-        jpPlayer1.add(lbP1Vektor);
-
         jpPlayer2.setBackground(new java.awt.Color(0, 102, 204));
-        jpPlayer2.setLayout(new java.awt.GridLayout(2, 3));
+        jpPlayer2.setLayout(new java.awt.GridLayout(1, 3));
 
         lbPlayer2.setText("Player 2:");
         jpPlayer2.add(lbPlayer2);
@@ -204,15 +189,6 @@ public class GameGUI extends javax.swing.JFrame
         lbP2Munition.setText("Munition:");
         jpPlayer2.add(lbP2Munition);
 
-        lbP2Position.setText("Position:");
-        jpPlayer2.add(lbP2Position);
-
-        lbP2aidsTest.setText("aids test");
-        jpPlayer2.add(lbP2aidsTest);
-
-        lbP2Vektor.setText("Vektor:");
-        jpPlayer2.add(lbP2Vektor);
-
         javax.swing.GroupLayout jpGameLayout = new javax.swing.GroupLayout(jpGame);
         jpGame.setLayout(jpGameLayout);
         jpGameLayout.setHorizontalGroup(
@@ -221,7 +197,7 @@ public class GameGUI extends javax.swing.JFrame
         );
         jpGameLayout.setVerticalGroup(
             jpGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 938, Short.MAX_VALUE)
+            .addGap(0, 1038, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,11 +211,11 @@ public class GameGUI extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jpPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -630,16 +606,10 @@ public class GameGUI extends javax.swing.JFrame
     private javax.swing.JPanel jpGame;
     private javax.swing.JPanel jpPlayer1;
     private javax.swing.JPanel jpPlayer2;
-    private javax.swing.JLabel lbP1Ballz;
     private javax.swing.JLabel lbP1Health;
     private javax.swing.JLabel lbP1Munition;
-    private javax.swing.JLabel lbP1Position;
-    private javax.swing.JLabel lbP1Vektor;
     private javax.swing.JLabel lbP2Health;
     private javax.swing.JLabel lbP2Munition;
-    private javax.swing.JLabel lbP2Position;
-    private javax.swing.JLabel lbP2Vektor;
-    private javax.swing.JLabel lbP2aidsTest;
     private javax.swing.JLabel lbPlayer1;
     private javax.swing.JLabel lbPlayer2;
     // End of variables declaration//GEN-END:variables
