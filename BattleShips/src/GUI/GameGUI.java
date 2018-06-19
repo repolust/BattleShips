@@ -16,6 +16,7 @@ import Beans.Kugel;
 import Beans.Player;
 import Beans.Position;
 import Beans.Treffer;
+import Dialog.WinnerDlg;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -572,24 +573,31 @@ public class GameGUI extends javax.swing.JFrame
                     
                     if(p1.getLeben() <= 0 && p2.getLeben() <= 0)
                     {
-                        JOptionPane.showMessageDialog(null, "Unentschieden!");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","Vielleicht schafft ihr es nächstes mal");
+                        wdlg.setVisible(true);
+//                        JOptionPane.showMessageDialog(null, "Unentschieden!");
                         //zurück ins menü!
                         this.interrupt();
                         System.exit(0);
                     }
                     else if (p1.getLeben() <= 0)
                     {
-                        JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName()+" hat gewonnen!");
+                        wdlg.setVisible(true);
+//                        JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
                         //zurück ins menü!
                         this.interrupt();
                         
                         System.exit(0);
                     } else if (p2.getLeben() <= 0)
                     {
-                        JOptionPane.showMessageDialog(null, p1.getName()+" hat gewonnen!");
+//                        JOptionPane.showMessageDialog(null, p1.getName()+" hat gewonnen!");
                         //zurück ins menü!
+                        
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !",p1.getName()+ "hat gewonnen! ");
+                        wdlg.setVisible(true);
                         this.interrupt();
-                        System.exit(0);
+//                        System.exit(0);
                     }
                     
 //-----------------------------------//Collision Detection---------------------------------                    
