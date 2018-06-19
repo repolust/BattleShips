@@ -5,15 +5,12 @@
  */
 package Dialog;
 
-import Dialog.*;
-import Beans.Option;
 import Beans.Player;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author michi
+ * @author Michael
  */
 public class WinnerDlg extends javax.swing.JDialog {
 

@@ -7,9 +7,9 @@ package Beans;
 
 /**
  *
- * @author michi
+ * @author Michael
  */
-public class Option {
+public class Option {//Option-Klasse die die Werte für den Start des Spiels beinhaltet
     
     private int leben,munition,speed ,radius;
 

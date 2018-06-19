@@ -10,9 +10,10 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author Leonardo
+ * @author Team
  */
 public class Player {
+    
     private String name;
     private Color c;
     private Image schiff;
@@ -29,8 +30,7 @@ public class Player {
 
  
 
-    public Player(String name, Color c, Image schiff, int leben, int munition, int index, Position p, String schiffArt, double currentAngle,
-                    EinheitsVektor direction, double speed, int rotation) 
+    public Player(String name, Color c, Image schiff, int leben, int munition, int index, Position p, String schiffArt, double currentAngle, EinheitsVektor direction, double speed, int rotation) 
     {
         this.name = name;
         this.c = c;

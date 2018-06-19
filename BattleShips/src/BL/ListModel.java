@@ -13,7 +13,7 @@ import javax.swing.AbstractListModel;
  *
  * @author Leonardo
  */
-public class ListModel extends AbstractListModel{
+public class ListModel extends AbstractListModel{// Listemodel für den NewPlayerDialog
 
     private LinkedList<Player> liste = new LinkedList<Player>();
     

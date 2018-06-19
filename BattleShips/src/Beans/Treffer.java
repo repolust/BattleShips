@@ -7,7 +7,7 @@ package Beans;
 
 /**
  *
- * @author michi
+ * @author Michael
  */
 public class Treffer {
     

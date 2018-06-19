@@ -16,7 +16,7 @@ import java.io.File;
 
 /**
  *
- * @author Leonardo
+ * @author Leonardo und Michael
  */
 public class StartMenuGUI extends javax.swing.JFrame {
 

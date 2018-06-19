@@ -13,13 +13,13 @@ import java.util.LinkedList;
 
 /**
  *
- * @author tobia
+ * @author Tobias und Michael
  */
-public class CheckIfHit
+public class CheckIfHit // Collision Detection Klasse
 {
 
-    private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
-    private LinkedList<Player> schiffListe = new LinkedList<Player>();
+    private LinkedList<Kugel> kugelListe;
+    private LinkedList<Player> schiffListe;
 
 
     public CheckIfHit(LinkedList<Kugel> kugeln, LinkedList<Player> schiffe)
@@ -56,7 +56,6 @@ public class CheckIfHit
         Rectangle hitbox2 = p2.getHitbox();
         
         //Treffer mit KanonenKugel
-        
         for (Kugel k : kugelListe) {
             
             Rectangle rectK = new Rectangle(k.getPos().getXInt(),k.getPos().getYInt(), k.getGroesse(),k.getGroesse());
@@ -65,7 +64,6 @@ public class CheckIfHit
             {
                 if(rectK.intersects(hitbox2))
                 {
-//                    JOptionPane.showMessageDialog(null, "Spieler 2 getroffen!");
                     p2.setLeben(p2.getLeben()-2);
                     Treffer t = new Treffer(2,kugelListe.indexOf(k));
                     return t;
@@ -75,7 +73,6 @@ public class CheckIfHit
             {
                 if(rectK.intersects(hitbox1))
                 {
-//                    JOptionPane.showMessageDialog(null, "Spieler 1 getroffen!");
                     p1.setLeben(p1.getLeben()-2);
                     Treffer t = new Treffer(1,kugelListe.indexOf(k));
                     return t;
@@ -87,5 +84,4 @@ public class CheckIfHit
         return null;
     }
 
-    
 }

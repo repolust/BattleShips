@@ -7,7 +7,7 @@ package BL;
 
 /**
  *
- * @author michi
+ * @author Michael
  */
 public class MusikThread extends Thread{
 

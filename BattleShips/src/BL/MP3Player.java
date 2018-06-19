@@ -9,7 +9,13 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import javazoom.jl.player.Player;
 
-public class MP3Player {
+/**
+ *
+ * @author Michael
+ */
+
+public class MP3Player 
+{
 
     private String filename;
     private Player player;

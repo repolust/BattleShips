@@ -7,7 +7,7 @@ package Beans;
 
 /**
  *
- * @author tobia
+ * @author Tobias
  */
 public class Position
 {

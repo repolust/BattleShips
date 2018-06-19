@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -20,7 +19,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Tobia
+ * @author Team
  */
 public class GameBL
 {
@@ -44,14 +43,8 @@ public class GameBL
 
     }
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, Image ship1, Image ship2)
-    {
-        this.jpGame = jpGame;
-        initMyInits();
 
-    }
-
-    public void initMyInits()
+    public void initMyInits()//Initialisiert die Startwerte
     {
         maxX = this.jpGame.getWidth();
         maxY = this.jpGame.getHeight();
@@ -62,7 +55,7 @@ public class GameBL
         bufferedImage = new BufferedImage(maxX, maxY, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public void draw(LinkedList<Player> schiffListe, LinkedList<Kugel> kugelListe)
+    public void draw(LinkedList<Player> schiffListe, LinkedList<Kugel> kugelListe)//Zeichnet alles
     {
         this.schiffListe = schiffListe;
         this.kugelListe = kugelListe;
@@ -73,7 +66,7 @@ public class GameBL
         g.drawImage(bufferedImage, 0, 0, null);
     }
 
-    public void drawShips()
+    public void drawShips()//Zeichnet die SChiffe
     {
         Graphics2D g2d = bufferedImage.createGraphics();
         g2d.clearRect(0, 0, maxX, maxY);
@@ -82,6 +75,7 @@ public class GameBL
         
         for (Player p : schiffListe)
         {
+            
 //            //-----------Position Point-------
 //            g.setColor(Color.red);
 //            g.fillOval(p.getP().getXInt(), p.getP().getYInt(), 8, 8);
@@ -107,7 +101,8 @@ public class GameBL
             //-----------/Rotate---------------
         }
     }
-    public void drawKugeln(){        
+    public void drawKugeln()//Zeichnet die Kugeln
+    {        
             
         Graphics2D g2d = bufferedImage.createGraphics();
         g2d.setColor(Color.BLACK);
@@ -117,7 +112,7 @@ public class GameBL
 
     }
 
-    public void drawPlayers()
+    public void drawPlayers()//Zeichnet die Schiffe das erste mal. Wird von der Paint-Methode aus der GUI am start aufgerufen
     {
         Graphics gPanel = this.jpGame.getGraphics();
         gPanel.setColor(new Color(62, 208, 245));

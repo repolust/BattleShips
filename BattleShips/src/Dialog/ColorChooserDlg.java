@@ -14,9 +14,7 @@ import java.awt.Dimension;
  */
 public class ColorChooserDlg extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ColorChooserDlg
-     */
+
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int hoeheSchirm =  (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();

@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author michi
+ * @author Michael
  */
+
 public class OptionsDlg extends javax.swing.JDialog {
 
     /**

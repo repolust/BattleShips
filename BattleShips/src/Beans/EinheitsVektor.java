@@ -7,7 +7,7 @@ package Beans;
 
 /**
  *
- * @author tobia
+ * @author Tobias
  */
 public class EinheitsVektor extends Vektor{
     
@@ -35,6 +35,7 @@ public class EinheitsVektor extends Vektor{
     public String toString() {
         return "EinheitsVektor{" + x + ";" + y + '}';
     }
+    
     public void rotateEinheitsVektor(double degree){
         double hx = x;
         double hy = y;
@@ -42,6 +43,7 @@ public class EinheitsVektor extends Vektor{
         x = Math.cos(Math.toRadians(degree))*hx - Math.sin(Math.toRadians(degree))*hy;
         y = Math.sin(Math.toRadians(degree))*hx + Math.cos(Math.toRadians(degree))*hy;
     }
+    
     public EinheitsVektor rotateEinheitsVektorRueckgabe(double degree){
         double hx = x;
         double hy = y;

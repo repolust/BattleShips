@@ -10,12 +10,12 @@ import java.util.Set;
 
 /**
  *
- * @author michi
+ * @author Michael und Tobias
  */
-public class Controlls
+public class Controlls //Liste mit gerade gedrückten Tasten
 {
 
-    private Set<Integer> keysP1 = new HashSet<>();
+    private Set<Integer> keys = new HashSet<>();
 
     public Controlls()
     {
@@ -24,18 +24,18 @@ public class Controlls
 
     public void addKey(int keycode)
     {
-        if (!keysP1.contains(keycode))
+        if (!keys.contains(keycode))
         {
-            keysP1.add(keycode);
+            keys.add(keycode);
         }
 
     }
 
     public void removeKey(int keycode)
     {
-        if (keysP1.contains(keycode))
+        if (keys.contains(keycode))
         {
-            keysP1.remove(keycode);
+            keys.remove(keycode);
 
         }
 
@@ -43,11 +43,11 @@ public class Controlls
 
     public int getSize()
     {
-        return keysP1.size();
+        return keys.size();
     }
 
     public boolean containsKey(int keyCode)
     {
-        return keysP1.contains(keyCode);
+        return keys.contains(keyCode);
     }
 }

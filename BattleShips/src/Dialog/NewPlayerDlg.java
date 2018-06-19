@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Leonardo
+ * @author Leonardo und Michael
  */
 public class NewPlayerDlg extends javax.swing.JDialog {
 

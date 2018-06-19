@@ -10,20 +10,21 @@ package Beans;
  * @author Leonardo
  */
 public class Kugel {
+    
     private EinheitsVektor einheintsVektor;
     private Position pos;
     private int groesse;
-    private int playernumber;
+    private int player;
 
-    public Kugel(EinheitsVektor einheintsVektor, Position pos, int groesse, int playernumber) {
+    public Kugel(EinheitsVektor einheintsVektor, Position pos, int groesse, int player) {
         this.einheintsVektor = einheintsVektor;
         this.pos = pos;
         this.groesse = groesse;
-        this.playernumber = playernumber;
+        this.player = player;
     }
 
     public int getPlayernumber() {
-        return playernumber;
+        return player;
     }
 
     public EinheitsVektor getEinheintsVektor() {
