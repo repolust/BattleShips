@@ -75,7 +75,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&#xa9; Copyright 2018, HTBLA Kaindorf, &#xd6;sterreich&lt;br&gt;Alle Rechte vorbehalten. Text, Bilder, Grafiken sowie deren Anordnung auf Websites &lt;br&gt; unterliegen dem Schutz des Urheberrechts und anderer Schutzgesetze. &lt;br&gt;Der Inhalt dieser Websites darf nicht zu kommerziellen Zwecken kopiert,&lt;br&gt;verbreitet, ver&#xe4;ndert oder Dritten zug&#xe4;nglich gemacht werden.&lt;/body&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&#xa9; Copyright 2018, HTBLA Kaindorf, &#xd6;sterreich&lt;br&gt;Alle Rechte vorbehalten. Text, Bilder, Grafiken sowie deren Benutzung innerhalb des Programms &lt;br&gt; unterliegen dem Schutz des Urheberrechts und anderer Schutzgesetze. &lt;br&gt;Der Inhalt dieses Programms darf nicht zu kommerziellen Zwecken kopiert,&lt;br&gt;verbreitet, ver&#xe4;ndert oder Dritten zug&#xe4;nglich gemacht werden.&lt;/body&gt;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

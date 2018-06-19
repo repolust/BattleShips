@@ -54,7 +54,7 @@ public class HelpDlg extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("<html><body>© Copyright 2018, HTBLA Kaindorf, Österreich<br>Alle Rechte vorbehalten. Text, Bilder, Grafiken sowie deren Anordnung auf Websites <br> unterliegen dem Schutz des Urheberrechts und anderer Schutzgesetze. <br>Der Inhalt dieser Websites darf nicht zu kommerziellen Zwecken kopiert,<br>verbreitet, verändert oder Dritten zugänglich gemacht werden.</body></html>");
+        jLabel1.setText("<html><body>© Copyright 2018, HTBLA Kaindorf, Österreich<br>Alle Rechte vorbehalten. Text, Bilder, Grafiken sowie deren Benutzung innerhalb des Programms <br> unterliegen dem Schutz des Urheberrechts und anderer Schutzgesetze. <br>Der Inhalt dieses Programms darf nicht zu kommerziellen Zwecken kopiert,<br>verbreitet, verändert oder Dritten zugänglich gemacht werden.</body></html>");
 
         jLabel2.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         jLabel2.setText("<html><body>Von<br>Michael Skergeth<br>Tobias Rechberger<br>Leonardo Repolust</body></html>");
