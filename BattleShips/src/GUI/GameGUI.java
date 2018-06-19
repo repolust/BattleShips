@@ -508,7 +508,7 @@ public class GameGUI extends javax.swing.JFrame
                         }
                         else
                         {
-                            p1.setSpeed(p2.getSpeed()+2);
+                            p2.setSpeed(p2.getSpeed()+2);
                             isSpeedIncreased = true;
                         }
                     }
