@@ -50,6 +50,7 @@ public class GameGUI extends javax.swing.JFrame
     private Dimension screensize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     private int maxX;
     private int maxY;
+    private boolean isSpeedIncreased = false;
 
 //    private HashMap<String, Boolean> flagMap = new HashMap();
     private Controlls controlls = new Controlls();
@@ -392,10 +393,12 @@ public class GameGUI extends javax.swing.JFrame
                         }
                         
                         controlls.removeKey(KeyEvent.VK_SPACE);
+                        
                         if(p1.getMunition() != 0)
                         {
                             startCannonSound();
                         }
+                        
                         
                     }
 
@@ -494,8 +497,24 @@ public class GameGUI extends javax.swing.JFrame
                             startCannonSound();
                         }
                     }
+                    if (!isSpeedIncreased) {
+                        
+                    if(p1.getMunition() == 0 && p2.getMunition() == 0)
+                    {
+                        if(p1.getLeben() > p2.getLeben())
+                        {
+                            p1.setSpeed(p1.getSpeed()+2);
+                            isSpeedIncreased = true;
+                        }
+                        else
+                        {
+                            p1.setSpeed(p2.getSpeed()+2);
+                            isSpeedIncreased = true;
+                        }
+                    }
+                    }
 
-//-----------------------------------Liste setzen---------------------------------                    
+//-----------------------------------Liste setzen---------------------------------   
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
 
