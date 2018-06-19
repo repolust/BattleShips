@@ -123,7 +123,7 @@ public class GameGUI extends javax.swing.JFrame
         schiffListe.add(p2);
      
 
-        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
+        bl = new GameBL(this.jpGame, schiffListe);
 
 
         zeichenThread = new zeichenThread(this,this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
@@ -485,7 +485,7 @@ public class GameGUI extends javax.swing.JFrame
                     }
 
 
-//-----------------------------------kugel bewegen---------------------------------
+//-----------------------------------Kugel bewegen und entfernen---------------------------------
                     int removeIndex = -1;
 
                     for (Kugel k : kugelListe)
@@ -519,14 +519,21 @@ public class GameGUI extends javax.swing.JFrame
                     if (check.checkCollision()) // Schiffe fahren zusammen
                     {
                         playSound(crashPath);
-                            p1.setLeben(p1.getLeben() - 20);
-                            p2.setLeben(p2.getLeben() - 20);
+                        
+                        p1.setLeben(p1.getLeben() - 20);
+                        p2.setLeben(p2.getLeben() - 20);
  
-
+//                   ------------------Schiffe zurücksetzen----------------                     
                         pos1 = new Position(300, (maxY / 2 - 35));
                         pos2 = new Position((maxX - 390), (maxY / 2 - 35));
+                        
                         p1.setP(pos1);
+                        p1.setCurrentAngle(90);
+                        p1.setDirection(new EinheitsVektor(1, 0));
+
                         p2.setP(pos2);
+                        p2.setCurrentAngle(270);
+                        p2.setDirection(new EinheitsVektor(-1, 0));
 
                     }
 

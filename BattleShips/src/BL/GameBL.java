@@ -34,7 +34,7 @@ public class GameBL
     private LinkedList<Player> schiffListe;
     private LinkedList<Kugel> kugelListe;
 
-    public GameBL(JPanel jpGame, EinheitsVektor einh1, EinheitsVektor einh2, LinkedList<Player> schiffListe)
+    public GameBL(JPanel jpGame, LinkedList<Player> schiffListe)
     {
         this.jpGame = jpGame;
         this.schiffListe = schiffListe;
