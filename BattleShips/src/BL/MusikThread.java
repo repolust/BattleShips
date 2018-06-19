@@ -5,8 +5,6 @@
  */
 package BL;
 
-import java.io.File;
-
 /**
  *
  * @author michi
@@ -19,7 +17,6 @@ public class MusikThread extends Thread{
         this.path = path;
     }
         
-        
     
     @Override
     public void run() {
@@ -28,6 +25,5 @@ public class MusikThread extends Thread{
         mp3.play();
  
     }
-    
     
 }

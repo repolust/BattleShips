@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Beans;
-import Beans.Position;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -181,10 +180,7 @@ public class Player {
     public String toString() {
         return "Player"+index+" | "+"Name: "+name+" | "+schiffArt;
     }
-    
-    public String toString2() {
-        return direction.toString()+"";
-    }
+
     
     
 }

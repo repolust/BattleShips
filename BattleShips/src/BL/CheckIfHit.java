@@ -5,15 +5,11 @@
  */
 package BL;
 
-import Beans.EinheitsVektor;
 import Beans.Kugel;
 import Beans.Player;
-import Beans.Position;
 import Beans.Treffer;
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *

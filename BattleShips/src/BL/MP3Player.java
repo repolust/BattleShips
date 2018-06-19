@@ -30,11 +30,6 @@ public class MP3Player {
         }
 
     }
-//
-//    public static void main(String[] args) {
-//        MP3Player mp3 = new MP3Player("song.mp3");
-//        mp3.play();
-//
-//    }
+
 
 }

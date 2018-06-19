@@ -14,12 +14,6 @@ import GUI.GameGUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**

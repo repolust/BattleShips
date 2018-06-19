@@ -8,24 +8,14 @@ package BL;
 import Beans.EinheitsVektor;
 import Beans.Kugel;
 import Beans.Player;
-import Beans.Position;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -39,12 +29,9 @@ public class GameBL
     private int maxX, maxY;
     private Graphics g;
     private JPanel jpGame;
-    private final String imagePath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "shipbasic.png";
+
     private BufferedImage bufferedImage;
-    private Controlls controlls;
+
     private LinkedList<Player> schiffListe;
     private LinkedList<Kugel> kugelListe;
 
@@ -129,9 +116,7 @@ public class GameBL
         }
 
     }
-    
 
-    
     public void drawPlayers()
     {
         Graphics gPanel = this.jpGame.getGraphics();
@@ -173,76 +158,4 @@ public class GameBL
 
     }
     
-//
-//    public void shootPlayer1()
-//    {
-//        Thread cannonShoot1 = new ShootingThread1();
-//        cannonShoot1.start();
-//    }
-//
-//    public void shootPlayer2()
-//    {
-//        //do p1 shoot 
-//    }
-//
-//    public class ShootingThread1 extends Thread
-//    {
-//
-//        private Position posSL, posSR;
-//        private EinheitsVektor einVLinks;
-//        private EinheitsVektor einVRechts;
-//
-//        public ShootingThread1()
-//        {
-//            System.out.println("ShootingThread1 created");
-//
-//        }
-//
-//        @Override
-//        public void run()
-//        {
-//            System.out.println("ShootingThread1 started");
-//
-//            einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
-//            einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
-//
-//            einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
-//            einVRechts.rotateEinheitsVektor(90);
-//
-//            posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
-//            posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
-//            
-//            
-//
-////            posSL = new Position(pos1.getX(), pos1.getY());
-////            posSR = new Position(pos1.getX(), pos1.getY());
-////            g.fillOval(schiffListe.get(0).getP().getXInt(), schiffListe.get(0).getP().getYInt(), 5, 5);
-//
-//            while (!this.isInterrupted())
-//            {
-//                for (int i = 0; i < 24; i += 6)//4 durchgänge //i ist abstand
-//                {
-//                    g.setColor(Color.BLACK); //schwarze kugel
-//                    g.fillOval(posSL.getXInt() + i, posSL.getYInt(), 5, 5); //
-//                    g.fillOval(posSR.getXInt() + i, posSR.getYInt(), 5, 5);
-//                }
-//
-//                posSL.increaseX(einVLinks.getX() * 5); //kugelposition speed 5
-//                posSL.increaseY(einVLinks.getY() * 5);
-//                posSR.increaseX(einVRechts.getX() * 5);
-//                posSR.increaseY(einVRechts.getY() * 5);
-//
-//                try
-//                {
-//                    Thread.sleep(10);
-//                } catch (InterruptedException ex)
-//                {
-//                    Logger.getLogger(GameBL.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-////                this.interrupt();
-//                System.out.println("ShootingThread1 interrupted");
-//            }
-//        }
-//
-//    }
 }

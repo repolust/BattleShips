@@ -6,10 +6,10 @@
 package GUI;
 
 import BL.CheckIfHit;
-import BL.Controlls;
+
 import BL.Controlls;
 import BL.GameBL;
-import BL.MP3Player;
+
 import BL.MusikThread;
 import Beans.EinheitsVektor;
 import Beans.Kugel;
@@ -26,23 +26,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -86,8 +76,6 @@ public class GameGUI extends javax.swing.JFrame
     private MusikThread shot;
     private Position pos1, pos2;
 
-    
-
     @Override
     public void paint(Graphics grphcs)
     {
@@ -104,13 +92,9 @@ public class GameGUI extends javax.swing.JFrame
     {
         initComponents();
 
-//        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
         this.setSize(1920, 1080);
         this.setVisible(true);
-        
-        
 
-//        this.setResizable(false);
         maxX = (int) this.jpGame.getSize().getWidth();
         maxY = (int) this.jpGame.getSize().getHeight();
         jpGame.addKeyListener(jpGameListener);
@@ -119,7 +103,6 @@ public class GameGUI extends javax.swing.JFrame
         createPlayer();
 
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
-//        fillMap();
 
         zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
@@ -165,10 +148,8 @@ public class GameGUI extends javax.swing.JFrame
     {
        initComponents();
 
-//        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
         this.setSize(1920, 1080);
         this.setVisible(true);
-//        this.setResizable(false);
             
         this.jpPlayer1.setBackground(p1.getC());
         this.jpPlayer2.setBackground(p2.getC());
@@ -296,7 +277,6 @@ public class GameGUI extends javax.swing.JFrame
 
         private Player p1, p2;
         private JLabel lbP1Health, lbP1Munition, lbP2Health, lbP2Munition;
-//        private LinkedList<String> movement = new LinkedList();
 
         public zeichenThread(JLabel lbP1Health, JLabel lbP1Munition, JLabel lbP2Health, JLabel lbP2Munition)
         {
@@ -316,14 +296,7 @@ public class GameGUI extends javax.swing.JFrame
                 {
                     p1 = schiffListe.get(0);
                     p2 = schiffListe.get(1);
-//                    lbP1Position.setText(p1.getP().getXInt() + " / " + p1.getP().getYInt());
-//
-//                    lbP1Ballz.setText("" + kugelListe.size());
-//
-////                    String s = String.format("%2.2f / %2.2f", p1.getDirection().getX(), p1.getDirection().getY());
-//                    lbP1Vektor.setText("" + p1.getCurrentAngle());
 
-//                    tfVektor.setText(s);
                     this.lbP1Health.setText("Health: " + p1.getLeben());
                     this.lbP2Health.setText("Health: " + p2.getLeben());
                     this.lbP1Munition.setText("Munition: " + p1.getMunition());
@@ -376,11 +349,7 @@ public class GameGUI extends javax.swing.JFrame
                         einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
                         einVRechts.rotateEinheitsVektor(90);
 
-//                        Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
-//                        Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
-//                        Rectangle hitbox =  p1.getHitbox();
-                        Rectangle hitbox = new Rectangle(p1.getHitbox().x, p1.getHitbox().y, p1.getHitbox().width, p1.getHitbox().height);
-//                        
+                        Rectangle hitbox = new Rectangle(p1.getHitbox().x, p1.getHitbox().y, p1.getHitbox().width, p1.getHitbox().height);           
 
                         for (int i = 0; i <= 14; i += 7)
                         {
@@ -416,7 +385,7 @@ public class GameGUI extends javax.swing.JFrame
 
                             }
                         }
-//                            
+                        
                         controlls.removeKey(KeyEvent.VK_SPACE);
                         if(p1.getMunition() != 0)
                         {
@@ -475,11 +444,7 @@ public class GameGUI extends javax.swing.JFrame
                         einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
                         einVRechts.rotateEinheitsVektor(90);
 
-//                        Position posSL = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 27);//position schiff
-//                        Position posSR = new Position(schiffListe.get(0).getP().getX() + 15, schiffListe.get(0).getP().getY() + 63);
-//                        Rectangle hitbox =  p1.getHitbox();
                         Rectangle hitbox = new Rectangle(p2.getHitbox().x, p2.getHitbox().y, p2.getHitbox().width, p2.getHitbox().height);
-//                        
 
                         for (int i = 0; i <= 14; i += 7)
                         {
@@ -541,13 +506,11 @@ public class GameGUI extends javax.swing.JFrame
                         if (k.getPos().getX() > maxX || k.getPos().getX() < 0)
                         {
                             removeIndex = kugelListe.indexOf(k);
-//                                kugelListe.remove(k);
 
                         }
                         if (k.getPos().getY() > maxY || k.getPos().getY() < 0)
                         {
                             removeIndex = kugelListe.indexOf(k);
-//                                kugelListe.remove(k);
 
                         }
 
@@ -558,9 +521,6 @@ public class GameGUI extends javax.swing.JFrame
                         kugelListe.remove(removeIndex);
                     }
 
-//                    System.out.println(schiffListe.get(0).toString2());
-//                    System.out.println(schiffListe.get(1).toString2());
-//                    jLabel1.setText("KugelN:"+kugelListe.size());
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
 
                     if (check.checkCollision())
@@ -604,7 +564,7 @@ public class GameGUI extends javax.swing.JFrame
                         this.interrupt();
                         System.exit(0);
                     }
-//                        JOptionPane.showMessageDialog(null, "Spieler " + t.getPlayernummer() + " wurde getroffen!");
+                    
                     bl.draw(schiffListe, kugelListe);
 
                     Thread.sleep(10);
@@ -753,7 +713,6 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("Pressed: d");
                     controlls.addKey(KeyEvent.VK_D);
                     break;
-
                 case KeyEvent.VK_LEFT:
                     System.out.println("Pressed: left");
                     controlls.addKey(KeyEvent.VK_LEFT);
@@ -773,13 +732,11 @@ public class GameGUI extends javax.swing.JFrame
                 case KeyEvent.VK_SPACE:
                     System.out.println("# space #");
                     controlls.addKey(KeyEvent.VK_SPACE);
-//                    bl.shootPlayer1();
-                    //aufruf schuss methode //player1
                     break;
                 case KeyEvent.VK_ENTER:
                     System.out.println("**enter**");
                     controlls.addKey(KeyEvent.VK_ENTER);
-//                    bl.shootPlayer2();
+
                     break;
             }
 
@@ -833,18 +790,6 @@ public class GameGUI extends javax.swing.JFrame
 
         }
 
-        @Override
-        public void keyTyped(KeyEvent evt)
-        {
-            switch (evt.getKeyCode())
-            {
-                case KeyEvent.VK_ESCAPE:
-                    System.out.println("ESC");
 
-                    //menüaufruf
-                    break;
-
-            }
-        }
     }
 }

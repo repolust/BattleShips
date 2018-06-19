@@ -10,16 +10,7 @@ import Dialog.HelpDlg;
 import Dialog.NewPlayerDlg;
 import Dialog.OptionsDlg;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+
 
 /**
  *
