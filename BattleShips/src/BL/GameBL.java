@@ -82,17 +82,17 @@ public class GameBL
         
         for (Player p : schiffListe)
         {
-            //-----------Position Point-------
-            g.setColor(Color.red);
-            g.fillOval(p.getP().getXInt(), p.getP().getYInt(), 8, 8);
-            g.setColor(Color.black);
-            //-----------/Position Point-------
- 
-            
-            //-----------Hitbox-------
-            Rectangle hitbox = p.getHitbox();
-            g.drawRect((int) Math.round(hitbox.x), (int) Math.round(hitbox.y), hitbox.width, hitbox.height); 
-            //-----------/Hitbox-------
+//            //-----------Position Point-------
+//            g.setColor(Color.red);
+//            g.fillOval(p.getP().getXInt(), p.getP().getYInt(), 8, 8);
+//            g.setColor(Color.black);
+//            //-----------/Position Point-------
+// 
+//            
+//            //-----------Hitbox-------
+//            Rectangle hitbox = p.getHitbox();
+//            g.drawRect((int) Math.round(hitbox.x), (int) Math.round(hitbox.y), hitbox.width, hitbox.height); 
+//            //-----------/Hitbox-------
             
             
             //-----------Rotate----------------
@@ -112,7 +112,7 @@ public class GameBL
         Graphics2D g2d = bufferedImage.createGraphics();
         g2d.setColor(Color.BLACK);
         for(Kugel k:kugelListe){
-            g.fillOval(k.getPos().getXInt(), k.getPos().getYInt(), k.getGroesse(), k.getGroesse()); 
+            g2d.fillOval(k.getPos().getXInt(), k.getPos().getYInt(), k.getGroesse(), k.getGroesse()); 
         }
 
     }
