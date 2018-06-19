@@ -66,7 +66,7 @@ public class GameGUI extends javax.swing.JFrame
     private final String soundPath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "sound"
-            + File.separator + "meer.mp3";
+            + File.separator + "FluchDerKaribik.mp3";
     
     private final String cannonPath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -427,9 +427,9 @@ public class GameGUI extends javax.swing.JFrame
                         checkAndIncrease2();
 
                         EinheitsVektor k = p2.getDirection();
-                        k.rotateEinheitsVektor(-p1.getRotation());
+                        k.rotateEinheitsVektor(-p2.getRotation());
                         p2.setDirection(k);
-                        p2.setCurrentAngle(p2.getCurrentAngle() - p1.getRotation());
+                        p2.setCurrentAngle(p2.getCurrentAngle() - p2.getRotation());
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT) && !controlls.containsKey(KeyEvent.VK_LEFT))// UP RIGHT Rechts Kurve
@@ -438,9 +438,9 @@ public class GameGUI extends javax.swing.JFrame
                         checkAndIncrease2();
 
                         EinheitsVektor k = p2.getDirection();
-                        k.rotateEinheitsVektor(p1.getRotation());
+                        k.rotateEinheitsVektor(p2.getRotation());
                         p2.setDirection(k);
-                        p2.setCurrentAngle(p2.getCurrentAngle() + p1.getRotation());
+                        p2.setCurrentAngle(p2.getCurrentAngle() + p2.getRotation());
 
                     }
 
@@ -498,6 +498,8 @@ public class GameGUI extends javax.swing.JFrame
                             startCannonSound();
                         }
                     }
+                    
+                    //Falls beide SChiffe keine Munition haben, bekommt das SChiff das mehr Leben hat einen leichten Geschwindigkeitsboost
                     if (!isSpeedIncreased) {
                         
                     if(p1.getMunition() == 0 && p2.getMunition() == 0)
