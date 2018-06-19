@@ -71,11 +71,19 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "bilder"
             + File.separator + "shipbasic.png";
     
-
+    private final String soundPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "meer.mp3";
+    
+    private final String cannonPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "cannon.mp3";
     
     private LinkedList<Player> schiffListe = new LinkedList<Player>();
     private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
-
+    private MusikThread shot;
     private Position pos1, pos2;
 
     private int rotation = 4;
@@ -116,16 +124,21 @@ public class GameGUI extends javax.swing.JFrame
         zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
         
-        MusikThread mt = new MusikThread();
-        mt.start();
-//        startSound();
+       
+        startMusik();
     }
 
-//    public void startSound()
-//    {
-//        MP3Player mp3 = new MP3Player(soundPath);
-//        mp3.play();
-//    }
+    public void startMusik()
+    {
+         MusikThread mt = new MusikThread(soundPath);
+         mt.start();
+    }
+    
+    public void startCannonSound()
+    {
+        shot = new MusikThread(cannonPath);
+         shot.start();
+    }
     
     
     public void createPlayer()
@@ -179,6 +192,8 @@ public class GameGUI extends javax.swing.JFrame
 
         zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
+        
+        startMusik();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -396,6 +411,11 @@ public class GameGUI extends javax.swing.JFrame
                         }
 //                            
                         controlls.removeKey(KeyEvent.VK_SPACE);
+                        if(p1.getMunition() != 0)
+                        {
+                            startCannonSound();
+                        }
+                        
                     }
 
 //-----------------------------------Spieler 2 ---------------------------------
@@ -492,6 +512,10 @@ public class GameGUI extends javax.swing.JFrame
                         }
 
                         controlls.removeKey(KeyEvent.VK_ENTER);
+                        if(p1.getMunition() != 0)
+                        {
+                            startCannonSound();
+                        }
                     }
 
 //-----------------------------------Liste setzen---------------------------------                    

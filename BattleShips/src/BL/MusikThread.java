@@ -13,16 +13,20 @@ import java.io.File;
  */
 public class MusikThread extends Thread{
 
-        private final String soundPath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "sound"
-            + File.separator + "meer.mp3";
+        private String path;
+
+    public MusikThread(String path) {
+        this.path = path;
+    }
+        
+        
     
     @Override
     public void run() {
        
-        MP3Player mp3 = new MP3Player(soundPath);
+        MP3Player mp3 = new MP3Player(path);
         mp3.play();
+ 
     }
     
     
