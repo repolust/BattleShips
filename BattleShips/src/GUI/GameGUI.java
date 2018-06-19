@@ -86,7 +86,7 @@ public class GameGUI extends javax.swing.JFrame
     private MusikThread shot;
     private Position pos1, pos2;
 
-    private int rotation = 4;
+    
 
     @Override
     public void paint(Graphics grphcs)
@@ -154,8 +154,8 @@ public class GameGUI extends javax.swing.JFrame
             Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Player p1 = new Player("a", Color.BLUE, ship1, 100, 150, 0, pos1, "schiff1", 90, new EinheitsVektor(1, 0), 12);
-        Player p2 = new Player("b", Color.RED, ship2, 100, 150, 0, pos2, "schiff2", 270, new EinheitsVektor(-1, 0), 12);
+        Player p1 = new Player("Spieler1", Color.BLUE, ship1, 100, 150, 0, pos1, "schiff1", 90, new EinheitsVektor(1, 0), 8, 3);
+        Player p2 = new Player("Spieler2", Color.RED, ship2, 100, 150, 0, pos2, "schiff2", 270, new EinheitsVektor(-1, 0), 8, 3);
 
         schiffListe.add(p1);
         schiffListe.add(p2);
@@ -169,9 +169,12 @@ public class GameGUI extends javax.swing.JFrame
         this.setSize(1920, 1080);
         this.setVisible(true);
 //        this.setResizable(false);
-
+            
         this.jpPlayer1.setBackground(p1.getC());
         this.jpPlayer2.setBackground(p2.getC());
+        
+        this.lbPlayer1.setText(p1.getName()+":");
+        this.lbPlayer2.setText(p2.getName()+":");
         
         maxX = (int) this.jpGame.getSize().getWidth();
         maxY = (int) this.jpGame.getSize().getHeight();
@@ -227,10 +230,12 @@ public class GameGUI extends javax.swing.JFrame
         jpPlayer1.add(lbPlayer1);
 
         lbP1Health.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbP1Health.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbP1Health.setText("Health:");
         jpPlayer1.add(lbP1Health);
 
         lbP1Munition.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbP1Munition.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbP1Munition.setText("Munition:");
         jpPlayer1.add(lbP1Munition);
 
@@ -243,10 +248,12 @@ public class GameGUI extends javax.swing.JFrame
         jpPlayer2.add(lbPlayer2);
 
         lbP2Health.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbP2Health.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbP2Health.setText("Health:");
         jpPlayer2.add(lbP2Health);
 
         lbP2Munition.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbP2Munition.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbP2Munition.setText("Munition:");
         jpPlayer2.add(lbP2Munition);
 
@@ -345,9 +352,9 @@ public class GameGUI extends javax.swing.JFrame
                         pos1 = p1.getP();
                         checkAndIncrease1();
                         EinheitsVektor k = p1.getDirection();
-                        k.rotateEinheitsVektor(-4);
+                        k.rotateEinheitsVektor(-p1.getRotation());
                         p1.setDirection(k);
-                        p1.setCurrentAngle(p1.getCurrentAngle() - rotation);
+                        p1.setCurrentAngle(p1.getCurrentAngle() - p1.getRotation());
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_W) && controlls.containsKey(KeyEvent.VK_D) && !controlls.containsKey(KeyEvent.VK_A))// W D Rechts Kurve
@@ -355,9 +362,9 @@ public class GameGUI extends javax.swing.JFrame
                         pos1 = p1.getP();
                         checkAndIncrease1();
                         EinheitsVektor k = p1.getDirection();
-                        k.rotateEinheitsVektor(4);
+                        k.rotateEinheitsVektor(p1.getRotation());
                         p1.setDirection(k);
-                        p1.setCurrentAngle(p1.getCurrentAngle() + rotation);
+                        p1.setCurrentAngle(p1.getCurrentAngle() + p1.getRotation());
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_SPACE)) // Schuss
@@ -442,9 +449,9 @@ public class GameGUI extends javax.swing.JFrame
                         checkAndIncrease2();
 
                         EinheitsVektor k = p2.getDirection();
-                        k.rotateEinheitsVektor(-4);
+                        k.rotateEinheitsVektor(-p1.getRotation());
                         p2.setDirection(k);
-                        p2.setCurrentAngle(p2.getCurrentAngle() - rotation);
+                        p2.setCurrentAngle(p2.getCurrentAngle() - p1.getRotation());
 
                     }
                     if (controlls.containsKey(KeyEvent.VK_UP) && controlls.containsKey(KeyEvent.VK_RIGHT) && !controlls.containsKey(KeyEvent.VK_LEFT))// UP RIGHT Rechts Kurve
@@ -453,9 +460,9 @@ public class GameGUI extends javax.swing.JFrame
                         checkAndIncrease2();
 
                         EinheitsVektor k = p2.getDirection();
-                        k.rotateEinheitsVektor(4);
+                        k.rotateEinheitsVektor(p1.getRotation());
                         p2.setDirection(k);
-                        p2.setCurrentAngle(p2.getCurrentAngle() + rotation);
+                        p2.setCurrentAngle(p2.getCurrentAngle() + p1.getRotation());
 
                     }
 
@@ -512,7 +519,7 @@ public class GameGUI extends javax.swing.JFrame
                         }
 
                         controlls.removeKey(KeyEvent.VK_ENTER);
-                        if(p1.getMunition() != 0)
+                        if(p2.getMunition() != 0)
                         {
                             startCannonSound();
                         }
@@ -528,8 +535,8 @@ public class GameGUI extends javax.swing.JFrame
                     for (Kugel k : kugelListe)
                     {
 
-                        k.getPos().increaseX(k.getEinheintsVektor().getX() * 15);
-                        k.getPos().increaseY(k.getEinheintsVektor().getY() * 15);
+                        k.getPos().increaseX(k.getEinheintsVektor().getX() * 20);
+                        k.getPos().increaseY(k.getEinheintsVektor().getY() * 20);
 
                         if (k.getPos().getX() > maxX || k.getPos().getX() < 0)
                         {
@@ -586,13 +593,13 @@ public class GameGUI extends javax.swing.JFrame
 
                     if (p1.getLeben() <= 0)
                     {
-                        JOptionPane.showMessageDialog(null, "Spieler 2 hat gewonnen!");
+                        JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
                         //zurück ins menü!
                         this.interrupt();
                         System.exit(0);
                     } else if (p2.getLeben() <= 0)
                     {
-                        JOptionPane.showMessageDialog(null, "Spieler 1 hat gewonnen!");
+                        JOptionPane.showMessageDialog(null, p1.getName()+"Spieler 1 hat gewonnen!");
                         //zurück ins menü!
                         this.interrupt();
                         System.exit(0);

@@ -231,11 +231,11 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                     
                     if(index == 1)
                     {
-                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 90, new EinheitsVektor(1, 0), 12);
+                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 90, new EinheitsVektor(1, 0), 8, 3);
                     }
                     else
                     {
-                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 270, new EinheitsVektor(-1, 0), 12);
+                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 270, new EinheitsVektor(-1, 0), 8, 3);
                     }
                     
                     

@@ -26,11 +26,12 @@ public class Player {
     private EinheitsVektor direction;
     private double speed;
     private int width, height;
+    private int rotation;
 
  
 
     public Player(String name, Color c, Image schiff, int leben, int munition, int index, Position p, String schiffArt, double currentAngle,
-                    EinheitsVektor direction, double speed) 
+                    EinheitsVektor direction, double speed, int rotation) 
     {
         this.name = name;
         this.c = c;
@@ -45,6 +46,7 @@ public class Player {
         this.speed = speed;
         this.width = schiff.getWidth(null);
         this.height = schiff.getHeight(null);
+        this.rotation = rotation;
     }
 
        public int getWidth() {
@@ -66,6 +68,14 @@ public class Player {
           
            return hitbox;
        }
+
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
        
     public void setWidth(int width) {
         this.width = width;
