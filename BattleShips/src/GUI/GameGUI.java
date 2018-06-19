@@ -63,7 +63,7 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "bilder"
             + File.separator + "shipbasic.png";
     
-    private final String soundPath = System.getProperty("user.dir")
+    private final String musicPath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "sound"
             + File.separator + "FluchDerKaribik.mp3";
@@ -73,10 +73,17 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "sound"
             + File.separator + "cannon.mp3";
     
+    private final String winSoundPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "winSound.mp3";
+    
     private LinkedList<Player> schiffListe = new LinkedList<Player>();
     private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
     private MusikThread shot;
     private Position pos1, pos2;
+    
+    private MusikThread musik = new MusikThread(musicPath);
 
     @Override
     public void paint(Graphics grphcs)
@@ -90,8 +97,6 @@ public class GameGUI extends javax.swing.JFrame
         }
     }
     
-
-
     public GameGUI()
     {
         initComponents();
@@ -116,9 +121,8 @@ public class GameGUI extends javax.swing.JFrame
     }
 
     public void startMusik()
-    {
-         MusikThread mt = new MusikThread(soundPath);
-         mt.start();
+    { 
+         musik.start();
     }
     
     public void startCannonSound()
@@ -126,8 +130,8 @@ public class GameGUI extends javax.swing.JFrame
         shot = new MusikThread(cannonPath);
          shot.start();
     }
-    
-    
+   
+  
     public void createPlayer()
     {
         try
@@ -517,9 +521,6 @@ public class GameGUI extends javax.swing.JFrame
                     }
                     }
 
-//-----------------------------------Liste setzen---------------------------------   
-                    schiffListe.set(0, p1);
-                    schiffListe.set(1, p2);
 
 //-----------------------------------kugel bewegen---------------------------------
                     int removeIndex = -1;
@@ -547,7 +548,7 @@ public class GameGUI extends javax.swing.JFrame
                     {
                         kugelListe.remove(removeIndex);
                     }
-//-----------------------------------//Kugel---------------------------------
+//-----------------------------------//Kugel bewegen---------------------------------
 
 //-----------------------------------Collision Detection---------------------------------
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
@@ -575,6 +576,7 @@ public class GameGUI extends javax.swing.JFrame
                     
                     if(p1.getLeben() <= 0 && p2.getLeben() <= 0)
                     {
+                        
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","Vielleicht schafft ihr es nächstes mal");
                         wdlg.setVisible(true);
 //                        JOptionPane.showMessageDialog(null, "Unentschieden!");
@@ -584,6 +586,10 @@ public class GameGUI extends javax.swing.JFrame
                     }
                     else if (p1.getLeben() <= 0)
                     {
+                        
+                        musik.interrupt();
+                        MusikThread win = new MusikThread(winSoundPath);
+                        win.start();
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName()+" hat gewonnen!");
                         wdlg.setVisible(true);
 //                        JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
@@ -596,12 +602,19 @@ public class GameGUI extends javax.swing.JFrame
 //                        JOptionPane.showMessageDialog(null, p1.getName()+" hat gewonnen!");
                         //zurück ins menü!
                         
-                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !",p1.getName()+ "hat gewonnen! ");
+                        
+                        MusikThread win = new MusikThread(winSoundPath);
+                        win.start();
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts!",p1.getName()+ "hat gewonnen! ");
                         wdlg.setVisible(true);
                         this.interrupt();
 //                        System.exit(0);
                     }
                     
+//-----------------------------------Liste setzen---------------------------------   
+                    schiffListe.set(0, p1);
+                    schiffListe.set(1, p2);
+
 //-----------------------------------//Collision Detection---------------------------------                    
                     bl.draw(schiffListe, kugelListe);
 
@@ -769,12 +782,11 @@ public class GameGUI extends javax.swing.JFrame
                     break;
                 case KeyEvent.VK_SPACE:
                     System.out.println("# space #");
-                    controlls.addKey(KeyEvent.VK_SPACE);
+                    controlls.addKey(KeyEvent.VK_SPACE);// adden
                     break;
                 case KeyEvent.VK_ENTER:
                     System.out.println("**enter**");
-                    controlls.addKey(KeyEvent.VK_ENTER);
-
+                    controlls.addKey(KeyEvent.VK_ENTER);// adden
                     break;
             }
 
@@ -801,10 +813,7 @@ public class GameGUI extends javax.swing.JFrame
                     System.out.println("Released: d");
                     controlls.removeKey(KeyEvent.VK_D);
                     break;
-                case KeyEvent.VK_SPACE:
-                    System.out.println("Released: space");
-                    controlls.removeKey(KeyEvent.VK_SPACE);
-                    break;
+                
                 case KeyEvent.VK_LEFT:
                     System.out.println("Released: left");
                     controlls.removeKey(KeyEvent.VK_LEFT);

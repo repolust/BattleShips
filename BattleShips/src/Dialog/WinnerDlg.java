@@ -60,6 +60,7 @@ public class WinnerDlg extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lbWinner = new javax.swing.JLabel();
         lbBeenden = new javax.swing.JLabel();
+        btNeuStart = new javax.swing.JLabel();
         lbBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -68,20 +69,18 @@ public class WinnerDlg extends javax.swing.JDialog {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Du siegst!");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(120, 40, 440, 120);
+        jLabel1.setBounds(110, 20, 440, 120);
 
         lbWinner.setFont(new java.awt.Font("Harlow Solid Italic", 0, 36)); // NOI18N
         lbWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbWinner.setText("Example Text");
         jPanel1.add(lbWinner);
-        lbWinner.setBounds(30, 170, 590, 70);
+        lbWinner.setBounds(30, 150, 590, 70);
 
-        lbBeenden.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
-        lbBeenden.setForeground(new java.awt.Color(255, 255, 255));
+        lbBeenden.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         lbBeenden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbBeenden.setText("Beenden");
         lbBeenden.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,22 +89,32 @@ public class WinnerDlg extends javax.swing.JDialog {
             }
         });
         jPanel1.add(lbBeenden);
-        lbBeenden.setBounds(140, 270, 380, 70);
+        lbBeenden.setBounds(350, 260, 200, 70);
+
+        btNeuStart.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        btNeuStart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btNeuStart.setText("Neu Start");
+        btNeuStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onNeuStart(evt);
+            }
+        });
+        jPanel1.add(btNeuStart);
+        btNeuStart.setBounds(110, 260, 200, 70);
 
         lbBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/blasen.jpeg"))); // NOI18N
-        lbBackground.setText("adsfa");
         jPanel1.add(lbBackground);
-        lbBackground.setBounds(0, 0, 810, 450);
+        lbBackground.setBounds(0, 0, 640, 360);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
 
         pack();
@@ -114,6 +123,10 @@ public class WinnerDlg extends javax.swing.JDialog {
     private void onBeenden(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onBeenden
         System.exit(0);
     }//GEN-LAST:event_onBeenden
+
+    private void onNeuStart(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onNeuStart
+        // keine Ahnung
+    }//GEN-LAST:event_onNeuStart
 
     /**
      * @param args the command line arguments
@@ -161,6 +174,7 @@ public class WinnerDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btNeuStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbBackground;
