@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>120</y>
+      <w>210</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+-farbe: double
+-posX:int
+-poxY:int
+-hp:int
+-munition:int
+-punkte:int
+-
++isAlive():boolean
++hasMunition():boolean
++getter/setter()
++setColor()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>350</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>SettingsGUI
+--
+-player:LinkedList&lt;Player&gt;
+-hoehe:int
+-breite:int
+-screensize:Dimension
+--
++spielerErstellen():boolean
++getSpieler():LinkedList&lt;Player&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>540</y>
+      <w>210</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>GameGUI
+--
+-player:LinkedList&lt;Player&gt;
+--
+-keyTriggerW()
+-keyTriggerA()
+-keyTriggerS()
+-keyTriggerD()
+-keyTrigger↑()
+-keyTrigger←()
+-keyTrigger↓()
+-keyTrigger→()
+-keyTriggerBlank()
+-keyTriggerEnter()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>540</y>
+      <w>210</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>GameBL
+--
+-player:LinkedList&lt;Player&gt;
+--
++movePlayer()
++moveNorth()
++moveSouth()
++moveEast()
++moveWest()
++checkLife()
++checkMunition()
++shot()
++rotateShip()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
