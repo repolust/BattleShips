@@ -24,7 +24,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Kugel" package="Beans" visibility="public" xPosition="101.0" yPosition="472.0">
+    <Class name="Kugel" package="Beans" visibility="public" xPosition="101.0" yPosition="489.0">
       <Fields>
         <Field name="einheintsVektor" type="EinheitsVektor" visibility="private"/>
         <Field name="pos" type="Position" visibility="private"/>
@@ -232,7 +232,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Vektor" package="Beans" visibility="public" xPosition="2248.0" yPosition="386.0">
+    <Class name="Vektor" package="Beans" visibility="public" xPosition="2195.0" yPosition="256.0">
       <Fields>
         <Field name="x" type="double" visibility="protected"/>
         <Field name="y" type="double" visibility="protected"/>
@@ -338,7 +338,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="ListModel" package="BL" visibility="public" xPosition="2369.0" yPosition="2443.0">
+    <Class name="ListModel" package="BL" visibility="public" xPosition="2419.0" yPosition="2429.0">
       <Fields>
         <Field name="liste" type="LinkedList&lt;Player&gt;" visibility="private"/>
       </Fields>
@@ -696,38 +696,38 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="players" source="BL.GameBL" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
-    <HasRelation name="direction" source="Beans.Player" target="Beans.EinheitsVektor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Beans.Vektor" target="Beans.Vektor" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="o" source="GUI.StartMenuGUI" target="Beans.Option" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="kugelListe" source="BL.CheckIfHit" target="Beans.Kugel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Kugel&gt;"/>
     <UseRelation source="Beans.Player" target="Beans.Vektor" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="player" source="BL.MP3Player" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="o" source="Dialog.OptionsDlg" target="Beans.Option" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="Beans.EinheitsVektor" target="Beans.Vektor"/>
-    <HasRelation name="shot" source="GUI.GameGUI" target="BL.MusikThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="kugelListe" source="GUI.GameGUI" target="Beans.Kugel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Kugel&gt;"/>
-    <HasRelation name="kugelListe" source="BL.GameBL" target="Beans.Kugel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Kugel&gt;"/>
-    <HasRelation name="pos" source="Beans.Kugel" target="Beans.Position" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Beans.Kugel" target="Beans.Position" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="schiffListe" source="BL.CheckIfHit" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
-    <HasRelation name="schiffListe" source="GUI.GameGUI" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
-    <UseRelation source="Dialog.OptionsDlg" target="Beans.Option" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="schiffListe" source="BL.GameBL" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
-    <UseRelation source="BL.GameBL" target="Beans.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="p" source="Beans.Player" target="Beans.Position" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="liste" source="BL.ListModel" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
     <HasRelation name="pos1" source="GUI.GameGUI" target="Beans.Position" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="bl" source="GUI.GameGUI" target="BL.GameBL" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="einheintsVektor" source="Beans.Kugel" target="Beans.EinheitsVektor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Beans.EinheitsVektor" target="Beans.Vektor" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="lm" source="Dialog.NewPlayerDlg" target="BL.ListModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ListModel"/>
+    <UseRelation source="Beans.Kugel" target="Beans.Position" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="controlls" source="GUI.GameGUI" target="BL.Controlls" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="o" source="Dialog.NewPlayerDlg" target="Beans.Option" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Beans.Player" target="Beans.Position" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="p" source="Dialog.NewPlayerDlg" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="BL.CheckIfHit" target="Beans.Treffer" sourceCardinality="1..1" targetCardinality="1..1"/>
     <UseRelation source="Beans.Kugel" target="Beans.Vektor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Beans.Player" target="Beans.Position" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Beans.Vektor" target="Beans.Vektor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="schiffListe" source="BL.GameBL" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
+    <HasRelation name="o" source="GUI.StartMenuGUI" target="Beans.Option" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="o" source="Dialog.OptionsDlg" target="Beans.Option" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="p" source="Dialog.NewPlayerDlg" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pos" source="Beans.Kugel" target="Beans.Position" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="BL.CheckIfHit" target="Beans.Treffer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="lm" source="Dialog.NewPlayerDlg" target="BL.ListModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ListModel"/>
     <UseRelation source="BL.ListModel" target="Beans.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="p" source="Beans.Player" target="Beans.Position" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="shot" source="GUI.GameGUI" target="BL.MusikThread" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="BL.GameBL" target="Beans.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="players" source="BL.GameBL" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
+    <HasRelation name="player" source="BL.MP3Player" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="schiffListe" source="GUI.GameGUI" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
+    <HasRelation name="einheintsVektor" source="Beans.Kugel" target="Beans.EinheitsVektor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Beans.EinheitsVektor" target="Beans.Vektor" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="kugelListe" source="BL.GameBL" target="Beans.Kugel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Kugel&gt;"/>
+    <HasRelation name="kugelListe" source="BL.CheckIfHit" target="Beans.Kugel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Kugel&gt;"/>
+    <HasRelation name="bl" source="GUI.GameGUI" target="BL.GameBL" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="kugelListe" source="GUI.GameGUI" target="Beans.Kugel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Kugel&gt;"/>
+    <HasRelation name="schiffListe" source="BL.CheckIfHit" target="Beans.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Player&gt;"/>
+    <UseRelation source="Dialog.OptionsDlg" target="Beans.Option" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="direction" source="Beans.Player" target="Beans.EinheitsVektor" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Beans.EinheitsVektor" target="Beans.Vektor"/>
   </ClassDiagramRelations>
 </ClassDiagram>
