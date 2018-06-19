@@ -14,6 +14,7 @@ import java.util.LinkedList;
 /**
  *
  * @author Tobias und Michael
+ * Erstellt am 6.6.2018
  */
 public class CheckIfHit // Collision Detection Klasse
 {

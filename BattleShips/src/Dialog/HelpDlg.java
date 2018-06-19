@@ -10,6 +10,7 @@ import java.awt.Dimension;
 /**
  *
  * @author Leonardo
+ * Erstellt am 4.6.2018
  */
 public class HelpDlg extends javax.swing.JDialog {
 

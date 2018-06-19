@@ -12,6 +12,7 @@ import javazoom.jl.player.Player;
 /**
  *
  * @author Michael
+ * Erstellt am 19.6.2018
  */
 
 public class MP3Player 

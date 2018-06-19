@@ -8,6 +8,7 @@ package Beans;
 /**
  *
  * @author Leonardo
+ * Erstellt am 6.6.2018
  */
 public class Kugel {
     

@@ -8,6 +8,7 @@ package BL;
 /**
  *
  * @author Michael
+ * Erstellt am 19.6.2018
  */
 public class MusikThread extends Thread{
 

@@ -33,6 +33,7 @@ import javax.swing.JLabel;
 /**
  *
  * @author Team
+ * Erstellt am 11.4.2018
  */
 public class GameGUI extends javax.swing.JFrame
 {

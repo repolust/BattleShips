@@ -8,6 +8,7 @@ package Beans;
 /**
  *
  * @author Michael
+ * Erstellt am 18.6.2018
  */
 public class Treffer {
     

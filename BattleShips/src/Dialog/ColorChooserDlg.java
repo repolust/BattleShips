@@ -11,6 +11,7 @@ import java.awt.Dimension;
 /**
  *
  * @author Leonardo
+ * Erstellt am 19.4.2018
  */
 public class ColorChooserDlg extends javax.swing.JDialog {
 

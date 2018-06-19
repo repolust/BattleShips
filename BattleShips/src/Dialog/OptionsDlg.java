@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Michael
+ * Erstellt am 19.6.2018
  */
 
 public class OptionsDlg extends javax.swing.JDialog {

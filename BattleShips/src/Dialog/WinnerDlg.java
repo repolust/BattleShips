@@ -11,6 +11,7 @@ import java.awt.Dimension;
 /**
  *
  * @author Michael
+ * Erstellt am 19.6.2018
  */
 public class WinnerDlg extends javax.swing.JDialog {
 

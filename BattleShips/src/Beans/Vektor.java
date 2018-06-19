@@ -8,6 +8,7 @@ package Beans;
 /**
  *
  * @author Tobias
+ * Erstellt am 2.5.2018
  */
 public class Vektor
 {

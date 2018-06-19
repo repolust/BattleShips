@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 /**
  *
  * @author Michael
+ * Erstellt am 25.4.2018
  */
 public class ShipChooserDlg extends javax.swing.JDialog {
 

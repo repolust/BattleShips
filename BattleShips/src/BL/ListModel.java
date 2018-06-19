@@ -12,6 +12,7 @@ import javax.swing.AbstractListModel;
 /**
  *
  * @author Leonardo
+ * Erstellt am 23.4.2018
  */
 public class ListModel extends AbstractListModel{// Listemodel für den NewPlayerDialog
 
