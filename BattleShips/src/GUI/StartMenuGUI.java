@@ -5,8 +5,10 @@
  */
 package GUI;
 
+import Beans.Option;
 import Dialog.HelpDlg;
 import Dialog.NewPlayerDlg;
+import Dialog.OptionsDlg;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -32,6 +34,8 @@ public class StartMenuGUI extends javax.swing.JFrame {
     private int hoeheSchirm = (int) screensize.getHeight();
     private int breiteSchirm = (int) screensize.getWidth();
 
+    private Option o = new Option(100,150,8,3);
+    
     public StartMenuGUI() {
         initComponents();
         this.setBounds(breiteSchirm / 3, hoeheSchirm / 3, breiteSchirm / 3, hoeheSchirm / 3);
@@ -48,9 +52,10 @@ public class StartMenuGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        btHilfe = new javax.swing.JButton();
+        btOption = new javax.swing.JButton();
         btStarten = new javax.swing.JButton();
         btBeenden = new javax.swing.JButton();
+        btHilfe1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lbBild = new javax.swing.JLabel();
 
@@ -60,18 +65,18 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        btHilfe.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
-        btHilfe.setForeground(new java.awt.Color(255, 255, 255));
-        btHilfe.setText("Hilfe");
-        btHilfe.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
-        btHilfe.setContentAreaFilled(false);
-        btHilfe.addActionListener(new java.awt.event.ActionListener() {
+        btOption.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
+        btOption.setForeground(new java.awt.Color(255, 255, 255));
+        btOption.setText("Options");
+        btOption.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        btOption.setContentAreaFilled(false);
+        btOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHilfeActionPerformed(evt);
+                onOptions(evt);
             }
         });
-        jPanel2.add(btHilfe);
-        btHilfe.setBounds(40, 120, 220, 45);
+        jPanel2.add(btOption);
+        btOption.setBounds(40, 140, 220, 45);
 
         btStarten.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
         btStarten.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,11 +102,24 @@ public class StartMenuGUI extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btBeenden);
-        btBeenden.setBounds(40, 180, 220, 45);
+        btBeenden.setBounds(40, 290, 220, 45);
+
+        btHilfe1.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
+        btHilfe1.setForeground(new java.awt.Color(255, 255, 255));
+        btHilfe1.setText("Hilfe");
+        btHilfe1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 4, true));
+        btHilfe1.setContentAreaFilled(false);
+        btHilfe1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onHilfe(evt);
+            }
+        });
+        jPanel2.add(btHilfe1);
+        btHilfe1.setBounds(40, 210, 220, 45);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/Logo.PNG"))); // NOI18N
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(440, 120, 150, 100);
+        jLabel1.setBounds(430, 150, 140, 110);
 
         lbBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/blasen.jpeg"))); // NOI18N
         lbBild.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -128,19 +146,31 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
     private void onStart(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onStart
     {//GEN-HEADEREND:event_onStart
-        NewPlayerDlg pldg = new NewPlayerDlg(this, true);
+        NewPlayerDlg pldg = new NewPlayerDlg(this, true, o);
         pldg.setVisible(true);
+        
     }//GEN-LAST:event_onStart
 
     private void onBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBeenden
     {//GEN-HEADEREND:event_onBeenden
         dispose();
+        System.exit(0);
     }//GEN-LAST:event_onBeenden
 
-    private void btHilfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHilfeActionPerformed
+    private void onOptions(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onOptions
+        OptionsDlg odlg = new OptionsDlg(this, true);
+        odlg.setVisible(true);
+        
+        if(odlg.isok())
+        {
+            o = odlg.getOptions();
+        }
+    }//GEN-LAST:event_onOptions
+
+    private void onHilfe(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onHilfe
         HelpDlg hdlg = new HelpDlg(this, true);
         hdlg.setVisible(true);
-    }//GEN-LAST:event_btHilfeActionPerformed
+    }//GEN-LAST:event_onHilfe
 
     /**
      * @param args the command line arguments
@@ -180,7 +210,8 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBeenden;
-    private javax.swing.JButton btHilfe;
+    private javax.swing.JButton btHilfe1;
+    private javax.swing.JButton btOption;
     private javax.swing.JButton btStarten;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;

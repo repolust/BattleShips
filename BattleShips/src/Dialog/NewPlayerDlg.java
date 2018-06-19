@@ -7,6 +7,7 @@ package Dialog;
 
 import BL.ListModel;
 import Beans.EinheitsVektor;
+import Beans.Option;
 import Beans.Position;
 import Beans.Player;
 import GUI.GameGUI;
@@ -45,14 +46,15 @@ public class NewPlayerDlg extends javax.swing.JDialog {
 
     private Image ship = null;
     private String shiffArt = "";
+    private Option o;
 
-    public NewPlayerDlg(java.awt.Frame parent, boolean modal) {
+    public NewPlayerDlg(java.awt.Frame parent, boolean modal, Option o) {
         super(parent, modal);
         initComponents();
         this.setBounds(breiteSchirm * 2 / 3, hoeheSchirm / 3, breiteSchirm / 6, hoeheSchirm / 3);
         this.setResizable(false);
         this.jlMyPlayerListe.setModel(lm);
-
+        this.o = o;
     }
 
     public void clearAuswahl() {
@@ -231,11 +233,12 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                     
                     if(index == 1)
                     {
-                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 90, new EinheitsVektor(1, 0), 8, 3);
+                        // (String name, Color c, Image schiff, int leben, int munition, int index, Position p, String schiffArt, double currentAngle, EinheitsVektor direction, double speed, int rotation) 
+                        p = new Player(this.name, c, ship, o.getLeben(), o.getMunition(), index, (new Position(0, 0)), shiffArt, 90, new EinheitsVektor(1, 0), o.getSpeed(), o.getRadius());
                     }
                     else
                     {
-                        p = new Player(this.name, c, ship, 100, 100, index, (new Position(0, 0)), shiffArt, 270, new EinheitsVektor(-1, 0), 8, 3);
+                        p = new Player(this.name, c, ship, o.getLeben(), o.getMunition(), index, (new Position(0, 0)), shiffArt, 270, new EinheitsVektor(-1, 0), o.getSpeed(),o.getRadius());
                     }
                     
                     
@@ -329,7 +332,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                NewPlayerDlg dialog = new NewPlayerDlg(new javax.swing.JFrame(), true);
+                NewPlayerDlg dialog = new NewPlayerDlg(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
