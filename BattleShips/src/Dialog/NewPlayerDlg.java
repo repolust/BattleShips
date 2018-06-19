@@ -259,6 +259,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
             GameGUI gg = new GameGUI(p1, p2);
 
             gg.setVisible(true);
+//            gg.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Du musst 2 Spieler erstellen!");
         }

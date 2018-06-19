@@ -87,6 +87,8 @@ public class GameGUI extends javax.swing.JFrame
 
         }
     }
+    
+
 
     public GameGUI()
     {
@@ -179,6 +181,8 @@ public class GameGUI extends javax.swing.JFrame
         
         startMusik();
     }
+    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,7 +202,7 @@ public class GameGUI extends javax.swing.JFrame
         lbP2Munition = new javax.swing.JLabel();
         jpGame = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jpPlayer1.setBackground(new java.awt.Color(0, 102, 204));
@@ -301,6 +305,7 @@ public class GameGUI extends javax.swing.JFrame
                     this.lbP2Health.setText("Health: " + p2.getLeben());
                     this.lbP1Munition.setText("Munition: " + p1.getMunition());
                     this.lbP2Munition.setText("Munition: " + p2.getMunition());
+
 
 //-----------------------------------Spieler 1 ---------------------------------  
                     if (p1.getCurrentAngle() >= 360 || p1.getCurrentAngle() <= -360) // reset Angle
@@ -494,7 +499,7 @@ public class GameGUI extends javax.swing.JFrame
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
 
-//-----------------------------------kugel---------------------------------
+//-----------------------------------kugel bewegen---------------------------------
                     int removeIndex = -1;
 
                     for (Kugel k : kugelListe)
@@ -520,7 +525,9 @@ public class GameGUI extends javax.swing.JFrame
                     {
                         kugelListe.remove(removeIndex);
                     }
+//-----------------------------------//Kugel---------------------------------
 
+//-----------------------------------Collision Detection---------------------------------
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
 
                     if (check.checkCollision())
@@ -556,6 +563,7 @@ public class GameGUI extends javax.swing.JFrame
                         JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
                         //zurück ins menü!
                         this.interrupt();
+                        
                         System.exit(0);
                     } else if (p2.getLeben() <= 0)
                     {
@@ -565,6 +573,7 @@ public class GameGUI extends javax.swing.JFrame
                         System.exit(0);
                     }
                     
+//-----------------------------------//Collision Detection---------------------------------                    
                     bl.draw(schiffListe, kugelListe);
 
                     Thread.sleep(10);
@@ -785,6 +794,7 @@ public class GameGUI extends javax.swing.JFrame
                     break;
                 case KeyEvent.VK_ESCAPE:
                     System.exit(0);
+                    controlls.addKey(KeyEvent.VK_ESCAPE);
                     break;
             }
 
