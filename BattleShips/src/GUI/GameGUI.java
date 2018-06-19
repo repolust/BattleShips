@@ -9,6 +9,8 @@ import BL.CheckIfHit;
 import BL.Controlls;
 import BL.Controlls;
 import BL.GameBL;
+import BL.MP3Player;
+import BL.MusikThread;
 import Beans.EinheitsVektor;
 import Beans.Kugel;
 import Beans.Player;
@@ -24,11 +26,20 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -59,7 +70,9 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "src"
             + File.separator + "bilder"
             + File.separator + "shipbasic.png";
+    
 
+    
     private LinkedList<Player> schiffListe = new LinkedList<Player>();
     private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
 
@@ -87,6 +100,7 @@ public class GameGUI extends javax.swing.JFrame
         this.setSize(1920, 1080);
         this.setVisible(true);
         
+        
 
 //        this.setResizable(false);
         maxX = (int) this.jpGame.getSize().getWidth();
@@ -101,8 +115,19 @@ public class GameGUI extends javax.swing.JFrame
 
         zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
+        
+        MusikThread mt = new MusikThread();
+        mt.start();
+//        startSound();
     }
 
+//    public void startSound()
+//    {
+//        MP3Player mp3 = new MP3Player(soundPath);
+//        mp3.play();
+//    }
+    
+    
     public void createPlayer()
     {
         try
