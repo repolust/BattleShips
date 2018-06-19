@@ -73,7 +73,7 @@ public class GameGUI extends javax.swing.JFrame
     private final String hitPath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "sound"
-            + File.separator + "hit.mp3";
+            + File.separator + "hitmarker.mp3";
     
     private final String winSoundPath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -581,7 +581,7 @@ public class GameGUI extends javax.swing.JFrame
                         
                         gui.dispose();
                          
-                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","Vielleicht schafft ihr es nächstes mal");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","Spielt doch noch einmal");
                         wdlg.setVisible(true);
 
                         this.interrupt();
@@ -595,7 +595,7 @@ public class GameGUI extends javax.swing.JFrame
                         MusikThread win = new MusikThread(winSoundPath);
                         win.start();
                         
-                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName()+" hat gewonnen!");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName());
                         wdlg.setVisible(true);
 
                         this.interrupt();
@@ -607,7 +607,7 @@ public class GameGUI extends javax.swing.JFrame
                         gui.dispose();
                         MusikThread win = new MusikThread(winSoundPath);
                         win.start();
-                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts!",p1.getName()+ " hat gewonnen! ");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts!",p1.getName());
                         wdlg.setVisible(true);
                         
                         this.interrupt();
@@ -744,6 +744,7 @@ public class GameGUI extends javax.swing.JFrame
 
         public KeyAdapterImpl()
         {
+            
         }
 
         @Override

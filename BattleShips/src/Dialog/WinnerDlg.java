@@ -68,19 +68,20 @@ public class WinnerDlg extends javax.swing.JDialog {
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 50)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Du siegst!");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(110, 20, 440, 120);
 
-        lbWinner.setFont(new java.awt.Font("Harlow Solid Italic", 0, 36)); // NOI18N
+        lbWinner.setFont(new java.awt.Font("Harlow Solid Italic", 0, 48)); // NOI18N
         lbWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbWinner.setText("Example Text");
+        lbWinner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         jPanel1.add(lbWinner);
-        lbWinner.setBounds(30, 150, 590, 70);
+        lbWinner.setBounds(210, 160, 260, 70);
 
-        lbBeenden.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        lbBeenden.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         lbBeenden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbBeenden.setText("Beenden");
         lbBeenden.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,7 +92,7 @@ public class WinnerDlg extends javax.swing.JDialog {
         jPanel1.add(lbBeenden);
         lbBeenden.setBounds(370, 260, 200, 70);
 
-        btNeustart.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        btNeustart.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         btNeustart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btNeustart.setText("Neu Starten");
         btNeustart.addMouseListener(new java.awt.event.MouseAdapter() {

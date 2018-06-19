@@ -226,8 +226,7 @@ public class NewPlayerDlg extends javax.swing.JDialog {
                     index = index + 1;
                     
                     if(index == 1)
-                    {
-                        // (String name, Color c, Image schiff, int leben, int munition, int index, Position p, String schiffArt, double currentAngle, EinheitsVektor direction, double speed, int rotation) 
+                    { 
                         p = new Player(this.name, c, ship, o.getLeben(), o.getMunition(), index, (new Position(0, 0)), shiffArt, 90, new EinheitsVektor(1, 0), o.getSpeed(), o.getRadius());
                     }
                     else
