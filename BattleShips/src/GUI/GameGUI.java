@@ -84,8 +84,11 @@ public class GameGUI extends javax.swing.JFrame
         initComponents();
 
 //        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
-//        this.setSize(1920, 1080);
-        this.setResizable(false);
+        this.setSize(1920, 1080);
+        this.setVisible(true);
+        
+
+//        this.setResizable(false);
         maxX = (int) this.jpGame.getSize().getWidth();
         maxY = (int) this.jpGame.getSize().getHeight();
         jpGame.addKeyListener(jpGameListener);
@@ -124,9 +127,14 @@ public class GameGUI extends javax.swing.JFrame
     {
        initComponents();
 
-        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
+//        this.setExtendedState(this.MAXIMIZED_BOTH); //make it fullscrren
         this.setSize(1920, 1080);
-        this.setResizable(false);
+        this.setVisible(true);
+//        this.setResizable(false);
+
+        this.jpPlayer1.setBackground(p1.getC());
+        this.jpPlayer2.setBackground(p2.getC());
+        
         maxX = (int) this.jpGame.getSize().getWidth();
         maxY = (int) this.jpGame.getSize().getHeight();
         jpGame.addKeyListener(jpGameListener);
@@ -168,7 +176,6 @@ public class GameGUI extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         jpPlayer1.setBackground(new java.awt.Color(0, 102, 204));
         jpPlayer1.setLayout(new java.awt.GridLayout(1, 3));
