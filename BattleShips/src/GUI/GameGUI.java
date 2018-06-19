@@ -75,6 +75,11 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "sound"
             + File.separator + "hitmarker.mp3";
     
+    private final String crashPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "crash.mp3";
+    
     private final String winSoundPath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "sound"
@@ -555,7 +560,8 @@ public class GameGUI extends javax.swing.JFrame
 
                     if (check.checkCollision())
                     {
-  
+                        MusikThread win = new MusikThread(crashPath);
+                        win.start();
                             p1.setLeben(p1.getLeben() - 20);
                             p2.setLeben(p2.getLeben() - 20);
  
@@ -581,7 +587,7 @@ public class GameGUI extends javax.swing.JFrame
                         
                         gui.dispose();
                          
-                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","Spielt doch noch einmal");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","");
                         wdlg.setVisible(true);
 
                         this.interrupt();
