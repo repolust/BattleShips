@@ -32,6 +32,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -63,10 +64,6 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "bilder"
             + File.separator + "shipbasic.png";
     
-    private final String musicPath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "sound"
-            + File.separator + "FluchDerKaribik.mp3";
     
     private final String cannonPath = System.getProperty("user.dir")
             + File.separator + "src"
@@ -83,7 +80,6 @@ public class GameGUI extends javax.swing.JFrame
     private MusikThread shot;
     private Position pos1, pos2;
     
-    private MusikThread musik = new MusikThread(musicPath);
 
     @Override
     public void paint(Graphics grphcs)
@@ -113,17 +109,12 @@ public class GameGUI extends javax.swing.JFrame
 
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
 
-        zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
+        zeichenThread = new zeichenThread(this, this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
         
-       
-        startMusik();
     }
 
-    public void startMusik()
-    { 
-         musik.start();
-    }
+  
     
     public void startCannonSound()
     {
@@ -182,10 +173,9 @@ public class GameGUI extends javax.swing.JFrame
         bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
 
 
-        zeichenThread = new zeichenThread(this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
+        zeichenThread = new zeichenThread(this,this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
         zeichenThread.start();
-        
-        startMusik();
+
     }
     
         
@@ -288,13 +278,18 @@ public class GameGUI extends javax.swing.JFrame
         private Player p1, p2;
         private JLabel lbP1Health, lbP1Munition, lbP2Health, lbP2Munition;
 
-        public zeichenThread(JLabel lbP1Health, JLabel lbP1Munition, JLabel lbP2Health, JLabel lbP2Munition)
+        private JFrame gui;
+        
+        public zeichenThread(JFrame gui, JLabel lbP1Health, JLabel lbP1Munition, JLabel lbP2Health, JLabel lbP2Munition)
         {
+            this.gui = gui;
+            
             System.out.println("threadP1 created");
             this.lbP1Health = lbP1Health;
             this.lbP1Munition = lbP1Munition;
             this.lbP2Health = lbP2Health;
             this.lbP2Munition = lbP2Munition;
+            
         }
 
         @Override
@@ -577,38 +572,38 @@ public class GameGUI extends javax.swing.JFrame
                     if(p1.getLeben() <= 0 && p2.getLeben() <= 0)
                     {
                         
+                        gui.dispose();
+                         
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Unentschieden","Vielleicht schafft ihr es nächstes mal");
                         wdlg.setVisible(true);
-//                        JOptionPane.showMessageDialog(null, "Unentschieden!");
-                        //zurück ins menü!
+
                         this.interrupt();
-                        System.exit(0);
+                        break;
                     }
                     else if (p1.getLeben() <= 0)
                     {
                         
-                        musik.interrupt();
+                        gui.dispose();
+                         
                         MusikThread win = new MusikThread(winSoundPath);
                         win.start();
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName()+" hat gewonnen!");
                         wdlg.setVisible(true);
-//                        JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
-                        //zurück ins menü!
+
                         this.interrupt();
+                        break;
                         
-                        System.exit(0);
                     } else if (p2.getLeben() <= 0)
                     {
-//                        JOptionPane.showMessageDialog(null, p1.getName()+" hat gewonnen!");
-                        //zurück ins menü!
                         
-                        
+                        gui.dispose();
                         MusikThread win = new MusikThread(winSoundPath);
                         win.start();
-                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts!",p1.getName()+ "hat gewonnen! ");
+                        WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts!",p1.getName()+ " hat gewonnen! ");
                         wdlg.setVisible(true);
+                        
                         this.interrupt();
-//                        System.exit(0);
+                        break;
                     }
                     
 //-----------------------------------Liste setzen---------------------------------   

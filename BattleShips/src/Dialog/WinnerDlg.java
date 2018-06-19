@@ -60,7 +60,7 @@ public class WinnerDlg extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lbWinner = new javax.swing.JLabel();
         lbBeenden = new javax.swing.JLabel();
-        btNeuStart = new javax.swing.JLabel();
+        btNeustart = new javax.swing.JLabel();
         lbBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -89,18 +89,18 @@ public class WinnerDlg extends javax.swing.JDialog {
             }
         });
         jPanel1.add(lbBeenden);
-        lbBeenden.setBounds(350, 260, 200, 70);
+        lbBeenden.setBounds(370, 260, 200, 70);
 
-        btNeuStart.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        btNeuStart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btNeuStart.setText("Neu Start");
-        btNeuStart.addMouseListener(new java.awt.event.MouseAdapter() {
+        btNeustart.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        btNeustart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btNeustart.setText("Neu Starten");
+        btNeustart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onNeuStart(evt);
+                onNeustart(evt);
             }
         });
-        jPanel1.add(btNeuStart);
-        btNeuStart.setBounds(110, 260, 200, 70);
+        jPanel1.add(btNeustart);
+        btNeustart.setBounds(110, 260, 250, 70);
 
         lbBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/blasen.jpeg"))); // NOI18N
         jPanel1.add(lbBackground);
@@ -121,12 +121,12 @@ public class WinnerDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void onBeenden(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onBeenden
-        System.exit(0);
+        System.exit(0);  
     }//GEN-LAST:event_onBeenden
 
-    private void onNeuStart(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onNeuStart
-        // keine Ahnung
-    }//GEN-LAST:event_onNeuStart
+    private void onNeustart(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onNeustart
+       this.dispose();
+    }//GEN-LAST:event_onNeustart
 
     /**
      * @param args the command line arguments
@@ -174,7 +174,7 @@ public class WinnerDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btNeuStart;
+    private javax.swing.JLabel btNeustart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbBackground;

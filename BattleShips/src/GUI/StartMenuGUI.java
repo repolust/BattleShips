@@ -5,11 +5,13 @@
  */
 package GUI;
 
+import BL.MusikThread;
 import Beans.Option;
 import Dialog.HelpDlg;
 import Dialog.NewPlayerDlg;
 import Dialog.OptionsDlg;
 import java.awt.Dimension;
+import java.io.File;
 
 
 /**
@@ -26,11 +28,19 @@ public class StartMenuGUI extends javax.swing.JFrame {
     private int breiteSchirm = (int) screensize.getWidth();
 
     private Option o = new Option(100,150,8,3);
+        private final String musicPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "FluchDerKaribik.mp3";
+        
+    private MusikThread musik = new MusikThread(musicPath);
     
     public StartMenuGUI() {
         initComponents();
         this.setBounds(breiteSchirm / 3, hoeheSchirm / 3, breiteSchirm / 3, hoeheSchirm / 3);
         this.setResizable(false);
+        
+        musik.start();
     }
 
     /**
