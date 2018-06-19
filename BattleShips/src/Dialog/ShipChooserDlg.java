@@ -78,6 +78,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
 
         jPanel3.setLayout(new java.awt.GridLayout(2, 2));
 
+        playShip1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         playShip1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip1.png"))); // NOI18N
         playShip1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,6 +88,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         jPanel3.add(playShip1);
 
         playShip2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip2.png"))); // NOI18N
+        playShip2.setEnabled(false);
         playShip2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onShip2Clicked(evt);
@@ -95,6 +97,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         jPanel3.add(playShip2);
 
         playShip3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip3.png"))); // NOI18N
+        playShip3.setEnabled(false);
         playShip3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onShip3Clicked(evt);
@@ -103,6 +106,7 @@ public class ShipChooserDlg extends javax.swing.JDialog {
         jPanel3.add(playShip3);
 
         playShip4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/showShip4.png"))); // NOI18N
+        playShip4.setEnabled(false);
         playShip4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onShip4Clicked(evt);
@@ -176,38 +180,38 @@ public class ShipChooserDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_onShip1Clicked
 
     private void onShip2Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip2Clicked
-        clearBorders();
-        this.playShip2.setBorder(BorderFactory.createEtchedBorder(null,null));    
-        
-        path = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "playShip2.png";
-        
-        shipName = "Banditenmobil";
+//        clearBorders();
+//        this.playShip2.setBorder(BorderFactory.createEtchedBorder(null,null));    
+//        
+//        path = System.getProperty("user.dir")
+//            + File.separator + "src"
+//            + File.separator + "bilder"
+//            + File.separator + "playShip2.png";
+//        
+//        shipName = "Banditenmobil";
     }//GEN-LAST:event_onShip2Clicked
 
     private void onShip3Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip3Clicked
-        clearBorders();
-        this.playShip3.setBorder(BorderFactory.createEtchedBorder(null,null));    
-        
-        path = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "playShip3.png";
-        
-        shipName = "Windzerfetzer";
+//        clearBorders();
+//        this.playShip3.setBorder(BorderFactory.createEtchedBorder(null,null));    
+//        
+//        path = System.getProperty("user.dir")
+//            + File.separator + "src"
+//            + File.separator + "bilder"
+//            + File.separator + "playShip3.png";
+//        
+//        shipName = "Windzerfetzer";
     }//GEN-LAST:event_onShip3Clicked
 
     private void onShip4Clicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShip4Clicked
-       clearBorders();
-        this.playShip4.setBorder(BorderFactory.createEtchedBorder(null,null));    
-        path = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "playShip4.png";
-        
-        shipName = "Absolute Zerstörung";
+//       clearBorders();
+//        this.playShip4.setBorder(BorderFactory.createEtchedBorder(null,null));    
+//        path = System.getProperty("user.dir")
+//            + File.separator + "src"
+//            + File.separator + "bilder"
+//            + File.separator + "playShip4.png";
+//        
+//        shipName = "Absolute Zerstörung";
     }//GEN-LAST:event_onShip4Clicked
 
     private void onAuswaehlen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onAuswaehlen
