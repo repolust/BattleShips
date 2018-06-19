@@ -181,24 +181,32 @@ public class GameGUI extends javax.swing.JFrame
         jpPlayer1.setLayout(new java.awt.GridLayout(1, 3));
 
         lbPlayer1.setBackground(new java.awt.Color(255, 0, 51));
+        lbPlayer1.setFont(new java.awt.Font("Papyrus", 1, 24)); // NOI18N
+        lbPlayer1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbPlayer1.setText("Player 1:");
         jpPlayer1.add(lbPlayer1);
 
+        lbP1Health.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbP1Health.setText("Health:");
         jpPlayer1.add(lbP1Health);
 
+        lbP1Munition.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbP1Munition.setText("Munition:");
         jpPlayer1.add(lbP1Munition);
 
         jpPlayer2.setBackground(new java.awt.Color(0, 102, 204));
         jpPlayer2.setLayout(new java.awt.GridLayout(1, 3));
 
+        lbPlayer2.setFont(new java.awt.Font("Papyrus", 1, 24)); // NOI18N
+        lbPlayer2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbPlayer2.setText("Player 2:");
         jpPlayer2.add(lbPlayer2);
 
+        lbP2Health.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbP2Health.setText("Health:");
         jpPlayer2.add(lbP2Health);
 
+        lbP2Munition.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lbP2Munition.setText("Munition:");
         jpPlayer2.add(lbP2Munition);
 
@@ -527,13 +535,13 @@ public class GameGUI extends javax.swing.JFrame
 
                     }
 
-                    if (p1.getLeben() == 0)
+                    if (p1.getLeben() <= 0)
                     {
                         JOptionPane.showMessageDialog(null, "Spieler 2 hat gewonnen!");
                         //zurück ins menü!
                         this.interrupt();
                         System.exit(0);
-                    } else if (p2.getLeben() == 0)
+                    } else if (p2.getLeben() <= 0)
                     {
                         JOptionPane.showMessageDialog(null, "Spieler 1 hat gewonnen!");
                         //zurück ins menü!
