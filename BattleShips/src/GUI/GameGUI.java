@@ -56,15 +56,7 @@ public class GameGUI extends javax.swing.JFrame
 
 //    private HashMap<String, Boolean> flagMap = new HashMap();
     private Controlls controlls = new Controlls();
-    private Image ship1 = null;
-    private Image ship2 = null;
 
-    private final String imagePath = System.getProperty("user.dir")
-            + File.separator + "src"
-            + File.separator + "bilder"
-            + File.separator + "shipbasic.png";
-    
-    
     private final String cannonPath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "sound"
@@ -85,9 +77,14 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "sound"
             + File.separator + "winSound.mp3";
     
+    private final String airhornPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "airhorn.mp3";
+    
     private LinkedList<Player> schiffListe = new LinkedList<Player>();
     private LinkedList<Kugel> kugelListe = new LinkedList<Kugel>();
-    private MusikThread shot;
+  
     private Position pos1, pos2;
     
 
@@ -102,57 +99,9 @@ public class GameGUI extends javax.swing.JFrame
 
         }
     }
+
     
-    public GameGUI()
-    {
-        initComponents();
-
-        this.setSize(1920, 1080);
-        this.setVisible(true);
-
-        maxX = (int) this.jpGame.getSize().getWidth();
-        maxY = (int) this.jpGame.getSize().getHeight();
-        jpGame.addKeyListener(jpGameListener);
-        jpGame.setFocusable(true);
-
-        createPlayer();
-
-        bl = new GameBL(this.jpGame, new EinheitsVektor(1, 0), new EinheitsVektor(0, 1), schiffListe);
-
-        zeichenThread = new zeichenThread(this, this.lbP1Health, this.lbP1Munition, this.lbP2Health, this.lbP2Munition);
-        zeichenThread.start();
-        
-    }
-
-  
     
-    public void startCannonSound()
-    {
-        shot = new MusikThread(cannonPath);
-         shot.start();
-    }
-   
-  
-    public void createPlayer()
-    {
-        try
-        {
-            ship1 = ImageIO.read(new File(imagePath));
-            ship2 = ImageIO.read(new File(imagePath));
-            pos1 = new Position(300, (maxY / 2 - 35));
-            pos2 = new Position((maxX - 390), (maxY / 2 - 35));
-        } catch (IOException ex)
-        {
-            Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        Player p1 = new Player("Spieler1", Color.BLUE, ship1, 100, 150, 0, pos1, "schiff1", 90, new EinheitsVektor(1, 0), 8, 3);
-        Player p2 = new Player("Spieler2", Color.RED, ship2, 100, 150, 0, pos2, "schiff2", 270, new EinheitsVektor(-1, 0), 8, 3);
-
-        schiffListe.add(p1);
-        schiffListe.add(p2);
-    }
-
     public GameGUI(Player p1, Player p2)
     {
        initComponents();
@@ -187,6 +136,7 @@ public class GameGUI extends javax.swing.JFrame
         zeichenThread.start();
 
     }
+
     
         
     /**
@@ -300,6 +250,13 @@ public class GameGUI extends javax.swing.JFrame
             this.lbP2Health = lbP2Health;
             this.lbP2Munition = lbP2Munition;
             
+            playSound(airhornPath);
+            
+        }
+        public void playSound(String path)
+        {
+            MusikThread sound = new MusikThread(path);
+            sound.start();
         }
 
         @Override
@@ -317,9 +274,12 @@ public class GameGUI extends javax.swing.JFrame
                     this.lbP1Munition.setText("Munition: " + p1.getMunition());
                     this.lbP2Munition.setText("Munition: " + p2.getMunition());
 
+// Der Thread überprüft ob die jeweiligen Tasten in der Liste der Klasse Controlls enthalten sind und führt demensprechen die Aktionen aus     
 
-//-----------------------------------Spieler 1 ---------------------------------  
-                    if (p1.getCurrentAngle() >= 360 || p1.getCurrentAngle() <= -360) // reset Angle
+//-----------------------------------Controlls---------------------------------
+//-----------------------------------Spieler 1 ---------------------------------
+
+                    if (p1.getCurrentAngle() >= 360 || p1.getCurrentAngle() <= -360) // Winkel zurücksetzen
                     {
                         p1.setCurrentAngle(0);
                     }
@@ -359,10 +319,10 @@ public class GameGUI extends javax.swing.JFrame
                     if (controlls.containsKey(KeyEvent.VK_SPACE)) // Schuss
                     {
 
-                        EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); //vektor
+                        EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY()); 
                         EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(0).getDirection().getX(), schiffListe.get(0).getDirection().getY());
 
-                        einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
+                        einVLinks.rotateEinheitsVektor(-90); 
                         einVRechts.rotateEinheitsVektor(90);
 
                         Rectangle hitbox = new Rectangle(p1.getHitbox().x, p1.getHitbox().y, p1.getHitbox().width, p1.getHitbox().height);           
@@ -406,14 +366,16 @@ public class GameGUI extends javax.swing.JFrame
                         
                         if(p1.getMunition() != 0)
                         {
-                            startCannonSound();
+                             playSound(cannonPath);
+                             
                         }
                         
                         
                     }
 
 //-----------------------------------Spieler 2 ---------------------------------
-                    if (p2.getCurrentAngle() >= 360 || p2.getCurrentAngle() <= -360)// reset Angle
+
+                    if (p2.getCurrentAngle() >= 360 || p2.getCurrentAngle() <= -360)// Winkel zurücksetzten
                     {
                         p2.setCurrentAngle(0);
                     }
@@ -456,10 +418,10 @@ public class GameGUI extends javax.swing.JFrame
                     if (controlls.containsKey(KeyEvent.VK_ENTER)) // Schuss
                     {
 
-                        EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(1).getDirection().getX(), schiffListe.get(1).getDirection().getY()); //vektor
+                        EinheitsVektor einVLinks = new EinheitsVektor(schiffListe.get(1).getDirection().getX(), schiffListe.get(1).getDirection().getY());
                         EinheitsVektor einVRechts = new EinheitsVektor(schiffListe.get(1).getDirection().getX(), schiffListe.get(1).getDirection().getY());
 
-                        einVLinks.rotateEinheitsVektor(-90); //links rechts drehen
+                        einVLinks.rotateEinheitsVektor(-90); 
                         einVRechts.rotateEinheitsVektor(90);
 
                         Rectangle hitbox = new Rectangle(p2.getHitbox().x, p2.getHitbox().y, p2.getHitbox().width, p2.getHitbox().height);
@@ -502,13 +464,15 @@ public class GameGUI extends javax.swing.JFrame
                         }
 
                         controlls.removeKey(KeyEvent.VK_ENTER);
+                        
                         if(p2.getMunition() != 0)
                         {
-                            startCannonSound();
+                             playSound(cannonPath);
                         }
                     }
-                    
-                    //Falls beide SChiffe keine Munition haben, bekommt das SChiff das mehr Leben hat einen leichten Geschwindigkeitsboost
+//-----------------------------------/Controlls---------------------------------
+
+                    //Falls beide SChiffe keine Munition haben, bekommt das Schiff das mehr Leben hat einen leichten Geschwindigkeitsboost
                     if (!isSpeedIncreased) {
                         
                     if(p1.getMunition() == 0 && p2.getMunition() == 0)
@@ -558,10 +522,9 @@ public class GameGUI extends javax.swing.JFrame
 //-----------------------------------Collision Detection---------------------------------
                     CheckIfHit check = new CheckIfHit(kugelListe, schiffListe);
 
-                    if (check.checkCollision())
+                    if (check.checkCollision()) // Schiffe fahren zusammen
                     {
-                        MusikThread win = new MusikThread(crashPath);
-                        win.start();
+                        playSound(crashPath);
                             p1.setLeben(p1.getLeben() - 20);
                             p2.setLeben(p2.getLeben() - 20);
  
@@ -573,16 +536,16 @@ public class GameGUI extends javax.swing.JFrame
 
                     }
 
-                    if (check.checkIfHit() != null)
+                    if (check.checkIfHit() != null)//Kanonenkugel hat getroffen
                     {
-                        MusikThread hit = new MusikThread(hitPath);
-                        hit.start();
+                        playSound(hitPath);
+                        
                         Treffer t = check.checkIfHit();
                         kugelListe.remove((t.getKugelIndex()));
 
                     }
                     
-                    if(p1.getLeben() <= 0 && p2.getLeben() <= 0)
+                    if(p1.getLeben() <= 0 && p2.getLeben() <= 0)// Unentschieden
                     {
                         
                         gui.dispose();
@@ -593,13 +556,13 @@ public class GameGUI extends javax.swing.JFrame
                         this.interrupt();
                         break;
                     }
-                    else if (p1.getLeben() <= 0)
+                    
+                    else if (p1.getLeben() <= 0)//Spieler 2 gewinnt
                     {
                         
                         gui.dispose();
                          
-                        MusikThread win = new MusikThread(winSoundPath);
-                        win.start();
+                        playSound(winSoundPath);
                         
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName());
                         wdlg.setVisible(true);
@@ -607,24 +570,26 @@ public class GameGUI extends javax.swing.JFrame
                         this.interrupt();
                         break;
                         
-                    } else if (p2.getLeben() <= 0)
+                    } else if (p2.getLeben() <= 0)//Spieler 1 gewinnt
                     {
                         
                         gui.dispose();
-                        MusikThread win = new MusikThread(winSoundPath);
-                        win.start();
+                        
+                        playSound(winSoundPath);
+                        
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts!",p1.getName());
                         wdlg.setVisible(true);
                         
                         this.interrupt();
                         break;
                     }
-                    
-//-----------------------------------Liste setzen---------------------------------   
+  //-----------------------------------//Collision Detection---------------------------------  
+  
+//-----------------------------------Liste setzen damit Bl zeichnen kann--------
                     schiffListe.set(0, p1);
                     schiffListe.set(1, p2);
 
-//-----------------------------------//Collision Detection---------------------------------                    
+   //----------------------------BL zeichnet------------------------------------            
                     bl.draw(schiffListe, kugelListe);
 
                     Thread.sleep(10);
@@ -636,7 +601,7 @@ public class GameGUI extends javax.swing.JFrame
 
         }
 
-        public void checkAndIncrease1()
+        public void checkAndIncrease1()//Bewegt Spieler1 und sorgt dafür das man über den Rand fahren kann
         {
 
             if (p1.getP().getX() <= 0)
@@ -658,7 +623,7 @@ public class GameGUI extends javax.swing.JFrame
             }
         }
 
-        public void checkAndIncrease2()
+        public void checkAndIncrease2()//Bewegt Spieler2 und sorgt dafür das man über den Rand fahren kann
         {
             if (p2.getP().getX() <= 0)
             {
@@ -728,7 +693,7 @@ public class GameGUI extends javax.swing.JFrame
         {
             public void run()
             {
-                new GameGUI().setVisible(true);
+                new GameGUI(null,null).setVisible(true);
             }
         });
     }
@@ -745,9 +710,12 @@ public class GameGUI extends javax.swing.JFrame
     private javax.swing.JLabel lbPlayer2;
     // End of variables declaration//GEN-END:variables
 
-    private class KeyAdapterImpl extends KeyAdapter
+    private class KeyAdapterImpl extends KeyAdapter //KeyListener
     {
 
+        //Wenn eine Taste gedrückt wird, dann wird sie in der Klasse Controlls gespeichtert
+        //Wenn man die Taste wieder loslässt wird diese wieder aus Controlls entfernt
+        
         public KeyAdapterImpl()
         {
             
