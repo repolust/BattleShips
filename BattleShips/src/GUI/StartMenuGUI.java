@@ -56,6 +56,7 @@ public class StartMenuGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BattleShips");
+        setUndecorated(true);
 
         jPanel2.setLayout(null);
 

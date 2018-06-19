@@ -565,17 +565,10 @@ public class GameGUI extends javax.swing.JFrame
 
                     if (check.checkCollision())
                     {
-                        if (p1.getLeben() < 15 && p2.getLeben() > 50)
-                        {
-                            p1.setLeben(0);
-                        } else if (p2.getLeben() < 15 && p1.getLeben() > 50)
-                        {
-                            p2.setLeben(0);
-                        } else
-                        {
-                            p1.setLeben(p1.getLeben() - 10);
-                            p2.setLeben(p2.getLeben() - 10);
-                        }
+  
+                            p1.setLeben(p1.getLeben() - 20);
+                            p2.setLeben(p2.getLeben() - 20);
+ 
 
                         pos1 = new Position(300, (maxY / 2 - 35));
                         pos2 = new Position((maxX - 390), (maxY / 2 - 35));
@@ -590,8 +583,15 @@ public class GameGUI extends javax.swing.JFrame
                         kugelListe.remove((t.getKugelIndex()));
 
                     }
-
-                    if (p1.getLeben() <= 0)
+                    
+                    if(p1.getLeben() <= 0 && p2.getLeben() <= 0)
+                    {
+                        JOptionPane.showMessageDialog(null, "Unentschieden!");
+                        //zurück ins menü!
+                        this.interrupt();
+                        System.exit(0);
+                    }
+                    else if (p1.getLeben() <= 0)
                     {
                         JOptionPane.showMessageDialog(null, p2.getName()+" hat gewonnen!");
                         //zurück ins menü!
@@ -599,7 +599,7 @@ public class GameGUI extends javax.swing.JFrame
                         System.exit(0);
                     } else if (p2.getLeben() <= 0)
                     {
-                        JOptionPane.showMessageDialog(null, p1.getName()+"Spieler 1 hat gewonnen!");
+                        JOptionPane.showMessageDialog(null, p1.getName()+" hat gewonnen!");
                         //zurück ins menü!
                         this.interrupt();
                         System.exit(0);
