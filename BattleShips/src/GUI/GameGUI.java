@@ -70,6 +70,11 @@ public class GameGUI extends javax.swing.JFrame
             + File.separator + "sound"
             + File.separator + "cannon.mp3";
     
+    private final String hitPath = System.getProperty("user.dir")
+            + File.separator + "src"
+            + File.separator + "sound"
+            + File.separator + "hit.mp3";
+    
     private final String winSoundPath = System.getProperty("user.dir")
             + File.separator + "src"
             + File.separator + "sound"
@@ -564,6 +569,8 @@ public class GameGUI extends javax.swing.JFrame
 
                     if (check.checkIfHit() != null)
                     {
+                        MusikThread hit = new MusikThread(hitPath);
+                        hit.start();
                         Treffer t = check.checkIfHit();
                         kugelListe.remove((t.getKugelIndex()));
 
@@ -587,6 +594,7 @@ public class GameGUI extends javax.swing.JFrame
                          
                         MusikThread win = new MusikThread(winSoundPath);
                         win.start();
+                        
                         WinnerDlg wdlg = new WinnerDlg(new javax.swing.JFrame(),true,"Du siegts !", p2.getName()+" hat gewonnen!");
                         wdlg.setVisible(true);
 
